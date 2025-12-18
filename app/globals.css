@@ -6,7 +6,7 @@
 
 @layer base {
   * {
-    @apply border-gray-800;
+    border-color: rgb(31 41 55);
   }
   body {
     @apply bg-gradient-to-br from-purple-950 via-indigo-950 to-purple-950 text-white;
