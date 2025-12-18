@@ -214,7 +214,6 @@ export default function Home() {
                 Claim {Number(pendingAuto)} Auto Points
               </button>
             )}
-            )}
           </div>
 
           {/* Center Column - Click Button */}
