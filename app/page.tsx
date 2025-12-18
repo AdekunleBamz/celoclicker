@@ -19,16 +19,16 @@ export default function Home() {
   const [clickCount, setClickCount] = useState(0)
   const [showLeaderboard, setShowLeaderboard] = useState(false)
 
-  const contractAddress = process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT as `0x${string}`
+  const contractAddress = (process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT || '0x0000000000000000000000000000000000000000') as `0x${string}`
 
   // Read player stats
-  const { data: playerData, refetch: refetchPlayer } = useReadContract({
+  const { data: playerData, refetch: refetchPlayer, error: playerError } = useReadContract({
     address: contractAddress,
     abi: celoClickerABI,
     functionName: 'getPlayer',
     args: [address as `0x${string}`],
     query: {
-      enabled: !!address,
+      enabled: !!address && contractAddress !== '0x0000000000000000000000000000000000000000',
       refetchInterval: 3000,
     },
   })
