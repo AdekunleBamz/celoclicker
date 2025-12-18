@@ -12,6 +12,7 @@ import { StatCard } from '@/components/StatCard'
 import { UpgradeCard } from '@/components/UpgradeCard'
 import { ContractWarning } from '@/components/ContractWarning'
 import { useContractConfig } from '@/hooks/useContractConfig'
+import { DebugEnv } from './debug-env'
 
 interface FloatingNumber {
   id: number
@@ -397,6 +398,7 @@ export default function Home() {
             </motion.div>
           )}
         </AnimatePresence>
+        <DebugEnv />
       </div>
     </div>
   )
