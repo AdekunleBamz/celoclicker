@@ -8,6 +8,7 @@ import { celoClickerABI } from '@/lib/abis'
 import { formatNumber, formatAddress } from '@/lib/utils'
 import { GAME_CONFIG } from '@/lib/constants'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
+import { EmptyState } from '@/components/EmptyState'
 
 interface FloatingNumber {
   id: number
@@ -361,8 +362,15 @@ export default function Home() {
                 
                 <div className="space-y-2">
                   {(() => {
-                    if (!leaderboardData) return null
+                    if (!leaderboardData) {
+                      return <EmptyState title="No Leaderboard Data" description="Be the first to play!" icon="🏆" />
+                    }
                     const [addresses, pointsList] = leaderboardData as [`0x${string}`[], bigint[]]
+                    const hasEntries = addresses.some(addr => addr && addr !== '0x0000000000000000000000000000000000000000')
+                    
+                    if (!hasEntries) {
+                      return <EmptyState title="No Players Yet" description="Be the first to join the leaderboard!" icon="🎮" />
+                    }
                     
                     return addresses.map((addr, idx) => {
                       const pts = pointsList[idx]
