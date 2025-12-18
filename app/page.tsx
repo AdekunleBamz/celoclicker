@@ -8,6 +8,7 @@ import { formatNumber, formatAddress } from '@/lib/utils'
 import { GAME_CONFIG } from '@/lib/constants'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
 import { EmptyState } from '@/components/EmptyState'
+import { StatCard } from '@/components/StatCard'
 import { useContractConfig } from '@/hooks/useContractConfig'
 
 interface FloatingNumber {
@@ -168,30 +169,36 @@ export default function Home() {
             
             {!isLoadingPlayer && (
             <div className="space-y-3">
-              <div className="bg-black/30 rounded-lg p-3">
-                <div className="text-gray-400 text-xs mb-1">POINTS</div>
-                <div className="text-3xl font-bold text-celo-gold">{formatNumber(points)}</div>
-              </div>
-
-              <div className="bg-black/30 rounded-lg p-3">
-                <div className="text-gray-400 text-xs mb-1">CLICK POWER</div>
-                <div className="text-xl font-bold text-purple-400">{Number(clickPower)}</div>
-              </div>
-
-              <div className="bg-black/30 rounded-lg p-3">
-                <div className="text-gray-400 text-xs mb-1">MULTIPLIER</div>
-                <div className="text-xl font-bold text-pink-400">{1 + Number(multiplierLevel)}x</div>
-              </div>
-
-              <div className="bg-black/30 rounded-lg p-3">
-                <div className="text-gray-400 text-xs mb-1">AUTO-CLICKER</div>
-                <div className="text-xl font-bold text-indigo-400">Level {Number(autoClickerLevel)}</div>
-              </div>
-
-              <div className="bg-black/30 rounded-lg p-3">
-                <div className="text-gray-400 text-xs mb-1">TOTAL CLICKS</div>
-                <div className="text-xl font-bold text-green-400">{formatNumber(totalClicks)}</div>
-              </div>
+              <StatCard 
+                label="POINTS" 
+                value={formatNumber(points)} 
+                valueColor="text-celo-gold"
+                icon="⭐"
+              />
+              <StatCard 
+                label="CLICK POWER" 
+                value={Number(clickPower)} 
+                valueColor="text-purple-400"
+                icon="⚡"
+              />
+              <StatCard 
+                label="MULTIPLIER" 
+                value={`${1 + Number(multiplierLevel)}x`} 
+                valueColor="text-pink-400"
+                icon="✨"
+              />
+              <StatCard 
+                label="AUTO-CLICKER" 
+                value={`Level ${Number(autoClickerLevel)}`} 
+                valueColor="text-indigo-400"
+                icon="🤖"
+              />
+              <StatCard 
+                label="TOTAL CLICKS" 
+                value={formatNumber(totalClicks)} 
+                valueColor="text-green-400"
+                icon="👆"
+              />
             </div>
 
             {autoClickerLevel > 0n && pendingAuto && Number(pendingAuto) > 0 && (
