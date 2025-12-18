@@ -204,6 +204,7 @@ export default function Home() {
                 icon="👆"
               />
             </div>
+            )}
 
             {autoClickerLevel > 0n && pendingAuto && Number(pendingAuto) > 0 && (
               <button
