@@ -344,7 +344,7 @@ export default function Home() {
                     if (!leaderboardData) {
                       return <EmptyState title="No Leaderboard Data" description="Be the first to play!" icon="🏆" />
                     }
-                    const [addresses, pointsList] = leaderboardData as readonly [`0x${string}`[], bigint[]]
+                    const [addresses, pointsList] = leaderboardData as unknown as [`0x${string}`[], bigint[]]
                     const hasEntries = addresses.some(addr => addr && addr !== '0x0000000000000000000000000000000000000000')
                     
                     if (!hasEntries) {
