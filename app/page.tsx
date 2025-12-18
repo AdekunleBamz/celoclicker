@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react'
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion, AnimatePresence } from 'framer-motion'
-import { celoClickerABI } from '@/lib/abis'
 import { formatNumber, formatAddress } from '@/lib/utils'
 import { GAME_CONFIG } from '@/lib/constants'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
 import { EmptyState } from '@/components/EmptyState'
+import { useContractConfig } from '@/hooks/useContractConfig'
 
 interface FloatingNumber {
   id: number
@@ -23,7 +23,7 @@ export default function Home() {
   const [clickCount, setClickCount] = useState(0)
   const [showLeaderboard, setShowLeaderboard] = useState(false)
 
-  const contractAddress = (process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT || '0x0000000000000000000000000000000000000000') as `0x${string}`
+  const { address: contractAddress, abi: celoClickerABI, isValid: isContractValid } = useContractConfig()
 
   // Read player stats
   const { data: playerData, refetch: refetchPlayer, error: playerError, isLoading: isLoadingPlayer } = useReadContract({
@@ -32,7 +32,7 @@ export default function Home() {
     functionName: 'getPlayer',
     args: [address as `0x${string}`],
     query: {
-      enabled: !!address && contractAddress !== '0x0000000000000000000000000000000000000000',
+      enabled: !!address && isContractValid,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PLAYER_STATS,
     },
   })
@@ -47,7 +47,7 @@ export default function Home() {
     functionName: 'getUpgradeCosts',
     args: [address as `0x${string}`],
     query: {
-      enabled: !!address,
+      enabled: !!address && isContractValid,
     },
   })
 
