@@ -1,0 +1,11 @@
+{
+  "name": "CeloClicker",
+  "version": "1.0.0",
+  "description": "Addictive on-chain clicker game. Click, upgrade, dominate!",
+  "icon": "https://your-domain.com/icon.png",
+  "splash": "https://your-domain.com/splash.png",
+  "url": "https://your-domain.com",
+  "homeUrl": "https://your-domain.com",
+  "splashBackgroundColor": "#1E1B4B",
+  "themeColor": "#9333EA"
+}

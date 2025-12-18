@@ -1,0 +1,20 @@
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjEyMzQ1LCJ0eXBlIjoiY3VzdG9keSIsImtleSI6IjB4..."}",
+    "payload": "domain",
+    "signature": "MHhhYmNkZWY..."
+  },
+  "frame": {
+    "version": "1",
+    "name": "CeloClicker",
+    "homeUrl": "https://your-domain.com",
+    "iconUrl": "https://your-domain.com/icon.png",
+    "splashImageUrl": "https://your-domain.com/splash.png",
+    "splashBackgroundColor": "#1E1B4B",
+    "webhookUrl": "https://your-domain.com/api/webhook"
+  },
+  "frame:button:1": {
+    "label": "Play Now",
+    "action": "post"
+  }
+}
