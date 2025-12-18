@@ -79,15 +79,22 @@ export default function Home() {
     },
   })
 
-  const { writeContract, data: hash, isPending } = useWriteContract()
+  const { writeContract, data: hash, isPending, error: writeError } = useWriteContract()
 
-  const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({
+  const { isLoading: isConfirming, isSuccess, error: txError } = useWaitForTransactionReceipt({
     hash,
   })
 
-  // Click handler
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!isConnected) return
+  // Click handler - triggers wallet transaction on every click
+  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!isConnected) {
+      alert('Please connect your wallet first!')
+      return
+    }
+
+    if (isPending || isConfirming) {
+      return // Prevent multiple clicks while transaction is pending
+    }
 
     const rect = e.currentTarget.getBoundingClientRect()
     const x = e.clientX - rect.left
@@ -103,12 +110,17 @@ export default function Home() {
 
     setClickCount(prev => prev + 1)
 
-    // Send click transaction
-    writeContract({
-      address: contractAddress,
-      abi: celoClickerABI,
-      functionName: 'click',
-    })
+    // Send click transaction - this will trigger wallet popup
+    try {
+      writeContract({
+        address: contractAddress,
+        abi: celoClickerABI,
+        functionName: 'click',
+      })
+    } catch (error) {
+      console.error('Error sending click transaction:', error)
+      alert('Failed to send transaction. Please try again.')
+    }
 
     // Remove floating number after animation
     setTimeout(() => {
@@ -117,21 +129,49 @@ export default function Home() {
   }
 
   const handleUpgrade = (type: 'clickPower' | 'autoClicker' | 'multiplier') => {
-    writeContract({
-      address: contractAddress,
-      abi: celoClickerABI,
-      functionName: type === 'clickPower' ? 'upgradeClickPower' : 
-                     type === 'autoClicker' ? 'upgradeAutoClicker' : 
-                     'upgradeMultiplier',
-    })
+    if (!isConnected) {
+      alert('Please connect your wallet first!')
+      return
+    }
+
+    if (isPending || isConfirming) {
+      return
+    }
+
+    try {
+      writeContract({
+        address: contractAddress,
+        abi: celoClickerABI,
+        functionName: type === 'clickPower' ? 'upgradeClickPower' : 
+                       type === 'autoClicker' ? 'upgradeAutoClicker' : 
+                       'upgradeMultiplier',
+      })
+    } catch (error) {
+      console.error('Error sending upgrade transaction:', error)
+      alert('Failed to send transaction. Please try again.')
+    }
   }
 
   const handleClaimAuto = () => {
-    writeContract({
-      address: contractAddress,
-      abi: celoClickerABI,
-      functionName: 'claimAutoClicker',
-    })
+    if (!isConnected) {
+      alert('Please connect your wallet first!')
+      return
+    }
+
+    if (isPending || isConfirming) {
+      return
+    }
+
+    try {
+      writeContract({
+        address: contractAddress,
+        abi: celoClickerABI,
+        functionName: 'claimAutoClicker',
+      })
+    } catch (error) {
+      console.error('Error sending claim transaction:', error)
+      alert('Failed to send transaction. Please try again.')
+    }
   }
 
   useEffect(() => {
@@ -264,8 +304,13 @@ export default function Home() {
                 </motion.button>
 
                 <p className="mt-6 text-gray-400 pixel-font text-xs">
-                  {isPending ? 'CONFIRMING...' : isConfirming ? 'PROCESSING...' : 'CLICK THE STAR!'}
+                  {isPending ? '⏳ WAITING FOR WALLET...' : isConfirming ? '⏳ PROCESSING TRANSACTION...' : 'CLICK THE STAR!'}
                 </p>
+                {(writeError || txError) && (
+                  <p className="mt-2 text-red-400 text-xs">
+                    Error: {writeError?.message || txError?.message || 'Transaction failed'}
+                  </p>
+                )}
 
                 <div className="mt-4 text-center">
                   <div className="text-2xl font-bold text-celo-green">{clickCount}</div>
@@ -378,8 +423,8 @@ export default function Home() {
                             <div className="font-mono text-sm text-gray-400">
                               {formatAddress(addr)}
                             </div>
-                            </div>
                           </div>
+                        </div>
                         <div className="text-xl font-bold text-celo-green">
                             {formatNumber(pts)}
                         </div>
