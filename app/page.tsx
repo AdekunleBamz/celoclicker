@@ -6,6 +6,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion, AnimatePresence } from 'framer-motion'
 import { celoClickerABI } from '@/lib/abis'
 import { formatNumber, formatAddress } from '@/lib/utils'
+import { GAME_CONFIG } from '@/lib/constants'
 
 interface FloatingNumber {
   id: number
@@ -30,7 +31,7 @@ export default function Home() {
     args: [address as `0x${string}`],
     query: {
       enabled: !!address && contractAddress !== '0x0000000000000000000000000000000000000000',
-      refetchInterval: 3000,
+      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PLAYER_STATS,
     },
   })
 
@@ -59,7 +60,7 @@ export default function Home() {
     args: [address as `0x${string}`],
     query: {
       enabled: !!address && autoClickerLevel > 0n,
-      refetchInterval: 1000,
+      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PENDING_AUTO,
     },
   })
 
@@ -69,7 +70,7 @@ export default function Home() {
     abi: celoClickerABI,
     functionName: 'getLeaderboard',
     query: {
-      refetchInterval: 5000,
+      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.LEADERBOARD,
     },
   })
 
@@ -107,7 +108,7 @@ export default function Home() {
     // Remove floating number after animation
     setTimeout(() => {
       setFloatingNumbers(prev => prev.filter(num => num.id !== floatingId))
-    }, 1000)
+    }, GAME_CONFIG.ANIMATION_DURATION.FLOATING_NUMBER)
   }
 
   const handleUpgrade = (type: 'clickPower' | 'autoClicker' | 'multiplier') => {
