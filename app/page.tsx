@@ -9,6 +9,7 @@ import { GAME_CONFIG } from '@/lib/constants'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
 import { EmptyState } from '@/components/EmptyState'
 import { StatCard } from '@/components/StatCard'
+import { UpgradeCard } from '@/components/UpgradeCard'
 import { useContractConfig } from '@/hooks/useContractConfig'
 
 interface FloatingNumber {
@@ -275,68 +276,36 @@ export default function Home() {
             <h2 className="text-2xl font-bold text-purple-400 mb-4 pixel-font">UPGRADES</h2>
 
             <div className="space-y-3">
-              {/* Click Power */}
-              <div className="bg-black/30 rounded-lg p-4">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <div className="font-bold text-purple-400">Click Power</div>
-                    <div className="text-xs text-gray-400">Current: {Number(clickPower)}</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-celo-gold font-bold">{Number(clickPowerCost)}</div>
-                    <div className="text-xs text-gray-400">points</div>
-                  </div>
-                </div>
-                <button
-                  onClick={() => handleUpgrade('clickPower')}
-                  disabled={points < clickPowerCost || isPending || isConfirming}
-                  className="w-full py-2 bg-purple-500/50 hover:bg-purple-500 rounded-lg font-bold transition-colors disabled:opacity-30 disabled:cursor-not-allowed text-sm"
-                >
-                  UPGRADE
-                </button>
-              </div>
-
-              {/* Auto-Clicker */}
-              <div className="bg-black/30 rounded-lg p-4">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <div className="font-bold text-indigo-400">Auto-Clicker</div>
-                    <div className="text-xs text-gray-400">Level: {Number(autoClickerLevel)}</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-celo-gold font-bold">{Number(autoClickerCost)}</div>
-                    <div className="text-xs text-gray-400">points</div>
-                  </div>
-                </div>
-                <button
-                  onClick={() => handleUpgrade('autoClicker')}
-                  disabled={points < autoClickerCost || isPending || isConfirming}
-                  className="w-full py-2 bg-indigo-500/50 hover:bg-indigo-500 rounded-lg font-bold transition-colors disabled:opacity-30 disabled:cursor-not-allowed text-sm"
-                >
-                  UPGRADE
-                </button>
-              </div>
-
-              {/* Multiplier */}
-              <div className="bg-black/30 rounded-lg p-4">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <div className="font-bold text-pink-400">Multiplier</div>
-                    <div className="text-xs text-gray-400">Current: {1 + Number(multiplierLevel)}x</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-celo-gold font-bold">{Number(multiplierCost)}</div>
-                    <div className="text-xs text-gray-400">points</div>
-                  </div>
-                </div>
-                <button
-                  onClick={() => handleUpgrade('multiplier')}
-                  disabled={points < multiplierCost || isPending || isConfirming}
-                  className="w-full py-2 bg-pink-500/50 hover:bg-pink-500 rounded-lg font-bold transition-colors disabled:opacity-30 disabled:cursor-not-allowed text-sm"
-                >
-                  UPGRADE
-                </button>
-              </div>
+              <UpgradeCard
+                title="Click Power"
+                currentLevel={Number(clickPower)}
+                cost={clickPowerCost}
+                points={points}
+                color="text-purple-400"
+                onUpgrade={() => handleUpgrade('clickPower')}
+                disabled={isPending || isConfirming}
+                isLoading={isPending || isConfirming}
+              />
+              <UpgradeCard
+                title="Auto-Clicker"
+                currentLevel={`Level ${Number(autoClickerLevel)}`}
+                cost={autoClickerCost}
+                points={points}
+                color="text-indigo-400"
+                onUpgrade={() => handleUpgrade('autoClicker')}
+                disabled={isPending || isConfirming}
+                isLoading={isPending || isConfirming}
+              />
+              <UpgradeCard
+                title="Multiplier"
+                currentLevel={`${1 + Number(multiplierLevel)}x`}
+                cost={multiplierCost}
+                points={points}
+                color="text-pink-400"
+                onUpgrade={() => handleUpgrade('multiplier')}
+                disabled={isPending || isConfirming}
+                isLoading={isPending || isConfirming}
+              />
             </div>
 
             <button
