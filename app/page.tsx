@@ -5,6 +5,7 @@ import { useAccount, useReadContract, useWriteContract, useWaitForTransactionRec
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion, AnimatePresence } from 'framer-motion'
 import { celoClickerABI } from '@/lib/abis'
+import { formatNumber, formatAddress } from '@/lib/utils'
 
 interface FloatingNumber {
   id: number
@@ -159,7 +160,7 @@ export default function Home() {
             <div className="space-y-3">
               <div className="bg-black/30 rounded-lg p-3">
                 <div className="text-gray-400 text-xs mb-1">POINTS</div>
-                <div className="text-3xl font-bold text-celo-gold">{Number(points).toLocaleString()}</div>
+                <div className="text-3xl font-bold text-celo-gold">{formatNumber(points)}</div>
               </div>
 
               <div className="bg-black/30 rounded-lg p-3">
@@ -179,7 +180,7 @@ export default function Home() {
 
               <div className="bg-black/30 rounded-lg p-3">
                 <div className="text-gray-400 text-xs mb-1">TOTAL CLICKS</div>
-                <div className="text-xl font-bold text-green-400">{Number(totalClicks).toLocaleString()}</div>
+                <div className="text-xl font-bold text-green-400">{formatNumber(totalClicks)}</div>
               </div>
             </div>
 
@@ -375,13 +376,13 @@ export default function Home() {
                               #{idx + 1}
                             </div>
                             <div>
-                              <div className="font-mono text-sm text-gray-400">
-                                {addr.slice(0, 6)}...{addr.slice(-4)}
-                              </div>
+                            <div className="font-mono text-sm text-gray-400">
+                              {formatAddress(addr)}
+                            </div>
                             </div>
                           </div>
                           <div className="text-xl font-bold text-celo-green">
-                            {Number(pts).toLocaleString()}
+                            {formatNumber(pts)}
                           </div>
                         </div>
                       )
