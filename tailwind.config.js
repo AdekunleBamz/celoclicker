@@ -15,6 +15,10 @@ module.exports = {
       fontFamily: {
         'display': ['JetBrains Mono', 'monospace'],
         'body': ['Inter', 'sans-serif'],
+        'pixel': ['Press Start 2P', 'cursive'],
+      },
+      animation: {
+        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
     },
   },
