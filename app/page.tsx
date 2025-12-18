@@ -10,6 +10,7 @@ import { LoadingSpinner } from '@/components/LoadingSpinner'
 import { EmptyState } from '@/components/EmptyState'
 import { StatCard } from '@/components/StatCard'
 import { UpgradeCard } from '@/components/UpgradeCard'
+import { ContractWarning } from '@/components/ContractWarning'
 import { useContractConfig } from '@/hooks/useContractConfig'
 
 interface FloatingNumber {
@@ -149,6 +150,8 @@ export default function Home() {
       </div>
 
       <div className="w-full max-w-6xl relative z-10">
+        <ContractWarning />
+        
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-6xl font-bold mb-2 bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent animate-pulse-glow pixel-font">
