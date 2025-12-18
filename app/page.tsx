@@ -12,7 +12,6 @@ import { StatCard } from '@/components/StatCard'
 import { UpgradeCard } from '@/components/UpgradeCard'
 import { ContractWarning } from '@/components/ContractWarning'
 import { useContractConfig } from '@/hooks/useContractConfig'
-import { DebugEnv } from './debug-env'
 
 interface FloatingNumber {
   id: number
@@ -150,7 +149,7 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl animate-spin-slow"></div>
       </div>
 
-      <div className="w-full max-w-6xl relative z-10">
+      <div className="w-full max-w-6xl relative z-20">
         <ContractWarning />
         
         {/* Header */}
@@ -211,7 +210,8 @@ export default function Home() {
               <button
                 onClick={handleClaimAuto}
                 disabled={isPending || isConfirming}
-                className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-bold hover:scale-105 transition-transform glow-purple disabled:opacity-50"
+                type="button"
+                className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-bold hover:scale-105 transition-transform glow-purple disabled:opacity-50 cursor-pointer relative z-10"
               >
                 Claim {Number(pendingAuto)} Auto Points
               </button>
@@ -241,7 +241,7 @@ export default function Home() {
                   whileTap={{ scale: 0.9 }}
                   whileHover={{ scale: 1.05 }}
                   disabled={isPending || isConfirming}
-                  className="w-64 h-64 bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 rounded-full flex items-center justify-center text-8xl font-bold glow-purple hover:glow-gold transition-all duration-300 disabled:opacity-50 relative overflow-hidden"
+                  className="w-64 h-64 bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 rounded-full flex items-center justify-center text-8xl font-bold glow-purple hover:glow-gold transition-all duration-300 disabled:opacity-50 relative overflow-hidden cursor-pointer z-30"
                 >
                   <span className="relative z-10 animate-pulse pixel-font">★</span>
                   
@@ -314,7 +314,8 @@ export default function Home() {
 
             <button
               onClick={() => setShowLeaderboard(!showLeaderboard)}
-              className="w-full py-3 bg-gradient-to-r from-celo-green to-celo-gold rounded-lg font-bold hover:scale-105 transition-transform glow-green mt-4"
+              type="button"
+              className="w-full py-3 bg-gradient-to-r from-celo-green to-celo-gold rounded-lg font-bold hover:scale-105 transition-transform glow-green mt-4 cursor-pointer relative z-10"
             >
               {showLeaderboard ? 'Hide' : 'Show'} Leaderboard
             </button>
@@ -353,37 +354,37 @@ export default function Home() {
                     }
                     
                     return addresses.map((addr, idx) => {
-                      const pts = pointsList[idx]
-                      
-                      if (!addr || addr === '0x0000000000000000000000000000000000000000') return null
+                    const pts = pointsList[idx]
+                    
+                    if (!addr || addr === '0x0000000000000000000000000000000000000000') return null
 
-                      return (
-                        <div
+                    return (
+                      <div
                           key={`${addr}-${idx}`}
-                          className={`flex justify-between items-center p-4 rounded-lg ${
-                            addr === address ? 'bg-purple-500/30 border-2 border-purple-400' : 'bg-black/20'
-                          }`}
-                        >
-                          <div className="flex items-center gap-4">
-                            <div className={`text-2xl font-bold ${
-                              idx === 0 ? 'text-celo-gold' : 
-                              idx === 1 ? 'text-gray-300' : 
-                              idx === 2 ? 'text-orange-400' : 
-                              'text-gray-500'
-                            }`}>
-                              #{idx + 1}
-                            </div>
-                            <div>
+                        className={`flex justify-between items-center p-4 rounded-lg ${
+                          addr === address ? 'bg-purple-500/30 border-2 border-purple-400' : 'bg-black/20'
+                        }`}
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className={`text-2xl font-bold ${
+                            idx === 0 ? 'text-celo-gold' : 
+                            idx === 1 ? 'text-gray-300' : 
+                            idx === 2 ? 'text-orange-400' : 
+                            'text-gray-500'
+                          }`}>
+                            #{idx + 1}
+                          </div>
+                          <div>
                             <div className="font-mono text-sm text-gray-400">
                               {formatAddress(addr)}
                             </div>
                             </div>
                           </div>
-                          <div className="text-xl font-bold text-celo-green">
+                        <div className="text-xl font-bold text-celo-green">
                             {formatNumber(pts)}
-                          </div>
                         </div>
-                      )
+                      </div>
+                    )
                     })
                   })()}
                 </div>
@@ -398,7 +399,6 @@ export default function Home() {
             </motion.div>
           )}
         </AnimatePresence>
-        <DebugEnv />
       </div>
     </div>
   )
