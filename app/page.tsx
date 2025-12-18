@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { celoClickerABI } from '@/lib/abis'
 import { formatNumber, formatAddress } from '@/lib/utils'
 import { GAME_CONFIG } from '@/lib/constants'
+import { LoadingSpinner } from '@/components/LoadingSpinner'
 
 interface FloatingNumber {
   id: number
@@ -24,7 +25,7 @@ export default function Home() {
   const contractAddress = (process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT || '0x0000000000000000000000000000000000000000') as `0x${string}`
 
   // Read player stats
-  const { data: playerData, refetch: refetchPlayer, error: playerError } = useReadContract({
+  const { data: playerData, refetch: refetchPlayer, error: playerError, isLoading: isLoadingPlayer } = useReadContract({
     address: contractAddress,
     abi: celoClickerABI,
     functionName: 'getPlayer',
@@ -39,7 +40,7 @@ export default function Home() {
     playerData as [bigint, bigint, bigint, bigint, bigint, bigint] || [0n, 0n, 0n, 0n, 0n, 0n]
 
   // Read upgrade costs
-  const { data: upgradeCosts } = useReadContract({
+  const { data: upgradeCosts, isLoading: isLoadingCosts } = useReadContract({
     address: contractAddress,
     abi: celoClickerABI,
     functionName: 'getUpgradeCosts',
@@ -158,6 +159,13 @@ export default function Home() {
           <div className="glass-game rounded-2xl p-6 space-y-4">
             <h2 className="text-2xl font-bold text-purple-400 mb-4 pixel-font">STATS</h2>
             
+            {isLoadingPlayer && (
+              <div className="flex justify-center py-8">
+                <LoadingSpinner />
+              </div>
+            )}
+            
+            {!isLoadingPlayer && (
             <div className="space-y-3">
               <div className="bg-black/30 rounded-lg p-3">
                 <div className="text-gray-400 text-xs mb-1">POINTS</div>
@@ -193,6 +201,7 @@ export default function Home() {
               >
                 Claim {Number(pendingAuto)} Auto Points
               </button>
+            )}
             )}
           </div>
 
