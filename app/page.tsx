@@ -141,7 +141,7 @@ export default function Home() {
   }, [isSuccess, refetchPlayer])
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
       {/* Background particles */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
@@ -398,6 +398,6 @@ export default function Home() {
           )}
         </AnimatePresence>
       </div>
-    </main>
+    </div>
   )
 }
