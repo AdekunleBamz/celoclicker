@@ -1,12 +1,12 @@
 import { useMemo } from 'react'
 import { celoClickerABI } from '@/lib/abis'
-import { isValidAddress } from '@/lib/utils'
+import { isValidAddress, isZeroAddress, ZERO_ADDRESS } from '@/lib/utils'
 
 export function useContractConfig() {
-  const contractAddress = process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT || '0x0000000000000000000000000000000000000000'
+  const contractAddress = process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT || ZERO_ADDRESS
   
   const isValid = useMemo(() => {
-    return isValidAddress(contractAddress) && contractAddress !== '0x0000000000000000000000000000000000000000'
+    return isValidAddress(contractAddress) && !isZeroAddress(contractAddress)
   }, [contractAddress])
 
   return {
@@ -15,4 +15,3 @@ export function useContractConfig() {
     isValid,
   }
 }
-
