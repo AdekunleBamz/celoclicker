@@ -1,10 +1,11 @@
 /**
  * Validation utilities
  */
+import { isValidAddress } from './utils'
 
 export function validateContractAddress(address: string): boolean {
   if (!address) return false
-  return /^0x[a-fA-F0-9]{40}$/.test(address)
+  return isValidAddress(address)
 }
 
 export function validateEnvironment(): {
@@ -30,4 +31,3 @@ export function validateEnvironment(): {
     errors,
   }
 }
-
