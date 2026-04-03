@@ -2,6 +2,8 @@
  * Game constants and configuration
  */
 
+export const CELO_MAINNET_CHAIN_ID = 42220
+
 export const GAME_CONFIG = {
   AUTOCLICKER_INTERVAL_SECONDS: 300, // 5 minutes
   REFETCH_INTERVALS: {
