@@ -14,7 +14,7 @@ import { UpgradeCard } from '@/components/UpgradeCard'
 import { ContractWarning } from '@/components/ContractWarning'
 import { useContractConfig } from '@/hooks/useContractConfig'
 import { getInjectedConnector, useMiniPay } from '@/hooks/useMiniPay'
-import type { PlayerStatsTuple } from '@/lib/types'
+import type { PlayerStatsTuple, UpgradeCostsTuple } from '@/lib/types'
 
 interface FloatingNumber {
   id: number
@@ -84,8 +84,8 @@ export default function Home() {
     },
   })
 
-  const [clickPowerCost, autoClickerCost, multiplierCost] = 
-    upgradeCosts as [bigint, bigint, bigint] || [0n, 0n, 0n]
+  const [clickPowerCost, autoClickerCost, multiplierCost] =
+    (upgradeCosts as UpgradeCostsTuple) || [0n, 0n, 0n]
 
   // Read pending auto-clicker
   const { data: pendingAuto } = useReadContract({
