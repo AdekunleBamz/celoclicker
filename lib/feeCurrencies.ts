@@ -1,4 +1,5 @@
 import type { Address } from 'viem'
+import { CELO_MAINNET_CHAIN_ID } from './constants'
 
 export type FeeCurrencyId = 'CELO' | 'USDC'
 
@@ -12,7 +13,6 @@ export type FeeCurrencyConfig = {
   isAvailable: boolean
 }
 
-const CELO_MAINNET_CHAIN_ID = 42220
 const USDC_MAINNET_TOKEN_ADDRESS = '0xcebA9300f2b948710d2653dD7B07f33A8B32118C' as const
 const USDC_MAINNET_ADAPTER_ADDRESS = '0x2F25deB3848C207fc8E0c34035B3Ba7fC157602B' as const
 
