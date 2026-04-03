@@ -2,7 +2,7 @@ import { useReadContract } from 'wagmi'
 import { useContractConfig } from './useContractConfig'
 import { GAME_CONFIG } from '@/lib/constants'
 import { Address } from 'viem'
-import { celoClickerABI } from '@/lib/abis'
+import type { PlayerStatsTuple } from '@/lib/types'
 
 export function usePlayerStats(address: Address | undefined) {
   const { address: contractAddress, abi, isValid } = useContractConfig()
@@ -18,8 +18,8 @@ export function usePlayerStats(address: Address | undefined) {
     },
   })
 
-  const [points, clickPower, autoClickerLevel, multiplierLevel, totalClicks, gamesPlayed] = 
-    (playerData as [bigint, bigint, bigint, bigint, bigint, bigint]) || [0n, 0n, 0n, 0n, 0n, 0n]
+  const [points, clickPower, autoClickerLevel, multiplierLevel, totalClicks, gamesPlayed] =
+    (playerData as PlayerStatsTuple) || [0n, 0n, 0n, 0n, 0n, 0n]
 
   return {
     points,
@@ -33,4 +33,3 @@ export function usePlayerStats(address: Address | undefined) {
     isLoading,
   }
 }
-
