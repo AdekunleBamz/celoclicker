@@ -6,7 +6,7 @@ import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { WagmiProvider } from 'wagmi'
 import { celo, celoAlfajores } from 'wagmi/chains'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
-import { CELO_MAINNET_CHAIN_ID } from '@/lib/constants'
+import { APP_NAME, CELO_MAINNET_CHAIN_ID } from '@/lib/constants'
 
 let wagmiConfig: ReturnType<typeof getDefaultConfig> | null = null
 let queryClientInstance: QueryClient | null = null
@@ -16,7 +16,7 @@ function getWagmiConfig() {
   
   if (!wagmiConfig) {
     wagmiConfig = getDefaultConfig({
-      appName: process.env.NEXT_PUBLIC_APP_NAME || 'CeloClicker',
+      appName: process.env.NEXT_PUBLIC_APP_NAME || APP_NAME,
       projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || '',
       chains: [
         Number(process.env.NEXT_PUBLIC_CHAIN_ID) === CELO_MAINNET_CHAIN_ID ? celo : celoAlfajores,
