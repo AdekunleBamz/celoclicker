@@ -2,9 +2,10 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Providers } from './providers'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { APP_NAME } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'CeloClicker | On-Chain Idle Game',
+  title: `${APP_NAME} | On-Chain Idle Game`,
   description: 'Addictive on-chain clicker game. Click, upgrade, dominate the leaderboard!',
   icons: {
     icon: [
@@ -15,13 +16,13 @@ export const metadata: Metadata = {
     apple: [{ url: '/icon.png', sizes: '512x512', type: 'image/png' }],
   },
   openGraph: {
-    title: 'CeloClicker',
+    title: APP_NAME,
     description: 'Addictive on-chain clicker game on Celo',
     images: ['/og-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CeloClicker',
+    title: APP_NAME,
     description: 'Addictive on-chain clicker game on Celo',
     images: ['/og-image.png'],
   },
