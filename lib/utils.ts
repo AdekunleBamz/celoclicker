@@ -52,3 +52,7 @@ export function formatTokenAmount(value?: string, symbol?: string): string {
 export function isValidAddress(address: string): boolean {
   return /^0x[a-fA-F0-9]{40}$/.test(address)
 }
+
+export function isZeroAddress(address: string): boolean {
+  return address.toLowerCase() === ZERO_ADDRESS
+}
