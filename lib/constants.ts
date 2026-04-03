@@ -3,6 +3,7 @@
  */
 
 export const CELO_MAINNET_CHAIN_ID = 42220
+export const APP_NAME = 'CeloClicker'
 
 export const GAME_CONFIG = {
   AUTOCLICKER_INTERVAL_SECONDS: 300, // 5 minutes
