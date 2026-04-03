@@ -1,6 +1,8 @@
 /**
  * Format large numbers with K, M, B suffixes
  */
+export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
+
 export function formatNumber(num: bigint | number): string {
   const n = typeof num === 'bigint' ? Number(num) : num
   
