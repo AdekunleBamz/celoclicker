@@ -9,7 +9,8 @@ Addictive on-chain idle clicker game on Celo. Click, upgrade, and dominate the l
 - 🚀 Multiple upgrade paths (Click Power, Auto-Clicker, Multiplier)
 - 💎 Transparent on-chain game mechanics
 - 🏆 Global leaderboard competition
-- 📱 Farcaster miniapp integration
+- 📱 MiniPay-ready wallet flow with injected-wallet support
+- 💱 Switch transaction fees between CELO and USDCm
 - ✨ Beautiful animated UI with particles and effects
 
 ## Tech Stack
@@ -79,6 +80,13 @@ NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
 NEXT_PUBLIC_APP_URL=https://your-domain.com
 ```
 
+MiniPay works best with an injected wallet flow on mobile. This app now auto-detects MiniPay and prefers the in-app wallet when available, while still keeping the generic wallet modal as a fallback outside MiniPay.
+
+The app also supports Celo fee abstraction:
+- **MiniPay default:** USDCm mode
+- **Web default:** CELO mode
+- **Manual override:** users can switch between CELO and USDCm in the UI
+
 ### Step 3: Install & Run
 
 ```bash
@@ -102,7 +110,7 @@ npm start
 3. Add environment variables
 4. Deploy!
 
-### Step 5: Configure Farcaster
+### Step 5: Optional Farcaster Configuration
 
 1. Update `public/farcaster.json` with your domain
 2. Update `public/.well-known/farcaster.json` with:
@@ -135,26 +143,15 @@ npm start
 - `getLeaderboard()` - Get top 10 players
 - `getGlobalStats()` - Get game-wide statistics
 
-## Generating Transactions
+## Meaningful On-Chain Gameplay
 
-CeloClicker is **perfect for generating on-chain activity**:
+CeloClicker works best as a lightweight on-chain game with clear player intent:
 
-### Automatic Transaction Generation
-1. **Every Click** = 1 transaction
-2. **Every Upgrade** = 1 transaction
-3. **Every Auto-Claim** = 1 transaction
+1. **Clicks** progress your session and score
+2. **Upgrades** change how quickly you can advance
+3. **Claims** turn idle progress into visible on-chain state
 
-### Maximizing Activity
-- Click frequently throughout the day
-- Buy upgrades as soon as you can afford them
-- Set reminders to claim auto-clicker rewards every 5 minutes
-- **Expected: 50-100+ transactions per day with regular play**
-
-### Pro Tips for Transaction Volume
-1. Buy click power first (cheap, frequent clicks)
-2. Get auto-clickers ASAP (passive transaction opportunities)
-3. Play in short 5-minute sessions throughout the day
-4. Each upgrade purchase is a transaction - buy incrementally!
+For Proof of Ship or other ecosystem programs, focus on real retention, repeat play, and mobile UX rather than raw transaction volume.
 
 ## Strategy Guide
 
@@ -173,13 +170,20 @@ CeloClicker is **perfect for generating on-chain activity**:
 - Invest heavily in Auto-Clickers
 - Maintain high click frequency
 
-## Farcaster Miniapp
+## MiniPay Experience
 
-Play CeloClicker directly in Farcaster:
-- No need to leave the app
-- Share your scores
-- Compete with your network
-- Seamless wallet connection
+Play CeloClicker inside MiniPay for the smoothest flow:
+- MiniPay is auto-detected in supported browsers
+- The app prefers the injected wallet when MiniPay is available
+- Outside MiniPay, the app falls back to the normal wallet modal
+- Gas fees can be paid in CELO or USDCm, depending on the selected mode
+
+## Fee Currency Switching
+
+This app uses **Celo fee abstraction** for contract writes:
+- Leaving `feeCurrency` unset uses **CELO**
+- Setting `feeCurrency` to the official Celo **USDC adapter** uses **USDCm/USDC** for gas
+- Gameplay still uses in-app points, so the token switch only affects transaction fees
 
 ## Technical Details
 

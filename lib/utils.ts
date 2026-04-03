@@ -25,9 +25,28 @@ export function formatAddress(address: string): string {
 }
 
 /**
+ * Format wallet balances without overwhelming the UI
+ */
+export function formatTokenAmount(value?: string, symbol?: string): string {
+  if (!value) {
+    return `0 ${symbol ?? ''}`.trim()
+  }
+
+  const numericValue = Number(value)
+
+  if (!Number.isFinite(numericValue)) {
+    return `0 ${symbol ?? ''}`.trim()
+  }
+
+  const decimals = numericValue >= 100 ? 2 : numericValue >= 1 ? 3 : 4
+  const formattedValue = numericValue.toFixed(decimals).replace(/\.?0+$/, '')
+
+  return `${formattedValue} ${symbol ?? ''}`.trim()
+}
+
+/**
  * Validate contract address
  */
 export function isValidAddress(address: string): boolean {
   return /^0x[a-fA-F0-9]{40}$/.test(address)
 }
-

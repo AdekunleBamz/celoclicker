@@ -9,6 +9,7 @@ export const GAME_CONFIG = {
     UPGRADE_COSTS: 5000,
     PENDING_AUTO: 1000,
     LEADERBOARD: 5000,
+    BALANCES: 7000,
   },
   ANIMATION_DURATION: {
     FLOATING_NUMBER: 1000,
@@ -29,4 +30,3 @@ export const COLORS = {
   PINK: '#EC4899',
   INDIGO: '#6366F1',
 } as const
-

@@ -6,6 +6,14 @@ import { ErrorBoundary } from '@/components/ErrorBoundary'
 export const metadata: Metadata = {
   title: 'CeloClicker | On-Chain Idle Game',
   description: 'Addictive on-chain clicker game. Click, upgrade, dominate the leaderboard!',
+  icons: {
+    icon: [
+      { url: '/logo-mark.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.png', type: 'image/png', sizes: '64x64' },
+    ],
+    apple: [{ url: '/icon.png', sizes: '512x512', type: 'image/png' }],
+  },
   openGraph: {
     title: 'CeloClicker',
     description: 'Addictive on-chain clicker game on Celo',
@@ -27,7 +35,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/logo-mark.svg" type="image/svg+xml" />
+        <link rel="alternate icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" type="image/png" sizes="64x64" />
         <link rel="apple-touch-icon" href="/icon.png" />
       </head>
       <body suppressHydrationWarning>

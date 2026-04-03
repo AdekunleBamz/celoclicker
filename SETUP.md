@@ -42,6 +42,14 @@ Next.js only loads environment variables at startup, so changes won't take effec
 
 After restarting, the warning should disappear and you should be able to interact with the contract.
 
+## MiniPay Notes
+
+- Open the app inside MiniPay to use the injected wallet flow automatically.
+- Outside MiniPay, the app will still fall back to the normal wallet connection modal.
+- Keep using `viem`/`wagmi` for MiniPay compatibility.
+- MiniPay defaults to USDCm gas mode, while the regular web flow defaults to CELO.
+- Users can switch between CELO and USDCm from the app UI at any time.
+
 ## Troubleshooting
 
 - **Still seeing warning?** 
@@ -55,3 +63,11 @@ After restarting, the warning should disappear and you should be able to interac
   - Check that `NEXT_PUBLIC_CHAIN_ID` matches your deployment network
   - Ensure you're connected to the same network in your wallet
 
+- **MiniPay didn't auto-connect?**
+  - Make sure you opened the deployed URL inside MiniPay rather than a normal browser tab
+  - Confirm the wallet is on the same Celo network as the contract
+  - Refresh once after opening the app in MiniPay
+
+- **USDCm mode is disabled?**
+  - The current implementation enables USDCm gas mode on Celo mainnet
+  - If you're on a non-mainnet network, the app falls back to CELO-only fee payments

@@ -1,17 +1,19 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
+import { useAccount, useBalance, useChainId, useConnect, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion, AnimatePresence } from 'framer-motion'
-import { formatNumber, formatAddress } from '@/lib/utils'
+import { formatNumber, formatAddress, formatTokenAmount } from '@/lib/utils'
 import { GAME_CONFIG } from '@/lib/constants'
+import { getDefaultFeeCurrencyId, getFeeCurrencies, type FeeCurrencyId } from '@/lib/feeCurrencies'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
 import { EmptyState } from '@/components/EmptyState'
 import { StatCard } from '@/components/StatCard'
 import { UpgradeCard } from '@/components/UpgradeCard'
 import { ContractWarning } from '@/components/ContractWarning'
 import { useContractConfig } from '@/hooks/useContractConfig'
+import { getInjectedConnector, useMiniPay } from '@/hooks/useMiniPay'
 
 interface FloatingNumber {
   id: number
@@ -22,11 +24,38 @@ interface FloatingNumber {
 
 export default function Home() {
   const { address, isConnected } = useAccount()
+  const chainId = useChainId()
+  const { connect, connectors, isPending: isConnectingWallet } = useConnect()
   const [floatingNumbers, setFloatingNumbers] = useState<FloatingNumber[]>([])
   const [clickCount, setClickCount] = useState(0)
   const [showLeaderboard, setShowLeaderboard] = useState(false)
+  const [hasAttemptedMiniPayConnect, setHasAttemptedMiniPayConnect] = useState(false)
+  const [selectedFeeCurrencyId, setSelectedFeeCurrencyId] = useState<FeeCurrencyId>('CELO')
+  const [hasManualFeeCurrencySelection, setHasManualFeeCurrencySelection] = useState(false)
+  const isMiniPay = useMiniPay()
 
   const { address: contractAddress, abi: celoClickerABI, isValid: isContractValid } = useContractConfig()
+  const injectedConnector = getInjectedConnector(connectors)
+  const feeCurrencies = getFeeCurrencies(chainId)
+  const selectedFeeCurrency = feeCurrencies.find((currency) => currency.id === selectedFeeCurrencyId) ?? feeCurrencies[0]
+  const usdcFeeCurrency = feeCurrencies.find((currency) => currency.id === 'USDC')
+
+  const { data: celoBalance } = useBalance({
+    address,
+    query: {
+      enabled: !!address,
+      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.BALANCES,
+    },
+  })
+
+  const { data: usdcBalance } = useBalance({
+    address,
+    token: usdcFeeCurrency?.tokenAddress,
+    query: {
+      enabled: !!address && !!usdcFeeCurrency?.tokenAddress,
+      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.BALANCES,
+    },
+  })
 
   // Read player stats
   const { data: playerData, refetch: refetchPlayer, error: playerError, isLoading: isLoadingPlayer } = useReadContract({
@@ -85,6 +114,10 @@ export default function Home() {
     hash,
   })
 
+  const transactionOverrides = selectedFeeCurrency.feeCurrency
+    ? { feeCurrency: selectedFeeCurrency.feeCurrency }
+    : {}
+
   // Click handler - triggers wallet transaction on every click
   const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!isConnected) {
@@ -116,6 +149,7 @@ export default function Home() {
         address: contractAddress,
         abi: celoClickerABI,
         functionName: 'click',
+        ...transactionOverrides,
       })
     } catch (error) {
       console.error('Error sending click transaction:', error)
@@ -145,6 +179,7 @@ export default function Home() {
         functionName: type === 'clickPower' ? 'upgradeClickPower' : 
                        type === 'autoClicker' ? 'upgradeAutoClicker' : 
                        'upgradeMultiplier',
+        ...transactionOverrides,
       })
     } catch (error) {
       console.error('Error sending upgrade transaction:', error)
@@ -167,6 +202,7 @@ export default function Home() {
         address: contractAddress,
         abi: celoClickerABI,
         functionName: 'claimAutoClicker',
+        ...transactionOverrides,
       })
     } catch (error) {
       console.error('Error sending claim transaction:', error)
@@ -179,6 +215,36 @@ export default function Home() {
       refetchPlayer()
     }
   }, [isSuccess, refetchPlayer])
+
+  useEffect(() => {
+    if (hasManualFeeCurrencySelection) {
+      return
+    }
+
+    setSelectedFeeCurrencyId(getDefaultFeeCurrencyId(isMiniPay, chainId))
+  }, [chainId, hasManualFeeCurrencySelection, isMiniPay])
+
+  useEffect(() => {
+    if (selectedFeeCurrencyId === 'USDC' && !usdcFeeCurrency?.isAvailable) {
+      setSelectedFeeCurrencyId('CELO')
+    }
+  }, [selectedFeeCurrencyId, usdcFeeCurrency?.isAvailable])
+
+  useEffect(() => {
+    if (!isMiniPay || isConnected || !injectedConnector || isConnectingWallet || hasAttemptedMiniPayConnect) {
+      return
+    }
+
+    setHasAttemptedMiniPayConnect(true)
+    connect({ connector: injectedConnector })
+  }, [
+    connect,
+    hasAttemptedMiniPayConnect,
+    injectedConnector,
+    isConnected,
+    isConnectingWallet,
+    isMiniPay,
+  ])
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
@@ -194,10 +260,16 @@ export default function Home() {
         
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-6xl font-bold mb-2 bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent animate-pulse-glow pixel-font">
+          <div className="mx-auto mb-5 flex h-24 w-24 items-center justify-center rounded-[28px] border border-white/10 bg-black/20 p-3 shadow-[0_20px_60px_rgba(8,17,24,0.45)]">
+            <img src="/logo-mark.svg" alt="CeloClicker logo" className="h-full w-full" />
+          </div>
+          <h1 className="text-6xl font-bold mb-2 bg-gradient-to-r from-celo-green via-celo-gold to-cyan-300 bg-clip-text text-transparent animate-pulse-glow pixel-font">
             CELOCLICKER
           </h1>
           <p className="text-gray-400 text-sm">Click • Upgrade • Dominate</p>
+          <p className="text-gray-500 text-xs mt-3 max-w-xl mx-auto">
+            Gameplay still runs on points. The currency switch below only changes how transaction fees are paid: CELO on web by default, USDCm on MiniPay by default.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -243,6 +315,12 @@ export default function Home() {
                 valueColor="text-green-400"
                 icon="👆"
               />
+              <StatCard
+                label="FEE MODE"
+                value={selectedFeeCurrency.label}
+                valueColor="text-celo-green"
+                icon={selectedFeeCurrency.id === 'USDC' ? '💵' : '⛽'}
+              />
             </div>
             )}
 
@@ -262,14 +340,30 @@ export default function Home() {
           <div className="glass-game rounded-2xl p-6 flex flex-col items-center justify-center relative">
             {!isConnected ? (
               <div className="text-center">
-                <p className="text-gray-400 mb-6 pixel-font text-sm">CONNECT TO START</p>
+                <div className="mb-6 space-y-2">
+                  <p className="text-gray-400 pixel-font text-sm">
+                    {isMiniPay ? 'MINIPAY DETECTED' : 'CONNECT TO START'}
+                  </p>
+                  <p className="text-gray-500 text-xs max-w-xs">
+                    {isMiniPay
+                      ? 'This app can connect through MiniPay without leaving the wallet.'
+                      : 'Open this inside MiniPay for the smoothest Celo Proof of Ship experience.'}
+                  </p>
+                </div>
                 <ConnectButton.Custom>
                   {({ openConnectModal }) => (
                     <button
-                      onClick={openConnectModal}
+                      onClick={() => {
+                        if (isMiniPay && injectedConnector) {
+                          connect({ connector: injectedConnector })
+                          return
+                        }
+
+                        openConnectModal()
+                      }}
                       className="px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-bold hover:scale-105 transition-transform glow-purple"
                     >
-                      Connect Wallet
+                      {isConnectingWallet ? 'Connecting...' : isMiniPay ? 'Connect MiniPay' : 'Connect Wallet'}
                     </button>
                   )}
                 </ConnectButton.Custom>
@@ -322,6 +416,66 @@ export default function Home() {
 
           {/* Right Column - Upgrades */}
           <div className="glass-game rounded-2xl p-6 space-y-4">
+            <div className="bg-black/30 rounded-lg p-4 space-y-3">
+              <div>
+                <h2 className="text-2xl font-bold text-celo-green mb-1 pixel-font">FEE MODE</h2>
+                <p className="text-xs text-gray-400">
+                  Choose how contract writes pay gas. MiniPay defaults to USDCm, web defaults to CELO.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2">
+                {feeCurrencies.map((currency) => {
+                  const isSelected = selectedFeeCurrency.id === currency.id
+
+                  return (
+                    <button
+                      key={currency.id}
+                      type="button"
+                      onClick={() => {
+                        if (!currency.isAvailable) {
+                          return
+                        }
+
+                        setHasManualFeeCurrencySelection(true)
+                        setSelectedFeeCurrencyId(currency.id)
+                      }}
+                      disabled={!currency.isAvailable}
+                      className={`rounded-lg border px-3 py-3 text-left transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
+                        isSelected
+                          ? 'border-celo-green bg-celo-green/20'
+                          : 'border-white/10 bg-black/20 hover:border-celo-green/40'
+                      }`}
+                    >
+                      <div className="font-bold">{currency.label}</div>
+                      <div className="text-xs text-gray-400 mt-1">{currency.description}</div>
+                    </button>
+                  )
+                })}
+              </div>
+
+              <div className="grid grid-cols-1 gap-2 text-sm">
+                <div className="flex items-center justify-between rounded-lg bg-black/20 px-3 py-2">
+                  <span className="text-gray-400">CELO balance</span>
+                  <span className="font-semibold text-celo-gold">
+                    {formatTokenAmount(celoBalance?.formatted, 'CELO')}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between rounded-lg bg-black/20 px-3 py-2">
+                  <span className="text-gray-400">USDCm balance</span>
+                  <span className="font-semibold text-celo-green">
+                    {usdcFeeCurrency?.isAvailable
+                      ? formatTokenAmount(usdcBalance?.formatted, 'USDC')
+                      : 'Mainnet only'}
+                  </span>
+                </div>
+              </div>
+
+              <p className="text-xs text-gray-500">
+                Current mode: <span className="text-white">{selectedFeeCurrency.label}</span>
+              </p>
+            </div>
+
             <h2 className="text-2xl font-bold text-purple-400 mb-4 pixel-font">UPGRADES</h2>
 
             <div className="space-y-3">
