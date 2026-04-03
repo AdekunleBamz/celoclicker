@@ -1,55 +1,79 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="68" y1="56" x2="438" y2="454" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#102633"/>
-      <stop offset="0.58" stop-color="#0B1620"/>
-      <stop offset="1" stop-color="#081118"/>
+    <linearGradient id="bg" x1="58" y1="42" x2="442" y2="468" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#12283A"/>
+      <stop offset="0.5" stop-color="#09141E"/>
+      <stop offset="1" stop-color="#050B12"/>
     </linearGradient>
-    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(178 150) rotate(43.3) scale(296.268)">
-      <stop stop-color="#35D07F" stop-opacity="0.26"/>
-      <stop offset="0.58" stop-color="#1CB8A4" stop-opacity="0.12"/>
-      <stop offset="1" stop-color="#1CB8A4" stop-opacity="0"/>
+    <radialGradient id="bgGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(168 136) rotate(44.318) scale(322.617)">
+      <stop stop-color="#35D07F" stop-opacity="0.24"/>
+      <stop offset="0.45" stop-color="#19B8D4" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#19B8D4" stop-opacity="0"/>
     </radialGradient>
-    <linearGradient id="mark" x1="132" y1="120" x2="372" y2="392" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#56F0A2"/>
-      <stop offset="0.55" stop-color="#35D07F"/>
-      <stop offset="1" stop-color="#12B8D4"/>
+    <linearGradient id="frame" x1="152" y1="150" x2="360" y2="364" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#63F5B1"/>
+      <stop offset="0.52" stop-color="#35D07F"/>
+      <stop offset="1" stop-color="#14B9D6"/>
     </linearGradient>
-    <linearGradient id="spark" x1="312" y1="132" x2="375" y2="199" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFF2B8"/>
-      <stop offset="0.5" stop-color="#FBCC5C"/>
-      <stop offset="1" stop-color="#F4A938"/>
+    <linearGradient id="button" x1="224" y1="196" x2="298" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF4C9"/>
+      <stop offset="0.48" stop-color="#FBCC5C"/>
+      <stop offset="1" stop-color="#E39B2A"/>
     </linearGradient>
-    <filter id="shadow" x="14" y="14" width="484" height="484" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+    <radialGradient id="buttonGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 256) rotate(90) scale(112)">
+      <stop stop-color="#FBCC5C" stop-opacity="0.36"/>
+      <stop offset="1" stop-color="#FBCC5C" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="spark" x1="314" y1="118" x2="382" y2="184" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7FFF8"/>
+      <stop offset="0.45" stop-color="#A6FFE2"/>
+      <stop offset="1" stop-color="#35D07F"/>
+    </linearGradient>
+    <filter id="outerShadow" x="14" y="14" width="484" height="484" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
       <feFlood flood-opacity="0" result="BackgroundImageFix"/>
       <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-      <feOffset dy="18"/>
-      <feGaussianBlur stdDeviation="18"/>
+      <feOffset dy="24"/>
+      <feGaussianBlur stdDeviation="22"/>
       <feComposite in2="hardAlpha" operator="out"/>
-      <feColorMatrix type="matrix" values="0 0 0 0 0.0117647 0 0 0 0 0.0823529 0 0 0 0 0.141176 0 0 0 0.4 0"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.0117647 0 0 0 0 0.0470588 0 0 0 0 0.0823529 0 0 0 0.48 0"/>
       <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_1"/>
       <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_1" result="shape"/>
     </filter>
+    <filter id="softGlow" x="82" y="82" width="348" height="348" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur stdDeviation="16" result="effect1_foregroundBlur_1_1"/>
+    </filter>
   </defs>
 
-  <g filter="url(#shadow)">
-    <rect x="32" y="32" width="448" height="448" rx="112" fill="url(#bg)"/>
-    <rect x="32" y="32" width="448" height="448" rx="112" fill="url(#glow)"/>
-    <rect x="48" y="48" width="416" height="416" rx="96" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="2"/>
+  <g filter="url(#outerShadow)">
+    <rect x="32" y="32" width="448" height="448" rx="124" fill="url(#bg)"/>
+    <rect x="32" y="32" width="448" height="448" rx="124" fill="url(#bgGlow)"/>
+    <rect x="48" y="48" width="416" height="416" rx="108" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="2"/>
 
-    <path
-      d="M354 140C327.68 115.037 293.533 100 256 100C175.366 100 110 165.366 110 246C110 326.634 175.366 392 256 392C293.533 392 327.68 376.963 354 352"
-      stroke="url(#mark)"
-      stroke-width="56"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
+    <g opacity="0.55">
+      <path d="M120 182C154 143 202 118 256 118" stroke="#8CD9FF" stroke-opacity="0.18" stroke-width="2"/>
+      <path d="M392 330C358 369 310 394 256 394" stroke="#8CD9FF" stroke-opacity="0.18" stroke-width="2"/>
+      <circle cx="122" cy="182" r="5" fill="#8CD9FF" fill-opacity="0.2"/>
+      <circle cx="390" cy="330" r="5" fill="#8CD9FF" fill-opacity="0.2"/>
+    </g>
 
-    <circle cx="359" cy="356" r="14" fill="#35D07F" fill-opacity="0.92"/>
+    <g filter="url(#softGlow)" opacity="0.7">
+      <circle cx="256" cy="256" r="118" fill="url(#buttonGlow)"/>
+    </g>
 
-    <path
-      d="M344 122L355.769 152.231L386 164L355.769 175.769L344 206L332.231 175.769L302 164L332.231 152.231L344 122Z"
-      fill="url(#spark)"
-    />
+    <circle cx="256" cy="256" r="104" stroke="#8BE7C7" stroke-opacity="0.14" stroke-width="8"/>
+    <circle cx="256" cy="256" r="82" stroke="#8BE7C7" stroke-opacity="0.08" stroke-width="6"/>
+
+    <path d="M176 210V166H220" stroke="url(#frame)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M292 166H336V210" stroke="url(#frame)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M220 346H176V302" stroke="url(#frame)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M336 302V346H292" stroke="url(#frame)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <circle cx="256" cy="256" r="60" fill="url(#button)"/>
+    <circle cx="256" cy="256" r="74" stroke="#FFF8D8" stroke-opacity="0.2" stroke-width="3"/>
+    <ellipse cx="236" cy="220" rx="24" ry="18" fill="#FFFFFF" fill-opacity="0.34"/>
+
+    <path d="M348 114L360.084 145.916L392 158L360.084 170.084L348 202L335.916 170.084L304 158L335.916 145.916L348 114Z" fill="url(#spark)"/>
   </g>
 </svg>
