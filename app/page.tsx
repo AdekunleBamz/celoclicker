@@ -14,7 +14,7 @@ import { UpgradeCard } from '@/components/UpgradeCard'
 import { ContractWarning } from '@/components/ContractWarning'
 import { useContractConfig } from '@/hooks/useContractConfig'
 import { getInjectedConnector, useMiniPay } from '@/hooks/useMiniPay'
-import type { PlayerStatsTuple, UpgradeCostsTuple } from '@/lib/types'
+import type { LeaderboardTuple, PlayerStatsTuple, UpgradeCostsTuple } from '@/lib/types'
 
 interface FloatingNumber {
   id: number
@@ -546,7 +546,7 @@ export default function Home() {
                     if (!leaderboardData) {
                       return <EmptyState title="No Leaderboard Data" description="Be the first to play!" icon="🏆" />
                     }
-                    const [addresses, pointsList] = leaderboardData as unknown as [`0x${string}`[], bigint[]]
+                    const [addresses, pointsList] = leaderboardData as LeaderboardTuple
                     const hasEntries = addresses.some((addr) => addr && !isZeroAddress(addr))
                     
                     if (!hasEntries) {
