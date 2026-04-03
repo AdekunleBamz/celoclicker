@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useAccount, useBalance, useChainId, useConnect, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion, AnimatePresence } from 'framer-motion'
-import { formatNumber, formatAddress, formatTokenAmount } from '@/lib/utils'
+import { formatNumber, formatAddress, formatTokenAmount, isZeroAddress } from '@/lib/utils'
 import { GAME_CONFIG } from '@/lib/constants'
 import { getDefaultFeeCurrencyId, getFeeCurrencies, type FeeCurrencyId } from '@/lib/feeCurrencies'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
@@ -546,7 +546,7 @@ export default function Home() {
                       return <EmptyState title="No Leaderboard Data" description="Be the first to play!" icon="🏆" />
                     }
                     const [addresses, pointsList] = leaderboardData as unknown as [`0x${string}`[], bigint[]]
-                    const hasEntries = addresses.some(addr => addr && addr !== '0x0000000000000000000000000000000000000000')
+                    const hasEntries = addresses.some((addr) => addr && !isZeroAddress(addr))
                     
                     if (!hasEntries) {
                       return <EmptyState title="No Players Yet" description="Be the first to join the leaderboard!" icon="🎮" />
@@ -555,7 +555,7 @@ export default function Home() {
                     return addresses.map((addr, idx) => {
                     const pts = pointsList[idx]
                     
-                    if (!addr || addr === '0x0000000000000000000000000000000000000000') return null
+                    if (!addr || isZeroAddress(addr)) return null
 
                     return (
                       <div
