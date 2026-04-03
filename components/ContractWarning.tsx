@@ -1,6 +1,7 @@
 'use client'
 
 import { useContractConfig } from '@/hooks/useContractConfig'
+import { CONTRACT_ADDRESS_ENV_KEY } from '@/lib/constants'
 
 export function ContractWarning() {
   const { isValid } = useContractConfig()
@@ -14,11 +15,10 @@ export function ContractWarning() {
         <div>
           <div className="font-bold text-yellow-400">Contract Not Configured</div>
           <div className="text-sm text-yellow-300">
-            Please set NEXT_PUBLIC_CELOCLICKER_CONTRACT in your environment variables
+            Please set {CONTRACT_ADDRESS_ENV_KEY} in your environment variables
           </div>
         </div>
       </div>
     </div>
   )
 }
-
