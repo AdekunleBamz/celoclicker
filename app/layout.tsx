@@ -26,15 +26,15 @@ export const metadata: Metadata = {
     url: '/',
     siteName: APP_NAME,
     images: [
-      { url: '/og-image.png', alt: `${APP_NAME} preview` },
       { url: '/icon.png', width: 512, height: 512, alt: `${APP_NAME} logo` },
+      { url: '/og-image.png', alt: `${APP_NAME} preview` },
     ],
   },
   twitter: {
     card: 'summary_large_image',
     title: APP_NAME,
     description: 'Addictive on-chain clicker game on Celo',
-    images: ['/og-image.png'],
+    images: ['/icon.png'],
   },
   other: {
     'og:logo': logoUrl,
