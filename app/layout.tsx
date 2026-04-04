@@ -4,7 +4,12 @@ import { Providers } from './providers'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { APP_NAME } from '@/lib/constants'
 
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL?.trim() || 'https://celoclicker.vercel.app'
+const appOrigin = new URL(APP_URL)
+const logoUrl = new URL('/icon.png', appOrigin).toString()
+
 export const metadata: Metadata = {
+  metadataBase: appOrigin,
   title: `${APP_NAME} | On-Chain Idle Game`,
   description: 'Addictive on-chain clicker game. Click, upgrade, dominate the leaderboard!',
   icons: {
@@ -18,13 +23,21 @@ export const metadata: Metadata = {
   openGraph: {
     title: APP_NAME,
     description: 'Addictive on-chain clicker game on Celo',
-    images: ['/og-image.png'],
+    url: '/',
+    siteName: APP_NAME,
+    images: [
+      { url: '/og-image.png', alt: `${APP_NAME} preview` },
+      { url: '/icon.png', width: 512, height: 512, alt: `${APP_NAME} logo` },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: APP_NAME,
     description: 'Addictive on-chain clicker game on Celo',
     images: ['/og-image.png'],
+  },
+  other: {
+    'og:logo': logoUrl,
   },
 }
 
@@ -40,6 +53,12 @@ export default function RootLayout({
         <link rel="alternate icon" href="/favicon.ico" />
         <link rel="icon" href="/favicon.png" type="image/png" sizes="64x64" />
         <link rel="apple-touch-icon" href="/icon.png" />
+        <link rel="image_src" href={logoUrl} />
+        <meta itemProp="image" content={logoUrl} />
+        <meta
+          name="talentapp:project_verification"
+          content="a0dba87e1bb6548dd476dd39b4b9be850d6227db14fd409a46b92f9830bec8ba765395dc51d1eb6ea22759804b6fc39a3d03f2156ffcc483547ae7197bb94aa5"
+        />
       </head>
       <body suppressHydrationWarning>
         <ErrorBoundary>
