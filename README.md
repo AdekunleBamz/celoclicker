@@ -117,6 +117,7 @@ npm start
    - Your FID
    - Proper account association
    - Webhook URL
+   - Real production values instead of the placeholder example strings committed in this repo
 
 ## How to Play
 
