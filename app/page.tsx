@@ -375,6 +375,7 @@ export default function Home() {
 
                         openConnectModal()
                       }}
+                      type="button"
                       className="px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-bold hover:scale-105 transition-transform glow-purple"
                     >
                       {isConnectingWallet ? 'Connecting...' : isMiniPay ? 'Connect MiniPay' : 'Connect Wallet'}
