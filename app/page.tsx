@@ -410,10 +410,8 @@ export default function Home() {
 
                         openConnectModal()
                       }}
-                      disabled={isConnectingWallet}
                       type="button"
-                      aria-busy={isConnectingWallet}
-                      className="px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-bold hover:scale-105 transition-transform glow-purple disabled:cursor-not-allowed disabled:opacity-70"
+                      className="px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-bold hover:scale-105 transition-transform glow-purple"
                     >
                       {isConnectingWallet || isConnectingAccount ? 'Connecting...' : isMiniPay ? 'Connect MiniPay' : 'Connect Wallet'}
                     </button>
