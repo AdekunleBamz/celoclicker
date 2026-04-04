@@ -81,6 +81,7 @@ export default function Home() {
     args: [address as `0x${string}`],
     query: {
       enabled: !!address && isContractValid,
+      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.UPGRADE_COSTS,
     },
   })
 
