@@ -3,15 +3,17 @@ import { useContractConfig } from './useContractConfig'
 import { GAME_CONFIG } from '@/lib/constants'
 import { Address } from 'viem'
 import type { PlayerStatsTuple } from '@/lib/types'
+import { ZERO_ADDRESS } from '@/lib/utils'
 
 export function usePlayerStats(address: Address | undefined) {
   const { address: contractAddress, abi, isValid } = useContractConfig()
+  const playerAddress = address ?? (ZERO_ADDRESS as Address)
 
   const { data: playerData, refetch, error, isLoading } = useReadContract({
     address: contractAddress,
     abi,
     functionName: 'getPlayer',
-    args: [address!],
+    args: [playerAddress],
     query: {
       enabled: !!address && isValid,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PLAYER_STATS,
