@@ -19,6 +19,7 @@ If you haven't deployed the contract yet:
 ```env
 NEXT_PUBLIC_CELOCLICKER_CONTRACT=0xYourActualContractAddressHere
 NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_actual_project_id
+NEXT_PUBLIC_APP_URL=https://your-domain.com
 NEXT_PUBLIC_CHAIN_ID=42220
 ```
 
