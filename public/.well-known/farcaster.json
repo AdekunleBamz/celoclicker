@@ -10,7 +10,7 @@
     "homeUrl": "https://your-domain.com",
     "iconUrl": "https://your-domain.com/icon.png",
     "splashImageUrl": "https://your-domain.com/splash.png",
-    "splashBackgroundColor": "#1E1B4B",
+    "splashBackgroundColor": "#081118",
     "webhookUrl": "https://your-domain.com/api/webhook"
   },
   "frame:button:1": {
