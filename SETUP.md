@@ -48,7 +48,7 @@ After restarting, the warning should disappear and you should be able to interac
 - Outside MiniPay, the app will still fall back to the normal wallet connection modal.
 - Keep using `viem`/`wagmi` for MiniPay compatibility.
 - MiniPay defaults to USDCm gas mode, while the regular web flow defaults to CELO.
-- Users can switch between CELO and USDCm from the app UI at any time.
+- Users can switch between CELO and USDCm from the app UI on Celo mainnet.
 
 ## Troubleshooting
 
