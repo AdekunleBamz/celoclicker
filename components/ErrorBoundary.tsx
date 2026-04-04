@@ -39,12 +39,8 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen flex items-center justify-center p-4 bg-[#081118]">
-          <div 
-            role="alert" 
-            aria-live="assertive"
-            className="glass-game rounded-2xl p-8 max-w-md w-full text-center"
-          >
+        <div className="min-h-screen flex items-center justify-center p-4">
+          <div role="alert" className="glass-game rounded-2xl p-8 max-w-md w-full text-center">
             <h2 className="text-2xl font-bold text-red-400 mb-4 pixel-font">
               System Failure
             </h2>
