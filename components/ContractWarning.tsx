@@ -9,7 +9,7 @@ export function ContractWarning() {
   if (isValid) return null
   
   return (
-    <div className="bg-yellow-500/20 border-2 border-yellow-500 rounded-lg p-4 mb-4">
+    <div role="alert" className="bg-yellow-500/20 border-2 border-yellow-500 rounded-lg p-4 mb-4">
       <div className="flex items-center gap-2">
         <span className="text-2xl">⚠️</span>
         <div>
