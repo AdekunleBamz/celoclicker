@@ -1,7 +1,7 @@
 import { useReadContract } from 'wagmi'
 import { useContractConfig } from './useContractConfig'
 import { GAME_CONFIG } from '@/lib/constants'
-import { Address } from 'viem'
+import type { Address } from 'viem'
 import type { PlayerStatsTuple } from '@/lib/types'
 
 export function usePlayerStats(address: Address | undefined) {
