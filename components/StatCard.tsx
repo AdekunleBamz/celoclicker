@@ -29,21 +29,9 @@ export const StatCard = memo(function StatCard({
     <Card className={`p-3 transition-transform duration-200 hover:scale-[1.02] ${className}`.trim()} glass>
       <div className="text-gray-400 text-[10px] font-bold uppercase tracking-wider mb-1">{label}</div>
       <div className="flex items-center gap-2">
-        {icon && (
-          <span className="text-lg" aria-hidden="true">
-            {icon}
-          </span>
-        )}
-        <div 
-          className={`text-xl font-bold ${valueColor} pixel-font-small`} 
-          aria-label={`${label}: ${value}`}
-          title={String(value)}
-        >
-          {value}
-        </div>
+        {icon && <span aria-hidden="true" className="text-lg">{icon}</span>}
+        <div className={`text-xl font-bold ${valueColor}`}>{value}</div>
       </div>
     </Card>
   )
-})
-
-StatCard.displayName = 'StatCard'
+}
