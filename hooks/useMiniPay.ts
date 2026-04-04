@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import type { Connector } from 'wagmi'
 
 type MiniPayEthereum = {
@@ -24,11 +24,7 @@ export function getInjectedConnector(connectors: readonly Connector[]) {
 }
 
 export function useMiniPay() {
-  const [isMiniPay, setIsMiniPay] = useState(false)
-
-  useEffect(() => {
-    setIsMiniPay(isMiniPayBrowser())
-  }, [])
+  const [isMiniPay] = useState(() => isMiniPayBrowser())
 
   return isMiniPay
 }
