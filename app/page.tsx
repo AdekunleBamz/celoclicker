@@ -105,6 +105,7 @@ export default function Home() {
     abi: celoClickerABI,
     functionName: 'getLeaderboard',
     query: {
+      enabled: isContractValid,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.LEADERBOARD,
     },
   })
