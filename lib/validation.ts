@@ -15,7 +15,7 @@ export function validateEnvironment(): {
 } {
   const errors: string[] = []
   
-  const contractAddress = process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT
+  const contractAddress = process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT?.trim()
   if (!contractAddress) {
     errors.push(`${CONTRACT_ADDRESS_ENV_KEY} is not set`)
   } else if (!validateContractAddress(contractAddress)) {
