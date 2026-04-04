@@ -210,7 +210,7 @@ This app uses **Celo fee abstraction** for contract writes:
 - Check "Claim Auto Points" button appears
 
 **Transaction failing**
-- Ensure you have CELO for gas fees
+- Ensure you have enough balance in the currently selected gas mode (CELO or USDCm)
 - Check you're connected to Celo Mainnet
 - Try increasing gas limit slightly
 
