@@ -324,6 +324,12 @@ export default function Home() {
                 icon="👆"
               />
               <StatCard
+                label="GAMES PLAYED"
+                value={formatNumber(gamesPlayed)}
+                valueColor="text-cyan-300"
+                icon="🎮"
+              />
+              <StatCard
                 label="FEE MODE"
                 value={selectedFeeCurrency.label}
                 valueColor="text-celo-green"
