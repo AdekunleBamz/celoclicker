@@ -94,7 +94,7 @@ export default function Home() {
     functionName: 'getPendingAutoClicker',
     args: [address as `0x${string}`],
     query: {
-      enabled: !!address && autoClickerLevel > 0n,
+      enabled: !!address && isContractValid && autoClickerLevel > 0n,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PENDING_AUTO,
     },
   })
