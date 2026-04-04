@@ -5,19 +5,6 @@ import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { APP_NAME } from '@/lib/constants'
 import { Orbitron, Press_Start_2P } from 'next/font/google'
 
-const orbitron = Orbitron({
-  subsets: ['latin'],
-  variable: '--font-orbitron',
-  display: 'swap',
-})
-
-const pressStart2P = Press_Start_2P({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-press-start-2p',
-  display: 'swap',
-})
-
 const DEFAULT_APP_URL = 'https://celoclicker.vercel.app'
 
 function resolveAppOrigin() {
