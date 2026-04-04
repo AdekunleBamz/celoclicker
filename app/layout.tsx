@@ -4,8 +4,17 @@ import { Providers } from './providers'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { APP_NAME } from '@/lib/constants'
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL?.trim() || 'https://celoclicker.vercel.app'
-const appOrigin = new URL(APP_URL)
+const DEFAULT_APP_URL = 'https://celoclicker.vercel.app'
+
+function resolveAppOrigin() {
+  try {
+    return new URL(process.env.NEXT_PUBLIC_APP_URL?.trim() || DEFAULT_APP_URL)
+  } catch {
+    return new URL(DEFAULT_APP_URL)
+  }
+}
+
+const appOrigin = resolveAppOrigin()
 const logoUrl = new URL('/icon.png', appOrigin).toString()
 
 export const metadata: Metadata = {
