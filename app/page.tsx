@@ -392,6 +392,7 @@ export default function Home() {
                   whileHover={{ scale: 1.05 }}
                   disabled={isPending || isConfirming}
                   type="button"
+                  aria-label="Click to earn points"
                   className="w-64 h-64 bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 rounded-full flex items-center justify-center text-8xl font-bold glow-purple hover:glow-gold transition-all duration-300 disabled:opacity-50 relative overflow-hidden cursor-pointer z-30"
                 >
                   <span className="relative z-10 animate-pulse pixel-font">★</span>
