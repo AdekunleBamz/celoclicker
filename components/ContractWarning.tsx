@@ -11,15 +11,13 @@ export const ContractWarning = memo(function ContractWarning() {
   if (isValid || dismissed) return null
 
   return (
-    <div role="alert" className="bg-yellow-500/20 border-2 border-yellow-500 rounded-lg p-4 mb-4">
-      <div className="flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
-          <span className="text-2xl" aria-hidden="true">⚠️</span>
-          <div>
-            <div className="font-bold text-yellow-400">Contract Not Configured</div>
-            <div className="text-sm text-yellow-300">
-              Please set a valid {CONTRACT_ADDRESS_ENV_KEY} value in your environment variables
-            </div>
+    <div className="bg-yellow-500/20 border-2 border-yellow-500 rounded-lg p-4 mb-4">
+      <div className="flex items-center gap-2">
+        <span className="text-2xl">⚠️</span>
+        <div>
+          <div className="font-bold text-yellow-400">Contract Not Configured</div>
+          <div className="text-sm text-yellow-300">
+            Please set a valid {CONTRACT_ADDRESS_ENV_KEY} value in your environment variables
           </div>
         </div>
         <button
