@@ -3,7 +3,7 @@ import { celoClickerABI } from '@/lib/abis'
 import { isValidAddress, isZeroAddress, ZERO_ADDRESS } from '@/lib/utils'
 
 export function useContractConfig() {
-  const contractAddress = process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT || ZERO_ADDRESS
+  const contractAddress = process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT?.trim() || ZERO_ADDRESS
   
   const isValid = useMemo(() => {
     return isValidAddress(contractAddress) && !isZeroAddress(contractAddress)
