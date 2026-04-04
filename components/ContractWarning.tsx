@@ -15,7 +15,7 @@ export function ContractWarning() {
         <div>
           <div className="font-bold text-yellow-400">Contract Not Configured</div>
           <div className="text-sm text-yellow-300">
-            Please set {CONTRACT_ADDRESS_ENV_KEY} in your environment variables
+            Please set a valid {CONTRACT_ADDRESS_ENV_KEY} value in your environment variables
           </div>
         </div>
       </div>
