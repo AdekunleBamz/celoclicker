@@ -184,7 +184,7 @@ Play CeloClicker inside MiniPay for the smoothest flow:
 
 This app uses **Celo fee abstraction** for contract writes:
 - Leaving `feeCurrency` unset uses **CELO**
-- Setting `feeCurrency` to the official Celo **USDC adapter** uses **USDCm/USDC** for gas
+- Setting `feeCurrency` to the official Celo **USDC adapter** uses **USDCm** for gas
 - Gameplay still uses in-app points, so the token switch only affects transaction fees
 
 ## Technical Details
