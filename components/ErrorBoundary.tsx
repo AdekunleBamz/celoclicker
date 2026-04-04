@@ -41,6 +41,7 @@ export class ErrorBoundary extends Component<Props, State> {
                 this.setState({ hasError: false, error: undefined })
                 window.location.reload()
               }}
+              type="button"
               className="px-6 py-3 bg-purple-500 hover:bg-purple-600 rounded-lg font-bold transition-colors"
             >
               Reload Page
@@ -53,4 +54,3 @@ export class ErrorBoundary extends Component<Props, State> {
     return this.props.children
   }
 }
-
