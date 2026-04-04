@@ -78,6 +78,9 @@ NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
 
 # Update with your domain
 NEXT_PUBLIC_APP_URL=https://your-domain.com
+
+# Use 42220 for mainnet or 44787 for Alfajores
+NEXT_PUBLIC_CHAIN_ID=42220
 ```
 
 MiniPay works best with an injected wallet flow on mobile. This app now auto-detects MiniPay and prefers the in-app wallet when available, while still keeping the generic wallet modal as a fallback outside MiniPay.
