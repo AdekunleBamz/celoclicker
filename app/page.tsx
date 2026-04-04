@@ -583,13 +583,85 @@ export default function Home() {
           </div>
         </div>
 
-        <LeaderboardModal
-          isOpen={showLeaderboard}
-          onClose={() => setShowLeaderboard(false)}
-          leaderboardData={leaderboardData as LeaderboardTuple}
-          isLoading={isLoadingLeaderboard}
-          playerAddress={address}
-        />
+        {/* Leaderboard Modal */}
+        <AnimatePresence>
+          {showLeaderboard && leaderboardData && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+              onClick={() => setShowLeaderboard(false)}
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+                className="glass-game rounded-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+              >
+                <h2 className="text-3xl font-bold text-purple-400 mb-6 pixel-font text-center">LEADERBOARD</h2>
+                
+                <div className="space-y-2">
+                  {(() => {
+                    if (!leaderboardData) {
+                      return <EmptyState title="No Leaderboard Data" description="Be the first to play!" icon="🏆" />
+                    }
+                    const [addresses, pointsList] = leaderboardData as LeaderboardTuple
+                    const hasEntries = addresses.some((addr) => addr && !isZeroAddress(addr))
+                    
+                    if (!hasEntries) {
+                      return <EmptyState title="No Players Yet" description="Be the first to join the leaderboard!" icon="🎮" />
+                    }
+                    
+                    return addresses.map((addr, idx) => {
+                    const pts = pointsList[idx]
+                    
+                    if (!addr || isZeroAddress(addr)) return null
+
+                    return (
+                      <div
+                          key={`${addr}-${idx}`}
+                        className={`flex justify-between items-center p-4 rounded-lg ${
+                          addr === address ? 'bg-purple-500/30 border-2 border-purple-400' : 'bg-black/20'
+                        }`}
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className={`text-2xl font-bold ${
+                            idx === 0 ? 'text-celo-gold' : 
+                            idx === 1 ? 'text-gray-300' : 
+                            idx === 2 ? 'text-orange-400' : 
+                            'text-gray-500'
+                          }`}>
+                            #{idx + 1}
+                          </div>
+                          <div>
+                            <div className="font-mono text-sm text-gray-400">
+                              {formatAddress(addr)}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-xl font-bold text-celo-green">
+                            {formatNumber(pts)}
+                        </div>
+                      </div>
+                    )
+                    })
+                  })()}
+                </div>
+
+                <button
+                  onClick={() => setShowLeaderboard(false)}
+                  className="w-full mt-6 py-3 bg-purple-500 hover:bg-purple-600 rounded-lg font-bold transition-colors"
+                >
+                  Close
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   )
