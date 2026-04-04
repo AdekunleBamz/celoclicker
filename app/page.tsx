@@ -100,7 +100,7 @@ export default function Home() {
   })
 
   // Read leaderboard
-  const { data: leaderboardData } = useReadContract({
+  const { data: leaderboardData, isLoading: isLoadingLeaderboard } = useReadContract({
     address: contractAddress,
     abi: celoClickerABI,
     functionName: 'getLeaderboard',
@@ -524,7 +524,7 @@ export default function Home() {
 
         {/* Leaderboard Modal */}
         <AnimatePresence>
-          {showLeaderboard && leaderboardData && (
+          {showLeaderboard && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -543,6 +543,14 @@ export default function Home() {
                 
                 <div className="space-y-2">
                   {(() => {
+                    if (isLoadingLeaderboard) {
+                      return (
+                        <div className="flex justify-center py-8">
+                          <LoadingSpinner />
+                        </div>
+                      )
+                    }
+
                     if (!leaderboardData) {
                       return <EmptyState title="No Leaderboard Data" description="Be the first to play!" icon="🏆" />
                     }
