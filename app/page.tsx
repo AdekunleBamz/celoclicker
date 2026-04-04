@@ -1,7 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback, useMemo } from 'react'
-import Image from 'next/image'
+import { useState, useEffect } from 'react'
 import { useAccount, useBalance, useChainId, useConnect, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -39,14 +38,8 @@ export default function Home() {
   const { address: contractAddress, abi: celoClickerABI, isValid: isContractValid } = useContractConfig()
   const injectedConnector = getInjectedConnector(connectors)
   const feeCurrencies = getFeeCurrencies(chainId)
-  const selectedFeeCurrency = useMemo(
-    () => feeCurrencies.find((currency) => currency.id === selectedFeeCurrencyId) ?? feeCurrencies[0],
-    [feeCurrencies, selectedFeeCurrencyId]
-  )
-  const usdcFeeCurrency = useMemo(
-    () => feeCurrencies.find((currency) => currency.id === 'USDC'),
-    [feeCurrencies]
-  )
+  const selectedFeeCurrency = feeCurrencies.find((currency) => currency.id === selectedFeeCurrencyId) ?? feeCurrencies[0]
+  const usdcFeeCurrency = feeCurrencies.find((currency) => currency.id === 'USDC')
 
   const { data: celoBalance } = useBalance({
     address,
@@ -88,7 +81,6 @@ export default function Home() {
     args: [address as `0x${string}`],
     query: {
       enabled: !!address && isContractValid,
-      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.UPGRADE_COSTS,
     },
   })
 
@@ -102,18 +94,17 @@ export default function Home() {
     functionName: 'getPendingAutoClicker',
     args: [address as `0x${string}`],
     query: {
-      enabled: !!address && isContractValid && autoClickerLevel > 0n,
+      enabled: !!address && autoClickerLevel > 0n,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PENDING_AUTO,
     },
   })
 
   // Read leaderboard
-  const { data: leaderboardData, isLoading: isLoadingLeaderboard } = useReadContract({
+  const { data: leaderboardData } = useReadContract({
     address: contractAddress,
     abi: celoClickerABI,
     functionName: 'getLeaderboard',
     query: {
-      enabled: isContractValid,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.LEADERBOARD,
     },
   })
@@ -124,25 +115,12 @@ export default function Home() {
     hash,
   })
 
-  const transactionOverrides = useMemo(
-    () => {
-      const overrides: Record<string, unknown> = {}
-      if (selectedFeeCurrency.feeCurrency) {
-        overrides.feeCurrency = selectedFeeCurrency.feeCurrency
-      }
-      // MiniPay only supports legacy (type 0) transactions on Celo
-      if (isMiniPay) {
-        overrides.type = 'legacy'
-      }
-      return overrides
-    },
-    [selectedFeeCurrency.feeCurrency, isMiniPay]
-  )
-
-  const pendingAutoPointsLabel = pendingAuto ? pendingAuto.toLocaleString() : '0'
+  const transactionOverrides = selectedFeeCurrency.feeCurrency
+    ? { feeCurrency: selectedFeeCurrency.feeCurrency }
+    : {}
 
   // Click handler - triggers wallet transaction on every click
-  const handleClick = useCallback(async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!isConnected) {
       alert('Please connect your wallet first!')
       return
@@ -183,9 +161,9 @@ export default function Home() {
     setTimeout(() => {
       setFloatingNumbers(prev => prev.filter(num => num.id !== floatingId))
     }, GAME_CONFIG.ANIMATION_DURATION.FLOATING_NUMBER)
-  }, [isConnected, isPending, isConfirming, clickPower, multiplierLevel, contractAddress, celoClickerABI, transactionOverrides, writeContract])
+  }
 
-  const handleUpgrade = useCallback((type: 'clickPower' | 'autoClicker' | 'multiplier') => {
+  const handleUpgrade = (type: 'clickPower' | 'autoClicker' | 'multiplier') => {
     if (!isConnected) {
       alert('Please connect your wallet first!')
       return
@@ -208,9 +186,9 @@ export default function Home() {
       console.error('Error sending upgrade transaction:', error)
       alert('Failed to send transaction. Please try again.')
     }
-  }, [isConnected, isPending, isConfirming, contractAddress, celoClickerABI, transactionOverrides, writeContract])
+  }
 
-  const handleClaimAuto = useCallback(() => {
+  const handleClaimAuto = () => {
     if (!isConnected) {
       alert('Please connect your wallet first!')
       return
@@ -231,7 +209,7 @@ export default function Home() {
       console.error('Error sending claim transaction:', error)
       alert('Failed to send transaction. Please try again.')
     }
-  }, [isConnected, isPending, isConfirming, contractAddress, celoClickerABI, transactionOverrides, writeContract])
+  }
 
   useEffect(() => {
     if (isSuccess) {
@@ -284,7 +262,7 @@ export default function Home() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="mx-auto mb-5 flex h-24 w-24 items-center justify-center rounded-[28px] border border-white/10 bg-black/20 p-3 shadow-[0_20px_60px_rgba(8,17,24,0.45)]">
-            <Image src="/logo-mark.svg" alt="CeloClicker logo" width={72} height={72} priority className="h-full w-full" />
+            <img src="/logo-mark.svg" alt="CeloClicker logo" className="h-full w-full" />
           </div>
           <h1 className="text-6xl font-bold mb-2 bg-gradient-to-r from-celo-green via-celo-gold to-cyan-300 bg-clip-text text-transparent animate-pulse-glow pixel-font">
             CELOCLICKER
@@ -297,19 +275,13 @@ export default function Home() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column - Stats */}
-          <div role="region" aria-label="Player statistics" className="glass-game rounded-2xl p-6 space-y-4">
+          <div className="glass-game rounded-2xl p-6 space-y-4">
             <h2 className="text-2xl font-bold text-purple-400 mb-4 pixel-font">STATS</h2>
             
             {isLoadingPlayer && (
               <div className="flex justify-center py-8">
                 <LoadingSpinner />
               </div>
-            )}
-
-            {!isLoadingPlayer && playerError && (
-              <p className="rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-2 text-xs text-red-200">
-                Unable to load player stats right now. Please try again in a moment.
-              </p>
             )}
             
             {!isLoadingPlayer && (
@@ -345,12 +317,6 @@ export default function Home() {
                 icon="👆"
               />
               <StatCard
-                label="GAMES PLAYED"
-                value={formatNumber(gamesPlayed)}
-                valueColor="text-cyan-300"
-                icon="🎮"
-              />
-              <StatCard
                 label="FEE MODE"
                 value={selectedFeeCurrency.label}
                 valueColor="text-celo-green"
@@ -364,10 +330,9 @@ export default function Home() {
                 onClick={handleClaimAuto}
                 disabled={isPending || isConfirming}
                 type="button"
-                aria-label={`Claim ${pendingAutoPointsLabel} auto clicker points`}
                 className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-bold hover:scale-105 transition-transform glow-purple disabled:opacity-50 cursor-pointer relative z-10"
               >
-                Claim {pendingAutoPointsLabel} Auto Points
+                Claim {Number(pendingAuto)} Auto Points
               </button>
             )}
           </div>
@@ -397,10 +362,8 @@ export default function Home() {
 
                         openConnectModal()
                       }}
-                      disabled={isConnectingWallet}
                       type="button"
-                      aria-busy={isConnectingWallet}
-                      className="px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-bold hover:scale-105 transition-transform glow-purple disabled:cursor-not-allowed disabled:opacity-70"
+                      className="px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-bold hover:scale-105 transition-transform glow-purple"
                     >
                       {isConnectingWallet ? 'Connecting...' : isMiniPay ? 'Connect MiniPay' : 'Connect Wallet'}
                     </button>
@@ -414,9 +377,6 @@ export default function Home() {
                   whileTap={{ scale: 0.9 }}
                   whileHover={{ scale: 1.05 }}
                   disabled={isPending || isConfirming}
-                  type="button"
-                  aria-label="Click to earn points"
-                  title="Click to earn points"
                   className="w-64 h-64 bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 rounded-full flex items-center justify-center text-8xl font-bold glow-purple hover:glow-gold transition-all duration-300 disabled:opacity-50 relative overflow-hidden cursor-pointer z-30"
                 >
                   <span className="relative z-10 animate-pulse pixel-font">★</span>
@@ -443,12 +403,8 @@ export default function Home() {
                   {isPending ? '⏳ WAITING FOR WALLET...' : isConfirming ? '⏳ PROCESSING TRANSACTION...' : 'CLICK THE STAR!'}
                 </p>
                 {(writeError || txError) && (
-                  <p className="mt-2 text-red-400 text-xs" role="alert">
-                    Error: {writeError?.message?.includes('user rejected') 
-                      ? 'Transaction was rejected. Please try again.' 
-                      : writeError?.message?.includes('insufficient funds')
-                      ? 'Insufficient funds for gas. Please check your balance.'
-                      : writeError?.message || txError?.message || 'Transaction failed. Please try again.'}
+                  <p className="mt-2 text-red-400 text-xs">
+                    Error: {writeError?.message || txError?.message || 'Transaction failed'}
                   </p>
                 )}
 
@@ -462,7 +418,7 @@ export default function Home() {
 
           {/* Right Column - Upgrades */}
           <div className="glass-game rounded-2xl p-6 space-y-4">
-            <div role="region" aria-label="Fee mode selection" className="bg-black/30 rounded-lg p-4 space-y-3">
+            <div className="bg-black/30 rounded-lg p-4 space-y-3">
               <div>
                 <h2 className="text-2xl font-bold text-celo-green mb-1 pixel-font">FEE MODE</h2>
                 <p className="text-xs text-gray-400">
@@ -478,8 +434,6 @@ export default function Home() {
                     <button
                       key={currency.id}
                       type="button"
-                      aria-label={`Select ${currency.label} as fee currency`}
-                      aria-pressed={isSelected}
                       onClick={() => {
                         if (!currency.isAvailable) {
                           return
@@ -526,7 +480,7 @@ export default function Home() {
 
             <h2 className="text-2xl font-bold text-purple-400 mb-4 pixel-font">UPGRADES</h2>
 
-            <div role="region" aria-label="Upgrades" className="space-y-3">
+            <div className="space-y-3">
               <UpgradeCard
                 title="Click Power"
                 currentLevel={Number(clickPower)}
@@ -562,9 +516,6 @@ export default function Home() {
             <button
               onClick={() => setShowLeaderboard(!showLeaderboard)}
               type="button"
-              aria-label={showLeaderboard ? 'Hide leaderboard' : 'Show leaderboard'}
-              aria-expanded={showLeaderboard}
-              aria-controls="leaderboard-dialog"
               className="w-full py-3 bg-gradient-to-r from-celo-green to-celo-gold rounded-lg font-bold hover:scale-105 transition-transform glow-green mt-4 cursor-pointer relative z-10"
             >
               {showLeaderboard ? 'Hide' : 'Show'} Leaderboard
@@ -574,7 +525,7 @@ export default function Home() {
 
         {/* Leaderboard Modal */}
         <AnimatePresence>
-          {showLeaderboard && (
+          {showLeaderboard && leaderboardData && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -587,24 +538,12 @@ export default function Home() {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
-                id="leaderboard-dialog"
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="leaderboard-title"
                 className="glass-game rounded-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
               >
-                <h2 id="leaderboard-title" className="text-3xl font-bold text-purple-400 mb-6 pixel-font text-center">LEADERBOARD</h2>
+                <h2 className="text-3xl font-bold text-purple-400 mb-6 pixel-font text-center">LEADERBOARD</h2>
                 
                 <div className="space-y-2">
                   {(() => {
-                    if (isLoadingLeaderboard) {
-                      return (
-                        <div className="flex justify-center py-8">
-                          <LoadingSpinner />
-                        </div>
-                      )
-                    }
-
                     if (!leaderboardData) {
                       return <EmptyState title="No Leaderboard Data" description="Be the first to play!" icon="🏆" />
                     }
@@ -653,8 +592,6 @@ export default function Home() {
 
                 <button
                   onClick={() => setShowLeaderboard(false)}
-                  type="button"
-                  aria-label="Close leaderboard"
                   className="w-full mt-6 py-3 bg-purple-500 hover:bg-purple-600 rounded-lg font-bold transition-colors"
                 >
                   Close
