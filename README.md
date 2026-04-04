@@ -214,7 +214,7 @@ This app uses **Celo fee abstraction** for contract writes:
 
 **Transaction failing**
 - Ensure you have enough balance in the currently selected gas mode (CELO or USDCm)
-- Check you're connected to Celo Mainnet
+- Check you're connected to the same Celo network configured for the app
 - Try increasing gas limit slightly
 
 ## Support
