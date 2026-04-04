@@ -54,10 +54,9 @@ Addictive on-chain idle clicker game on Celo. Click, upgrade, and dominate the l
 2. Create a new file `CeloClicker.sol`
 3. Copy the contract code from `CeloClicker.sol`
 4. Compile with Solidity 0.8.20
-5. Deploy to Celo Mainnet:
-   - Network: Celo Mainnet
-   - Chain ID: 42220
-   - RPC: https://forno.celo.org
+5. Deploy to Celo Mainnet or Alfajores:
+   - Mainnet: Chain ID 42220, RPC https://forno.celo.org
+   - Alfajores: Chain ID 44787
 6. **Save the deployed contract address!**
 
 The contract is ready to use immediately after deployment - no initialization needed!
