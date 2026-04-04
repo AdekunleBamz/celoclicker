@@ -17,7 +17,7 @@ Addictive on-chain idle clicker game on Celo. Click, upgrade, and dominate the l
 
 - **Frontend**: Next.js 14, TypeScript, TailwindCSS, Framer Motion
 - **Web3**: Wagmi, Viem, RainbowKit
-- **Blockchain**: Celo (Mainnet + Alfajores)
+- **Blockchain**: Celo (Mainnet)
 - **Smart Contract**: Solidity 0.8.20
 
 ## Game Mechanics
@@ -54,9 +54,10 @@ Addictive on-chain idle clicker game on Celo. Click, upgrade, and dominate the l
 2. Create a new file `CeloClicker.sol`
 3. Copy the contract code from `CeloClicker.sol`
 4. Compile with Solidity 0.8.20
-5. Deploy to Celo Mainnet or Alfajores:
-   - Mainnet: Chain ID 42220, RPC https://forno.celo.org
-   - Alfajores: Chain ID 44787
+5. Deploy to Celo Mainnet:
+   - Network: Celo Mainnet
+   - Chain ID: 42220
+   - RPC: https://forno.celo.org
 6. **Save the deployed contract address!**
 
 The contract is ready to use immediately after deployment - no initialization needed!
@@ -77,12 +78,7 @@ NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
 
 # Update with your domain
 NEXT_PUBLIC_APP_URL=https://your-domain.com
-
-# Use 42220 for mainnet or 44787 for Alfajores
-NEXT_PUBLIC_CHAIN_ID=42220
 ```
-
-Use a lowercase `0x` prefix for `NEXT_PUBLIC_CELOCLICKER_CONTRACT` to satisfy strict address validation.
 
 MiniPay works best with an injected wallet flow on mobile. This app now auto-detects MiniPay and prefers the in-app wallet when available, while still keeping the generic wallet modal as a fallback outside MiniPay.
 
@@ -95,22 +91,13 @@ The app also supports Celo fee abstraction:
 
 ```bash
 # Install dependencies
-npm ci
+npm install
 
 # Run development server
 npm run dev
 
 # Build for production
 npm run build
-
-# Run full test suite
-npm run test
-
-# Run focused utility + validation tests
-npm run test:utils
-
-# Run fast local verification (lint + focused tests)
-npm run check:fast
 
 # Start production server
 npm start
@@ -130,7 +117,6 @@ npm start
    - Your FID
    - Proper account association
    - Webhook URL
-   - Real production values instead of the placeholder example strings committed in this repo
 
 ## How to Play
 
@@ -196,7 +182,7 @@ Play CeloClicker inside MiniPay for the smoothest flow:
 
 This app uses **Celo fee abstraction** for contract writes:
 - Leaving `feeCurrency` unset uses **CELO**
-- Setting `feeCurrency` to the official Celo **USDC adapter** uses **USDCm** for gas
+- Setting `feeCurrency` to the official Celo **USDC adapter** uses **USDCm/USDC** for gas
 - Gameplay still uses in-app points, so the token switch only affects transaction fees
 
 ## Technical Details
@@ -225,12 +211,8 @@ This app uses **Celo fee abstraction** for contract writes:
 
 **Transaction failing**
 - Ensure you have enough balance in the currently selected gas mode (CELO or USDCm)
-- Check you're connected to the same Celo network configured for the app
+- Check you're connected to Celo Mainnet
 - Try increasing gas limit slightly
-
-**WalletConnect setup not working**
-- Confirm `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID` is not a placeholder value
-- Use a project id that is at least 8 characters long
 
 ## Support
 
