@@ -17,7 +17,7 @@ function getWagmiConfig() {
   if (!wagmiConfig) {
     wagmiConfig = getDefaultConfig({
       appName: process.env.NEXT_PUBLIC_APP_NAME || APP_NAME,
-      projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || '',
+      projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID?.trim() || '',
       chains: [
         Number(process.env.NEXT_PUBLIC_CHAIN_ID) === CELO_MAINNET_CHAIN_ID ? celo : celoAlfajores,
       ],
