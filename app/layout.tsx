@@ -6,9 +6,6 @@ import { APP_NAME } from '@/lib/constants'
 
 const DEFAULT_APP_URL = 'https://celoclicker.vercel.app'
 
-/**
- * Resolve the app origin from environment or use default
- */
 function resolveAppOrigin() {
   try {
     return new URL(process.env.NEXT_PUBLIC_APP_URL?.trim() || DEFAULT_APP_URL)
