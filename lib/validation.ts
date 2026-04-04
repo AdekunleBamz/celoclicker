@@ -22,7 +22,7 @@ export function validateEnvironment(): {
     errors.push(`${CONTRACT_ADDRESS_ENV_KEY} is not a valid address`)
   }
   
-  const walletConnectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID
+  const walletConnectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID?.trim()
   if (!walletConnectId) {
     errors.push('NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is not set')
   }
