@@ -661,6 +661,7 @@ export default function Home() {
 
                 <button
                   onClick={() => setShowLeaderboard(false)}
+                  type="button"
                   className="w-full mt-6 py-3 bg-purple-500 hover:bg-purple-600 rounded-lg font-bold transition-colors"
                 >
                   Close
