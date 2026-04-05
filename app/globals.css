@@ -17,6 +17,17 @@
   * {
     border-color: rgb(31 41 55);
   }
+
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--celo-green);
+    outline-offset: 4px;
+    box-shadow: 0 0 0 4px rgba(53, 208, 127, 0.3);
+  }
+
   body {
     @apply bg-gradient-to-br from-purple-950 via-indigo-950 to-purple-950 text-white;
     font-family: 'Orbitron', sans-serif;
