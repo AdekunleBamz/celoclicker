@@ -15,6 +15,7 @@ import { useClicker } from '@/hooks/useClicker'
 import { getInjectedConnector, useMiniPay } from '@/hooks/useMiniPay'
 import { StatSkeleton } from '@/components/StatSkeleton'
 import { Toast } from '@/components/Toast'
+import { Button } from '@/components/UI'
 import type { LeaderboardTuple } from '@/lib/types'
 
 interface FloatingNumber {
@@ -313,16 +314,14 @@ export default function Home() {
             )}
 
             {autoClickerLevel > 0n && pendingAuto && Number(pendingAuto) > 0 && (
-              <motion.button
+              <Button
                 onClick={handleClaimAuto}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                variant="accent"
+                fullWidth
                 disabled={isPending || isConfirming}
-                type="button"
-                className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-bold hover:scale-105 transition-all glow-purple disabled:opacity-50 cursor-pointer relative z-10"
               >
                 Claim {Number(pendingAuto)} Auto Points
-              </motion.button>
+              </Button>
             )}
           </div>
 
@@ -501,15 +500,14 @@ export default function Home() {
               />
             </div>
 
-            <motion.button
+            <Button
               onClick={() => setShowLeaderboard(!showLeaderboard)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              type="button"
-              className="w-full py-3 bg-gradient-to-r from-celo-green to-celo-gold rounded-lg font-bold hover:scale-105 transition-all glow-green mt-4 cursor-pointer relative z-10"
+              variant="secondary"
+              fullWidth
+              className="mt-4"
             >
               {showLeaderboard ? 'Hide' : 'Show'} Leaderboard
-            </motion.button>
+            </Button>
           </div>
         </div>
 

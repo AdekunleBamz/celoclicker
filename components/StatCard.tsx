@@ -1,3 +1,5 @@
+import { Card } from './UI'
+
 interface StatCardProps {
   label: string
   value: string | number
@@ -7,7 +9,7 @@ interface StatCardProps {
 
 export function StatCard({ label, value, valueColor = 'text-purple-400', icon }: StatCardProps) {
   return (
-    <div className="bg-black/30 rounded-lg p-3">
+    <Card className="p-3">
       <div className="text-gray-400 text-xs mb-1">{label}</div>
       <div className="flex items-center gap-2">
         {icon && (
@@ -17,7 +19,7 @@ export function StatCard({ label, value, valueColor = 'text-purple-400', icon }:
         )}
         <div className={`text-xl font-bold ${valueColor}`}>{value}</div>
       </div>
-    </div>
+    </Card>
   )
 }
 
