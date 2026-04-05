@@ -211,17 +211,29 @@ This app uses **Celo fee abstraction** for contract writes:
 ## Troubleshooting
 
 **"Insufficient points" error**
-- You need more points to buy that upgrade
-- Keep clicking to earn more!
+- You need more points to buy that upgrade.
+- Keep clicking the star to earn more!
 
 **Auto-clicker not generating points**
-- Wait at least 5 minutes between claims
-- Check "Claim Auto Points" button appears
+- Points are generated every 5 minutes (300 seconds).
+- You must have at least Level 1 Auto-Clicker.
+- Check the "Claim Auto Points" button appears in the Stats column.
 
-**Transaction failing**
-- Ensure you have CELO for gas fees
-- Check you're connected to Celo Mainnet
-- Try increasing gas limit slightly
+**Transaction failing / Gas issues**
+- **Celo Mainnet:** Ensure you have CELO for gas fees.
+- **Alfajores:** Get testnet CELO from the [Faucet](https://faucet.celo.org/alfajores).
+- **MiniPay:** If using USDCm mode, ensure you have some USDC on Celo.
+- Try switching between CELO and USDCm in the "Fee Mode" settings.
+
+**MiniPay connection issues**
+- Ensure you are opening the app *inside* the MiniPay browser.
+- If the "Connect MiniPay" button doesn't respond, try refreshing the page.
+- Clear browser cache if the wallet detection seems stuck.
+
+**Wrong Network**
+- This app tracks Celo (42220) and Alfajores (44787).
+- If your wallet is on a different network, the app will show a warning or fail to read stats.
+- Switch your wallet to Celo or Alfajores to continue.
 
 ## Support
 
