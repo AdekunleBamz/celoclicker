@@ -5,6 +5,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
 
 @layer base {
+  :root {
+    --celo-green: #35D07F;
+    --celo-gold: #FBCC5C;
+    --celo-dark: #2E3338;
+    --primary: #9333ea;
+    --secondary: #6366f1;
+    --accent: #ec4899;
+  }
+
   * {
     border-color: rgb(31 41 55);
   }
