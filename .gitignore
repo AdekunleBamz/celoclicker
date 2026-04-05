@@ -45,3 +45,8 @@ next-env.d.ts
 # Solidity
 artifacts/
 cache/
+
+# Personal local test helpers and wallet dumps stay out of git.
+/scripts/
+/generated/
+.stress-report.json

@@ -4,7 +4,7 @@ import { isValidAddress, isZeroAddress, ZERO_ADDRESS } from '@/lib/utils'
 
 export function useContractConfig() {
   const contractAddress = process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT || ZERO_ADDRESS
-  
+
   const isValid = useMemo(() => {
     return isValidAddress(contractAddress) && !isZeroAddress(contractAddress)
   }, [contractAddress])

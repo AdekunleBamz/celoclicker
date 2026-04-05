@@ -21,12 +21,12 @@ interface ButtonProps extends HTMLMotionProps<'button'> {
   fullWidth?: boolean
 }
 
-export function Button({ 
-  children, 
-  variant = 'primary', 
-  fullWidth = false, 
-  className = '', 
-  ...props 
+export function Button({
+  children,
+  variant = 'primary',
+  fullWidth = false,
+  className = '',
+  ...props
 }: ButtonProps) {
   const variantClasses = {
     primary: 'bg-gradient-to-r from-purple-500 to-indigo-500 glow-purple',

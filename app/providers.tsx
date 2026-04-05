@@ -13,7 +13,7 @@ let queryClientInstance: QueryClient | null = null
 
 function getWagmiConfig() {
   if (typeof window === 'undefined') return null
-  
+
   if (!wagmiConfig) {
     wagmiConfig = getDefaultConfig({
       appName: process.env.NEXT_PUBLIC_APP_NAME || APP_NAME,
@@ -24,7 +24,7 @@ function getWagmiConfig() {
       ssr: true,
     })
   }
-  
+
   return wagmiConfig
 }
 

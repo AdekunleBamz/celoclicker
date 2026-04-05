@@ -55,7 +55,7 @@ Addictive on-chain idle clicker game on Celo. Click, upgrade, and dominate the l
 3. Copy the contract code from `CeloClicker.sol`
 4. Compile with Solidity 0.8.20
 5. Deploy to Celo (Mainnet or Alfajores):
-   
+
    **Celo Mainnet:**
    - Network: Celo Mainnet
    - Chain ID: 42220

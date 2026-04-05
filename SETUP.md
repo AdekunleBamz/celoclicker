@@ -22,7 +22,7 @@ NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_actual_project_id
 NEXT_PUBLIC_CHAIN_ID=42220
 ```
 
-**Important:** 
+**Important:**
 - The contract address must be exactly 42 characters (0x + 40 hex characters)
 - Example: `0x1234567890123456789012345678901234567890`
 
@@ -52,7 +52,7 @@ After restarting, the warning should disappear and you should be able to interac
 
 ## Troubleshooting
 
-- **Still seeing warning?** 
+- **Still seeing warning?**
   - Make sure the address is exactly 42 characters
   - Make sure there are no extra spaces in `.env.local`
   - Restart the dev server
