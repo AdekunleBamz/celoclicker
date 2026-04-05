@@ -1,22 +1,21 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useAccount, useBalance, useChainId, useConnect, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
+import { useBalance, useChainId, useConnect } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion, AnimatePresence } from 'framer-motion'
 import { formatNumber, formatAddress, formatTokenAmount, isZeroAddress } from '@/lib/utils'
 import { GAME_CONFIG } from '@/lib/constants'
 import { getDefaultFeeCurrencyId, getFeeCurrencies, type FeeCurrencyId } from '@/lib/feeCurrencies'
-import { LoadingSpinner } from '@/components/LoadingSpinner'
 import { EmptyState } from '@/components/EmptyState'
 import { StatCard } from '@/components/StatCard'
 import { UpgradeCard } from '@/components/UpgradeCard'
 import { ContractWarning } from '@/components/ContractWarning'
-import { useContractConfig } from '@/hooks/useContractConfig'
+import { useClicker } from '@/hooks/useClicker'
 import { getInjectedConnector, useMiniPay } from '@/hooks/useMiniPay'
 import { StatSkeleton } from '@/components/StatSkeleton'
 import { Toast } from '@/components/Toast'
-import type { LeaderboardTuple, PlayerStatsTuple, UpgradeCostsTuple } from '@/lib/types'
+import type { LeaderboardTuple } from '@/lib/types'
 
 interface FloatingNumber {
   id: number
@@ -26,7 +25,28 @@ interface FloatingNumber {
 }
 
 export default function Home() {
-  const { address, isConnected } = useAccount()
+  const { 
+    address, 
+    isConnected, 
+    playerStats, 
+    upgradeCosts, 
+    pendingAuto, 
+    leaderboardData, 
+    isLoading: isLoadingPlayer,
+    isPending, 
+    isConfirming, 
+    isSuccess, 
+    writeError, 
+    txError, 
+    writeContract, 
+    refetchPlayer, 
+    contractAddress, 
+    abi: celoClickerABI 
+  } = useClicker()
+
+  const { points, clickPower, autoClickerLevel, multiplierLevel, totalClicks } = playerStats
+  const { clickPowerCost, autoClickerCost, multiplierCost } = upgradeCosts
+
   const chainId = useChainId()
   const { connect, connectors, isPending: isConnectingWallet } = useConnect()
   const [floatingNumbers, setFloatingNumbers] = useState<FloatingNumber[]>([])
@@ -44,7 +64,6 @@ export default function Home() {
     setShowToast(true)
   }
 
-  const { address: contractAddress, abi: celoClickerABI, isValid: isContractValid } = useContractConfig()
   const injectedConnector = getInjectedConnector(connectors)
   const feeCurrencies = getFeeCurrencies(chainId)
   const selectedFeeCurrency = feeCurrencies.find((currency) => currency.id === selectedFeeCurrencyId) ?? feeCurrencies[0]
@@ -65,64 +84,6 @@ export default function Home() {
       enabled: !!address && !!usdcFeeCurrency?.tokenAddress,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.BALANCES,
     },
-  })
-
-  // Read player stats
-  const { data: playerData, refetch: refetchPlayer, error: playerError, isLoading: isLoadingPlayer } = useReadContract({
-    address: contractAddress,
-    abi: celoClickerABI,
-    functionName: 'getPlayer',
-    args: [address as `0x${string}`],
-    query: {
-      enabled: !!address && isContractValid,
-      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PLAYER_STATS,
-    },
-  })
-
-  const [points, clickPower, autoClickerLevel, multiplierLevel, totalClicks, gamesPlayed] =
-    (playerData as PlayerStatsTuple) || [0n, 0n, 0n, 0n, 0n, 0n]
-
-  // Read upgrade costs
-  const { data: upgradeCosts, isLoading: isLoadingCosts } = useReadContract({
-    address: contractAddress,
-    abi: celoClickerABI,
-    functionName: 'getUpgradeCosts',
-    args: [address as `0x${string}`],
-    query: {
-      enabled: !!address && isContractValid,
-      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.UPGRADE_COSTS,
-    },
-  })
-
-  const [clickPowerCost, autoClickerCost, multiplierCost] =
-    (upgradeCosts as UpgradeCostsTuple) || [0n, 0n, 0n]
-
-  // Read pending auto-clicker
-  const { data: pendingAuto } = useReadContract({
-    address: contractAddress,
-    abi: celoClickerABI,
-    functionName: 'getPendingAutoClicker',
-    args: [address as `0x${string}`],
-    query: {
-      enabled: !!address && autoClickerLevel > 0n,
-      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PENDING_AUTO,
-    },
-  })
-
-  // Read leaderboard
-  const { data: leaderboardData } = useReadContract({
-    address: contractAddress,
-    abi: celoClickerABI,
-    functionName: 'getLeaderboard',
-    query: {
-      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.LEADERBOARD,
-    },
-  })
-
-  const { writeContract, data: hash, isPending, error: writeError } = useWriteContract()
-
-  const { isLoading: isConfirming, isSuccess, error: txError } = useWaitForTransactionReceipt({
-    hash,
   })
 
   const transactionOverrides = selectedFeeCurrency.feeCurrency
@@ -390,7 +351,6 @@ export default function Home() {
 
                         openConnectModal()
                       }}
-                      type="button"
                       className="px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-bold hover:scale-105 transition-transform glow-purple"
                     >
                       {isConnectingWallet ? 'Connecting...' : isMiniPay ? 'Connect MiniPay' : 'Connect Wallet'}
@@ -405,8 +365,6 @@ export default function Home() {
                   whileTap={{ scale: 0.9 }}
                   whileHover={{ scale: 1.05 }}
                   disabled={isPending || isConfirming}
-                  type="button"
-                  aria-label="Click to earn points"
                   className="w-64 h-64 bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 rounded-full flex items-center justify-center text-8xl font-bold glow-purple hover:glow-gold transition-all duration-300 disabled:opacity-50 relative overflow-hidden cursor-pointer z-30"
                 >
                   <span className="relative z-10 animate-pulse pixel-font">★</span>
@@ -570,12 +528,9 @@ export default function Home() {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="leaderboard-title"
                 className="glass-game rounded-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
               >
-                <h2 id="leaderboard-title" className="text-3xl font-bold text-purple-400 mb-6 pixel-font text-center">LEADERBOARD</h2>
+                <h2 className="text-3xl font-bold text-purple-400 mb-6 pixel-font text-center">LEADERBOARD</h2>
                 
                 <div className="space-y-2">
                   {(() => {
@@ -627,7 +582,6 @@ export default function Home() {
 
                 <button
                   onClick={() => setShowLeaderboard(false)}
-                  type="button"
                   className="w-full mt-6 py-3 bg-purple-500 hover:bg-purple-600 rounded-lg font-bold transition-colors"
                 >
                   Close
