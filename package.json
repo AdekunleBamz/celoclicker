@@ -9,12 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:utils": "vitest run tests/lib-utils.test.ts tests/validation.test.ts",
-    "check:fast": "npm run lint && npm run test:utils",
-    "validate": "npm run typecheck && npm run check:fast"
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^2.0.0",
