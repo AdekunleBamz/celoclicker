@@ -1,22 +1,21 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useAccount, useBalance, useChainId, useConnect, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
+import { useBalance, useChainId, useConnect } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion, AnimatePresence } from 'framer-motion'
 import { formatNumber, formatAddress, formatTokenAmount, isZeroAddress } from '@/lib/utils'
 import { GAME_CONFIG } from '@/lib/constants'
 import { getDefaultFeeCurrencyId, getFeeCurrencies, type FeeCurrencyId } from '@/lib/feeCurrencies'
-import { LoadingSpinner } from '@/components/LoadingSpinner'
 import { EmptyState } from '@/components/EmptyState'
 import { StatCard } from '@/components/StatCard'
 import { UpgradeCard } from '@/components/UpgradeCard'
 import { ContractWarning } from '@/components/ContractWarning'
-import { useContractConfig } from '@/hooks/useContractConfig'
+import { useClicker } from '@/hooks/useClicker'
 import { getInjectedConnector, useMiniPay } from '@/hooks/useMiniPay'
 import { StatSkeleton } from '@/components/StatSkeleton'
 import { Toast } from '@/components/Toast'
-import type { LeaderboardTuple, PlayerStatsTuple, UpgradeCostsTuple } from '@/lib/types'
+import type { LeaderboardTuple } from '@/lib/types'
 
 interface FloatingNumber {
   id: number
@@ -26,7 +25,28 @@ interface FloatingNumber {
 }
 
 export default function Home() {
-  const { address, isConnected } = useAccount()
+  const { 
+    address, 
+    isConnected, 
+    playerStats, 
+    upgradeCosts, 
+    pendingAuto, 
+    leaderboardData, 
+    isLoading: isLoadingPlayer,
+    isPending, 
+    isConfirming, 
+    isSuccess, 
+    writeError, 
+    txError, 
+    writeContract, 
+    refetchPlayer, 
+    contractAddress, 
+    abi: celoClickerABI 
+  } = useClicker()
+
+  const { points, clickPower, autoClickerLevel, multiplierLevel, totalClicks } = playerStats
+  const { clickPowerCost, autoClickerCost, multiplierCost } = upgradeCosts
+
   const chainId = useChainId()
   const { connect, connectors, isPending: isConnectingWallet } = useConnect()
   const [floatingNumbers, setFloatingNumbers] = useState<FloatingNumber[]>([])
@@ -44,7 +64,6 @@ export default function Home() {
     setShowToast(true)
   }
 
-  const { address: contractAddress, abi: celoClickerABI, isValid: isContractValid } = useContractConfig()
   const injectedConnector = getInjectedConnector(connectors)
   const feeCurrencies = getFeeCurrencies(chainId)
   const selectedFeeCurrency = feeCurrencies.find((currency) => currency.id === selectedFeeCurrencyId) ?? feeCurrencies[0]
@@ -65,63 +84,6 @@ export default function Home() {
       enabled: !!address && !!usdcFeeCurrency?.tokenAddress,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.BALANCES,
     },
-  })
-
-  // Read player stats
-  const { data: playerData, refetch: refetchPlayer, error: playerError, isLoading: isLoadingPlayer } = useReadContract({
-    address: contractAddress,
-    abi: celoClickerABI,
-    functionName: 'getPlayer',
-    args: [address as `0x${string}`],
-    query: {
-      enabled: !!address && isContractValid,
-      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PLAYER_STATS,
-    },
-  })
-
-  const [points, clickPower, autoClickerLevel, multiplierLevel, totalClicks, gamesPlayed] =
-    (playerData as PlayerStatsTuple) || [0n, 0n, 0n, 0n, 0n, 0n]
-
-  // Read upgrade costs
-  const { data: upgradeCosts, isLoading: isLoadingCosts } = useReadContract({
-    address: contractAddress,
-    abi: celoClickerABI,
-    functionName: 'getUpgradeCosts',
-    args: [address as `0x${string}`],
-    query: {
-      enabled: !!address && isContractValid,
-    },
-  })
-
-  const [clickPowerCost, autoClickerCost, multiplierCost] =
-    (upgradeCosts as UpgradeCostsTuple) || [0n, 0n, 0n]
-
-  // Read pending auto-clicker
-  const { data: pendingAuto } = useReadContract({
-    address: contractAddress,
-    abi: celoClickerABI,
-    functionName: 'getPendingAutoClicker',
-    args: [address as `0x${string}`],
-    query: {
-      enabled: !!address && autoClickerLevel > 0n,
-      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PENDING_AUTO,
-    },
-  })
-
-  // Read leaderboard
-  const { data: leaderboardData } = useReadContract({
-    address: contractAddress,
-    abi: celoClickerABI,
-    functionName: 'getLeaderboard',
-    query: {
-      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.LEADERBOARD,
-    },
-  })
-
-  const { writeContract, data: hash, isPending, error: writeError } = useWriteContract()
-
-  const { isLoading: isConfirming, isSuccess, error: txError } = useWaitForTransactionReceipt({
-    hash,
   })
 
   const transactionOverrides = selectedFeeCurrency.feeCurrency
