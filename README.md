@@ -54,9 +54,19 @@ Addictive on-chain idle clicker game on Celo. Click, upgrade, and dominate the l
 2. Create a new file `CeloClicker.sol`
 3. Copy the contract code from `CeloClicker.sol`
 4. Compile with Solidity 0.8.20
-5. Deploy to Celo Mainnet or Alfajores:
-   - Mainnet: Chain ID 42220, RPC https://forno.celo.org
-   - Alfajores: Chain ID 44787
+5. Deploy to Celo (Mainnet or Alfajores):
+   
+   **Celo Mainnet:**
+   - Network: Celo Mainnet
+   - Chain ID: 42220
+   - RPC: `https://forno.celo.org`
+
+   **Celo Alfajores (Testnet):**
+   - Network: Alfajores Testnet
+   - Chain ID: 44787
+   - RPC: `https://alfajores-forno.celo-testnet.org`
+   - Faucet: [Celo Faucet](https://faucet.celo.org/alfajores)
+
 6. **Save the deployed contract address!**
 
 The contract is ready to use immediately after deployment - no initialization needed!
@@ -77,9 +87,6 @@ NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
 
 # Update with your domain
 NEXT_PUBLIC_APP_URL=https://your-domain.com
-
-# Use 42220 for mainnet or 44787 for Alfajores
-NEXT_PUBLIC_CHAIN_ID=42220
 ```
 
 MiniPay works best with an injected wallet flow on mobile. This app now auto-detects MiniPay and prefers the in-app wallet when available, while still keeping the generic wallet modal as a fallback outside MiniPay.
@@ -119,7 +126,6 @@ npm start
    - Your FID
    - Proper account association
    - Webhook URL
-   - Real production values instead of the placeholder example strings committed in this repo
 
 ## How to Play
 
@@ -185,7 +191,7 @@ Play CeloClicker inside MiniPay for the smoothest flow:
 
 This app uses **Celo fee abstraction** for contract writes:
 - Leaving `feeCurrency` unset uses **CELO**
-- Setting `feeCurrency` to the official Celo **USDC adapter** uses **USDCm** for gas
+- Setting `feeCurrency` to the official Celo **USDC adapter** uses **USDCm/USDC** for gas
 - Gameplay still uses in-app points, so the token switch only affects transaction fees
 
 ## Technical Details
@@ -213,8 +219,8 @@ This app uses **Celo fee abstraction** for contract writes:
 - Check "Claim Auto Points" button appears
 
 **Transaction failing**
-- Ensure you have enough balance in the currently selected gas mode (CELO or USDCm)
-- Check you're connected to the same Celo network configured for the app
+- Ensure you have CELO for gas fees
+- Check you're connected to Celo Mainnet
 - Try increasing gas limit slightly
 
 ## Support
