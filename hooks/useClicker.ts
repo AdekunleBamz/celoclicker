@@ -8,10 +8,10 @@ export function useClicker() {
   const { address: contractAddress, abi, isValid } = useContractConfig()
 
   // Player Stats
-  const { 
-    data: playerData, 
-    refetch: refetchPlayer, 
-    isLoading: isLoadingPlayer 
+  const {
+    data: playerData,
+    refetch: refetchPlayer,
+    isLoading: isLoadingPlayer
   } = useReadContract({
     address: contractAddress,
     abi,

@@ -5,9 +5,9 @@ import { CONTRACT_ADDRESS_ENV_KEY } from '@/lib/constants'
 
 export function ContractWarning() {
   const { isValid } = useContractConfig()
-  
+
   if (isValid) return null
-  
+
   return (
     <div role="alert" className="bg-yellow-500/20 border-2 border-yellow-500 rounded-lg p-4 mb-4">
       <div className="flex items-center gap-2">

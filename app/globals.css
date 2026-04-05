@@ -38,23 +38,23 @@
   .pixel-font {
     font-family: 'Press Start 2P', cursive;
   }
-  
+
   .glow-purple {
     box-shadow: 0 0 20px rgba(147, 51, 234, 0.5),
                 0 0 40px rgba(147, 51, 234, 0.3),
                 0 0 60px rgba(147, 51, 234, 0.2);
   }
-  
+
   .glow-gold {
     box-shadow: 0 0 20px rgba(251, 204, 92, 0.5),
                 0 0 40px rgba(251, 204, 92, 0.3);
   }
-  
+
   .glow-green {
     box-shadow: 0 0 20px rgba(53, 208, 127, 0.5),
                 0 0 40px rgba(53, 208, 127, 0.3);
   }
-  
+
   .glass-game {
     background: linear-gradient(
       135deg,
@@ -64,36 +64,36 @@
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 
+    box-shadow:
       0 8px 32px 0 rgba(0, 0, 0, 0.37),
       inset 0 0 0 1px rgba(255, 255, 255, 0.05);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .glass-game:hover {
     border-color: rgba(147, 51, 234, 0.4);
     background: rgba(99, 102, 241, 0.15);
-    box-shadow: 
+    box-shadow:
       0 12px 48px 0 rgba(0, 0, 0, 0.5),
       inset 0 0 0 1px rgba(255, 255, 255, 0.1);
   }
-  
+
   .animate-bounce-slow {
     animation: bounce 2s infinite;
   }
-  
+
   .animate-pulse-glow {
     animation: pulseGlow 2s ease-in-out infinite;
   }
-  
+
   .animate-click {
     animation: clickEffect 0.3s ease-out;
   }
-  
+
   .animate-float {
     animation: float 3s ease-in-out infinite;
   }
-  
+
   .animate-spin-slow {
     animation: spin 8s linear infinite;
   }

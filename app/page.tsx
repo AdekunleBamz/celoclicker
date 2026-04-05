@@ -26,23 +26,23 @@ interface FloatingNumber {
 }
 
 export default function Home() {
-  const { 
-    address, 
-    isConnected, 
-    playerStats, 
-    upgradeCosts, 
-    pendingAuto, 
-    leaderboardData, 
+  const {
+    address,
+    isConnected,
+    playerStats,
+    upgradeCosts,
+    pendingAuto,
+    leaderboardData,
     isLoading: isLoadingPlayer,
-    isPending, 
-    isConfirming, 
-    isSuccess, 
-    writeError, 
-    txError, 
-    writeContract, 
-    refetchPlayer, 
-    contractAddress, 
-    abi: celoClickerABI 
+    isPending,
+    isConfirming,
+    isSuccess,
+    writeError,
+    txError,
+    writeContract,
+    refetchPlayer,
+    contractAddress,
+    abi: celoClickerABI
   } = useClicker()
 
   const { points, clickPower, autoClickerLevel, multiplierLevel, totalClicks } = playerStats
@@ -144,8 +144,8 @@ export default function Home() {
 
     if (isPending || isConfirming) return
 
-    const cost = type === 'clickPower' ? clickPowerCost : 
-                 type === 'autoClicker' ? autoClickerCost : 
+    const cost = type === 'clickPower' ? clickPowerCost :
+                 type === 'autoClicker' ? autoClickerCost :
                  multiplierCost
 
     if (points < cost) {
@@ -157,8 +157,8 @@ export default function Home() {
       writeContract({
         address: contractAddress,
         abi: celoClickerABI,
-        functionName: type === 'clickPower' ? 'upgradeClickPower' : 
-                       type === 'autoClicker' ? 'upgradeAutoClicker' : 
+        functionName: type === 'clickPower' ? 'upgradeClickPower' :
+                       type === 'autoClicker' ? 'upgradeAutoClicker' :
                        'upgradeMultiplier',
         ...transactionOverrides,
       })
@@ -239,7 +239,7 @@ export default function Home() {
 
       <div className="w-full max-w-6xl relative z-20">
         <ContractWarning />
-        
+
         {/* Header */}
         <div className="text-center mb-8">
           <div className="mx-auto mb-5 flex h-24 w-24 items-center justify-center rounded-[28px] border border-white/10 bg-black/20 p-3 shadow-[0_20px_60px_rgba(8,17,24,0.45)]">
@@ -260,7 +260,7 @@ export default function Home() {
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl font-bold text-purple-400 pixel-font">STATS</h2>
               {address && (
-                <button 
+                <button
                   onClick={copyAddress}
                   className="text-[10px] bg-white/5 hover:bg-white/10 px-2 py-1 rounded border border-white/10 text-gray-400 transition-colors"
                   title="Copy wallet address"
@@ -269,7 +269,7 @@ export default function Home() {
                 </button>
               )}
             </div>
-            
+
             {isLoadingPlayer && (
               <div className="space-y-3">
                 <StatSkeleton />
@@ -280,36 +280,36 @@ export default function Home() {
                 <StatSkeleton />
               </div>
             )}
-            
+
             {!isLoadingPlayer && (
             <div className="space-y-3">
-              <StatCard 
-                label="POINTS" 
-                value={formatNumber(points)} 
+              <StatCard
+                label="POINTS"
+                value={formatNumber(points)}
                 valueColor="text-celo-gold"
                 icon="⭐"
               />
-              <StatCard 
-                label="CLICK POWER" 
-                value={Number(clickPower)} 
+              <StatCard
+                label="CLICK POWER"
+                value={Number(clickPower)}
                 valueColor="text-purple-400"
                 icon="⚡"
               />
-              <StatCard 
-                label="MULTIPLIER" 
-                value={`${1 + Number(multiplierLevel)}x`} 
+              <StatCard
+                label="MULTIPLIER"
+                value={`${1 + Number(multiplierLevel)}x`}
                 valueColor="text-pink-400"
                 icon="✨"
               />
-              <StatCard 
-                label="AUTO-CLICKER" 
-                value={`Level ${Number(autoClickerLevel)}`} 
+              <StatCard
+                label="AUTO-CLICKER"
+                value={`Level ${Number(autoClickerLevel)}`}
                 valueColor="text-indigo-400"
                 icon="🤖"
               />
-              <StatCard 
-                label="TOTAL CLICKS" 
-                value={formatNumber(totalClicks)} 
+              <StatCard
+                label="TOTAL CLICKS"
+                value={formatNumber(totalClicks)}
                 valueColor="text-green-400"
                 icon="👆"
               />
@@ -376,7 +376,7 @@ export default function Home() {
                   className="w-64 h-64 bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 rounded-full flex items-center justify-center text-8xl font-bold glow-purple hover:glow-gold transition-all duration-300 disabled:opacity-50 relative overflow-hidden cursor-pointer z-30"
                 >
                   <span className="relative z-10 animate-pulse pixel-font">★</span>
-                  
+
                   {/* Floating numbers */}
                   <AnimatePresence>
                     {floatingNumbers.map((num) => (
@@ -538,7 +538,7 @@ export default function Home() {
                 className="glass-game rounded-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
               >
                 <h2 className="text-3xl font-bold text-purple-400 mb-6 pixel-font text-center">LEADERBOARD</h2>
-                
+
                 <div className="space-y-2">
                   {(() => {
                     if (!leaderboardData) {
@@ -546,14 +546,14 @@ export default function Home() {
                     }
                     const [addresses, pointsList] = leaderboardData as LeaderboardTuple
                     const hasEntries = addresses.some((addr) => addr && !isZeroAddress(addr))
-                    
+
                     if (!hasEntries) {
                       return <EmptyState title="No Players Yet" description="Be the first to join the leaderboard!" icon="🎮" />
                     }
-                    
+
                     return addresses.map((addr, idx) => {
                     const pts = pointsList[idx]
-                    
+
                     if (!addr || isZeroAddress(addr)) return null
 
                     return (
@@ -565,9 +565,9 @@ export default function Home() {
                       >
                         <div className="flex items-center gap-4">
                           <div className={`text-2xl font-bold ${
-                            idx === 0 ? 'text-celo-gold' : 
-                            idx === 1 ? 'text-gray-300' : 
-                            idx === 2 ? 'text-orange-400' : 
+                            idx === 0 ? 'text-celo-gold' :
+                            idx === 1 ? 'text-gray-300' :
+                            idx === 2 ? 'text-orange-400' :
                             'text-gray-500'
                           }`}>
                             #{idx + 1}
@@ -598,8 +598,8 @@ export default function Home() {
           )}
         </AnimatePresence>
       </div>
-      
-      <Toast 
+
+      <Toast
         message="Address copied to clipboard!"
         isVisible={showToast}
         onClose={() => setShowToast(false)}

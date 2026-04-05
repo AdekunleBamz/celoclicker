@@ -23,8 +23,8 @@ export const UpgradeCard = memo(function UpgradeCard({
   isLoading = false,
 }: UpgradeCardProps) {
   const canAfford = points >= cost && !disabled && !isLoading
-  const variant = color === 'text-purple-400' ? 'primary' : 
-                  color === 'text-indigo-400' ? 'secondary' : 
+  const variant = color === 'text-purple-400' ? 'primary' :
+                  color === 'text-indigo-400' ? 'secondary' :
                   'accent'
 
   return (

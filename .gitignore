@@ -46,9 +46,7 @@ next-env.d.ts
 artifacts/
 cache/
 
-# Generated test files
+# Personal local test helpers and wallet dumps stay out of git.
+/scripts/
+/generated/
 .stress-report.json
-generated/
-
-# Stress test scripts
-scripts/

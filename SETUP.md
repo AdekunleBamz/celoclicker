@@ -23,7 +23,7 @@ NEXT_PUBLIC_APP_URL=https://your-domain.com
 NEXT_PUBLIC_CHAIN_ID=42220
 ```
 
-**Important:** 
+**Important:**
 - The contract address must be exactly 42 characters (0x + 40 hex characters)
 - Example: `0x1234567890123456789012345678901234567890`
 - Do not commit `.env.local` or expose real WalletConnect project IDs in logs/screenshots
@@ -55,7 +55,7 @@ Run `npm run test:utils` to confirm local validation and formatting helpers are 
 
 ## Troubleshooting
 
-- **Still seeing warning?** 
+- **Still seeing warning?**
   - Make sure the address is exactly 42 characters
   - Make sure there are no extra spaces in `.env.local`
   - Restart the dev server
