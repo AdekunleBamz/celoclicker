@@ -1,10 +1,12 @@
+import { memo } from 'react'
+
 interface EmptyStateProps {
   title: string
   description: string
   icon?: string
 }
 
-export function EmptyState({ title, description, icon = '📭' }: EmptyStateProps) {
+export const EmptyState = memo(function EmptyState({ title, description, icon = '📭' }: EmptyStateProps) {
   return (
     <div className="text-center py-12">
       <div className="text-6xl mb-4">{icon}</div>
@@ -12,5 +14,5 @@ export function EmptyState({ title, description, icon = '📭' }: EmptyStateProp
       <p className="text-gray-500 text-sm">{description}</p>
     </div>
   )
-}
+})
 
