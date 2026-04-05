@@ -19,8 +19,14 @@ const logoUrl = new URL('/icon.png', appOrigin).toString()
 
 export const metadata: Metadata = {
   metadataBase: appOrigin,
-  title: `${APP_NAME} | On-Chain Idle Game`,
-  description: 'Addictive on-chain clicker game. Click, upgrade, dominate the leaderboard!',
+  title: {
+    default: `${APP_NAME} | On-Chain Idle Game`,
+    template: `%s | ${APP_NAME}`,
+  },
+  description: 'Addictive on-chain clicker game on Celo Alfajores. Click, upgrade, and dominate the leaderboard in this premium GameFi experience.',
+  keywords: ['Celo', 'Clicker', 'GameFi', 'Blockchain', 'Crypto', 'Web3', 'MiniPay'],
+  authors: [{ name: 'AdekunleBamz' }],
+  themeColor: '#35D07F',
   icons: {
     icon: [
       { url: '/logo-mark.svg', type: 'image/svg+xml' },
@@ -30,10 +36,12 @@ export const metadata: Metadata = {
     apple: [{ url: '/icon.png', sizes: '512x512', type: 'image/png' }],
   },
   openGraph: {
-    title: APP_NAME,
-    description: 'Addictive on-chain clicker game on Celo',
+    title: `${APP_NAME} - Celo Clicker Game`,
+    description: 'The premier on-chain idle game for the Celo ecosystem. Built for performance and fun.',
     url: '/',
     siteName: APP_NAME,
+    locale: 'en_US',
+    type: 'website',
     images: [
       { url: '/icon.png', width: 512, height: 512, alt: `${APP_NAME} logo` },
       { url: '/og-image.png', alt: `${APP_NAME} preview` },
@@ -44,6 +52,7 @@ export const metadata: Metadata = {
     title: APP_NAME,
     description: 'Addictive on-chain clicker game on Celo',
     images: ['/icon.png'],
+    creator: '@AdekunleBamz',
   },
   other: {
     'og:logo': logoUrl,
