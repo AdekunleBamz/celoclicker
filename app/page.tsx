@@ -93,13 +93,17 @@ export default function Home() {
 
   // Click handler - triggers wallet transaction on every click
   const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!isConnected) {
+    if (!isConnected || !address) {
       alert('Please connect your wallet first!')
       return
     }
 
-    if (isPending || isConfirming) {
-      return // Prevent multiple clicks while transaction is pending
+    if (isPending || isConfirming) return
+
+    // Validation: Check if contract address is valid
+    if (!contractAddress || isZeroAddress(contractAddress)) {
+      alert('Contract address is not configured correctly.')
+      return
     }
 
     const rect = e.currentTarget.getBoundingClientRect()
@@ -116,7 +120,6 @@ export default function Home() {
 
     setClickCount(prev => prev + 1)
 
-    // Send click transaction - this will trigger wallet popup
     try {
       writeContract({
         address: contractAddress,
@@ -126,22 +129,27 @@ export default function Home() {
       })
     } catch (error) {
       console.error('Error sending click transaction:', error)
-      alert('Failed to send transaction. Please try again.')
     }
 
-    // Remove floating number after animation
     setTimeout(() => {
       setFloatingNumbers(prev => prev.filter(num => num.id !== floatingId))
     }, GAME_CONFIG.ANIMATION_DURATION.FLOATING_NUMBER)
   }
 
   const handleUpgrade = (type: 'clickPower' | 'autoClicker' | 'multiplier') => {
-    if (!isConnected) {
+    if (!isConnected || !address) {
       alert('Please connect your wallet first!')
       return
     }
 
-    if (isPending || isConfirming) {
+    if (isPending || isConfirming) return
+
+    const cost = type === 'clickPower' ? clickPowerCost : 
+                 type === 'autoClicker' ? autoClickerCost : 
+                 multiplierCost
+
+    if (points < cost) {
+      alert('Insufficient points for this upgrade!')
       return
     }
 
@@ -156,17 +164,19 @@ export default function Home() {
       })
     } catch (error) {
       console.error('Error sending upgrade transaction:', error)
-      alert('Failed to send transaction. Please try again.')
     }
   }
 
   const handleClaimAuto = () => {
-    if (!isConnected) {
+    if (!isConnected || !address) {
       alert('Please connect your wallet first!')
       return
     }
 
-    if (isPending || isConfirming) {
+    if (isPending || isConfirming) return
+
+    if (!pendingAuto || Number(pendingAuto) === 0) {
+      alert('No auto-points to claim!')
       return
     }
 
@@ -179,7 +189,6 @@ export default function Home() {
       })
     } catch (error) {
       console.error('Error sending claim transaction:', error)
-      alert('Failed to send transaction. Please try again.')
     }
   }
 
