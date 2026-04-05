@@ -14,6 +14,7 @@ import { UpgradeCard } from '@/components/UpgradeCard'
 import { ContractWarning } from '@/components/ContractWarning'
 import { useContractConfig } from '@/hooks/useContractConfig'
 import { getInjectedConnector, useMiniPay } from '@/hooks/useMiniPay'
+import { StatSkeleton } from '@/components/StatSkeleton'
 import type { LeaderboardTuple, PlayerStatsTuple, UpgradeCostsTuple } from '@/lib/types'
 
 interface FloatingNumber {
@@ -279,8 +280,13 @@ export default function Home() {
             <h2 className="text-2xl font-bold text-purple-400 mb-4 pixel-font">STATS</h2>
             
             {isLoadingPlayer && (
-              <div className="flex justify-center py-8">
-                <LoadingSpinner />
+              <div className="space-y-3">
+                <StatSkeleton />
+                <StatSkeleton />
+                <StatSkeleton />
+                <StatSkeleton />
+                <StatSkeleton />
+                <StatSkeleton />
               </div>
             )}
             
