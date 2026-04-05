@@ -326,14 +326,16 @@ export default function Home() {
             )}
 
             {autoClickerLevel > 0n && pendingAuto && Number(pendingAuto) > 0 && (
-              <button
+              <motion.button
                 onClick={handleClaimAuto}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 disabled={isPending || isConfirming}
                 type="button"
-                className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-bold hover:scale-105 transition-transform glow-purple disabled:opacity-50 cursor-pointer relative z-10"
+                className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-bold hover:scale-105 transition-all glow-purple disabled:opacity-50 cursor-pointer relative z-10"
               >
                 Claim {Number(pendingAuto)} Auto Points
-              </button>
+              </motion.button>
             )}
           </div>
 
@@ -512,13 +514,15 @@ export default function Home() {
               />
             </div>
 
-            <button
+            <motion.button
               onClick={() => setShowLeaderboard(!showLeaderboard)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               type="button"
-              className="w-full py-3 bg-gradient-to-r from-celo-green to-celo-gold rounded-lg font-bold hover:scale-105 transition-transform glow-green mt-4 cursor-pointer relative z-10"
+              className="w-full py-3 bg-gradient-to-r from-celo-green to-celo-gold rounded-lg font-bold hover:scale-105 transition-all glow-green mt-4 cursor-pointer relative z-10"
             >
               {showLeaderboard ? 'Hide' : 'Show'} Leaderboard
-            </button>
+            </motion.button>
           </div>
         </div>
 
