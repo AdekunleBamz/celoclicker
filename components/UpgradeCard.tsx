@@ -1,3 +1,5 @@
+import { Card, Button } from './UI'
+
 interface UpgradeCardProps {
   title: string
   currentLevel: string | number
@@ -20,9 +22,12 @@ export function UpgradeCard({
   isLoading = false,
 }: UpgradeCardProps) {
   const canAfford = points >= cost && !disabled && !isLoading
+  const variant = color === 'text-purple-400' ? 'primary' : 
+                  color === 'text-indigo-400' ? 'secondary' : 
+                  'accent'
 
   return (
-    <div className="bg-black/30 rounded-lg p-4">
+    <Card className="p-4">
       <div className="flex justify-between items-start mb-2">
         <div>
           <div className={`font-bold ${color}`}>{title}</div>
@@ -33,20 +38,17 @@ export function UpgradeCard({
           <div className="text-xs text-gray-400">points</div>
         </div>
       </div>
-      <button
+      <Button
         onClick={onUpgrade}
         disabled={!canAfford}
-        type="button"
+        variant={variant}
+        fullWidth
+        className="py-2 text-sm"
         aria-label={`Upgrade ${title} for ${Number(cost).toLocaleString()} points`}
-        className={`w-full py-2 rounded-lg font-bold transition-colors cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed text-sm relative z-10 ${
-          color === 'text-purple-400' ? 'bg-purple-500/50 hover:bg-purple-500' :
-          color === 'text-indigo-400' ? 'bg-indigo-500/50 hover:bg-indigo-500' :
-          'bg-pink-500/50 hover:bg-pink-500'
-        }`}
       >
         {isLoading ? 'PROCESSING...' : 'UPGRADE'}
-      </button>
-    </div>
+      </Button>
+    </Card>
   )
 }
 
