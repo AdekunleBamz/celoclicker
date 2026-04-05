@@ -15,6 +15,7 @@ import { ContractWarning } from '@/components/ContractWarning'
 import { useContractConfig } from '@/hooks/useContractConfig'
 import { getInjectedConnector, useMiniPay } from '@/hooks/useMiniPay'
 import { StatSkeleton } from '@/components/StatSkeleton'
+import { Toast } from '@/components/Toast'
 import type { LeaderboardTuple, PlayerStatsTuple, UpgradeCostsTuple } from '@/lib/types'
 
 interface FloatingNumber {
@@ -35,6 +36,13 @@ export default function Home() {
   const [selectedFeeCurrencyId, setSelectedFeeCurrencyId] = useState<FeeCurrencyId>('CELO')
   const [hasManualFeeCurrencySelection, setHasManualFeeCurrencySelection] = useState(false)
   const isMiniPay = useMiniPay()
+  const [showToast, setShowToast] = useState(false)
+
+  const copyAddress = () => {
+    if (!address) return
+    navigator.clipboard.writeText(address)
+    setShowToast(true)
+  }
 
   const { address: contractAddress, abi: celoClickerABI, isValid: isContractValid } = useContractConfig()
   const injectedConnector = getInjectedConnector(connectors)
@@ -277,7 +285,18 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column - Stats */}
           <div className="glass-game rounded-2xl p-6 space-y-4">
-            <h2 className="text-2xl font-bold text-purple-400 mb-4 pixel-font">STATS</h2>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold text-purple-400 pixel-font">STATS</h2>
+              {address && (
+                <button 
+                  onClick={copyAddress}
+                  className="text-[10px] bg-white/5 hover:bg-white/10 px-2 py-1 rounded border border-white/10 text-gray-400 transition-colors"
+                  title="Copy wallet address"
+                >
+                  {formatAddress(address)} 📋
+                </button>
+              )}
+            </div>
             
             {isLoadingPlayer && (
               <div className="space-y-3">
@@ -610,6 +629,12 @@ export default function Home() {
           )}
         </AnimatePresence>
       </div>
+      
+      <Toast 
+        message="Address copied to clipboard!"
+        isVisible={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </div>
   )
 }
