@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Card, Button } from './UI'
 
 interface UpgradeCardProps {
@@ -11,7 +12,7 @@ interface UpgradeCardProps {
   isLoading?: boolean
 }
 
-export function UpgradeCard({
+export const UpgradeCard = memo(function UpgradeCard({
   title,
   currentLevel,
   cost,
@@ -50,5 +51,5 @@ export function UpgradeCard({
       </Button>
     </Card>
   )
-}
+})
 

@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Card } from './UI'
 
 interface StatCardProps {
@@ -7,7 +8,7 @@ interface StatCardProps {
   icon?: string
 }
 
-export function StatCard({ label, value, valueColor = 'text-purple-400', icon }: StatCardProps) {
+export const StatCard = memo(function StatCard({ label, value, valueColor = 'text-purple-400', icon }: StatCardProps) {
   return (
     <Card className="p-3">
       <div className="text-gray-400 text-xs mb-1">{label}</div>
@@ -21,5 +22,5 @@ export function StatCard({ label, value, valueColor = 'text-purple-400', icon }:
       </div>
     </Card>
   )
-}
+})
 

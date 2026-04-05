@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion'
+import { memo } from 'react'
 
-export function StatSkeleton() {
+export const StatSkeleton = memo(function StatSkeleton() {
   return (
     <div className="bg-black/30 rounded-lg p-3 w-full">
       <div className="w-16 h-3 bg-gray-700/50 rounded mb-2 animate-pulse" />
@@ -10,4 +10,4 @@ export function StatSkeleton() {
       </div>
     </div>
   )
-}
+})
