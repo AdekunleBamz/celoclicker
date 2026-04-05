@@ -16,9 +16,9 @@ module.exports = {
         'accent': 'var(--accent)',
       },
       fontFamily: {
-        'display': ['JetBrains Mono', 'monospace'],
-        'body': ['Inter', 'sans-serif'],
-        'pixel': ['Press Start 2P', 'cursive'],
+        'display': ['var(--font-orbitron)', 'JetBrains Mono', 'monospace'],
+        'body': ['var(--font-orbitron)', 'Inter', 'sans-serif'],
+        'pixel': ['var(--font-press-start-2p)', 'Press Start 2P', 'cursive'],
       },
       animation: {
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
