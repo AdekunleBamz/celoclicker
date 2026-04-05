@@ -8,9 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'celo-green': '#35D07F',
-        'celo-gold': '#FBCC5C',
-        'celo-dark': '#2E3338',
+        'celo-green': 'var(--celo-green)',
+        'celo-gold': 'var(--celo-gold)',
+        'celo-dark': 'var(--celo-dark)',
+        'primary': 'var(--primary)',
+        'secondary': 'var(--secondary)',
+        'accent': 'var(--accent)',
       },
       fontFamily: {
         'display': ['JetBrains Mono', 'monospace'],
