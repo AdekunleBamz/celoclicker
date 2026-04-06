@@ -4,6 +4,9 @@
 import { CONTRACT_ADDRESS_ENV_KEY } from './constants'
 import { isValidAddress } from './utils'
 
+/**
+ * Validate a contract address format
+ */
 export function validateContractAddress(address: string): boolean {
   if (!address) return false
   return isValidAddress(address)
