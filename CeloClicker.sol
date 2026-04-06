@@ -32,17 +32,21 @@ contract CeloClicker {
     /// @dev Total points generated across all players
     uint256 public totalPoints;
     
-    // Upgrade costs
+    /// @dev Base cost for click power upgrades
     uint256 public constant CLICK_POWER_BASE_COST = 10;
+    /// @dev Base cost for auto-clicker upgrades
     uint256 public constant AUTOCLICKER_BASE_COST = 50;
+    /// @dev Base cost for multiplier upgrades
     uint256 public constant MULTIPLIER_BASE_COST = 100;
-    
-    // Upgrade scaling
-    uint256 public constant COST_MULTIPLIER = 150; // 1.5x per level (150%)
+
+    /// @dev Cost multiplier percentage (150 = 1.5x)
+    uint256 public constant COST_MULTIPLIER = 150;
+    /// @dev Denominator for cost calculation
     uint256 public constant COST_DENOMINATOR = 100;
-    
-    // Auto-clicker generation
+
+    /// @dev Time interval for auto-clicker point generation
     uint256 public constant AUTOCLICKER_INTERVAL = 5 minutes;
+    /// @dev Points generated per auto-clicker level per interval
     uint256 public constant AUTOCLICKER_POINTS_PER_LEVEL = 1;
     
     /// @notice Emitted when a player clicks
