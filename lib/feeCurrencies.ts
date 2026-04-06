@@ -44,6 +44,9 @@ export function getFeeCurrencies(chainId?: number): FeeCurrencyConfig[] {
   ]
 }
 
+/**
+ * Get the default fee currency ID based on environment
+ */
 export function getDefaultFeeCurrencyId(isMiniPay: boolean, chainId?: number): FeeCurrencyId {
   const usdcCurrency = getFeeCurrencies(chainId).find((currency) => currency.id === 'USDC')
 
