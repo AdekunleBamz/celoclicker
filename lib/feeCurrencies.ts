@@ -51,6 +51,9 @@ export function getDefaultFeeCurrencyId(isMiniPay: boolean, chainId?: number): F
   return 'CELO'
 }
 
+/**
+ * Get fee currency configuration by ID
+ */
 export function getFeeCurrencyById(id: FeeCurrencyId, chainId?: number) {
   return getFeeCurrencies(chainId).find((currency) => currency.id === id)
 }
