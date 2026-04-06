@@ -31,6 +31,9 @@ function getWagmiConfig() {
   return wagmiConfig
 }
 
+/**
+ * Get or create React Query client (singleton pattern)
+ */
 function getQueryClient() {
   if (!queryClientInstance) {
     queryClientInstance = new QueryClient({
