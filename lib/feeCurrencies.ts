@@ -16,6 +16,9 @@ export type FeeCurrencyConfig = {
 const USDC_MAINNET_TOKEN_ADDRESS = '0xcebA9300f2b948710d2653dD7B07f33A8B32118C' as const
 const USDC_MAINNET_ADAPTER_ADDRESS = '0x2F25deB3848C207fc8E0c34035B3Ba7fC157602B' as const
 
+/**
+ * Get available fee currency options for the given chain
+ */
 export function getFeeCurrencies(chainId?: number): FeeCurrencyConfig[] {
   const usdcAvailable = chainId === CELO_MAINNET_CHAIN_ID
 
