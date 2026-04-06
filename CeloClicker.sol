@@ -251,6 +251,8 @@ contract CeloClicker {
     
     /**
      * @notice Get leaderboard (top 10 players by points)
+     * @return addresses Top 10 player addresses
+     * @return points Top 10 player points
      */
     function getLeaderboard() external view returns (
         address[10] memory addresses,
