@@ -39,9 +39,26 @@ contract CeloClicker {
     uint256 public constant AUTOCLICKER_INTERVAL = 5 minutes;
     uint256 public constant AUTOCLICKER_POINTS_PER_LEVEL = 1;
     
+    /// @notice Emitted when a player clicks
+    /// @param player Player address
+    /// @param points Points earned from this click
+    /// @param totalPoints Player's total points after click
     event Clicked(address indexed player, uint256 points, uint256 totalPoints);
+
+    /// @notice Emitted when a player purchases an upgrade
+    /// @param player Player address
+    /// @param upgradeType Type of upgrade purchased
+    /// @param level New level after upgrade
+    /// @param cost Cost paid for the upgrade
     event UpgradePurchased(address indexed player, string upgradeType, uint256 level, uint256 cost);
+
+    /// @notice Emitted when a player claims auto-clicker rewards
+    /// @param player Player address
+    /// @param points Points claimed
     event AutoClickerClaimed(address indexed player, uint256 points);
+
+    /// @notice Emitted when a new player is initialized
+    /// @param player Player address
     event NewPlayer(address indexed player);
     
     /**
