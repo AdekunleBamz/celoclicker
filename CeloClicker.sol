@@ -294,7 +294,10 @@ contract CeloClicker {
     }
     
     /**
-     * @notice Get total stats
+     * @notice Get global game statistics
+     * @return _totalClicks Total clicks across all players
+     * @return _totalPlayers Total number of players
+     * @return _totalPoints Total points generated
      */
     function getGlobalStats() external view returns (
         uint256 _totalClicks,
