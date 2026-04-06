@@ -196,10 +196,7 @@ This app uses **Celo fee abstraction** for contract writes:
 - No centralized backend
 - Permanent record of achievements
 
-### Gas Efficiency
-- Optimized contract design
-- Minimal storage usage
-- Batch operations where possible
+- Standard custom errors for better gas efficiency and revert strings
 - Typical transaction cost: < $0.001
 
 ## Troubleshooting
