@@ -500,7 +500,7 @@ export default function Home() {
 
             <h2 className="text-2xl font-bold text-purple-400 mb-4 pixel-font">UPGRADES</h2>
 
-            <div className="space-y-3">
+            <div role="region" aria-label="Upgrades" className="space-y-3">
               <UpgradeCard
                 title="Click Power"
                 currentLevel={Number(clickPower)}
