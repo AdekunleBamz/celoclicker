@@ -5,6 +5,9 @@ type MiniPayEthereum = {
   isMiniPay?: boolean
 }
 
+/**
+ * Get the ethereum provider from window if available
+ */
 function getEthereum() {
   if (typeof window === 'undefined') {
     return null
