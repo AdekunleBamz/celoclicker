@@ -11,6 +11,9 @@ import { APP_NAME, CELO_MAINNET_CHAIN_ID } from '@/lib/constants'
 let wagmiConfig: ReturnType<typeof getDefaultConfig> | null = null
 let queryClientInstance: QueryClient | null = null
 
+/**
+ * Initialize wagmi configuration (singleton pattern)
+ */
 function getWagmiConfig() {
   if (typeof window === 'undefined') return null
   
