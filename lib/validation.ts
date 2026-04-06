@@ -12,6 +12,9 @@ export function validateContractAddress(address: string): boolean {
   return isValidAddress(address)
 }
 
+/**
+ * Validate required environment variables
+ */
 export function validateEnvironment(): {
   isValid: boolean
   errors: string[]
