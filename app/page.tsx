@@ -277,7 +277,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column - Stats */}
-          <div className="glass-game rounded-2xl p-6 space-y-4">
+          <div role="region" aria-label="Player statistics" className="glass-game rounded-2xl p-6 space-y-4">
             <h2 className="text-2xl font-bold text-purple-400 mb-4 pixel-font">STATS</h2>
             
             {isLoadingPlayer && (
