@@ -205,6 +205,12 @@ contract CeloClicker {
     /**
      * @notice Get player stats
      * @param playerAddress Address of the player
+     * @return points Current points
+     * @return clickPower Click power level
+     * @return autoClickerLevel Auto-clicker level
+     * @return multiplierLevel Multiplier level
+     * @return totalClicks Total clicks
+     * @return gamesPlayed Games played
      */
     function getPlayer(address playerAddress) external view returns (
         uint256 points,
