@@ -20,6 +20,9 @@ export function isMiniPayBrowser() {
   return Boolean(getEthereum()?.isMiniPay)
 }
 
+/**
+ * Get the injected wallet connector from available connectors
+ */
 export function getInjectedConnector(connectors: readonly Connector[]) {
   return connectors.find((connector) => {
     return connector.type === 'injected' || connector.id === 'injected'
