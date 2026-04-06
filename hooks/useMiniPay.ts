@@ -29,6 +29,9 @@ export function getInjectedConnector(connectors: readonly Connector[]) {
   })
 }
 
+/**
+ * Hook to detect if running inside MiniPay browser
+ */
 export function useMiniPay() {
   const [isMiniPay] = useState(() => isMiniPayBrowser())
 
