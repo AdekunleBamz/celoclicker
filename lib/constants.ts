@@ -19,7 +19,7 @@ export const GAME_CONFIG = {
     FLOATING_NUMBER: 1000,
     CLICK_EFFECT: 300,
   },
-} as const
+} as const satisfies Record<string, unknown>
 
 export const UPGRADE_NAMES = {
   CLICK_POWER: 'Click Power',
