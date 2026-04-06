@@ -18,12 +18,18 @@ contract CeloClicker {
         uint256 gamesPlayed;
     }
     
+    /// @dev Mapping of player address to player data
     mapping(address => Player) public players;
+    /// @dev Array of all player addresses for leaderboard
     address[] public playerList;
+    /// @dev Tracks if an address has initialized
     mapping(address => bool) public hasPlayed;
-    
+
+    /// @dev Total clicks across all players
     uint256 public totalClicks;
+    /// @dev Total unique players
     uint256 public totalPlayers;
+    /// @dev Total points generated across all players
     uint256 public totalPoints;
     
     // Upgrade costs
