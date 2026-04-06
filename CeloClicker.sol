@@ -234,6 +234,9 @@ contract CeloClicker {
     /**
      * @notice Get upgrade costs for a player
      * @param playerAddress Address of the player
+     * @return clickPowerCost Cost to upgrade click power
+     * @return autoClickerCost Cost to upgrade auto-clicker
+     * @return multiplierCost Cost to upgrade multiplier
      */
     function getUpgradeCosts(address playerAddress) external view returns (
         uint256 clickPowerCost,
