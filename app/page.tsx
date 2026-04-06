@@ -534,6 +534,7 @@ export default function Home() {
             <button
               onClick={() => setShowLeaderboard(!showLeaderboard)}
               type="button"
+              aria-label={showLeaderboard ? 'Hide leaderboard' : 'Show leaderboard'}
               className="w-full py-3 bg-gradient-to-r from-celo-green to-celo-gold rounded-lg font-bold hover:scale-105 transition-transform glow-green mt-4 cursor-pointer relative z-10"
             >
               {showLeaderboard ? 'Hide' : 'Show'} Leaderboard
