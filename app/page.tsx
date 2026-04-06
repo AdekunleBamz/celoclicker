@@ -452,6 +452,8 @@ export default function Home() {
                     <button
                       key={currency.id}
                       type="button"
+                      aria-label={`Select ${currency.label} as fee currency`}
+                      aria-pressed={isSelected}
                       onClick={() => {
                         if (!currency.isAvailable) {
                           return
