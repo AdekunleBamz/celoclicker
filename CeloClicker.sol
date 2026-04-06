@@ -44,7 +44,7 @@ contract CeloClicker {
     event NewPlayer(address indexed player);
     
     /**
-     * @notice Initialize a new player
+     * @notice Initialize a new player on first interaction
      */
     function initPlayer() internal {
         if (!hasPlayed[msg.sender]) {
