@@ -7,6 +7,7 @@ pragma solidity ^0.8.20;
  * @dev All game state stored on-chain for transparency and leaderboard
  */
 contract CeloClicker {
+    /// @dev Player data structure storing all game state per address
     struct Player {
         uint256 points;
         uint256 clickPower;
