@@ -436,7 +436,7 @@ export default function Home() {
 
           {/* Right Column - Upgrades */}
           <div className="glass-game rounded-2xl p-6 space-y-4">
-            <div className="bg-black/30 rounded-lg p-4 space-y-3">
+            <div role="region" aria-label="Fee mode selection" className="bg-black/30 rounded-lg p-4 space-y-3">
               <div>
                 <h2 className="text-2xl font-bold text-celo-green mb-1 pixel-font">FEE MODE</h2>
                 <p className="text-xs text-gray-400">
