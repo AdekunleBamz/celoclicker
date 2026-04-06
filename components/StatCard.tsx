@@ -7,7 +7,7 @@ interface StatCardProps {
 
 export function StatCard({ label, value, valueColor = 'text-purple-400', icon }: StatCardProps) {
   return (
-    <div className="bg-black/30 rounded-lg p-3">
+    <div className="bg-black/30 rounded-lg p-3" role="region" aria-label={label}>
       <div className="text-gray-400 text-xs mb-1">{label}</div>
       <div className="flex items-center gap-2">
         {icon && <span aria-hidden="true" className="text-lg">{icon}</span>}
