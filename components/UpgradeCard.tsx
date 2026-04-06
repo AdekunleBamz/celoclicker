@@ -37,6 +37,7 @@ export function UpgradeCard({
         onClick={onUpgrade}
         disabled={!canAfford}
         type="button"
+        aria-label={`Upgrade ${title}`}
         className={`w-full py-2 rounded-lg font-bold transition-colors cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed text-sm relative z-10 ${
           color === 'text-purple-400' ? 'bg-purple-500/50 hover:bg-purple-500' :
           color === 'text-indigo-400' ? 'bg-indigo-500/50 hover:bg-indigo-500' :
