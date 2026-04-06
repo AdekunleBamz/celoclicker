@@ -5,6 +5,9 @@ import type { Address } from 'viem'
 import type { PlayerStatsTuple } from '@/lib/types'
 import { ZERO_ADDRESS } from '@/lib/utils'
 
+/**
+ * Hook to fetch player stats from the contract
+ */
 export function usePlayerStats(address: Address | undefined) {
   const { address: contractAddress, abi, isValid } = useContractConfig()
   const playerAddress = address ?? (ZERO_ADDRESS as Address)
