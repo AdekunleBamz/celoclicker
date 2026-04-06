@@ -203,7 +203,7 @@ contract CeloClicker {
     }
     
     /**
-     * @notice Get player stats
+     * @notice Get player statistics
      * @param playerAddress Address of the player
      * @return points Current points
      * @return clickPower Click power level
