@@ -13,6 +13,9 @@ function getEthereum() {
   return (window as Window & { ethereum?: MiniPayEthereum }).ethereum ?? null
 }
 
+/**
+ * Check if running inside MiniPay browser
+ */
 export function isMiniPayBrowser() {
   return Boolean(getEthereum()?.isMiniPay)
 }
