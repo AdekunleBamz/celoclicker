@@ -1,10 +1,12 @@
 /**
- * Format large numbers with K, M, B suffixes
+ * Ethereum zero address constant used for validation
  */
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 /**
  * Formats a number with K, M, B suffixes for display
+ * @param num - The number to format (bigint or number)
+ * @returns Formatted string with suffix (e.g., "1.5K", "2.3M", "1B")
  */
 export function formatNumber(num: bigint | number): string {
   const n = typeof num === 'bigint' ? Number(num) : num
@@ -22,7 +24,9 @@ export function formatNumber(num: bigint | number): string {
 }
 
 /**
- * Format address for display
+ * Formats an Ethereum address for display by truncating it
+ * @param address - The Ethereum address to format
+ * @returns Truncated address string (e.g., "0x1234...5678")
  */
 export function formatAddress(address: string): string {
   if (!address || address.length < 10) return address
@@ -30,7 +34,10 @@ export function formatAddress(address: string): string {
 }
 
 /**
- * Format wallet balances without overwhelming the UI
+ * Formats token amounts for display with appropriate decimal places
+ * @param value - The token amount as a string
+ * @param symbol - Optional token symbol to append
+ * @returns Formatted amount string with symbol
  */
 export function formatTokenAmount(value?: string, symbol?: string): string {
   if (!value) {
@@ -50,14 +57,18 @@ export function formatTokenAmount(value?: string, symbol?: string): string {
 }
 
 /**
- * Validate contract address
+ * Validates if a string is a valid Ethereum address format
+ * @param address - The address string to validate
+ * @returns True if the address is a valid Ethereum address format
  */
 export function isValidAddress(address: string): boolean {
   return /^0x[a-fA-F0-9]{40}$/.test(address)
 }
 
 /**
- * Check if an address is the zero address
+ * Checks if an address is the Ethereum zero address
+ * @param address - The address to check
+ * @returns True if the address is the zero address
  */
 export function isZeroAddress(address: string): boolean {
   return address.toLowerCase() === ZERO_ADDRESS
