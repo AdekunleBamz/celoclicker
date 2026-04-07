@@ -5,7 +5,7 @@ interface StatCardProps {
   icon?: string
 }
 
-export function StatCard({ label, value, valueColor = 'text-purple-400', icon }: StatCardProps) {
+export const StatCard = ({ label, value, valueColor = 'text-purple-400', icon }: StatCardProps) => {
   return (
     <div className="bg-black/30 rounded-lg p-3" role="region" aria-label={label}>
       <div className="text-gray-400 text-xs mb-1">{label}</div>
@@ -16,3 +16,5 @@ export function StatCard({ label, value, valueColor = 'text-purple-400', icon }:
     </div>
   )
 }
+
+StatCard.displayName = 'StatCard'
