@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { useAccount, useBalance, useChainId, useConnect, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -38,8 +38,14 @@ export default function Home() {
   const { address: contractAddress, abi: celoClickerABI, isValid: isContractValid } = useContractConfig()
   const injectedConnector = getInjectedConnector(connectors)
   const feeCurrencies = getFeeCurrencies(chainId)
-  const selectedFeeCurrency = feeCurrencies.find((currency) => currency.id === selectedFeeCurrencyId) ?? feeCurrencies[0]
-  const usdcFeeCurrency = feeCurrencies.find((currency) => currency.id === 'USDC')
+  const selectedFeeCurrency = useMemo(
+    () => feeCurrencies.find((currency) => currency.id === selectedFeeCurrencyId) ?? feeCurrencies[0],
+    [feeCurrencies, selectedFeeCurrencyId]
+  )
+  const usdcFeeCurrency = useMemo(
+    () => feeCurrencies.find((currency) => currency.id === 'USDC'),
+    [feeCurrencies]
+  )
 
   const { data: celoBalance } = useBalance({
     address,
