@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useAccount, useBalance, useChainId, useConnect, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -122,7 +122,7 @@ export default function Home() {
     : {}
 
   // Click handler - triggers wallet transaction on every click
-  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = useCallback(async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!isConnected) {
       alert('Please connect your wallet first!')
       return
@@ -163,9 +163,9 @@ export default function Home() {
     setTimeout(() => {
       setFloatingNumbers(prev => prev.filter(num => num.id !== floatingId))
     }, GAME_CONFIG.ANIMATION_DURATION.FLOATING_NUMBER)
-  }
+  }, [isConnected, isPending, isConfirming, clickPower, multiplierLevel, contractAddress, celoClickerABI, transactionOverrides, writeContract])
 
-  const handleUpgrade = (type: 'clickPower' | 'autoClicker' | 'multiplier') => {
+  const handleUpgrade = useCallback((type: 'clickPower' | 'autoClicker' | 'multiplier') => {
     if (!isConnected) {
       alert('Please connect your wallet first!')
       return
@@ -188,9 +188,9 @@ export default function Home() {
       console.error('Error sending upgrade transaction:', error)
       alert('Failed to send transaction. Please try again.')
     }
-  }
+  }, [isConnected, isPending, isConfirming, contractAddress, celoClickerABI, transactionOverrides, writeContract])
 
-  const handleClaimAuto = () => {
+  const handleClaimAuto = useCallback(() => {
     if (!isConnected) {
       alert('Please connect your wallet first!')
       return
@@ -211,7 +211,7 @@ export default function Home() {
       console.error('Error sending claim transaction:', error)
       alert('Failed to send transaction. Please try again.')
     }
-  }
+  }, [isConnected, isPending, isConfirming, contractAddress, celoClickerABI, transactionOverrides, writeContract])
 
   useEffect(() => {
     if (isSuccess) {
