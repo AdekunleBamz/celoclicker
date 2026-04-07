@@ -1,11 +1,14 @@
 /**
- * Validation utilities
+ * Validation utilities for CeloClicker
+ * @module validation
  */
 import { CONTRACT_ADDRESS_ENV_KEY } from './constants'
 import { isValidAddress } from './utils'
 
 /**
- * Validate a contract address format
+ * Validates if a string is a valid Ethereum contract address format
+ * @param address - The address string to validate
+ * @returns True if the address is a valid Ethereum address format
  */
 export function validateContractAddress(address: string): boolean {
   if (!address) return false
@@ -13,7 +16,8 @@ export function validateContractAddress(address: string): boolean {
 }
 
 /**
- * Validate required environment variables
+ * Validates that all required environment variables are set and valid
+ * @returns An object containing validation status and any error messages
  */
 export function validateEnvironment(): {
   isValid: boolean
