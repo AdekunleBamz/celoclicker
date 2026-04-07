@@ -4,7 +4,7 @@ interface EmptyStateProps {
   icon?: string
 }
 
-export function EmptyState({ title, description, icon = '📭' }: EmptyStateProps) {
+export const EmptyState = ({ title, description, icon = '📭' }: EmptyStateProps) => {
   return (
     <div className="text-center py-12" role="status" aria-label={title}>
       <div aria-hidden="true" className="text-6xl mb-4">{icon}</div>
@@ -13,3 +13,5 @@ export function EmptyState({ title, description, icon = '📭' }: EmptyStateProp
     </div>
   )
 }
+
+EmptyState.displayName = 'EmptyState'
