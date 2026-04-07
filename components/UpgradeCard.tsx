@@ -9,7 +9,7 @@ interface UpgradeCardProps {
   isLoading?: boolean
 }
 
-export function UpgradeCard({
+export const UpgradeCard = ({
   title,
   currentLevel,
   cost,
@@ -49,4 +49,6 @@ export function UpgradeCard({
     </div>
   )
 }
+
+UpgradeCard.displayName = 'UpgradeCard'
 
