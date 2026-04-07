@@ -427,8 +427,12 @@ export default function Home() {
                   {isPending ? '⏳ WAITING FOR WALLET...' : isConfirming ? '⏳ PROCESSING TRANSACTION...' : 'CLICK THE STAR!'}
                 </p>
                 {(writeError || txError) && (
-                  <p className="mt-2 text-red-400 text-xs">
-                    Error: {writeError?.message || txError?.message || 'Transaction failed'}
+                  <p className="mt-2 text-red-400 text-xs" role="alert">
+                    Error: {writeError?.message?.includes('user rejected') 
+                      ? 'Transaction was rejected. Please try again.' 
+                      : writeError?.message?.includes('insufficient funds')
+                      ? 'Insufficient funds for gas. Please check your balance.'
+                      : writeError?.message || txError?.message || 'Transaction failed. Please try again.'}
                   </p>
                 )}
 
