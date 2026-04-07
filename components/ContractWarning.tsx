@@ -3,7 +3,7 @@
 import { useContractConfig } from '@/hooks/useContractConfig'
 import { CONTRACT_ADDRESS_ENV_KEY } from '@/lib/constants'
 
-export function ContractWarning() {
+export const ContractWarning = () => {
   const { isValid } = useContractConfig()
   
   if (isValid) return null
@@ -22,3 +22,5 @@ export function ContractWarning() {
     </div>
   )
 }
+
+ContractWarning.displayName = 'ContractWarning'
