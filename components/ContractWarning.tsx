@@ -9,9 +9,9 @@ export const ContractWarning = () => {
   if (isValid) return null
   
   return (
-    <div role="alert" className="bg-yellow-500/20 border-2 border-yellow-500 rounded-lg p-4 mb-4">
+    <div role="alert" aria-live="assertive" className="bg-yellow-500/20 border-2 border-yellow-500 rounded-lg p-4 mb-4">
       <div className="flex items-center gap-2">
-        <span className="text-2xl">⚠️</span>
+        <span className="text-2xl" aria-hidden="true">⚠️</span>
         <div>
           <div className="font-bold text-yellow-400">Contract Not Configured</div>
           <div className="text-sm text-yellow-300">
