@@ -18,7 +18,7 @@ export const UpgradeCard = ({
   onUpgrade,
   disabled = false,
   isLoading = false,
-}: UpgradeCardProps) {
+}: UpgradeCardProps) => {
   const canAfford = points >= cost && !disabled && !isLoading
 
   return (
@@ -51,4 +51,3 @@ export const UpgradeCard = ({
 }
 
 UpgradeCard.displayName = 'UpgradeCard'
-
