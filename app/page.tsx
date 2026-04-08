@@ -123,9 +123,14 @@ export default function Home() {
     hash,
   })
 
-  const transactionOverrides = selectedFeeCurrency.feeCurrency
-    ? { feeCurrency: selectedFeeCurrency.feeCurrency }
-    : {}
+  const transactionOverrides = useMemo(
+    () => (
+      selectedFeeCurrency.feeCurrency
+        ? { feeCurrency: selectedFeeCurrency.feeCurrency }
+        : {}
+    ),
+    [selectedFeeCurrency.feeCurrency]
+  )
 
   // Click handler - triggers wallet transaction on every click
   const handleClick = useCallback(async (e: React.MouseEvent<HTMLButtonElement>) => {
