@@ -29,4 +29,8 @@ describe('lib/utils formatTokenAmount', () => {
   it('falls back to zero for invalid numeric input', () => {
     expect(formatTokenAmount('not-a-number', 'CELO')).toBe('0 CELO')
   })
+
+  it('keeps two decimals for large token balances', () => {
+    expect(formatTokenAmount('123.4567', 'USDC')).toBe('123.46 USDC')
+  })
 })
