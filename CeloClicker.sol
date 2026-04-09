@@ -17,6 +17,12 @@ contract CeloClicker {
         uint256 totalClicks;
         uint256 gamesPlayed;
     }
+
+    error NotInitialized();
+    error NoAutoClicker();
+    error TooSoon();
+    error InsufficientPoints(uint256 available, uint256 required);
+
     
     /// @dev Mapping of player address to player data
     mapping(address => Player) public players;
@@ -111,15 +117,15 @@ contract CeloClicker {
      * @notice Claim auto-clicker rewards
      */
     function claimAutoClicker() external {
-        require(hasPlayed[msg.sender], "Not initialized");
+        if (!hasPlayed[msg.sender]) revert NotInitialized();
         
         Player storage player = players[msg.sender];
-        require(player.autoClickerLevel > 0, "No auto-clicker");
+        if (player.autoClickerLevel == 0) revert NoAutoClicker();
         
         uint256 timePassed = block.timestamp - player.lastClaimTime;
         uint256 intervals = timePassed / AUTOCLICKER_INTERVAL;
         
-        require(intervals > 0, "Too soon to claim");
+        if (intervals == 0) revert TooSoon();
         
         // Calculate auto-generated points
         uint256 pointsPerInterval = player.autoClickerLevel * AUTOCLICKER_POINTS_PER_LEVEL;
@@ -143,7 +149,7 @@ contract CeloClicker {
         uint256 currentLevel = player.clickPower;
         uint256 cost = calculateUpgradeCost(CLICK_POWER_BASE_COST, currentLevel);
         
-        require(player.points >= cost, "Insufficient points");
+        if (player.points < cost) revert InsufficientPoints(player.points, cost);
         
         player.points -= cost;
         player.clickPower++;
@@ -161,7 +167,7 @@ contract CeloClicker {
         uint256 currentLevel = player.autoClickerLevel;
         uint256 cost = calculateUpgradeCost(AUTOCLICKER_BASE_COST, currentLevel);
         
-        require(player.points >= cost, "Insufficient points");
+        if (player.points < cost) revert InsufficientPoints(player.points, cost);
         
         player.points -= cost;
         player.autoClickerLevel++;
@@ -184,7 +190,7 @@ contract CeloClicker {
         uint256 currentLevel = player.multiplierLevel;
         uint256 cost = calculateUpgradeCost(MULTIPLIER_BASE_COST, currentLevel);
         
-        require(player.points >= cost, "Insufficient points");
+        if (player.points < cost) revert InsufficientPoints(player.points, cost);
         
         player.points -= cost;
         player.multiplierLevel++;
@@ -339,7 +345,7 @@ contract CeloClicker {
      * @notice Reset player progress (for testing)
      */
     function resetPlayer() external {
-        require(hasPlayed[msg.sender], "Not initialized");
+        if (!hasPlayed[msg.sender]) revert NotInitialized();
         
         Player storage player = players[msg.sender];
         player.points = 0;
