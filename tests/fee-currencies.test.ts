@@ -27,3 +27,9 @@ describe('lib/feeCurrencies getFeeCurrencies', () => {
     expect(usdcCurrency?.feeCurrency).toBeUndefined()
   })
 })
+
+describe('lib/feeCurrencies getDefaultFeeCurrencyId', () => {
+  it('prefers USDC inside MiniPay on Celo mainnet', () => {
+    expect(getDefaultFeeCurrencyId(true, CELO_MAINNET_CHAIN_ID)).toBe('USDC')
+  })
+})
