@@ -29,7 +29,7 @@ export const UpgradeCard = ({
           <div className="text-xs text-gray-400">Current: {currentLevel}</div>
         </div>
         <div className="text-right">
-          <div className="text-celo-gold font-bold">{Number(cost).toLocaleString()}</div>
+          <div className="text-celo-gold font-bold">{cost.toLocaleString()}</div>
           <div className="text-xs text-gray-400">points</div>
         </div>
       </div>
