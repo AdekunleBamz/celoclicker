@@ -44,4 +44,14 @@ describe('lib/validation validateEnvironment', () => {
       errors: ['NEXT_PUBLIC_CELOCLICKER_CONTRACT is not a valid address'],
     })
   })
+
+  it('requires a wallet connect project id', () => {
+    process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT = '0x1234567890123456789012345678901234567890'
+    delete process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID
+
+    expect(validateEnvironment()).toEqual({
+      isValid: false,
+      errors: ['NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is not set'],
+    })
+  })
 })
