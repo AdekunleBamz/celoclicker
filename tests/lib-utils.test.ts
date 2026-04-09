@@ -15,4 +15,8 @@ describe('lib/utils formatAddress', () => {
   it('leaves short addresses unchanged', () => {
     expect(formatAddress('0x1234')).toBe('0x1234')
   })
+
+  it('truncates long addresses for display', () => {
+    expect(formatAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe('0x1234...5678')
+  })
 })
