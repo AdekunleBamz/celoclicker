@@ -33,3 +33,13 @@ describe('lib/feeCurrencies getDefaultFeeCurrencyId', () => {
     expect(getDefaultFeeCurrencyId(true, CELO_MAINNET_CHAIN_ID)).toBe('USDC')
   })
 })
+
+describe('lib/feeCurrencies getFeeCurrencyById', () => {
+  it('returns the CELO fee option', () => {
+    expect(getFeeCurrencyById('CELO', CELO_MAINNET_CHAIN_ID)).toMatchObject({
+      id: 'CELO',
+      isAvailable: true,
+      symbol: 'CELO',
+    })
+  })
+})
