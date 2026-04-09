@@ -133,6 +133,8 @@ export default function Home() {
     [selectedFeeCurrency.feeCurrency]
   )
 
+  const pendingAutoPointsLabel = pendingAuto ? pendingAuto.toLocaleString() : '0'
+
   // Click handler - triggers wallet transaction on every click
   const handleClick = useCallback(async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!isConnected) {
@@ -356,10 +358,10 @@ export default function Home() {
                 onClick={handleClaimAuto}
                 disabled={isPending || isConfirming}
                 type="button"
-                aria-label={`Claim ${Number(pendingAuto)} auto clicker points`}
+                aria-label={`Claim ${pendingAutoPointsLabel} auto clicker points`}
                 className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-bold hover:scale-105 transition-transform glow-purple disabled:opacity-50 cursor-pointer relative z-10"
               >
-                Claim {Number(pendingAuto)} Auto Points
+                Claim {pendingAutoPointsLabel} Auto Points
               </button>
             )}
           </div>
