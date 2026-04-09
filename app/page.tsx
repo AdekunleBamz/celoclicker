@@ -210,6 +210,11 @@ export default function Home() {
       return
     }
 
+    if (!isContractValid) {
+      alert('Game contract is not configured yet.')
+      return
+    }
+
     if (isPending || isConfirming) {
       return
     }
@@ -225,7 +230,7 @@ export default function Home() {
       console.error('Error sending claim transaction:', error)
       alert('Failed to send transaction. Please try again.')
     }
-  }, [isConnected, isPending, isConfirming, contractAddress, celoClickerABI, transactionOverrides, writeContract])
+  }, [isConnected, isContractValid, isPending, isConfirming, contractAddress, celoClickerABI, transactionOverrides, writeContract])
 
   useEffect(() => {
     if (isSuccess) {
