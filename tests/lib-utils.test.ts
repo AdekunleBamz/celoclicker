@@ -33,4 +33,8 @@ describe('lib/utils formatTokenAmount', () => {
   it('keeps two decimals for large token balances', () => {
     expect(formatTokenAmount('123.4567', 'USDC')).toBe('123.46 USDC')
   })
+
+  it('keeps four decimals for small token balances', () => {
+    expect(formatTokenAmount('0.123456', 'CELO')).toBe('0.1235 CELO')
+  })
 })
