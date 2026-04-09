@@ -557,6 +557,8 @@ export default function Home() {
               onClick={() => setShowLeaderboard(!showLeaderboard)}
               type="button"
               aria-label={showLeaderboard ? 'Hide leaderboard' : 'Show leaderboard'}
+              aria-expanded={showLeaderboard}
+              aria-controls="leaderboard-dialog"
               className="w-full py-3 bg-gradient-to-r from-celo-green to-celo-gold rounded-lg font-bold hover:scale-105 transition-transform glow-green mt-4 cursor-pointer relative z-10"
             >
               {showLeaderboard ? 'Hide' : 'Show'} Leaderboard
@@ -579,6 +581,7 @@ export default function Home() {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
+                id="leaderboard-dialog"
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="leaderboard-title"
