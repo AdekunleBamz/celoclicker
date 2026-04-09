@@ -12,7 +12,7 @@ import { isValidAddress } from './utils'
  */
 export function validateContractAddress(address: string): boolean {
   if (!address) return false
-  return isValidAddress(address)
+  return isValidAddress(address.trim())
 }
 
 /**
