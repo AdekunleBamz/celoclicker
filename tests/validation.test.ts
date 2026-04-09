@@ -34,4 +34,14 @@ describe('lib/validation validateEnvironment', () => {
       errors: ['NEXT_PUBLIC_CELOCLICKER_CONTRACT is not set'],
     })
   })
+
+  it('rejects malformed contract addresses', () => {
+    process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT = 'not-an-address'
+    process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID = 'wallet-connect-id'
+
+    expect(validateEnvironment()).toEqual({
+      isValid: false,
+      errors: ['NEXT_PUBLIC_CELOCLICKER_CONTRACT is not a valid address'],
+    })
+  })
 })
