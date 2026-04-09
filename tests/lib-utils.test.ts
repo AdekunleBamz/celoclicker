@@ -114,8 +114,8 @@ describe('lib/utils formatTokenAmount', () => {
     expect(formatTokenAmount('0.123456', 'CELO')).toBe('0.1235 CELO')
   })
 
-  it('rounds tiny token balances to four decimal places', () => {
-    expect(formatTokenAmount('0.00009', 'CELO')).toBe('0.0001 CELO')
+  it('keeps tiny non-zero balances visible', () => {
+    expect(formatTokenAmount('0.00009', 'CELO')).toBe('0.00009 CELO')
   })
 
   it('returns zero for empty string input', () => {
