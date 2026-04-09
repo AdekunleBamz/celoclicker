@@ -25,4 +25,8 @@ describe('lib/utils formatTokenAmount', () => {
   it('returns zero when the amount is blank', () => {
     expect(formatTokenAmount(undefined, 'CELO')).toBe('0 CELO')
   })
+
+  it('falls back to zero for invalid numeric input', () => {
+    expect(formatTokenAmount('not-a-number', 'CELO')).toBe('0 CELO')
+  })
 })
