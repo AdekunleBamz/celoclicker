@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatAddress, formatNumber } from '../lib/utils'
+import { formatAddress, formatNumber, formatTokenAmount } from '../lib/utils'
 
 describe('lib/utils formatNumber', () => {
   it('abbreviates thousands with a K suffix', () => {
@@ -18,5 +18,11 @@ describe('lib/utils formatAddress', () => {
 
   it('truncates long addresses for display', () => {
     expect(formatAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe('0x1234...5678')
+  })
+})
+
+describe('lib/utils formatTokenAmount', () => {
+  it('returns zero when the amount is blank', () => {
+    expect(formatTokenAmount(undefined, 'CELO')).toBe('0 CELO')
   })
 })
