@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, useMemo } from 'react'
+import Image from 'next/image'
 import { useAccount, useBalance, useChainId, useConnect, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -275,7 +276,7 @@ export default function Home() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="mx-auto mb-5 flex h-24 w-24 items-center justify-center rounded-[28px] border border-white/10 bg-black/20 p-3 shadow-[0_20px_60px_rgba(8,17,24,0.45)]">
-            <img src="/logo-mark.svg" alt="CeloClicker logo" className="h-full w-full" />
+            <Image src="/logo-mark.svg" alt="CeloClicker logo" width={72} height={72} priority className="h-full w-full" />
           </div>
           <h1 className="text-6xl font-bold mb-2 bg-gradient-to-r from-celo-green via-celo-gold to-cyan-300 bg-clip-text text-transparent animate-pulse-glow pixel-font">
             CELOCLICKER
