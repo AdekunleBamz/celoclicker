@@ -1,22 +1,21 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useBalance, useChainId, useConnect } from 'wagmi'
+import { useState, useEffect, useCallback, useMemo } from 'react'
+import Image from 'next/image'
+import { useAccount, useBalance, useChainId, useConnect, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion, AnimatePresence } from 'framer-motion'
 import { formatNumber, formatAddress, formatTokenAmount, isZeroAddress } from '@/lib/utils'
 import { GAME_CONFIG } from '@/lib/constants'
 import { getDefaultFeeCurrencyId, getFeeCurrencies, type FeeCurrencyId } from '@/lib/feeCurrencies'
+import { LoadingSpinner } from '@/components/LoadingSpinner'
 import { EmptyState } from '@/components/EmptyState'
 import { StatCard } from '@/components/StatCard'
 import { UpgradeCard } from '@/components/UpgradeCard'
 import { ContractWarning } from '@/components/ContractWarning'
-import { useClicker } from '@/hooks/useClicker'
+import { useContractConfig } from '@/hooks/useContractConfig'
 import { getInjectedConnector, useMiniPay } from '@/hooks/useMiniPay'
-import { StatSkeleton } from '@/components/StatSkeleton'
-import { Toast } from '@/components/Toast'
-import { Button } from '@/components/UI'
-import type { LeaderboardTuple } from '@/lib/types'
+import type { LeaderboardTuple, PlayerStatsTuple, UpgradeCostsTuple } from '@/lib/types'
 
 interface FloatingNumber {
   id: number
@@ -26,28 +25,7 @@ interface FloatingNumber {
 }
 
 export default function Home() {
-  const {
-    address,
-    isConnected,
-    playerStats,
-    upgradeCosts,
-    pendingAuto,
-    leaderboardData,
-    isLoading: isLoadingPlayer,
-    isPending,
-    isConfirming,
-    isSuccess,
-    writeError,
-    txError,
-    writeContract,
-    refetchPlayer,
-    contractAddress,
-    abi: celoClickerABI
-  } = useClicker()
-
-  const { points, clickPower, autoClickerLevel, multiplierLevel, totalClicks } = playerStats
-  const { clickPowerCost, autoClickerCost, multiplierCost } = upgradeCosts
-
+  const { address, isConnected } = useAccount()
   const chainId = useChainId()
   const { connect, connectors, isPending: isConnectingWallet } = useConnect()
   const [floatingNumbers, setFloatingNumbers] = useState<FloatingNumber[]>([])
@@ -57,18 +35,18 @@ export default function Home() {
   const [selectedFeeCurrencyId, setSelectedFeeCurrencyId] = useState<FeeCurrencyId>('CELO')
   const [hasManualFeeCurrencySelection, setHasManualFeeCurrencySelection] = useState(false)
   const isMiniPay = useMiniPay()
-  const [showToast, setShowToast] = useState(false)
 
-  const copyAddress = () => {
-    if (!address) return
-    navigator.clipboard.writeText(address)
-    setShowToast(true)
-  }
-
+  const { address: contractAddress, abi: celoClickerABI, isValid: isContractValid } = useContractConfig()
   const injectedConnector = getInjectedConnector(connectors)
   const feeCurrencies = getFeeCurrencies(chainId)
-  const selectedFeeCurrency = feeCurrencies.find((currency) => currency.id === selectedFeeCurrencyId) ?? feeCurrencies[0]
-  const usdcFeeCurrency = feeCurrencies.find((currency) => currency.id === 'USDC')
+  const selectedFeeCurrency = useMemo(
+    () => feeCurrencies.find((currency) => currency.id === selectedFeeCurrencyId) ?? feeCurrencies[0],
+    [feeCurrencies, selectedFeeCurrencyId]
+  )
+  const usdcFeeCurrency = useMemo(
+    () => feeCurrencies.find((currency) => currency.id === 'USDC'),
+    [feeCurrencies]
+  )
 
   const { data: celoBalance } = useBalance({
     address,
@@ -87,23 +65,90 @@ export default function Home() {
     },
   })
 
-  const transactionOverrides = selectedFeeCurrency.feeCurrency
-    ? { feeCurrency: selectedFeeCurrency.feeCurrency }
-    : {}
+  // Read player stats
+  const { data: playerData, refetch: refetchPlayer, error: playerError, isLoading: isLoadingPlayer } = useReadContract({
+    address: contractAddress,
+    abi: celoClickerABI,
+    functionName: 'getPlayer',
+    args: [address as `0x${string}`],
+    query: {
+      enabled: !!address && isContractValid,
+      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PLAYER_STATS,
+    },
+  })
+
+  const [points, clickPower, autoClickerLevel, multiplierLevel, totalClicks, gamesPlayed] =
+    (playerData as PlayerStatsTuple) || [0n, 0n, 0n, 0n, 0n, 0n]
+
+  // Read upgrade costs
+  const { data: upgradeCosts, isLoading: isLoadingCosts } = useReadContract({
+    address: contractAddress,
+    abi: celoClickerABI,
+    functionName: 'getUpgradeCosts',
+    args: [address as `0x${string}`],
+    query: {
+      enabled: !!address && isContractValid,
+      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.UPGRADE_COSTS,
+    },
+  })
+
+  const [clickPowerCost, autoClickerCost, multiplierCost] =
+    (upgradeCosts as UpgradeCostsTuple) || [0n, 0n, 0n]
+
+  // Read pending auto-clicker
+  const { data: pendingAuto } = useReadContract({
+    address: contractAddress,
+    abi: celoClickerABI,
+    functionName: 'getPendingAutoClicker',
+    args: [address as `0x${string}`],
+    query: {
+      enabled: !!address && isContractValid && autoClickerLevel > 0n,
+      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PENDING_AUTO,
+    },
+  })
+
+  // Read leaderboard
+  const { data: leaderboardData, isLoading: isLoadingLeaderboard } = useReadContract({
+    address: contractAddress,
+    abi: celoClickerABI,
+    functionName: 'getLeaderboard',
+    query: {
+      enabled: isContractValid,
+      refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.LEADERBOARD,
+    },
+  })
+
+  const { writeContract, data: hash, isPending, error: writeError } = useWriteContract()
+
+  const { isLoading: isConfirming, isSuccess, error: txError } = useWaitForTransactionReceipt({
+    hash,
+  })
+
+  const transactionOverrides = useMemo(
+    () => (
+      selectedFeeCurrency.feeCurrency
+        ? { feeCurrency: selectedFeeCurrency.feeCurrency }
+        : {}
+    ),
+    [selectedFeeCurrency.feeCurrency]
+  )
+
+  const pendingAutoPointsLabel = pendingAuto ? pendingAuto.toLocaleString() : '0'
 
   // Click handler - triggers wallet transaction on every click
-  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!isConnected || !address) {
+  const handleClick = useCallback(async (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!isConnected) {
       alert('Please connect your wallet first!')
       return
     }
 
-    if (isPending || isConfirming) return
-
-    // Validation: Check if contract address is valid
-    if (!contractAddress || isZeroAddress(contractAddress)) {
-      alert('Contract address is not configured correctly.')
+    if (!isContractValid) {
+      alert('Game contract is not configured yet.')
       return
+    }
+
+    if (isPending || isConfirming) {
+      return // Prevent multiple clicks while transaction is pending
     }
 
     const rect = e.currentTarget.getBoundingClientRect()
@@ -120,6 +165,7 @@ export default function Home() {
 
     setClickCount(prev => prev + 1)
 
+    // Send click transaction - this will trigger wallet popup
     try {
       writeContract({
         address: contractAddress,
@@ -129,27 +175,22 @@ export default function Home() {
       })
     } catch (error) {
       console.error('Error sending click transaction:', error)
+      alert('Failed to send transaction. Please try again.')
     }
 
+    // Remove floating number after animation
     setTimeout(() => {
       setFloatingNumbers(prev => prev.filter(num => num.id !== floatingId))
     }, GAME_CONFIG.ANIMATION_DURATION.FLOATING_NUMBER)
-  }
+  }, [isConnected, isContractValid, isPending, isConfirming, clickPower, multiplierLevel, contractAddress, celoClickerABI, transactionOverrides, writeContract])
 
-  const handleUpgrade = (type: 'clickPower' | 'autoClicker' | 'multiplier') => {
-    if (!isConnected || !address) {
+  const handleUpgrade = useCallback((type: 'clickPower' | 'autoClicker' | 'multiplier') => {
+    if (!isConnected) {
       alert('Please connect your wallet first!')
       return
     }
 
-    if (isPending || isConfirming) return
-
-    const cost = type === 'clickPower' ? clickPowerCost :
-                 type === 'autoClicker' ? autoClickerCost :
-                 multiplierCost
-
-    if (points < cost) {
-      alert('Insufficient points for this upgrade!')
+    if (isPending || isConfirming) {
       return
     }
 
@@ -157,26 +198,24 @@ export default function Home() {
       writeContract({
         address: contractAddress,
         abi: celoClickerABI,
-        functionName: type === 'clickPower' ? 'upgradeClickPower' :
-                       type === 'autoClicker' ? 'upgradeAutoClicker' :
+        functionName: type === 'clickPower' ? 'upgradeClickPower' : 
+                       type === 'autoClicker' ? 'upgradeAutoClicker' : 
                        'upgradeMultiplier',
         ...transactionOverrides,
       })
     } catch (error) {
       console.error('Error sending upgrade transaction:', error)
+      alert('Failed to send transaction. Please try again.')
     }
-  }
+  }, [isConnected, isPending, isConfirming, contractAddress, celoClickerABI, transactionOverrides, writeContract])
 
-  const handleClaimAuto = () => {
-    if (!isConnected || !address) {
+  const handleClaimAuto = useCallback(() => {
+    if (!isConnected) {
       alert('Please connect your wallet first!')
       return
     }
 
-    if (isPending || isConfirming) return
-
-    if (!pendingAuto || Number(pendingAuto) === 0) {
-      alert('No auto-points to claim!')
+    if (isPending || isConfirming) {
       return
     }
 
@@ -189,8 +228,9 @@ export default function Home() {
       })
     } catch (error) {
       console.error('Error sending claim transaction:', error)
+      alert('Failed to send transaction. Please try again.')
     }
-  }
+  }, [isConnected, isPending, isConfirming, contractAddress, celoClickerABI, transactionOverrides, writeContract])
 
   useEffect(() => {
     if (isSuccess) {
@@ -239,11 +279,11 @@ export default function Home() {
 
       <div className="w-full max-w-6xl relative z-20">
         <ContractWarning />
-
+        
         {/* Header */}
         <div className="text-center mb-8">
           <div className="mx-auto mb-5 flex h-24 w-24 items-center justify-center rounded-[28px] border border-white/10 bg-black/20 p-3 shadow-[0_20px_60px_rgba(8,17,24,0.45)]">
-            <img src="/logo-mark.svg" alt="CeloClicker logo" className="h-full w-full" />
+            <Image src="/logo-mark.svg" alt="CeloClicker logo" width={72} height={72} priority className="h-full w-full" />
           </div>
           <h1 className="text-6xl font-bold mb-2 bg-gradient-to-r from-celo-green via-celo-gold to-cyan-300 bg-clip-text text-transparent animate-pulse-glow pixel-font">
             CELOCLICKER
@@ -256,62 +296,58 @@ export default function Home() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column - Stats */}
-          <div className="glass-game rounded-2xl p-6 space-y-4">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-bold text-purple-400 pixel-font">STATS</h2>
-              {address && (
-                <button
-                  onClick={copyAddress}
-                  className="text-[10px] bg-white/5 hover:bg-white/10 px-2 py-1 rounded border border-white/10 text-gray-400 transition-colors"
-                  title="Copy wallet address"
-                >
-                  {formatAddress(address)} 📋
-                </button>
-              )}
-            </div>
-
+          <div role="region" aria-label="Player statistics" className="glass-game rounded-2xl p-6 space-y-4">
+            <h2 className="text-2xl font-bold text-purple-400 mb-4 pixel-font">STATS</h2>
+            
             {isLoadingPlayer && (
-              <div className="space-y-3">
-                <StatSkeleton />
-                <StatSkeleton />
-                <StatSkeleton />
-                <StatSkeleton />
-                <StatSkeleton />
-                <StatSkeleton />
+              <div className="flex justify-center py-8">
+                <LoadingSpinner />
               </div>
             )}
 
+            {!isLoadingPlayer && playerError && (
+              <p className="rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-2 text-xs text-red-200">
+                Unable to load player stats right now. Please try again in a moment.
+              </p>
+            )}
+            
             {!isLoadingPlayer && (
             <div className="space-y-3">
-              <StatCard
-                label="POINTS"
-                value={formatNumber(points)}
+              <StatCard 
+                label="POINTS" 
+                value={formatNumber(points)} 
                 valueColor="text-celo-gold"
                 icon="⭐"
               />
-              <StatCard
-                label="CLICK POWER"
-                value={Number(clickPower)}
+              <StatCard 
+                label="CLICK POWER" 
+                value={Number(clickPower)} 
                 valueColor="text-purple-400"
                 icon="⚡"
               />
-              <StatCard
-                label="MULTIPLIER"
-                value={`${1 + Number(multiplierLevel)}x`}
+              <StatCard 
+                label="MULTIPLIER" 
+                value={`${1 + Number(multiplierLevel)}x`} 
                 valueColor="text-pink-400"
                 icon="✨"
               />
-              <StatCard
-                label="AUTO-CLICKER"
-                value={`Level ${Number(autoClickerLevel)}`}
+              <StatCard 
+                label="AUTO-CLICKER" 
+                value={`Level ${Number(autoClickerLevel)}`} 
                 valueColor="text-indigo-400"
                 icon="🤖"
               />
-              <StatCard
-                label="TOTAL CLICKS"
-                value={formatNumber(totalClicks)}
+              <StatCard 
+                label="TOTAL CLICKS" 
+                value={formatNumber(totalClicks)} 
                 valueColor="text-green-400"
                 icon="👆"
+              />
+              <StatCard
+                label="GAMES PLAYED"
+                value={formatNumber(gamesPlayed)}
+                valueColor="text-cyan-300"
+                icon="🎮"
               />
               <StatCard
                 label="FEE MODE"
@@ -323,14 +359,15 @@ export default function Home() {
             )}
 
             {autoClickerLevel > 0n && pendingAuto && Number(pendingAuto) > 0 && (
-              <Button
+              <button
                 onClick={handleClaimAuto}
-                variant="accent"
-                fullWidth
                 disabled={isPending || isConfirming}
+                type="button"
+                aria-label={`Claim ${pendingAutoPointsLabel} auto clicker points`}
+                className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-bold hover:scale-105 transition-transform glow-purple disabled:opacity-50 cursor-pointer relative z-10"
               >
-                Claim {Number(pendingAuto)} Auto Points
-              </Button>
+                Claim {pendingAutoPointsLabel} Auto Points
+              </button>
             )}
           </div>
 
@@ -359,7 +396,10 @@ export default function Home() {
 
                         openConnectModal()
                       }}
-                      className="px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-bold hover:scale-105 transition-transform glow-purple"
+                      disabled={isConnectingWallet}
+                      type="button"
+                      aria-busy={isConnectingWallet}
+                      className="px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-bold hover:scale-105 transition-transform glow-purple disabled:cursor-not-allowed disabled:opacity-70"
                     >
                       {isConnectingWallet ? 'Connecting...' : isMiniPay ? 'Connect MiniPay' : 'Connect Wallet'}
                     </button>
@@ -373,10 +413,13 @@ export default function Home() {
                   whileTap={{ scale: 0.9 }}
                   whileHover={{ scale: 1.05 }}
                   disabled={isPending || isConfirming}
+                  type="button"
+                  aria-label="Click to earn points"
+                  title="Click to earn points"
                   className="w-64 h-64 bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 rounded-full flex items-center justify-center text-8xl font-bold glow-purple hover:glow-gold transition-all duration-300 disabled:opacity-50 relative overflow-hidden cursor-pointer z-30"
                 >
                   <span className="relative z-10 animate-pulse pixel-font">★</span>
-
+                  
                   {/* Floating numbers */}
                   <AnimatePresence>
                     {floatingNumbers.map((num) => (
@@ -399,8 +442,12 @@ export default function Home() {
                   {isPending ? '⏳ WAITING FOR WALLET...' : isConfirming ? '⏳ PROCESSING TRANSACTION...' : 'CLICK THE STAR!'}
                 </p>
                 {(writeError || txError) && (
-                  <p className="mt-2 text-red-400 text-xs">
-                    Error: {writeError?.message || txError?.message || 'Transaction failed'}
+                  <p className="mt-2 text-red-400 text-xs" role="alert">
+                    Error: {writeError?.message?.includes('user rejected') 
+                      ? 'Transaction was rejected. Please try again.' 
+                      : writeError?.message?.includes('insufficient funds')
+                      ? 'Insufficient funds for gas. Please check your balance.'
+                      : writeError?.message || txError?.message || 'Transaction failed. Please try again.'}
                   </p>
                 )}
 
@@ -414,7 +461,7 @@ export default function Home() {
 
           {/* Right Column - Upgrades */}
           <div className="glass-game rounded-2xl p-6 space-y-4">
-            <div className="bg-black/30 rounded-lg p-4 space-y-3">
+            <div role="region" aria-label="Fee mode selection" className="bg-black/30 rounded-lg p-4 space-y-3">
               <div>
                 <h2 className="text-2xl font-bold text-celo-green mb-1 pixel-font">FEE MODE</h2>
                 <p className="text-xs text-gray-400">
@@ -430,6 +477,8 @@ export default function Home() {
                     <button
                       key={currency.id}
                       type="button"
+                      aria-label={`Select ${currency.label} as fee currency`}
+                      aria-pressed={isSelected}
                       onClick={() => {
                         if (!currency.isAvailable) {
                           return
@@ -476,7 +525,7 @@ export default function Home() {
 
             <h2 className="text-2xl font-bold text-purple-400 mb-4 pixel-font">UPGRADES</h2>
 
-            <div className="space-y-3">
+            <div role="region" aria-label="Upgrades" className="space-y-3">
               <UpgradeCard
                 title="Click Power"
                 currentLevel={Number(clickPower)}
@@ -509,20 +558,22 @@ export default function Home() {
               />
             </div>
 
-            <Button
+            <button
               onClick={() => setShowLeaderboard(!showLeaderboard)}
-              variant="secondary"
-              fullWidth
-              className="mt-4"
+              type="button"
+              aria-label={showLeaderboard ? 'Hide leaderboard' : 'Show leaderboard'}
+              aria-expanded={showLeaderboard}
+              aria-controls="leaderboard-dialog"
+              className="w-full py-3 bg-gradient-to-r from-celo-green to-celo-gold rounded-lg font-bold hover:scale-105 transition-transform glow-green mt-4 cursor-pointer relative z-10"
             >
               {showLeaderboard ? 'Hide' : 'Show'} Leaderboard
-            </Button>
+            </button>
           </div>
         </div>
 
         {/* Leaderboard Modal */}
         <AnimatePresence>
-          {showLeaderboard && leaderboardData && (
+          {showLeaderboard && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -535,25 +586,37 @@ export default function Home() {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
+                id="leaderboard-dialog"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="leaderboard-title"
                 className="glass-game rounded-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
               >
-                <h2 className="text-3xl font-bold text-purple-400 mb-6 pixel-font text-center">LEADERBOARD</h2>
-
+                <h2 id="leaderboard-title" className="text-3xl font-bold text-purple-400 mb-6 pixel-font text-center">LEADERBOARD</h2>
+                
                 <div className="space-y-2">
                   {(() => {
+                    if (isLoadingLeaderboard) {
+                      return (
+                        <div className="flex justify-center py-8">
+                          <LoadingSpinner />
+                        </div>
+                      )
+                    }
+
                     if (!leaderboardData) {
                       return <EmptyState title="No Leaderboard Data" description="Be the first to play!" icon="🏆" />
                     }
                     const [addresses, pointsList] = leaderboardData as LeaderboardTuple
                     const hasEntries = addresses.some((addr) => addr && !isZeroAddress(addr))
-
+                    
                     if (!hasEntries) {
                       return <EmptyState title="No Players Yet" description="Be the first to join the leaderboard!" icon="🎮" />
                     }
-
+                    
                     return addresses.map((addr, idx) => {
                     const pts = pointsList[idx]
-
+                    
                     if (!addr || isZeroAddress(addr)) return null
 
                     return (
@@ -565,9 +628,9 @@ export default function Home() {
                       >
                         <div className="flex items-center gap-4">
                           <div className={`text-2xl font-bold ${
-                            idx === 0 ? 'text-celo-gold' :
-                            idx === 1 ? 'text-gray-300' :
-                            idx === 2 ? 'text-orange-400' :
+                            idx === 0 ? 'text-celo-gold' : 
+                            idx === 1 ? 'text-gray-300' : 
+                            idx === 2 ? 'text-orange-400' : 
                             'text-gray-500'
                           }`}>
                             #{idx + 1}
@@ -589,6 +652,8 @@ export default function Home() {
 
                 <button
                   onClick={() => setShowLeaderboard(false)}
+                  type="button"
+                  aria-label="Close leaderboard"
                   className="w-full mt-6 py-3 bg-purple-500 hover:bg-purple-600 rounded-lg font-bold transition-colors"
                 >
                   Close
@@ -598,12 +663,6 @@ export default function Home() {
           )}
         </AnimatePresence>
       </div>
-
-      <Toast
-        message="Address copied to clipboard!"
-        isVisible={showToast}
-        onClose={() => setShowToast(false)}
-      />
     </div>
   )
 }
