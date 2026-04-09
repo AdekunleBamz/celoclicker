@@ -16,4 +16,14 @@ describe('lib/feeCurrencies getFeeCurrencies', () => {
       symbol: 'USDCm',
     })
   })
+
+  it('hides USDC gas payments off mainnet', () => {
+    const usdcCurrency = getFeeCurrencies(44787).find((currency) => currency.id === 'USDC')
+
+    expect(usdcCurrency).toMatchObject({
+      id: 'USDC',
+      isAvailable: false,
+    })
+    expect(usdcCurrency?.feeCurrency).toBeUndefined()
+  })
 })
