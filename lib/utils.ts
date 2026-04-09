@@ -50,7 +50,11 @@ export function formatTokenAmount(value?: string, symbol?: string): string {
     return `0 ${symbol ?? ''}`.trim()
   }
 
-  const decimals = numericValue >= 100 ? 2 : numericValue >= 1 ? 3 : 4
+  const absoluteValue = Math.abs(numericValue)
+  const decimals =
+    absoluteValue >= 100 ? 2 :
+    absoluteValue >= 1 ? 3 :
+    absoluteValue >= 0.01 ? 4 : 6
   const formattedValue = numericValue.toFixed(decimals).replace(/\.?0+$/, '')
 
   return `${formattedValue} ${symbol ?? ''}`.trim()
