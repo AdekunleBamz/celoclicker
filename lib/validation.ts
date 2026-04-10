@@ -3,7 +3,7 @@
  * @module validation
  */
 import { CONTRACT_ADDRESS_ENV_KEY } from './constants'
-import { isValidAddress } from './utils'
+import { isValidAddress, isZeroAddress } from './utils'
 
 /**
  * Validates if a string is a valid Ethereum contract address format
@@ -11,8 +11,10 @@ import { isValidAddress } from './utils'
  * @returns True if the address is a valid Ethereum address format
  */
 export function validateContractAddress(address: string): boolean {
-  if (!address) return false
-  return isValidAddress(address)
+  const normalizedAddress = typeof address === 'string' ? address.trim() : ''
+  if (!normalizedAddress) return false
+  if (isZeroAddress(normalizedAddress)) return false
+  return isValidAddress(normalizedAddress)
 }
 
 /**
