@@ -9,6 +9,10 @@ describe('lib/utils formatNumber', () => {
   it('handles bigint values in the millions', () => {
     expect(formatNumber(2500000n)).toBe('2.50M')
   })
+
+  it('returns zero for non-finite values', () => {
+    expect(formatNumber(Number.POSITIVE_INFINITY)).toBe('0')
+  })
 })
 
 describe('lib/utils formatAddress', () => {

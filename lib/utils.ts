@@ -10,6 +10,9 @@ export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
  */
 export function formatNumber(num: bigint | number): string {
   const n = typeof num === 'bigint' ? Number(num) : num
+  if (!Number.isFinite(n)) {
+    return '0'
+  }
   
   if (n >= 1_000_000_000) {
     return (n / 1_000_000_000).toFixed(2) + 'B'
