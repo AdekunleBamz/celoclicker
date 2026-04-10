@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatAddress, formatNumber, formatTokenAmount } from '../lib/utils'
+import { formatAddress, formatNumber, formatTokenAmount, isZeroAddress } from '../lib/utils'
 
 describe('lib/utils formatNumber', () => {
   it('abbreviates thousands with a K suffix', () => {
@@ -40,5 +40,11 @@ describe('lib/utils formatTokenAmount', () => {
 
   it('keeps four decimals for small token balances', () => {
     expect(formatTokenAmount('0.123456', 'CELO')).toBe('0.1235 CELO')
+  })
+})
+
+describe('lib/utils isZeroAddress', () => {
+  it('matches zero address values with surrounding whitespace', () => {
+    expect(isZeroAddress('  0x0000000000000000000000000000000000000000  ')).toBe(true)
   })
 })

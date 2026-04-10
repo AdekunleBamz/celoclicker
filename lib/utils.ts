@@ -74,5 +74,6 @@ export function isValidAddress(address: string): boolean {
  * @returns True if the address is the zero address
  */
 export function isZeroAddress(address: string): boolean {
-  return address.toLowerCase() === ZERO_ADDRESS
+  if (!address) return false
+  return address.trim().toLowerCase() === ZERO_ADDRESS
 }
