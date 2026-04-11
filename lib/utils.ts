@@ -32,8 +32,9 @@ export function formatNumber(num: bigint | number): string {
  * @returns Truncated address string (e.g., "0x1234...5678")
  */
 export function formatAddress(address: string): string {
-  if (!address || address.length < 10) return address
-  return `${address.slice(0, 6)}...${address.slice(-4)}`
+  const normalizedAddress = typeof address === 'string' ? address.trim() : ''
+  if (!normalizedAddress || normalizedAddress.length < 10) return normalizedAddress
+  return `${normalizedAddress.slice(0, 6)}...${normalizedAddress.slice(-4)}`
 }
 
 /**
