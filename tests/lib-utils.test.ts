@@ -27,6 +27,10 @@ describe('lib/utils formatAddress', () => {
   it('trims surrounding whitespace before formatting', () => {
     expect(formatAddress('  0x1234567890abcdef1234567890abcdef12345678  ')).toBe('0x1234...5678')
   })
+
+  it('returns an empty string for whitespace-only addresses', () => {
+    expect(formatAddress('   ')).toBe('')
+  })
 })
 
 describe('lib/utils formatTokenAmount', () => {
