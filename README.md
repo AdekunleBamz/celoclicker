@@ -93,7 +93,7 @@ The app also supports Celo fee abstraction:
 
 ```bash
 # Install dependencies
-npm install
+npm ci
 
 # Run development server
 npm run dev
