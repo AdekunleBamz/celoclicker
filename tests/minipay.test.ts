@@ -1,0 +1,25 @@
+import { describe, expect, it, vi } from 'vitest'
+import { getInjectedConnector, isMiniPayBrowser } from '../hooks/useMiniPay'
+
+describe('hooks/useMiniPay isMiniPayBrowser', () => {
+  it('returns false when window.ethereum is unavailable', () => {
+    vi.stubGlobal('window', {})
+    expect(isMiniPayBrowser()).toBe(false)
+  })
+
+  it('returns true when ethereum provider exposes isMiniPay', () => {
+    vi.stubGlobal('window', { ethereum: { isMiniPay: true } })
+    expect(isMiniPayBrowser()).toBe(true)
+  })
+})
+
+describe('hooks/useMiniPay getInjectedConnector', () => {
+  it('prefers connectors marked as injected', () => {
+    const connector = getInjectedConnector([
+      { id: 'walletconnect', type: 'walletConnect' },
+      { id: 'injected', type: 'injected' },
+    ] as never)
+
+    expect(connector).toMatchObject({ id: 'injected' })
+  })
+})
