@@ -37,6 +37,8 @@ export function validateEnvironment(): {
   const walletConnectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID?.trim()
   if (!walletConnectId) {
     errors.push('NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is not set')
+  } else if (walletConnectId === 'your_project_id' || walletConnectId === 'your_project_id_here') {
+    errors.push('NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is still set to a placeholder value')
   }
   
   return {
