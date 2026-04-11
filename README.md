@@ -101,6 +101,15 @@ npm run dev
 # Build for production
 npm run build
 
+# Run full test suite
+npm run test
+
+# Run focused utility + validation tests
+npm run test:utils
+
+# Run fast local verification (lint + focused tests)
+npm run check:fast
+
 # Start production server
 npm start
 ```
