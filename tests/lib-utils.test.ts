@@ -42,6 +42,10 @@ describe('lib/utils formatTokenAmount', () => {
     expect(formatTokenAmount('123.4567', 'USDC')).toBe('123.46 USDC')
   })
 
+  it('parses comma-formatted token balances', () => {
+    expect(formatTokenAmount('1,234.567', 'USDC')).toBe('1234.57 USDC')
+  })
+
   it('keeps four decimals for small token balances', () => {
     expect(formatTokenAmount('0.123456', 'CELO')).toBe('0.1235 CELO')
   })
