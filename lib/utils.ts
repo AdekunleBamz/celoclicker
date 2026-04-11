@@ -48,7 +48,8 @@ export function formatTokenAmount(value?: string, symbol?: string): string {
     return `0 ${symbol ?? ''}`.trim()
   }
 
-  const numericValue = Number(value)
+  const normalizedValue = value.trim().replace(/,/g, '')
+  const numericValue = Number(normalizedValue)
 
   if (!Number.isFinite(numericValue)) {
     return `0 ${symbol ?? ''}`.trim()
