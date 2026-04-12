@@ -142,6 +142,11 @@ export default function Home() {
       return
     }
 
+    if (!isContractValid) {
+      alert('Game contract is not configured yet.')
+      return
+    }
+
     if (isPending || isConfirming) {
       return // Prevent multiple clicks while transaction is pending
     }
@@ -177,7 +182,7 @@ export default function Home() {
     setTimeout(() => {
       setFloatingNumbers(prev => prev.filter(num => num.id !== floatingId))
     }, GAME_CONFIG.ANIMATION_DURATION.FLOATING_NUMBER)
-  }, [isConnected, isPending, isConfirming, clickPower, multiplierLevel, contractAddress, celoClickerABI, transactionOverrides, writeContract])
+  }, [isConnected, isContractValid, isPending, isConfirming, clickPower, multiplierLevel, contractAddress, celoClickerABI, transactionOverrides, writeContract])
 
   const handleUpgrade = useCallback((type: 'clickPower' | 'autoClicker' | 'multiplier') => {
     if (!isConnected) {
