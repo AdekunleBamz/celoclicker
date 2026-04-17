@@ -6,6 +6,9 @@
 /** Chain ID for Celo Mainnet */
 export const CELO_MAINNET_CHAIN_ID = 42220
 
+/** Chain ID for Alfajores Celo Testnet */
+export const CELO_TESTNET_CHAIN_ID = 44787
+
 /** Application display name */
 export const APP_NAME = 'CeloClicker'
 
