@@ -13,15 +13,18 @@ export function formatNumber(num: bigint | number): string {
   if (!Number.isFinite(n)) {
     return '0'
   }
-  
-  if (n >= 1_000_000_000) {
-    return (n / 1_000_000_000).toFixed(2) + 'B'
+
+  const abs = Math.abs(n)
+  const sign = n < 0 ? '-' : ''
+
+  if (abs >= 1_000_000_000) {
+    return sign + (abs / 1_000_000_000).toFixed(2) + 'B'
   }
-  if (n >= 1_000_000) {
-    return (n / 1_000_000).toFixed(2) + 'M'
+  if (abs >= 1_000_000) {
+    return sign + (abs / 1_000_000).toFixed(2) + 'M'
   }
-  if (n >= 1_000) {
-    return (n / 1_000).toFixed(2) + 'K'
+  if (abs >= 1_000) {
+    return sign + (abs / 1_000).toFixed(2) + 'K'
   }
   return n.toLocaleString()
 }
