@@ -46,6 +46,11 @@ export const UPGRADE_NAMES = {
 } as const
 
 /**
+ * Minimum effective click power a player can have (base value before upgrades).
+ */
+export const MIN_CLICK_POWER = 1n
+
+/**
  * Brand colors used throughout the application
  */
 export const COLORS = {
