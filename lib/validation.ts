@@ -48,6 +48,10 @@ export function validateEnvironment(): {
     if (placeholderIds.has(normalizedProjectId)) {
     errors.push('NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is still set to a placeholder value')
     }
+
+    if (walletConnectId.length < 8) {
+      errors.push('NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID appears too short to be valid')
+    }
   }
   
   return {
