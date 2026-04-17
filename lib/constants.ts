@@ -52,3 +52,8 @@ export const COLORS = {
   PINK: '#EC4899',
   INDIGO: '#6366F1',
 } as const
+
+/**
+ * Maximum number of entries shown in the leaderboard.
+ */
+export const MAX_LEADERBOARD_SIZE = 100
