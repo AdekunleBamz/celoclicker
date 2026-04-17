@@ -83,3 +83,13 @@ export function getDefaultFeeCurrencyId(isMiniPay: boolean, chainId?: number): F
 export function getFeeCurrencyById(id: FeeCurrencyId, chainId?: number) {
   return getFeeCurrencies(chainId).find((currency) => currency.id === id)
 }
+
+/**
+ * Check if a specific fee currency is available on the given chain
+ * @param id - The fee currency ID to check
+ * @param chainId - Optional chain ID
+ * @returns True if the currency is available
+ */
+export function isFeeCurrencyAvailable(id: FeeCurrencyId, chainId?: number): boolean {
+  return getFeeCurrencyById(id, chainId)?.isAvailable ?? false
+}
