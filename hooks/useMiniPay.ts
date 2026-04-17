@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import type { Connector } from 'wagmi'
 
 type MiniPayEthereum = {
@@ -38,11 +38,11 @@ export function getInjectedConnector(connectors: readonly Connector[]) {
 export function useMiniPay() {
   const [isMiniPay, setIsMiniPay] = useState(() => isMiniPayBrowser())
 
-  useEffect(() => {
-    const refreshDetection = () => {
-      setIsMiniPay(isMiniPayBrowser())
-    }
+  const refreshDetection = useCallback(() => {
+    setIsMiniPay(isMiniPayBrowser())
+  }, [])
 
+  useEffect(() => {
     refreshDetection()
     window.addEventListener('focus', refreshDetection)
     window.addEventListener('ethereum#initialized', refreshDetection as EventListener)
@@ -51,7 +51,7 @@ export function useMiniPay() {
       window.removeEventListener('focus', refreshDetection)
       window.removeEventListener('ethereum#initialized', refreshDetection as EventListener)
     }
-  }, [])
+  }, [refreshDetection])
 
   return isMiniPay
 }
