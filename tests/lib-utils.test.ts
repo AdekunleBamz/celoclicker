@@ -25,6 +25,10 @@ describe('lib/utils formatNumber', () => {
   it('uses locale grouping for non-abbreviated values', () => {
     expect(formatNumber(999.5)).toBe('999.5')
   })
+
+  it('keeps non-abbreviated negative values readable', () => {
+    expect(formatNumber(-500)).toBe('-500')
+  })
 })
 
 describe('lib/utils formatAddress', () => {
