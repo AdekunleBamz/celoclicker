@@ -90,4 +90,8 @@ describe('lib/feeCurrencies isFeeCurrencyAvailable', () => {
   it('returns true for CELO across supported chains', () => {
     expect(isFeeCurrencyAvailable('CELO', 44787)).toBe(true)
   })
+
+  it('returns true for CELO when chain id is missing', () => {
+    expect(isFeeCurrencyAvailable('CELO')).toBe(true)
+  })
 })
