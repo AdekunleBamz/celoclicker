@@ -59,3 +59,21 @@ export function validateEnvironment(): {
     errors,
   }
 }
+
+/**
+ * Returns true when the provided upgrade level is within the allowed range [0, 100].
+ *
+ * @param level - The upgrade level to validate (bigint).
+ */
+export function isValidUpgradeLevel(level: bigint): boolean {
+  return level >= 0n && level <= 100n
+}
+
+/**
+ * Returns true when the provided point value is a non-negative bigint.
+ *
+ * @param points - The points value to validate.
+ */
+export function isValidPoints(points: bigint): boolean {
+  return points >= 0n
+}
