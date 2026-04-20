@@ -3,6 +3,7 @@ import {
   getDefaultFeeCurrencyId,
   getFeeCurrencies,
   getFeeCurrencyById,
+  isFeeCurrencyAvailable,
 } from '../lib/feeCurrencies'
 import { CELO_MAINNET_CHAIN_ID } from '../lib/constants'
 
@@ -32,6 +33,10 @@ describe('lib/feeCurrencies getDefaultFeeCurrencyId', () => {
   it('prefers USDC inside MiniPay on Celo mainnet', () => {
     expect(getDefaultFeeCurrencyId(true, CELO_MAINNET_CHAIN_ID)).toBe('USDC')
   })
+
+  it('falls back to CELO inside MiniPay off mainnet', () => {
+    expect(getDefaultFeeCurrencyId(true, 44787)).toBe('CELO')
+  })
 })
 
 describe('lib/feeCurrencies getFeeCurrencyById', () => {
@@ -41,5 +46,11 @@ describe('lib/feeCurrencies getFeeCurrencyById', () => {
       isAvailable: true,
       symbol: 'CELO',
     })
+  })
+})
+
+describe('lib/feeCurrencies isFeeCurrencyAvailable', () => {
+  it('returns false for USDC off mainnet', () => {
+    expect(isFeeCurrencyAvailable('USDC', 44787)).toBe(false)
   })
 })
