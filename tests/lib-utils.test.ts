@@ -70,6 +70,10 @@ describe('lib/utils formatTokenAmount', () => {
     expect(formatTokenAmount('123.4567', 'USDC')).toBe('123.46 USDC')
   })
 
+  it('handles whole-number token balances without decimals', () => {
+    expect(formatTokenAmount('200', 'USDC')).toBe('200 USDC')
+  })
+
   it('parses comma-formatted token balances', () => {
     expect(formatTokenAmount('1,234.567', 'USDC')).toBe('1234.57 USDC')
   })
