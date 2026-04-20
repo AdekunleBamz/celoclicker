@@ -20,3 +20,26 @@ export type UpgradeCostsTuple = readonly [bigint, bigint, bigint]
  * @remarks Order: [addresses[], points[]]
  */
 export type LeaderboardTuple = readonly [readonly `0x${string}`[], readonly bigint[]]
+
+/**
+ * A single entry in the leaderboard with player address and point total.
+ */
+export interface LeaderboardEntry {
+  address: `0x${string}`
+  points: bigint
+  rank: number
+}
+
+/**
+ * Result returned by upgrade cost hooks.
+ */
+export interface UpgradeCosts {
+  clickPowerCost: bigint
+  autoClickerCost: bigint
+  multiplierCost: bigint
+}
+
+/**
+ * Generic async operation state for UI loading indicators.
+ */
+export type AsyncStatus = 'idle' | 'loading' | 'success' | 'error'
