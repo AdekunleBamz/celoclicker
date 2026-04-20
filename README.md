@@ -130,7 +130,7 @@ npm start
    - Your FID
    - Proper account association
    - Webhook URL
-   - Real production values instead of the placeholder example strings committed in this repo
+   - Replace placeholder example strings with your real production values
 
 ## How to Play
 
