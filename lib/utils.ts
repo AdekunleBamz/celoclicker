@@ -37,7 +37,7 @@ export function formatNumber(num: bigint | number): string {
 export function formatAddress(address: string): string {
   const normalizedAddress = typeof address === 'string' ? address.trim() : ''
   if (!normalizedAddress) return ''
-  if (normalizedAddress.length < 10) return normalizedAddress
+  if (normalizedAddress.length <= 10) return normalizedAddress
   return `${normalizedAddress.slice(0, 6)}...${normalizedAddress.slice(-4)}`
 }
 

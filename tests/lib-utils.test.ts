@@ -32,6 +32,10 @@ describe('lib/utils formatAddress', () => {
     expect(formatAddress('0x1234')).toBe('0x1234')
   })
 
+  it('keeps 10-character addresses unchanged', () => {
+    expect(formatAddress('0x12345678')).toBe('0x12345678')
+  })
+
   it('truncates long addresses for display', () => {
     expect(formatAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe('0x1234...5678')
   })
