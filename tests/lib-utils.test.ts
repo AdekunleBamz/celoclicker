@@ -21,6 +21,10 @@ describe('lib/utils formatNumber', () => {
   it('returns zero for non-finite values', () => {
     expect(formatNumber(Number.POSITIVE_INFINITY)).toBe('0')
   })
+
+  it('uses locale grouping for non-abbreviated values', () => {
+    expect(formatNumber(999.5)).toBe('999.5')
+  })
 })
 
 describe('lib/utils formatAddress', () => {
