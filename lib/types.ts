@@ -76,3 +76,15 @@ export interface TransactionResult {
   status: 'pending' | 'confirmed' | 'failed'
   blockNumber?: bigint
 }
+
+/**
+ * Props shared by all game action buttons (click, upgrade, collect).
+ */
+export interface GameActionButtonProps {
+  /** Whether the action is currently executing on-chain. */
+  isLoading: boolean
+  /** Whether the action button should be disabled. */
+  disabled?: boolean
+  /** Click handler for the action. */
+  onClick: () => void
+}
