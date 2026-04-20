@@ -65,3 +65,28 @@ export const COLORS = {
  * Maximum number of entries shown in the leaderboard.
  */
 export const MAX_LEADERBOARD_SIZE = 100
+
+/**
+ * Minimum upgrade level. Upgrades start at 0 before any purchase.
+ */
+export const MIN_UPGRADE_LEVEL = 0n
+
+/**
+ * Maximum upgrade level allowed for any single upgrade type.
+ */
+export const MAX_UPGRADE_LEVEL = 100n
+
+/**
+ * Default number of decimal places used when displaying CELO token amounts.
+ */
+export const CELO_DISPLAY_DECIMALS = 4
+
+/**
+ * Base URL for the Celo block explorer (mainnet).
+ */
+export const CELO_EXPLORER_URL = 'https://explorer.celo.org/mainnet'
+
+/**
+ * Base URL for the Alfajores testnet block explorer.
+ */
+export const CELO_TESTNET_EXPLORER_URL = 'https://explorer.celo.org/alfajores'
