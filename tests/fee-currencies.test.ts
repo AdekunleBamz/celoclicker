@@ -31,6 +31,11 @@ describe('lib/feeCurrencies getFeeCurrencies', () => {
     })
     expect(usdcCurrency?.feeCurrency).toBeUndefined()
   })
+
+  it('keeps USDC unavailable when chain id is missing', () => {
+    const usdcCurrency = getFeeCurrencies().find((currency) => currency.id === 'USDC')
+    expect(usdcCurrency?.isAvailable).toBe(false)
+  })
 })
 
 describe('lib/feeCurrencies getDefaultFeeCurrencyId', () => {
