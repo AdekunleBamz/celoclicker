@@ -39,6 +39,8 @@ export function usePlayerStats(address: Address | undefined) {
     hasPoints: points > 0n,
     /** Shorthand for checking whether an auto-clicker upgrade has been purchased. */
     hasAutoClicker: autoClickerLevel > 0n,
+    /** Sum of autoClickerLevel and multiplierLevel. */
+    totalUpgradeLevel: autoClickerLevel + multiplierLevel,
     refetch,
     error,
     isLoading,
