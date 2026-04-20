@@ -68,17 +68,15 @@ export function getAvailableFeeCurrencies(chainId?: number): FeeCurrencyConfig[]
 }
 
 /**
- * Returns the fee currency configuration for the given id, or undefined if not found.
+ * Returns a human-readable label for the given fee currency id.
+ * Falls back to the id itself when no matching config is found.
  *
- * @param id - The fee currency identifier to look up.
- * @param chainId - Optional chain ID used to determine availability.
+ * @param id - The fee currency identifier.
+ * @param chainId - Optional chain ID used to resolve availability.
  */
-export function getFeeCurrencyById(id: FeeCurrencyId, chainId?: number): FeeCurrencyConfig | undefined {
-  return getFeeCurrencies(chainId).find(c => c.id === id)
+export function getFeeCurrencyLabel(id: FeeCurrencyId, chainId?: number): string {
+  return getFeeCurrencyById(id, chainId)?.label ?? id
 }
-
-/**
- * Get the default fee currency ID based on environment
  * @param isMiniPay - Whether the app is running inside MiniPay
  * @param chainId - Optional chain ID to determine availability
  * @returns The default fee currency ID
@@ -111,4 +109,15 @@ export function getFeeCurrencyById(id: FeeCurrencyId, chainId?: number) {
  */
 export function isFeeCurrencyAvailable(id: FeeCurrencyId, chainId?: number): boolean {
   return getFeeCurrencyById(id, chainId)?.isAvailable ?? false
+}
+
+/**
+ * Returns the fee address (for Celo fee abstraction) of the given fee currency, or undefined
+ * when the currency does not support fee abstraction on the current chain.
+ *
+ * @param id - The fee currency identifier.
+ * @param chainId - Optional chain ID used to determine availability.
+ */
+export function getFeeCurrencyAddress(id: FeeCurrencyId, chainId?: number): `0x${string}` | undefined {
+  return getFeeCurrencyById(id, chainId)?.feeCurrency
 }
