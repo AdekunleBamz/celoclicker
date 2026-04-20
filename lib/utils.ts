@@ -123,3 +123,14 @@ export function formatElapsedTime(seconds: number): string {
   if (m > 0) return `${m}m ${s}s`
   return `${s}s`
 }
+
+/**
+ * Safely parses a string to an integer, returning a fallback value on failure.
+ *
+ * @param value - The string to parse.
+ * @param fallback - Value returned when parsing fails. Defaults to 0.
+ */
+export function safeParseInt(value: string, fallback = 0): number {
+  const parsed = parseInt(value, 10)
+  return Number.isFinite(parsed) ? parsed : fallback
+}
