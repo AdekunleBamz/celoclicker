@@ -7,6 +7,11 @@ describe('hooks/useMiniPay isMiniPayBrowser', () => {
     expect(isMiniPayBrowser()).toBe(false)
   })
 
+  it('returns false when provider is present without MiniPay flag', () => {
+    vi.stubGlobal('window', { ethereum: {} })
+    expect(isMiniPayBrowser()).toBe(false)
+  })
+
   it('returns true when ethereum provider exposes isMiniPay', () => {
     vi.stubGlobal('window', { ethereum: { isMiniPay: true } })
     expect(isMiniPayBrowser()).toBe(true)
