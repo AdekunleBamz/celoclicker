@@ -8,7 +8,7 @@ If you haven't deployed the contract yet:
 2. Create a new file `CeloClicker.sol`
 3. Copy the contract code from `CeloClicker.sol` in this repo
 4. Compile with Solidity 0.8.20
-5. Deploy to Celo Mainnet (Chain ID: 42220) or Alfajores Testnet
+5. Deploy to Celo Mainnet (Chain ID 42220) or Alfajores Testnet (Chain ID 44787)
 6. **Copy the deployed contract address**
 
 ## Step 2: Update Environment Variables
