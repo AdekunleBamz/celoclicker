@@ -3,7 +3,12 @@
 import { useContractConfig } from '@/hooks/useContractConfig'
 import { CONTRACT_ADDRESS_ENV_KEY } from '@/lib/constants'
 
-export const ContractWarning = () => {
+interface ContractWarningProps {
+  /** Optional message override shown in place of the default text. */
+  message?: string
+}
+
+export const ContractWarning = ({ message }: ContractWarningProps = {}) => {
   const { isValid } = useContractConfig()
   
   if (isValid) return null
@@ -15,7 +20,7 @@ export const ContractWarning = () => {
         <div>
           <div className="font-bold text-yellow-400">Contract Not Configured</div>
           <div className="text-sm text-yellow-300">
-            Please set a valid {CONTRACT_ADDRESS_ENV_KEY} value in your environment variables
+            {message ?? `Please set a valid ${CONTRACT_ADDRESS_ENV_KEY} value in your environment variables`}
           </div>
         </div>
       </div>
