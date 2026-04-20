@@ -36,4 +36,13 @@ describe('hooks/useMiniPay getInjectedConnector', () => {
 
     expect(connector).toMatchObject({ id: 'injected' })
   })
+
+  it('returns undefined when no injected connector is available', () => {
+    const connector = getInjectedConnector([
+      { id: 'walletconnect', type: 'walletConnect' },
+      { id: 'coinbase', type: 'coinbaseWallet' },
+    ] as never)
+
+    expect(connector).toBeUndefined()
+  })
 })
