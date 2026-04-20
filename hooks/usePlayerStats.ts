@@ -33,6 +33,12 @@ export function usePlayerStats(address: Address | undefined) {
     multiplierLevel,
     totalClicks,
     gamesPlayed,
+    /** True when the player has not played any games yet. */
+    isNewPlayer: gamesPlayed === 0n,
+    /** True when points data is available and the player has at least some points. */
+    hasPoints: points > 0n,
+    /** Shorthand for checking whether an auto-clicker upgrade has been purchased. */
+    hasAutoClicker: autoClickerLevel > 0n,
     refetch,
     error,
     isLoading,
