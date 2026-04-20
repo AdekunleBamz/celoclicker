@@ -10,6 +10,10 @@ describe('lib/utils formatNumber', () => {
     expect(formatNumber(2_450_000_000)).toBe('2.45B')
   })
 
+  it('preserves sign when abbreviating negative numbers', () => {
+    expect(formatNumber(-2500)).toBe('-2.50K')
+  })
+
   it('handles bigint values in the millions', () => {
     expect(formatNumber(2500000n)).toBe('2.50M')
   })
