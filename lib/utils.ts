@@ -84,3 +84,42 @@ export function isZeroAddress(address: string): boolean {
   if (!address) return false
   return address.trim().toLowerCase() === ZERO_ADDRESS
 }
+
+/**
+ * Returns true when two Ethereum addresses are equal, ignoring case.
+ *
+ * @param a - First address string.
+ * @param b - Second address string.
+ */
+export function isSameAddress(a: string, b: string): boolean {
+  if (!a || !b) return false
+  return a.trim().toLowerCase() === b.trim().toLowerCase()
+}
+
+/**
+ * Clamps a bigint value between min and max (inclusive).
+ *
+ * @param value - The value to clamp.
+ * @param min - Minimum allowed value.
+ * @param max - Maximum allowed value.
+ */
+export function clampBigInt(value: bigint, min: bigint, max: bigint): bigint {
+  if (value < min) return min
+  if (value > max) return max
+  return value
+}
+
+/**
+ * Returns a human-readable elapsed time string (e.g. "2h 5m") from a number of seconds.
+ *
+ * @param seconds - Elapsed time in seconds.
+ */
+export function formatElapsedTime(seconds: number): string {
+  if (!Number.isFinite(seconds) || seconds < 0) return '0s'
+  const h = Math.floor(seconds / 3600)
+  const m = Math.floor((seconds % 3600) / 60)
+  const s = Math.floor(seconds % 60)
+  if (h > 0) return `${h}h ${m}m`
+  if (m > 0) return `${m}m ${s}s`
+  return `${s}s`
+}
