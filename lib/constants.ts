@@ -115,3 +115,13 @@ export const DEFAULT_ANIMATION_EASING = 'cubic-bezier(0.4, 0, 0.2, 1)'
  * Requests returning more than this value will be truncated client-side.
  */
 export const MAX_RENDERED_LEADERBOARD_ENTRIES = 50
+
+/**
+ * Number of milliseconds a "success" toast or notification should be visible.
+ */
+export const SUCCESS_TOAST_DURATION_MS = 3000
+
+/**
+ * Number of milliseconds an "error" toast or notification should be visible.
+ */
+export const ERROR_TOAST_DURATION_MS = 5000
