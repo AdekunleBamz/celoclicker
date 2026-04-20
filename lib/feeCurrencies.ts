@@ -59,6 +59,25 @@ export function getFeeCurrencies(chainId?: number): FeeCurrencyConfig[] {
 }
 
 /**
+ * Returns only the fee currencies that are available on the provided chain.
+ *
+ * @param chainId - The chain ID to filter against.
+ */
+export function getAvailableFeeCurrencies(chainId?: number): FeeCurrencyConfig[] {
+  return getFeeCurrencies(chainId).filter(c => c.isAvailable)
+}
+
+/**
+ * Returns the fee currency configuration for the given id, or undefined if not found.
+ *
+ * @param id - The fee currency identifier to look up.
+ * @param chainId - Optional chain ID used to determine availability.
+ */
+export function getFeeCurrencyById(id: FeeCurrencyId, chainId?: number): FeeCurrencyConfig | undefined {
+  return getFeeCurrencies(chainId).find(c => c.id === id)
+}
+
+/**
  * Get the default fee currency ID based on environment
  * @param isMiniPay - Whether the app is running inside MiniPay
  * @param chainId - Optional chain ID to determine availability
