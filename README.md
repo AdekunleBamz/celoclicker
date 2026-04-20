@@ -54,19 +54,9 @@ Addictive on-chain idle clicker game on Celo. Click, upgrade, and dominate the l
 2. Create a new file `CeloClicker.sol`
 3. Copy the contract code from `CeloClicker.sol`
 4. Compile with Solidity 0.8.20
-5. Deploy to Celo (Mainnet or Alfajores):
-
-   **Celo Mainnet:**
-   - Network: Celo Mainnet
-   - Chain ID: 42220
-   - RPC: `https://forno.celo.org`
-
-   **Celo Alfajores (Testnet):**
-   - Network: Alfajores Testnet
-   - Chain ID: 44787
-   - RPC: `https://alfajores-forno.celo-testnet.org`
-   - Faucet: [Celo Faucet](https://faucet.celo.org/alfajores)
-
+5. Deploy to Celo Mainnet or Alfajores:
+   - Mainnet: Chain ID 42220, RPC https://forno.celo.org
+   - Alfajores: Chain ID 44787
 6. **Save the deployed contract address!**
 
 The contract is ready to use immediately after deployment - no initialization needed!
@@ -87,7 +77,12 @@ NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
 
 # Update with your domain
 NEXT_PUBLIC_APP_URL=https://your-domain.com
+
+# Use 42220 for mainnet or 44787 for Alfajores
+NEXT_PUBLIC_CHAIN_ID=42220
 ```
+
+Use a lowercase `0x` prefix for `NEXT_PUBLIC_CELOCLICKER_CONTRACT` to satisfy strict address validation.
 
 MiniPay works best with an injected wallet flow on mobile. This app now auto-detects MiniPay and prefers the in-app wallet when available, while still keeping the generic wallet modal as a fallback outside MiniPay.
 
@@ -100,7 +95,7 @@ The app also supports Celo fee abstraction:
 
 ```bash
 # Install dependencies
-npm install
+npm ci
 
 # Run development server
 npm run dev
@@ -108,8 +103,17 @@ npm run dev
 # Build for production
 npm run build
 
+# Run full test suite
+npm run test
+
+# Run focused utility + validation tests
+npm run test:utils
+
+# Run fast local verification (lint + focused tests)
+npm run check:fast
+
 # Start production server
-npm run start
+npm start
 ```
 
 ### Step 4: Deploy to Vercel
@@ -126,6 +130,7 @@ npm run start
    - Your FID
    - Proper account association
    - Webhook URL
+   - Replace placeholder example strings with your real production values
 
 ## How to Play
 
@@ -191,7 +196,7 @@ Play CeloClicker inside MiniPay for the smoothest flow:
 
 This app uses **Celo fee abstraction** for contract writes:
 - Leaving `feeCurrency` unset uses **CELO**
-- Setting `feeCurrency` to the official Celo **USDC adapter** uses **USDCm/USDC** for gas
+- Setting `feeCurrency` to the official Celo **USDC adapter** uses **USDCm** for gas
 - Gameplay still uses in-app points, so the token switch only affects transaction fees
 
 ## Technical Details
@@ -211,29 +216,21 @@ This app uses **Celo fee abstraction** for contract writes:
 ## Troubleshooting
 
 **"Insufficient points" error**
-- You need more points to buy that upgrade.
-- Keep clicking the star to earn more!
+- You need more points to buy that upgrade
+- Keep clicking to earn more!
 
 **Auto-clicker not generating points**
-- Points are generated every 5 minutes (300 seconds).
-- You must have at least Level 1 Auto-Clicker.
-- Check the "Claim Auto Points" button appears in the Stats column.
+- Wait at least 5 minutes between claims
+- Check "Claim Auto Points" button appears
 
-**Transaction failing / Gas issues**
-- **Celo Mainnet:** Ensure you have CELO for gas fees.
-- **Alfajores:** Get testnet CELO from the [Faucet](https://faucet.celo.org/alfajores).
-- **MiniPay:** If using USDCm mode, ensure you have some USDC on Celo.
-- Try switching between CELO and USDCm in the "Fee Mode" settings.
+**Transaction failing**
+- Ensure you have enough balance in the currently selected gas mode (CELO or USDCm)
+- Check you're connected to the same Celo network configured for the app
+- Try increasing gas limit slightly
 
-**MiniPay connection issues**
-- Ensure you are opening the app *inside* the MiniPay browser.
-- If the "Connect MiniPay" button doesn't respond, try refreshing the page.
-- Clear browser cache if the wallet detection seems stuck.
-
-**Wrong Network**
-- This app tracks Celo (42220) and Alfajores (44787).
-- If your wallet is on a different network, the app will show a warning or fail to read stats.
-- Switch your wallet to Celo or Alfajores to continue.
+**WalletConnect setup not working**
+- Confirm `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID` is not a placeholder value
+- Use a project id that is at least 8 characters long
 
 ## Support
 
@@ -243,7 +240,7 @@ This app uses **Celo fee abstraction** for contract writes:
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+MIT License - Built for Celo Ecosystem
 
 ---
 
