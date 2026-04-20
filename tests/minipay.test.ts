@@ -2,6 +2,18 @@ import { describe, expect, it, vi } from 'vitest'
 import { getInjectedConnector, isMiniPayBrowser } from '../hooks/useMiniPay'
 
 describe('hooks/useMiniPay isMiniPayBrowser', () => {
+  it('returns false when window is undefined', () => {
+    const hadWindow = 'window' in globalThis
+    const originalWindow = (globalThis as { window?: unknown }).window
+
+    delete (globalThis as { window?: unknown }).window
+    expect(isMiniPayBrowser()).toBe(false)
+
+    if (hadWindow) {
+      ;(globalThis as { window?: unknown }).window = originalWindow
+    }
+  })
+
   it('returns false when window.ethereum is unavailable', () => {
     vi.stubGlobal('window', {})
     expect(isMiniPayBrowser()).toBe(false)
