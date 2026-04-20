@@ -90,3 +90,17 @@ export const CELO_EXPLORER_URL = 'https://explorer.celo.org/mainnet'
  * Base URL for the Alfajores testnet block explorer.
  */
 export const CELO_TESTNET_EXPLORER_URL = 'https://explorer.celo.org/alfajores'
+
+/**
+ * Array of chain IDs that the app officially supports.
+ */
+export const SUPPORTED_CHAIN_IDS: readonly number[] = [
+  CELO_MAINNET_CHAIN_ID,
+  CELO_TESTNET_CHAIN_ID,
+] as const
+
+/**
+ * Application version sourced from the environment at build time.
+ * Falls back to '0.0.0' when the variable is not set.
+ */
+export const APP_VERSION = process.env.NEXT_PUBLIC_APP_VERSION ?? '0.0.0'
