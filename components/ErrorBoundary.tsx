@@ -6,6 +6,8 @@ interface Props {
   children: ReactNode
   /** Optional callback invoked when an error is caught by the boundary. */
   onError?: (error: Error, componentStack: string | undefined) => void
+  /** Optional label for the reload button. Defaults to 'Reload Page'. */
+  reloadLabel?: string
 }
 
 interface State {
@@ -60,7 +62,7 @@ export class ErrorBoundary extends Component<Props, State> {
               type="button"
               className="px-6 py-3 bg-purple-500 hover:bg-purple-600 rounded-lg font-bold transition-colors"
             >
-              Reload Page
+              {this.props.reloadLabel ?? 'Reload Page'}
             </button>
           </div>
         </div>
