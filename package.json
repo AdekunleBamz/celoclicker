@@ -2,7 +2,7 @@
   "name": "celoclicker",
   "version": "1.0.0",
   "private": true,
-  "bugs": {"url": "https://github.com/AdekunleBamz/celoclicker/issues"},
+  "engines": {"node": ">=18.0.0"},
   "scripts": {
     "dev": "next dev",
     "build": "next build",
