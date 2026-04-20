@@ -47,6 +47,14 @@ describe('lib/feeCurrencies getFeeCurrencyById', () => {
       symbol: 'CELO',
     })
   })
+
+  it('returns USDC without fee addresses off mainnet', () => {
+    expect(getFeeCurrencyById('USDC', 44787)).toMatchObject({
+      id: 'USDC',
+      isAvailable: false,
+      feeCurrency: undefined,
+    })
+  })
 })
 
 describe('lib/feeCurrencies isFeeCurrencyAvailable', () => {
