@@ -51,6 +51,16 @@ describe('lib/validation validateEnvironment', () => {
     })
   })
 
+  it('accepts valid wallet connect ids with surrounding whitespace', () => {
+    process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT = '0x1234567890123456789012345678901234567890'
+    process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID = '  abcdef1234567890  '
+
+    expect(validateEnvironment()).toEqual({
+      isValid: true,
+      errors: [],
+    })
+  })
+
   it('reports a missing contract address', () => {
     delete process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT
     process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID = 'wallet-connect-id'
