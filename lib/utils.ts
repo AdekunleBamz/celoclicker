@@ -152,3 +152,15 @@ export function celoToWei(celo: number): bigint {
 export function weiToCelo(wei: bigint): number {
   return Number(wei) / 1e18
 }
+
+/**
+ * Pads a string to the given length with a pad character on the left.
+ * Safe for use with numbers that need consistent string widths in the UI.
+ *
+ * @param value - The value to pad (coerced to string).
+ * @param length - The target string length.
+ * @param padChar - Character to pad with. Defaults to '0'.
+ */
+export function padStart(value: string | number, length: number, padChar = '0'): string {
+  return String(value).padStart(length, padChar)
+}
