@@ -104,3 +104,14 @@ export const SUPPORTED_CHAIN_IDS: readonly number[] = [
  * Falls back to '0.0.0' when the variable is not set.
  */
 export const APP_VERSION = process.env.NEXT_PUBLIC_APP_VERSION ?? '0.0.0'
+
+/**
+ * Default easing function used for CSS animations throughout the application.
+ */
+export const DEFAULT_ANIMATION_EASING = 'cubic-bezier(0.4, 0, 0.2, 1)'
+
+/**
+ * Maximum number of leaderboard entries the UI will attempt to render.
+ * Requests returning more than this value will be truncated client-side.
+ */
+export const MAX_RENDERED_LEADERBOARD_ENTRIES = 50
