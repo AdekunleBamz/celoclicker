@@ -164,3 +164,16 @@ export function weiToCelo(wei: bigint): number {
 export function padStart(value: string | number, length: number, padChar = '0'): string {
   return String(value).padStart(length, padChar)
 }
+
+/**
+ * Returns a truncated version of a string with an ellipsis in the middle.
+ * Useful for long hashes or addresses that don't fit in the UI.
+ *
+ * @param value - The string to truncate.
+ * @param startChars - Number of characters to keep at the start. Defaults to 8.
+ * @param endChars - Number of characters to keep at the end. Defaults to 6.
+ */
+export function truncateMiddle(value: string, startChars = 8, endChars = 6): string {
+  if (value.length <= startChars + endChars + 3) return value
+  return `${value.slice(0, startChars)}...${value.slice(-endChars)}`
+}
