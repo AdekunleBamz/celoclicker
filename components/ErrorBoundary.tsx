@@ -4,6 +4,8 @@ import { Component, ReactNode } from 'react'
 
 interface Props {
   children: ReactNode
+  /** Optional callback invoked when an error is caught by the boundary. */
+  onError?: (error: Error, componentStack: string | undefined) => void
 }
 
 interface State {
@@ -26,6 +28,7 @@ export class ErrorBoundary extends Component<Props, State> {
     console.error('Error caught by boundary:', error, errorInfo)
     const componentStack = (errorInfo as { componentStack?: string })?.componentStack
     this.setState({ errorInfo: componentStack })
+    this.props.onError?.(error, componentStack)
   }
 
   render() {
