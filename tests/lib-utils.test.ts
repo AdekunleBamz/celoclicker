@@ -6,6 +6,10 @@ describe('lib/utils formatNumber', () => {
     expect(formatNumber(1500)).toBe('1.50K')
   })
 
+  it('abbreviates billion-scale values with a B suffix', () => {
+    expect(formatNumber(2_450_000_000)).toBe('2.45B')
+  })
+
   it('handles bigint values in the millions', () => {
     expect(formatNumber(2500000n)).toBe('2.50M')
   })
