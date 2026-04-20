@@ -43,3 +43,27 @@ export interface UpgradeCosts {
  * Generic async operation state for UI loading indicators.
  */
 export type AsyncStatus = 'idle' | 'loading' | 'success' | 'error'
+
+/**
+ * A range of bigint values with an inclusive min and max.
+ */
+export interface BigIntRange {
+  min: bigint
+  max: bigint
+}
+
+/**
+ * Represents an upgrade available for purchase by the player.
+ */
+export interface UpgradeOption {
+  /** Unique key identifying the upgrade type. */
+  key: 'clickPower' | 'autoClicker' | 'multiplier'
+  /** Human-readable display name for the upgrade. */
+  name: string
+  /** Current level of the upgrade owned by the player. */
+  currentLevel: bigint
+  /** Cost in points to purchase the next level. */
+  cost: bigint
+  /** Tailwind text color class used for this upgrade's accent color. */
+  color: string
+}
