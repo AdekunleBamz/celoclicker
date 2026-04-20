@@ -125,4 +125,8 @@ describe('lib/utils isValidAddress', () => {
   it('rejects addresses with invalid length', () => {
     expect(isValidAddress('0x1234')).toBe(false)
   })
+
+  it('rejects addresses containing non-hex characters', () => {
+    expect(isValidAddress('0x123456789012345678901234567890123456789Z')).toBe(false)
+  })
 })
