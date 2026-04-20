@@ -77,3 +77,13 @@ export function isValidUpgradeLevel(level: bigint): boolean {
 export function isValidPoints(points: bigint): boolean {
   return points >= 0n
 }
+
+/**
+ * Returns true when the given chain ID is one of the officially supported Celo chains.
+ *
+ * @param chainId - The numeric chain ID to check.
+ */
+export function isValidChainId(chainId: number): boolean {
+  // Inline check to avoid circular imports with constants
+  return chainId === 42220 || chainId === 44787
+}
