@@ -66,6 +66,10 @@ describe('lib/utils formatTokenAmount', () => {
     expect(formatTokenAmount('12.34567', 'CELO')).toBe('12.346 CELO')
   })
 
+  it('trims whitespace around token amount strings', () => {
+    expect(formatTokenAmount('  2.5  ', 'CELO')).toBe('2.5 CELO')
+  })
+
   it('keeps four decimals for small token balances', () => {
     expect(formatTokenAmount('0.123456', 'CELO')).toBe('0.1235 CELO')
   })
