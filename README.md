@@ -109,7 +109,7 @@ npm run dev
 npm run build
 
 # Start production server
-npm start
+npm run start
 ```
 
 ### Step 4: Deploy to Vercel
