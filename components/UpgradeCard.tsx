@@ -9,6 +9,8 @@ interface UpgradeCardProps {
   isLoading?: boolean
   /** Optional label shown on the upgrade button instead of 'UPGRADE'. */
   upgradeLabel?: string
+  /** Optional callback invoked when the user cannot afford the upgrade and clicks. */
+  onInsufficientFunds?: () => void
 }
 
 export const UpgradeCard = ({
@@ -21,8 +23,17 @@ export const UpgradeCard = ({
   disabled = false,
   isLoading = false,
   upgradeLabel = 'UPGRADE',
+  onInsufficientFunds,
 }: UpgradeCardProps) => {
   const canAfford = points >= cost && !disabled && !isLoading
+
+  const handleClick = () => {
+    if (canAfford) {
+      onUpgrade()
+    } else if (onInsufficientFunds) {
+      onInsufficientFunds()
+    }
+  }
 
   return (
     <div className="bg-black/30 rounded-lg p-4">
@@ -37,8 +48,8 @@ export const UpgradeCard = ({
         </div>
       </div>
       <button
-        onClick={onUpgrade}
-        disabled={!canAfford}
+        onClick={handleClick}
+        disabled={isLoading}
         type="button"
         aria-label={`Upgrade ${title}`}
         className={`w-full py-2 rounded-lg font-bold transition-colors cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed text-sm relative z-10 ${
