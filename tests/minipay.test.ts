@@ -27,4 +27,13 @@ describe('hooks/useMiniPay getInjectedConnector', () => {
 
     expect(connector).toMatchObject({ id: 'injected' })
   })
+
+  it('matches connectors by id when type is not injected', () => {
+    const connector = getInjectedConnector([
+      { id: 'walletconnect', type: 'walletConnect' },
+      { id: 'injected', type: 'metaMask' },
+    ] as never)
+
+    expect(connector).toMatchObject({ id: 'injected' })
+  })
 })
