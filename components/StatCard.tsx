@@ -5,11 +5,13 @@ interface StatCardProps {
   icon?: string
   /** Optional secondary description shown below the main value. */
   description?: string
+  /** Optional CSS class names added to the root element. */
+  className?: string
 }
 
-export const StatCard = ({ label, value, valueColor = 'text-purple-400', icon, description }: StatCardProps) => {
+export const StatCard = ({ label, value, valueColor = 'text-purple-400', icon, description, className = '' }: StatCardProps) => {
   return (
-    <div className="bg-black/30 rounded-lg p-3">
+    <div className={`bg-black/30 rounded-lg p-3 ${className}`.trimEnd()}>
       <div className="text-gray-400 text-xs mb-1">{label}</div>
       <div className="flex items-center gap-2">
         {icon && <span aria-hidden="true" className="text-lg">{icon}</span>}
