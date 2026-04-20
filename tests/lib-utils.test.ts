@@ -50,6 +50,10 @@ describe('lib/utils formatTokenAmount', () => {
     expect(formatTokenAmount(undefined, 'CELO')).toBe('0 CELO')
   })
 
+  it('returns zero without trailing space when symbol is missing', () => {
+    expect(formatTokenAmount(undefined)).toBe('0')
+  })
+
   it('falls back to zero for invalid numeric input', () => {
     expect(formatTokenAmount('not-a-number', 'CELO')).toBe('0 CELO')
   })
