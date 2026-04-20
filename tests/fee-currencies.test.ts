@@ -46,6 +46,10 @@ describe('lib/feeCurrencies getDefaultFeeCurrencyId', () => {
   it('falls back to CELO inside MiniPay off mainnet', () => {
     expect(getDefaultFeeCurrencyId(true, 44787)).toBe('CELO')
   })
+
+  it('defaults to CELO for non-MiniPay sessions', () => {
+    expect(getDefaultFeeCurrencyId(false, CELO_MAINNET_CHAIN_ID)).toBe('CELO')
+  })
 })
 
 describe('lib/feeCurrencies getFeeCurrencyById', () => {
