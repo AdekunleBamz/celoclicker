@@ -236,7 +236,7 @@ This app uses **Celo fee abstraction** for contract writes:
 
 - GitHub: [@AdekunleBamz](https://github.com/AdekunleBamz)
 - Farcaster: [@Bamzzz](https://warpcast.com/bamzzz)
-- Twitter: [@hrh_mckay](https://twitter.com/hrh_mckay)
+- Twitter: [@hrh_mckay](https://x.com/hrh_mckay)
 
 ## License
 
