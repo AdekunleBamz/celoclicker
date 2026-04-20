@@ -8,6 +8,10 @@ import {
 import { CELO_MAINNET_CHAIN_ID } from '../lib/constants'
 
 describe('lib/feeCurrencies getFeeCurrencies', () => {
+  it('always returns both CELO and USDC options', () => {
+    expect(getFeeCurrencies(CELO_MAINNET_CHAIN_ID)).toHaveLength(2)
+  })
+
   it('exposes USDC gas payments on Celo mainnet', () => {
     const usdcCurrency = getFeeCurrencies(CELO_MAINNET_CHAIN_ID).find((currency) => currency.id === 'USDC')
 
