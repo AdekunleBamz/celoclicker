@@ -113,7 +113,7 @@ npm run test:utils
 npm run check:fast
 
 # Start production server
-npm start
+npm run start
 ```
 
 ### Step 4: Deploy to Vercel
