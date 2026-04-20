@@ -78,4 +78,8 @@ describe('lib/feeCurrencies isFeeCurrencyAvailable', () => {
   it('returns true for USDC on Celo mainnet', () => {
     expect(isFeeCurrencyAvailable('USDC', CELO_MAINNET_CHAIN_ID)).toBe(true)
   })
+
+  it('returns true for CELO across supported chains', () => {
+    expect(isFeeCurrencyAvailable('CELO', 44787)).toBe(true)
+  })
 })
