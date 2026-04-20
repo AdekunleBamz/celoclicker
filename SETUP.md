@@ -71,6 +71,10 @@ Run `npm run test:utils` to confirm local validation and formatting helpers are 
   - Confirm the wallet is on the same Celo network as the contract
   - Refresh once after opening the app in MiniPay
 
+- **WalletConnect project id rejected?**
+  - Replace placeholder values like `your_project_id`
+  - Use a non-placeholder id with at least 8 characters
+
 - **USDCm mode is disabled?**
   - The current implementation enables USDCm gas mode on Celo mainnet
   - If you're on a non-mainnet network, the app falls back to CELO-only fee payments
