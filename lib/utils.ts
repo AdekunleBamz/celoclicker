@@ -59,8 +59,9 @@ export function formatTokenAmount(value?: string, symbol?: string): string {
     return `0 ${symbol ?? ''}`.trim()
   }
 
-  const decimals = numericValue >= 100 ? 2 : numericValue >= 1 ? 3 : 4
-  const formattedValue = numericValue.toFixed(decimals).replace(/\.?0+$/, '')
+  const safeNumericValue = Math.max(0, numericValue)
+  const decimals = safeNumericValue >= 100 ? 2 : safeNumericValue >= 1 ? 3 : 4
+  const formattedValue = safeNumericValue.toFixed(decimals).replace(/\.?0+$/, '')
 
   return `${formattedValue} ${symbol ?? ''}`.trim()
 }

@@ -62,6 +62,10 @@ describe('lib/utils formatTokenAmount', () => {
     expect(formatTokenAmount('not-a-number', 'CELO')).toBe('0 CELO')
   })
 
+  it('clamps negative token amounts to zero', () => {
+    expect(formatTokenAmount('-5', 'CELO')).toBe('0 CELO')
+  })
+
   it('keeps two decimals for large token balances', () => {
     expect(formatTokenAmount('123.4567', 'USDC')).toBe('123.46 USDC')
   })
