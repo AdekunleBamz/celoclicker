@@ -240,7 +240,7 @@ This app uses **Celo fee abstraction** for contract writes:
 
 ## License
 
-MIT License - Built for Celo Ecosystem
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
