@@ -87,3 +87,14 @@ export function isValidChainId(chainId: number): boolean {
   // Inline check to avoid circular imports with constants
   return chainId === 42220 || chainId === 44787
 }
+
+/**
+ * Returns true when the provided address looks like an ERC-20 token placeholder
+ * (all zeros except the last character).  Placeholder addresses are NOT zero addresses
+ * and should not be trusted as real contract addresses.
+ *
+ * @param address - The address string to check.
+ */
+export function isPlaceholderAddress(address: string): boolean {
+  return /^0x0{38}[1-9a-f]$/i.test(address.trim())
+}
