@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { celoClickerABI } from '@/lib/abis'
 import { isValidAddress, isZeroAddress, ZERO_ADDRESS } from '@/lib/utils'
+import { CELO_MAINNET_CHAIN_ID } from '@/lib/constants'
 
 /**
  * Hook to get contract configuration including address, ABI, and validity status
@@ -13,9 +14,13 @@ export function useContractConfig() {
     return isValidAddress(contractAddress) && !isZeroAddress(contractAddress)
   }, [contractAddress])
 
+  /** Expected chain ID for the deployed contract. */
+  const expectedChainId = CELO_MAINNET_CHAIN_ID
+
   return {
     address: contractAddress as `0x${string}`,
     abi: celoClickerABI,
     isValid,
+    expectedChainId,
   }
 }
