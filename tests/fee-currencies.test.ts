@@ -68,6 +68,14 @@ describe('lib/feeCurrencies getFeeCurrencyById', () => {
       feeCurrency: undefined,
     })
   })
+
+  it('returns USDC fee addresses on Celo mainnet', () => {
+    expect(getFeeCurrencyById('USDC', CELO_MAINNET_CHAIN_ID)).toMatchObject({
+      id: 'USDC',
+      isAvailable: true,
+      feeCurrency: expect.stringMatching(/^0x[a-fA-F0-9]{40}$/),
+    })
+  })
 })
 
 describe('lib/feeCurrencies isFeeCurrencyAvailable', () => {
