@@ -13,7 +13,11 @@ If you haven't deployed the contract yet:
 
 ## Step 2: Update Environment Variables
 
-1. Create `.env.local` from `.env.example` if it does not exist
+```bash
+cp .env.example .env.local
+```
+
+1. Open `.env.local` file
 2. Replace `0x...` with your actual contract address:
 
 ```env
@@ -23,7 +27,7 @@ NEXT_PUBLIC_APP_URL=https://your-domain.com
 NEXT_PUBLIC_CHAIN_ID=42220
 ```
 
-**Important:**
+**Important:** 
 - The contract address must be exactly 42 characters (0x + 40 hex characters)
 - Example: `0x1234567890123456789012345678901234567890`
 - Do not commit `.env.local` or expose real WalletConnect project IDs in logs/screenshots
@@ -55,7 +59,7 @@ Run `npm run test:utils` to confirm local validation and formatting helpers are 
 
 ## Troubleshooting
 
-- **Still seeing warning?**
+- **Still seeing warning?** 
   - Make sure the address is exactly 42 characters
   - Make sure there are no extra spaces in `.env.local`
   - Restart the dev server
