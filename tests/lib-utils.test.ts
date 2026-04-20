@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatAddress, formatNumber, formatTokenAmount, isZeroAddress } from '../lib/utils'
+import { formatAddress, formatNumber, formatTokenAmount, isValidAddress, isZeroAddress } from '../lib/utils'
 
 describe('lib/utils formatNumber', () => {
   it('abbreviates thousands with a K suffix', () => {
@@ -82,5 +82,11 @@ describe('lib/utils formatTokenAmount', () => {
 describe('lib/utils isZeroAddress', () => {
   it('matches zero address values with surrounding whitespace', () => {
     expect(isZeroAddress('  0x0000000000000000000000000000000000000000  ')).toBe(true)
+  })
+})
+
+describe('lib/utils isValidAddress', () => {
+  it('accepts valid lowercase hexadecimal addresses', () => {
+    expect(isValidAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe(true)
   })
 })
