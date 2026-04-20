@@ -98,3 +98,14 @@ export function isValidChainId(chainId: number): boolean {
 export function isPlaceholderAddress(address: string): boolean {
   return /^0x0{38}[1-9a-f]$/i.test(address.trim())
 }
+
+/**
+ * Returns true when the provided bigint value is within the given inclusive range.
+ *
+ * @param value - The value to check.
+ * @param min - Minimum allowed value.
+ * @param max - Maximum allowed value.
+ */
+export function isInRange(value: bigint, min: bigint, max: bigint): boolean {
+  return value >= min && value <= max
+}
