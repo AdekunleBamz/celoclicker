@@ -17,10 +17,16 @@ export function useContractConfig() {
   /** Expected chain ID for the deployed contract. */
   const expectedChainId = CELO_MAINNET_CHAIN_ID
 
+  /** Builds a Celo explorer URL for the configured contract address. */
+  const explorerUrl = isValid
+    ? `https://explorer.celo.org/mainnet/address/${contractAddress}`
+    : null
+
   return {
     address: contractAddress as `0x${string}`,
     abi: celoClickerABI,
     isValid,
     expectedChainId,
+    explorerUrl,
   }
 }
