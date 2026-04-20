@@ -73,3 +73,11 @@ export function getEthereumProvider(): MiniPayEthereum | null {
 export function hasConnector(connectors: readonly import('wagmi').Connector[], idOrType: string): boolean {
   return connectors.some(c => c.id === idOrType || c.type === idOrType)
 }
+
+/**
+ * Returns a human-readable label for the current browser/wallet environment.
+ * Returns 'MiniPay' inside the MiniPay app, otherwise 'Browser'.
+ */
+export function getWalletEnvironmentLabel(): string {
+  return isMiniPayBrowser() ? 'MiniPay' : 'Browser'
+}
