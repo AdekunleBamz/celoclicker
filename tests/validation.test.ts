@@ -31,6 +31,10 @@ describe('lib/validation validateContractAddress', () => {
     expect(validateContractAddress('  0x1234567890123456789012345678901234567890  ')).toBe(true)
   })
 
+  it('rejects addresses that use an uppercase 0X prefix', () => {
+    expect(validateContractAddress('0X1234567890123456789012345678901234567890')).toBe(false)
+  })
+
   it('rejects the zero address', () => {
     expect(validateContractAddress('0x0000000000000000000000000000000000000000')).toBe(false)
   })
