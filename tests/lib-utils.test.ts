@@ -89,4 +89,8 @@ describe('lib/utils isValidAddress', () => {
   it('accepts valid lowercase hexadecimal addresses', () => {
     expect(isValidAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe(true)
   })
+
+  it('rejects addresses with invalid length', () => {
+    expect(isValidAddress('0x1234')).toBe(false)
+  })
 })
