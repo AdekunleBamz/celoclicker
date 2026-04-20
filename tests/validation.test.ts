@@ -77,6 +77,16 @@ describe('lib/validation validateEnvironment', () => {
     })
   })
 
+  it('rejects wallet connect ids that are too short', () => {
+    process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT = '0x1234567890123456789012345678901234567890'
+    process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID = 'short'
+
+    expect(validateEnvironment()).toEqual({
+      isValid: false,
+      errors: ['NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID appears too short to be valid'],
+    })
+  })
+
   it('rejects placeholder wallet connect ids', () => {
     process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT = '0x1234567890123456789012345678901234567890'
     process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID = 'your_project_id'
