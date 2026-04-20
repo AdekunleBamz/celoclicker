@@ -226,6 +226,10 @@ This app uses **Celo fee abstraction** for contract writes:
 - Check you're connected to the same Celo network configured for the app
 - Try increasing gas limit slightly
 
+**WalletConnect setup not working**
+- Confirm `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID` is not a placeholder value
+- Use a project id that is at least 8 characters long
+
 ## Support
 
 - GitHub: [@AdekunleBamz](https://github.com/AdekunleBamz)
