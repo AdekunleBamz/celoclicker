@@ -13,11 +13,7 @@ If you haven't deployed the contract yet:
 
 ## Step 2: Update Environment Variables
 
-```bash
-cp .env.example .env.local
-```
-
-1. Open `.env.local` file
+1. Create `.env.local` from `.env.example` if it does not exist
 2. Replace `0x...` with your actual contract address:
 
 ```env
