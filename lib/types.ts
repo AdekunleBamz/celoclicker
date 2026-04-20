@@ -67,3 +67,12 @@ export interface UpgradeOption {
   /** Tailwind text color class used for this upgrade's accent color. */
   color: string
 }
+
+/**
+ * Represents the result of a blockchain write transaction.
+ */
+export interface TransactionResult {
+  hash: `0x${string}`
+  status: 'pending' | 'confirmed' | 'failed'
+  blockNumber?: bigint
+}
