@@ -93,6 +93,10 @@ describe('lib/utils formatTokenAmount', () => {
   it('keeps four decimals for small token balances', () => {
     expect(formatTokenAmount('0.123456', 'CELO')).toBe('0.1235 CELO')
   })
+
+  it('rounds tiny token balances to four decimal places', () => {
+    expect(formatTokenAmount('0.00009', 'CELO')).toBe('0.0001 CELO')
+  })
 })
 
 describe('lib/utils isZeroAddress', () => {
