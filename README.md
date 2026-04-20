@@ -82,6 +82,8 @@ NEXT_PUBLIC_APP_URL=https://your-domain.com
 NEXT_PUBLIC_CHAIN_ID=42220
 ```
 
+Use a lowercase `0x` prefix for `NEXT_PUBLIC_CELOCLICKER_CONTRACT` to satisfy strict address validation.
+
 MiniPay works best with an injected wallet flow on mobile. This app now auto-detects MiniPay and prefers the in-app wallet when available, while still keeping the generic wallet modal as a fallback outside MiniPay.
 
 The app also supports Celo fee abstraction:
