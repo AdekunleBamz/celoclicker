@@ -41,6 +41,8 @@ export function usePlayerStats(address: Address | undefined) {
     hasAutoClicker: autoClickerLevel > 0n,
     /** Sum of autoClickerLevel and multiplierLevel. */
     totalUpgradeLevel: autoClickerLevel + multiplierLevel,
+    /** True when at least one upgrade type has been purchased. */
+    hasAnyUpgrade: autoClickerLevel > 0n || multiplierLevel > 0n,
     refetch,
     error,
     isLoading,
