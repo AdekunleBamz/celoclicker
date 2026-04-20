@@ -98,6 +98,10 @@ describe('lib/utils isValidAddress', () => {
     expect(isValidAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe(true)
   })
 
+  it('accepts valid addresses with surrounding whitespace', () => {
+    expect(isValidAddress('  0x1234567890abcdef1234567890abcdef12345678  ')).toBe(true)
+  })
+
   it('rejects addresses with invalid length', () => {
     expect(isValidAddress('0x1234')).toBe(false)
   })

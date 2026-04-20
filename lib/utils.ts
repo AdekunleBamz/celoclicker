@@ -71,7 +71,7 @@ export function formatTokenAmount(value?: string, symbol?: string): string {
  * @returns True if the address is a valid Ethereum address format
  */
 export function isValidAddress(address: string): boolean {
-  return /^0x[a-fA-F0-9]{40}$/.test(address)
+  return /^0x[a-fA-F0-9]{40}$/.test(address.trim())
 }
 
 /**
