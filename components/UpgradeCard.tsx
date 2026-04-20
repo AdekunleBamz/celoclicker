@@ -7,6 +7,8 @@ interface UpgradeCardProps {
   onUpgrade: () => void
   disabled?: boolean
   isLoading?: boolean
+  /** Optional label shown on the upgrade button instead of 'UPGRADE'. */
+  upgradeLabel?: string
 }
 
 export const UpgradeCard = ({
@@ -18,6 +20,7 @@ export const UpgradeCard = ({
   onUpgrade,
   disabled = false,
   isLoading = false,
+  upgradeLabel = 'UPGRADE',
 }: UpgradeCardProps) => {
   const canAfford = points >= cost && !disabled && !isLoading
 
@@ -44,7 +47,7 @@ export const UpgradeCard = ({
           'bg-pink-500/50 hover:bg-pink-500'
         }`}
       >
-        {isLoading ? 'PROCESSING...' : 'UPGRADE'}
+        {isLoading ? 'PROCESSING...' : upgradeLabel}
       </button>
     </div>
   )
