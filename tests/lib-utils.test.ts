@@ -83,6 +83,10 @@ describe('lib/utils isZeroAddress', () => {
   it('matches zero address values with surrounding whitespace', () => {
     expect(isZeroAddress('  0x0000000000000000000000000000000000000000  ')).toBe(true)
   })
+
+  it('returns false for blank input', () => {
+    expect(isZeroAddress('')).toBe(false)
+  })
 })
 
 describe('lib/utils isValidAddress', () => {
