@@ -55,3 +55,21 @@ export function useMiniPay() {
 
   return isMiniPay
 }
+
+/**
+ * Returns the current window.ethereum provider object if accessible, or null.
+ * Useful for direct provider interactions without wagmi.
+ */
+export function getEthereumProvider(): MiniPayEthereum | null {
+  return getEthereum()
+}
+
+/**
+ * Returns true when an injected connector with the given connector type or id is available.
+ *
+ * @param connectors - The list of wagmi connectors.
+ * @param idOrType - The connector id or type string to search for.
+ */
+export function hasConnector(connectors: readonly import('wagmi').Connector[], idOrType: string): boolean {
+  return connectors.some(c => c.id === idOrType || c.type === idOrType)
+}
