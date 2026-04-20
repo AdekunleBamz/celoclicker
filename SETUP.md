@@ -26,6 +26,7 @@ NEXT_PUBLIC_CHAIN_ID=42220
 **Important:** 
 - The contract address must be exactly 42 characters (0x + 40 hex characters)
 - Example: `0x1234567890123456789012345678901234567890`
+- Do not commit `.env.local` or expose real WalletConnect project IDs in logs/screenshots
 
 ## Step 3: Restart Dev Server
 
