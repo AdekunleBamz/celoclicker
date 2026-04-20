@@ -134,3 +134,21 @@ export function safeParseInt(value: string, fallback = 0): number {
   const parsed = parseInt(value, 10)
   return Number.isFinite(parsed) ? parsed : fallback
 }
+
+/**
+ * Converts a value in CELO (18-decimal) to its wei representation as a bigint.
+ *
+ * @param celo - Amount in CELO (e.g. 1.5 = 1.5 CELO).
+ */
+export function celoToWei(celo: number): bigint {
+  return BigInt(Math.round(celo * 1e18))
+}
+
+/**
+ * Converts a wei bigint to its CELO equivalent as a plain number.
+ *
+ * @param wei - Amount in wei.
+ */
+export function weiToCelo(wei: bigint): number {
+  return Number(wei) / 1e18
+}
