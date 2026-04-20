@@ -120,7 +120,7 @@ npm run start
 
 1. Push code to GitHub
 2. Import project on [Vercel](https://vercel.com)
-3. Add environment variables
+3. Add all required environment variables from `.env.example`
 4. Deploy!
 
 ### Step 5: Optional Farcaster Configuration
