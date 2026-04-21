@@ -370,6 +370,17 @@ export function sumArray(arr: number[]): number {
 }
 
 /**
+ * Finds the maximum value in an array of numbers.
+ *
+ * @param arr - The array of numbers.
+ * @returns The maximum value, or 0 if the array is empty.
+ */
+export function maxOfArray(arr: number[]): number {
+  if (arr.length === 0) return 0
+  return arr.slice(1).reduce((a, b) => Math.max(a, b), arr[0])
+}
+
+/**
  * Returns the plural form of a word based on a count.
  * 
  * @param count - The number to check.
@@ -401,17 +412,6 @@ export function capitalize(s: string): string {
 export function formatPercent(value: number): string {
   if (!Number.isFinite(value)) return '0%'
   return `${(value * 100).toFixed(1)}%`
-}
-
-/**
- * Finds the maximum value in an array of numbers.
- * 
- * @param arr - The array of numbers.
- * @returns The maximum value, or 0 if the array is empty.
- */
-export function maxOfArray(arr: number[]): number {
-  if (arr.length === 0) return 0
-  return arr.slice(1).reduce((a, b) => Math.max(a, b), arr[0])
 }
 
 /** Returns true when value is a non-empty string after trimming. */
