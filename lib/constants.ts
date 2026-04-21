@@ -163,3 +163,6 @@ export const MIN_LEADERBOARD_POINTS = 1n
 
 /** Maximum number of results shown on the leaderboard UI. */
 export const MAX_LEADERBOARD_DISPLAY = 100
+
+/** Minimum number of games played required to have a rank computed. */
+export const MIN_GAMES_FOR_RANK = 5n
