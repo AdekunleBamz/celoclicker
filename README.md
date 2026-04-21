@@ -73,7 +73,7 @@ cp .env.example .env.local
 NEXT_PUBLIC_CELOCLICKER_CONTRACT=0x... # Your deployed contract address
 
 # Get WalletConnect Project ID from https://cloud.walletconnect.com
-NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id_here
 
 # Update with your domain
 NEXT_PUBLIC_APP_URL=https://your-domain.com
