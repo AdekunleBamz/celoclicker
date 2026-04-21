@@ -241,6 +241,7 @@ export function formatGamesPlayed(n: bigint): string {
 
 /** Converts a timestamp in ms to a locale time string. */
 export function formatTimestamp(ms: number): string {
+  if (!Number.isFinite(ms) || ms <= 0) return ''
   return new Date(ms).toLocaleTimeString()
 }
 
