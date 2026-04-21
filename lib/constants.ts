@@ -199,3 +199,5 @@ export const AUTO_CLICK_INTERVAL_MS = 1_000
 export const PRESTIGE_THRESHOLD = 1_000_000
 
 export const MAX_UPGRADES = 20
+
+export const SAVE_INTERVAL_MS = 5_000
