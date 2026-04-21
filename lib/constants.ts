@@ -172,3 +172,6 @@ export const UPGRADE_DISPLAY_NAMES = Object.freeze({
   UPGRADE_AUTO: 'Auto Clicker',
   UPGRADE_MULT: 'Multiplier',
 } as const)
+
+/** How long to wait (ms) before retrying a failed transaction. */
+export const TX_RETRY_DELAY_MS = 3_000
