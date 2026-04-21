@@ -283,3 +283,7 @@ export function isPrestigeReady(clicks: number, threshold: number): boolean {
 export function formatMultiplier(m: number): string {
   return `${m.toFixed(2)}x`
 }
+
+export function calcClicksPerSecond(upgrades: number[]): number {
+  return upgrades.reduce((sum, u) => sum + u, 0)
+}
