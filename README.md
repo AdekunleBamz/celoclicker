@@ -235,6 +235,7 @@ This app uses **Celo fee abstraction** for contract writes:
 ## Support
 
 - GitHub: [@AdekunleBamz](https://github.com/AdekunleBamz)
+- Issues: [Report bugs and requests](https://github.com/AdekunleBamz/celoclicker/issues)
 - Farcaster: [@Bamzzz](https://warpcast.com/bamzzz)
 - X (Twitter): [@hrh_mckay](https://twitter.com/hrh_mckay)
 
