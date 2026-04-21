@@ -199,3 +199,15 @@ export function formatClickScoreCompact(clicks: bigint): string {
   if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`
   return String(n)
 }
+
+/**
+ * Calculates clicks per second from a total click count and elapsed seconds.
+ *
+ * @param totalClicks - Total bigint click count.
+ * @param elapsedSeconds - Number of seconds elapsed.
+ * @returns Clicks-per-second as a number, or 0 if invalid.
+ */
+export function clicksPerSecond(totalClicks: bigint, elapsedSeconds: number): number {
+  if (!Number.isFinite(elapsedSeconds) || elapsedSeconds <= 0) return 0
+  return Number(totalClicks) / elapsedSeconds
+}
