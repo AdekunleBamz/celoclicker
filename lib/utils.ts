@@ -305,3 +305,7 @@ export function toPercent(value: number, total: number): number {
   if (total === 0) return 0
   return Math.round((value / total) * 100)
 }
+
+export function sumArray(arr: number[]): number {
+  return arr.reduce((a, b) => a + b, 0)
+}
