@@ -231,3 +231,5 @@ export const MIN_WITHDRAW_AMOUNT = 0.01
 export const CLICK_TIERS = [1_000, 10_000, 100_000, 1_000_000] as const
 
 export const CURRENCY_SYMBOL = 'CELO' as const
+
+export const DEFAULT_GAME_STATE_KEY = 'celoclicker_state' as const
