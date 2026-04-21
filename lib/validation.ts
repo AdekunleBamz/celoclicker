@@ -168,3 +168,7 @@ export function isNonEmptyString(s: unknown): s is string {
 export function isPositiveInt(n: unknown): n is number {
   return typeof n === 'number' && Number.isInteger(n) && n > 0
 }
+
+export function isInRange(n: number, lo: number, hi: number): boolean {
+  return n >= lo && n <= hi
+}
