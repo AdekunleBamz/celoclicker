@@ -128,3 +128,11 @@ export function isValidUpgradeLevel(level: bigint, maxLevel = 10n): boolean {
 export function isValidPlayerAddress(address: string): boolean {
   return /^0x[a-fA-F0-9]{40}$/.test(address) && address !== '0x0000000000000000000000000000000000000000'
 }
+
+/**
+ * Returns true if the click count is a positive bigint greater than zero.
+ * @param clicks - The bigint click count to validate.
+ */
+export function isPositiveClicks(clicks: bigint): boolean {
+  return clicks > 0n
+}

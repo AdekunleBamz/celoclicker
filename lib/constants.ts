@@ -155,3 +155,8 @@ export const GAME_TX_TYPE = Object.freeze({
  * Minimum click power a player starts with.
  */
 export const BASE_CLICK_POWER = 1n
+
+/**
+ * Minimum points required to appear on the leaderboard.
+ */
+export const MIN_LEADERBOARD_POINTS = 1n

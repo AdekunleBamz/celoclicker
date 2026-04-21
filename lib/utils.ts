@@ -211,3 +211,13 @@ export function clicksPerSecond(totalClicks: bigint, elapsedSeconds: number): nu
   if (!Number.isFinite(elapsedSeconds) || elapsedSeconds <= 0) return 0
   return Number(totalClicks) / elapsedSeconds
 }
+
+/**
+ * Converts a CELO amount (as string or number) to a display string with 4 decimal places.
+ * @param celo - Amount in CELO.
+ */
+export function formatCelo(celo: number | string): string {
+  const n = Number(celo)
+  if (!Number.isFinite(n)) return '0.0000'
+  return n.toFixed(4)
+}
