@@ -116,7 +116,7 @@ export function isInRange(value: bigint, min: bigint, max: bigint): boolean {
  * @param level - The upgrade level bigint to validate.
  * @param maxLevel - Maximum allowed level (default 10n).
  */
-export function isValidUpgradeLevel(level: bigint, maxLevel = 10n): boolean {
+export function isPurchasableUpgradeLevel(level: bigint, maxLevel = 10n): boolean {
   return level >= 1n && level <= maxLevel
 }
 
