@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatAddress, formatNumber, formatTokenAmount, isValidAddress, isZeroAddress } from '../lib/utils'
+import { formatAddress, formatNumber, formatTokenAmount, isValidAddress, isZeroAddress, maxOfArray } from '../lib/utils'
 
 describe('lib/utils formatNumber', () => {
   it('abbreviates thousands with a K suffix', () => {
@@ -136,5 +136,11 @@ describe('lib/utils isValidAddress', () => {
 
   it('rejects addresses containing non-hex characters', () => {
     expect(isValidAddress('0x123456789012345678901234567890123456789Z')).toBe(false)
+  })
+})
+
+describe('lib/utils maxOfArray', () => {
+  it('returns the highest value for negative-only arrays', () => {
+    expect(maxOfArray([-10, -7, -20])).toBe(-7)
   })
 })
