@@ -27,3 +27,7 @@ export function formatPrestigeCount(n: number): string {
 export function calcOfflineClicks(cps: number, seconds: number): number {
   return Math.floor(cps * seconds)
 }
+
+export function isNewHighScore(current: number, best: number): boolean {
+  return current > best
+}
