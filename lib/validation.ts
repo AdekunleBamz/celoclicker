@@ -172,7 +172,7 @@ export function isHexString(s: string): boolean {
   return /^0x[0-9a-fA-F]*$/.test(s)
 }
 
-export function isValidChainId(id: number): boolean {
+export function isPositiveChainId(id: number): boolean {
   return Number.isInteger(id) && id > 0
 }
 
