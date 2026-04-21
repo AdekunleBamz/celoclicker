@@ -15,7 +15,7 @@ Addictive on-chain idle clicker game on Celo. Click, upgrade, and dominate the l
 
 ## Tech Stack
 
-- **Frontend**: Next.js 14, TypeScript, Tailwind CSS, Framer Motion
+- **Frontend**: Next.js 14, TypeScript, TailwindCSS, Framer Motion
 - **Web3**: Wagmi, Viem, RainbowKit
 - **Blockchain**: Celo (Mainnet)
 - **Smart Contract**: Solidity 0.8.20
@@ -73,7 +73,7 @@ cp .env.example .env.local
 NEXT_PUBLIC_CELOCLICKER_CONTRACT=0x... # Your deployed contract address
 
 # Get WalletConnect Project ID from https://cloud.walletconnect.com
-NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id_here
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
 
 # Update with your domain
 NEXT_PUBLIC_APP_URL=https://your-domain.com
@@ -120,7 +120,7 @@ npm start
 
 1. Push code to GitHub
 2. Import project on [Vercel](https://vercel.com)
-3. Add all required environment variables from `.env.example`
+3. Add environment variables
 4. Deploy!
 
 ### Step 5: Optional Farcaster Configuration
@@ -130,7 +130,7 @@ npm start
    - Your FID
    - Proper account association
    - Webhook URL
-   - Replace placeholder example strings with your real production values
+   - Real production values instead of the placeholder example strings committed in this repo
 
 ## How to Play
 
@@ -230,13 +230,13 @@ This app uses **Celo fee abstraction** for contract writes:
 
 **WalletConnect setup not working**
 - Confirm `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID` is not a placeholder value
-- Use a project id from https://cloud.walletconnect.com that is at least 8 characters long
+- Use a project id that is at least 8 characters long
 
 ## Support
 
 - GitHub: [@AdekunleBamz](https://github.com/AdekunleBamz)
 - Farcaster: [@Bamzzz](https://warpcast.com/bamzzz)
-- Twitter: [@hrh_mckay](https://x.com/hrh_mckay)
+- X (Twitter): [@hrh_mckay](https://twitter.com/hrh_mckay)
 
 ## License
 
