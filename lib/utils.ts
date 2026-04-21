@@ -187,3 +187,15 @@ export function truncateMiddle(value: string, startChars = 8, endChars = 6): str
 export function formatClickScore(clicks: bigint): string {
   return Number(clicks).toLocaleString('en-US')
 }
+
+/**
+ * Returns a compact click score string (e.g. "1.2M", "450K").
+ *
+ * @param clicks - The bigint click count.
+ */
+export function formatClickScoreCompact(clicks: bigint): string {
+  const n = Number(clicks)
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(2)}M`
+  if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`
+  return String(n)
+}
