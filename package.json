@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest run",
+    "test:watch": "vitest",
     "test:utils": "vitest run tests/lib-utils.test.ts tests/validation.test.ts",
     "check:fast": "npm run lint && npm run test:utils"
   },
