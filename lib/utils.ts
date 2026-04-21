@@ -250,8 +250,9 @@ export function bigintToPercent(val: bigint, total: bigint): number {
 
 /** Truncates a hex address to short form: 0x1234...abcd */
 export function shortAddress(addr: string): string {
-  if (addr.length < 10) return addr
-  return `${addr.slice(0, 6)}...${addr.slice(-4)}`
+  const normalizedAddress = typeof addr === 'string' ? addr.trim() : ''
+  if (!normalizedAddress || normalizedAddress.length < 10) return normalizedAddress
+  return `${normalizedAddress.slice(0, 6)}...${normalizedAddress.slice(-4)}`
 }
 
 export function formatClicks(n: number): string {
