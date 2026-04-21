@@ -101,7 +101,7 @@ export function getDefaultFeeCurrencyId(isMiniPay: boolean, chainId?: number): F
  * @param chainId - Optional chain ID to determine availability
  * @returns The fee currency configuration or undefined if not found
  */
-export function getFeeCurrencyById(id: FeeCurrencyId, chainId?: number) {
+export function getFeeCurrencyById(id: FeeCurrencyId, chainId?: number): FeeCurrencyConfig | undefined {
   return getFeeCurrencies(chainId).find((currency) => currency.id === id)
 }
 
