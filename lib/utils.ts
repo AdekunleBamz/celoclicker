@@ -243,3 +243,8 @@ export function weiToCelo(wei: bigint): number {
 export function formatGamesPlayed(n: bigint): string {
   return `${n.toString()} game${n === 1n ? '' : 's'}`
 }
+
+/** Converts a timestamp in ms to a locale time string. */
+export function formatTimestamp(ms: number): string {
+  return new Date(ms).toLocaleTimeString()
+}
