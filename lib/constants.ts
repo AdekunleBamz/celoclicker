@@ -130,3 +130,8 @@ export const ERROR_TOAST_DURATION_MS = 5000
  * Default polling interval in ms for on-chain player stats.
  */
 export const STATS_POLL_INTERVAL_MS = 15_000
+
+/**
+ * Maximum number of auto-clicker upgrades a player can purchase.
+ */
+export const MAX_AUTO_CLICKER_LEVEL = 10n
