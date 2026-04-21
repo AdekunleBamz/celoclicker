@@ -279,3 +279,7 @@ export function calcUpgradePrice(base: number, level: number): number {
 export function isPrestigeReady(clicks: number, threshold: number): boolean {
   return clicks >= threshold
 }
+
+export function formatMultiplier(m: number): string {
+  return `${m.toFixed(2)}x`
+}
