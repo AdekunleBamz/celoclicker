@@ -35,3 +35,7 @@ export function isNewHighScore(current: number, best: number): boolean {
 export function getUpgradeLabel(level: number): string {
   return `Level ${level}`
 }
+
+export function formatBonus(n: number): string {
+  return `+${n}`
+}
