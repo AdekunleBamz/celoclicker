@@ -119,3 +119,12 @@ export function isInRange(value: bigint, min: bigint, max: bigint): boolean {
 export function isValidUpgradeLevel(level: bigint, maxLevel = 10n): boolean {
   return level >= 1n && level <= maxLevel
 }
+
+/**
+ * Returns true if the player address is a valid non-zero EVM address.
+ *
+ * @param address - The address string to validate.
+ */
+export function isValidPlayerAddress(address: string): boolean {
+  return /^0x[a-fA-F0-9]{40}$/.test(address) && address !== '0x0000000000000000000000000000000000000000'
+}
