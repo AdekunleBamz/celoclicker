@@ -7,3 +7,7 @@ export function calcPrestigeBonus(count: number): number {
 export function isComboActive(lastClick: number, timeout: number): boolean {
   return Date.now() - lastClick < timeout
 }
+
+export function getComboMultiplier(combo: number, max: number): number {
+  return Math.min(combo, max)
+}
