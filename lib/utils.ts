@@ -280,6 +280,17 @@ export function bigintToPercent(val: bigint, total: bigint): number {
   return Math.min(100, (Number(val) / Number(total)) * 100)
 }
 
+/** Truncates a hex address to short form: 0x1234...abcd */
+export function shortAddress(addr: string): string {
+  const normalizedAddress = typeof addr === 'string' ? addr.trim() : ''
+  if (!normalizedAddress || normalizedAddress.length < 10) return normalizedAddress
+  return `${normalizedAddress.slice(0, 6)}...${normalizedAddress.slice(-4)}`
+}
+
+/** Returns true if address is the EVM zero address. */
+export function isZeroAddress(addr: string): boolean {
+  return addr === '0x0000000000000000000000000000000000000000'
+}
 
 /**
  * Formats a click count with K/M suffixes for compact display.
