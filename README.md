@@ -17,7 +17,7 @@ Addictive on-chain idle clicker game on Celo. Click, upgrade, and dominate the l
 
 - **Frontend**: Next.js 14, TypeScript, TailwindCSS, Framer Motion
 - **Web3**: Wagmi, Viem, RainbowKit
-- **Blockchain**: Celo (Mainnet)
+- **Blockchain**: Celo (Mainnet + Alfajores)
 - **Smart Contract**: Solidity 0.8.20
 
 ## Game Mechanics
