@@ -31,3 +31,7 @@ export function calcOfflineClicks(cps: number, seconds: number): number {
 export function isNewHighScore(current: number, best: number): boolean {
   return current > best
 }
+
+export function getUpgradeLabel(level: number): string {
+  return `Level ${level}`
+}
