@@ -254,3 +254,9 @@ export function bigintToPercent(val: bigint, total: bigint): number {
   if (total === 0n) return 0
   return Math.min(100, (Number(val) / Number(total)) * 100)
 }
+
+/** Truncates a hex address to short form: 0x1234...abcd */
+export function shortAddress(addr: string): string {
+  if (addr.length < 10) return addr
+  return `${addr.slice(0, 6)}...${addr.slice(-4)}`
+}
