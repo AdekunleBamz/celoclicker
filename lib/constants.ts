@@ -227,3 +227,5 @@ export const OFFLINE_INCOME_CAP_HOURS = 8
 export const CELO_DECIMALS = 18
 
 export const MIN_WITHDRAW_AMOUNT = 0.01
+
+export const CLICK_TIERS = [1_000, 10_000, 100_000, 1_000_000] as const
