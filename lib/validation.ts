@@ -134,7 +134,7 @@ export function isValidPlayerAddress(address: string): boolean {
  * @param clicks - The bigint click count to validate.
  */
 export function isPositiveClicks(clicks: bigint): boolean {
-  return isPositiveBigInt(clicks)
+  return clicks > 0n
 }
 
 /** Returns true if the games count is a non-negative bigint. */
