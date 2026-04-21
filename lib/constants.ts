@@ -184,3 +184,6 @@ export const CLICK_ANIMATION_DURATION_MS = 150
 
 /** How many ms between each leaderboard auto-refresh fetch. */
 export const LEADERBOARD_REFRESH_MS = 30_000
+
+/** Zero address constant for EVM chains. */
+export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000' as const
