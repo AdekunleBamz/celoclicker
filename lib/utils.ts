@@ -248,3 +248,9 @@ export function formatGamesPlayed(n: bigint): string {
 export function formatTimestamp(ms: number): string {
   return new Date(ms).toLocaleTimeString()
 }
+
+/** Returns percentage of val out of total as a number (0-100). */
+export function bigintToPercent(val: bigint, total: bigint): number {
+  if (total === 0n) return 0
+  return Math.min(100, (Number(val) / Number(total)) * 100)
+}
