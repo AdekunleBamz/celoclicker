@@ -228,3 +228,8 @@ export function clampBigint(val: bigint, min: bigint, max: bigint): bigint {
   if (val > max) return max
   return val
 }
+
+/** Returns 'Level N' display string for a given upgrade level bigint. */
+export function formatUpgradeLevel(level: bigint): string {
+  return `Level ${level.toString()}`
+}
