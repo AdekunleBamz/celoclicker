@@ -207,3 +207,5 @@ export const INITIAL_CLICKS_PER_SECOND = 0
 export const ACHIEVEMENT_COUNT = 15
 
 export const MULTIPLIER_BASE = 1.5
+
+export const MAX_PRESTIGE_LEVEL = 10
