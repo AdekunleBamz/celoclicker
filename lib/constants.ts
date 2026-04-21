@@ -187,3 +187,5 @@ export const LEADERBOARD_REFRESH_MS = 30_000
 
 /** Zero address constant for EVM chains. */
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000' as const
+
+export const MAX_CLICK_SCORE = 1_000_000
