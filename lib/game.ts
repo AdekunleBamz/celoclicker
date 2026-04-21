@@ -47,3 +47,7 @@ export function calcNextPrestigeThreshold(level: number, base: number): number {
 export function getClickValueWithMultiplier(base: number, mult: number): number {
   return Math.floor(base * mult)
 }
+
+export function isMaxUpgradeLevel(level: number, max: number): boolean {
+  return level >= max
+}
