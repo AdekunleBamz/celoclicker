@@ -125,3 +125,8 @@ export const SUCCESS_TOAST_DURATION_MS = 3000
  * Number of milliseconds an "error" toast or notification should be visible.
  */
 export const ERROR_TOAST_DURATION_MS = 5000
+
+/**
+ * Default polling interval in ms for on-chain player stats.
+ */
+export const STATS_POLL_INTERVAL_MS = 15_000
