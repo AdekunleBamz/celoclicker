@@ -286,11 +286,6 @@ export function isValidClickCount(n: number): boolean {
   return Number.isInteger(n) && n >= 0
 }
 
-export function safeParseInt(s: string): number | null {
-  const n = parseInt(s, 10)
-  return isNaN(n) ? null : n
-}
-
 export function toPercent(value: number, total: number): number {
   if (total === 0) return 0
   return Math.round((value / total) * 100)
