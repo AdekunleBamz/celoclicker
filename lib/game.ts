@@ -51,3 +51,7 @@ export function getClickValueWithMultiplier(base: number, mult: number): number 
 export function isMaxUpgradeLevel(level: number, max: number): boolean {
   return level >= max
 }
+
+export function formatCps(cps: number): string {
+  return `${cps.toFixed(1)} CPS`
+}
