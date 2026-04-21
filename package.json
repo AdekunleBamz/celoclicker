@@ -2,9 +2,8 @@
   "name": "celoclicker",
   "version": "1.0.0",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/AdekunleBamz/celoclicker.git"
+  "bugs": {
+    "url": "https://github.com/AdekunleBamz/celoclicker/issues"
   },
   "scripts": {
     "dev": "next dev",
