@@ -250,12 +250,6 @@ export function bigintToPercent(val: bigint, total: bigint): number {
   return Math.min(100, (Number(val) / Number(total)) * 100)
 }
 
-/** Truncates a hex address to short form: 0x1234...abcd */
-export function shortAddress(addr: string): string {
-  if (addr.length < 10) return addr
-  return `${addr.slice(0, 6)}...${addr.slice(-4)}`
-}
-
 /** Returns true if address is the EVM zero address. */
 export function isZeroAddress(addr: string): boolean {
   return addr === '0x0000000000000000000000000000000000000000'
