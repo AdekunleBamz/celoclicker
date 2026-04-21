@@ -309,3 +309,7 @@ export function toPercent(value: number, total: number): number {
 export function sumArray(arr: number[]): number {
   return arr.reduce((a, b) => a + b, 0)
 }
+
+export function maxOfArray(arr: number[]): number {
+  return arr.reduce((a, b) => Math.max(a, b), 0)
+}
