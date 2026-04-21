@@ -15,3 +15,7 @@ export function getComboMultiplier(combo: number, max: number): number {
 export function calcTotalCps(base: number, multiplier: number): number {
   return base * multiplier
 }
+
+export function isAchievementUnlocked(clicks: number, threshold: number): boolean {
+  return clicks >= threshold
+}
