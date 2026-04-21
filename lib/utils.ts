@@ -261,11 +261,6 @@ export function shortAddress(addr: string): string {
   return `${addr.slice(0, 6)}...${addr.slice(-4)}`
 }
 
-/** Returns true if address is the EVM zero address. */
-export function isZeroAddress(addr: string): boolean {
-  return addr === '0x0000000000000000000000000000000000000000'
-}
-
 export function formatClicks(n: number): string {
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`
   if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`
