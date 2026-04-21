@@ -181,3 +181,6 @@ export const TX_TIMEOUT_MS = 60_000
 
 /** Duration in ms for click burst animation shown after clicking. */
 export const CLICK_ANIMATION_DURATION_MS = 150
+
+/** How many ms between each leaderboard auto-refresh fetch. */
+export const LEADERBOARD_REFRESH_MS = 30_000
