@@ -150,3 +150,8 @@ export function isValidPlayerAddress(address: string): boolean {
 export function isValidGamesCount(n: bigint): boolean {
   return n >= 0n
 }
+
+/** Returns true if the click power is at least 1 (minimum valid). */
+export function isValidClickPower(power: bigint): boolean {
+  return power >= 1n
+}
