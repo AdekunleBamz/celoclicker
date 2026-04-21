@@ -229,3 +229,5 @@ export const CELO_DECIMALS = 18
 export const MIN_WITHDRAW_AMOUNT = 0.01
 
 export const CLICK_TIERS = [1_000, 10_000, 100_000, 1_000_000] as const
+
+export const CURRENCY_SYMBOL = 'CELO' as const
