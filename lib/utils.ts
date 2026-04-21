@@ -233,3 +233,8 @@ export function clampBigint(val: bigint, min: bigint, max: bigint): bigint {
 export function formatUpgradeLevel(level: bigint): string {
   return `Level ${level.toString()}`
 }
+
+/** Converts bigint wei to CELO (18 decimals), returning a number. */
+export function weiToCelo(wei: bigint): number {
+  return Number(wei) / 1e18
+}
