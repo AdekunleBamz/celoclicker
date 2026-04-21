@@ -219,3 +219,5 @@ export const UPGRADE_SCALE_FACTOR = 1.15
 export const COMBO_WINDOW_MS = 2_000
 
 export const MAX_COMBO_MULTIPLIER = 8
+
+export const SYNC_RETRY_ATTEMPTS = 3
