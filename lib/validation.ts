@@ -176,3 +176,7 @@ export function isInRange(n: number, lo: number, hi: number): boolean {
 export function isEthAddress(s: string): boolean {
   return /^0x[0-9a-fA-F]{40}$/.test(s)
 }
+
+export function isHexString(s: string): boolean {
+  return /^0x[0-9a-fA-F]*$/.test(s)
+}
