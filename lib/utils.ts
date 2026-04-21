@@ -280,7 +280,7 @@ export function isValidClickCount(n: number): boolean {
   return Number.isInteger(n) && n >= 0
 }
 
-export function safeParseInt(s: string): number | null {
+export function safeParseIntOrNull(s: string): number | null {
   const n = parseInt(s, 10)
   return isNaN(n) ? null : n
 }
