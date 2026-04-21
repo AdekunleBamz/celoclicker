@@ -209,3 +209,5 @@ export const ACHIEVEMENT_COUNT = 15
 export const MULTIPLIER_BASE = 1.5
 
 export const MAX_PRESTIGE_LEVEL = 10
+
+export const BONUS_CLICK_CHANCE = 0.05
