@@ -72,7 +72,7 @@ Run `npm run test:utils` to confirm local validation and utility helpers are sti
   - Refresh once after opening the app in MiniPay
 
 - **WalletConnect project id rejected?**
-  - Replace placeholder values like `your_project_id`
+  - Replace placeholder values like `your_project_id_here`
   - Use a non-placeholder id with at least 8 characters
 
 - **USDCm mode is disabled?**
