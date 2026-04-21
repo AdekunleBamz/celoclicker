@@ -238,3 +238,8 @@ export function formatUpgradeLevel(level: bigint): string {
 export function weiToCelo(wei: bigint): number {
   return Number(wei) / 1e18
 }
+
+/** Formats a games-played count as a readable string, e.g. "42 games". */
+export function formatGamesPlayed(n: bigint): string {
+  return `${n.toString()} game${n === 1n ? '' : 's'}`
+}
