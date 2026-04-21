@@ -235,3 +235,5 @@ export const CURRENCY_SYMBOL = 'CELO' as const
 export const DEFAULT_GAME_STATE_KEY = 'celoclicker_state' as const
 
 export const MAX_SAVE_AGE_MS = 7 * 24 * 60 * 60 * 1_000
+
+export const FIRST_UPGRADE_COST = 50
