@@ -192,3 +192,7 @@ export function isValidTimestamp(ts: number): boolean {
 export function isValidScore(score: number): boolean {
   return Number.isFinite(score) && score >= 0
 }
+
+export function isValidMultiplier(m: number): boolean {
+  return Number.isFinite(m) && m >= 1
+}
