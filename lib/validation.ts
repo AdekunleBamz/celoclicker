@@ -155,3 +155,8 @@ export function isValidGamesCount(n: bigint): boolean {
 export function isValidClickPower(power: bigint): boolean {
   return power >= 1n
 }
+
+/** Returns true if the multiplier level is within [0, max]. */
+export function isValidMultiplierLevel(level: bigint, max = 5n): boolean {
+  return level >= 0n && level <= max
+}
