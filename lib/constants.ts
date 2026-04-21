@@ -193,3 +193,5 @@ export const MAX_CLICK_SCORE = 1_000_000
 export const CLICK_COOLDOWN_MS = 500
 
 export const UPGRADE_PRICE_BASE = 100
+
+export const AUTO_CLICK_INTERVAL_MS = 1_000
