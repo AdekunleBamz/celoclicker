@@ -166,3 +166,9 @@ export const MAX_LEADERBOARD_DISPLAY = 100
 
 /** Minimum number of games played required to have a rank computed. */
 export const MIN_GAMES_FOR_RANK = 5n
+
+/** Display names for each upgrade type, keyed by GAME_TX_TYPE value. */
+export const UPGRADE_DISPLAY_NAMES = Object.freeze({
+  UPGRADE_AUTO: 'Auto Clicker',
+  UPGRADE_MULT: 'Multiplier',
+} as const)
