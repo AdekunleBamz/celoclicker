@@ -77,6 +77,10 @@ export function getAvailableFeeCurrencies(chainId?: number): FeeCurrencyConfig[]
 export function getFeeCurrencyLabel(id: FeeCurrencyId, chainId?: number): string {
   return getFeeCurrencyById(id, chainId)?.label ?? id
 }
+
+/**
+ * Returns the preferred default fee currency for the current environment.
+ *
  * @param isMiniPay - Whether the app is running inside MiniPay
  * @param chainId - Optional chain ID to determine availability
  * @returns The default fee currency ID
