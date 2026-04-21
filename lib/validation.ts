@@ -188,3 +188,7 @@ export function isValidChainId(id: number): boolean {
 export function isValidTimestamp(ts: number): boolean {
   return Number.isFinite(ts) && ts > 0
 }
+
+export function isValidScore(score: number): boolean {
+  return Number.isFinite(score) && score >= 0
+}
