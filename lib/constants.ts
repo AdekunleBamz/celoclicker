@@ -140,3 +140,13 @@ export const MAX_AUTO_CLICKER_LEVEL = 10n
  * Maximum multiplier upgrade level.
  */
 export const MAX_MULTIPLIER_LEVEL = 5n
+
+/**
+ * Frozen enum of in-game transaction types.
+ */
+export const GAME_TX_TYPE = Object.freeze({
+  CLICK: 'click',
+  UPGRADE_AUTO: 'upgrade_auto',
+  UPGRADE_MULT: 'upgrade_mult',
+  WITHDRAW: 'withdraw',
+} as const)
