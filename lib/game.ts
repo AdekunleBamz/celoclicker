@@ -19,3 +19,7 @@ export function calcTotalCps(base: number, multiplier: number): number {
 export function isAchievementUnlocked(clicks: number, threshold: number): boolean {
   return clicks >= threshold
 }
+
+export function formatPrestigeCount(n: number): string {
+  return `Prestige x${n}`
+}
