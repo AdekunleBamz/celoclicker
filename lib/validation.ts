@@ -109,3 +109,13 @@ export function isPlaceholderAddress(address: string): boolean {
 export function isInRange(value: bigint, min: bigint, max: bigint): boolean {
   return value >= min && value <= max
 }
+
+/**
+ * Returns true if the upgrade level is within a valid purchase range [1, maxLevel].
+ *
+ * @param level - The upgrade level bigint to validate.
+ * @param maxLevel - Maximum allowed level (default 10n).
+ */
+export function isValidUpgradeLevel(level: bigint, maxLevel = 10n): boolean {
+  return level >= 1n && level <= maxLevel
+}
