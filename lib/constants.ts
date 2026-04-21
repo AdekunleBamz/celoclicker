@@ -160,3 +160,6 @@ export const BASE_CLICK_POWER = 1n
  * Minimum points required to appear on the leaderboard.
  */
 export const MIN_LEADERBOARD_POINTS = 1n
+
+/** Maximum number of results shown on the leaderboard UI. */
+export const MAX_LEADERBOARD_DISPLAY = 100
