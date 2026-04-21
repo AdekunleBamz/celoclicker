@@ -291,3 +291,7 @@ export function calcClicksPerSecond(upgrades: number[]): number {
 export function clampNumber(v: number, lo: number, hi: number): number {
   return Math.max(lo, Math.min(hi, v))
 }
+
+export function isValidClickCount(n: number): boolean {
+  return Number.isInteger(n) && n >= 0
+}
