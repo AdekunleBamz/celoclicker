@@ -136,3 +136,12 @@ export function isValidPlayerAddress(address: string): boolean {
 export function isPositiveClicks(clicks: bigint): boolean {
   return clicks > 0n
 }
+
+/**
+ * Returns true if the player address is a valid non-zero EVM address.
+ *
+ * @param address - The address string to validate.
+ */
+export function isValidPlayerAddress(address: string): boolean {
+  return /^0x[a-fA-F0-9]{40}$/.test(address) && address !== '0x0000000000000000000000000000000000000000'
+}
