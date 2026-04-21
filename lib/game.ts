@@ -11,3 +11,7 @@ export function isComboActive(lastClick: number, timeout: number): boolean {
 export function getComboMultiplier(combo: number, max: number): number {
   return Math.min(combo, max)
 }
+
+export function calcTotalCps(base: number, multiplier: number): number {
+  return base * multiplier
+}
