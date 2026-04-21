@@ -213,3 +213,5 @@ export const MAX_PRESTIGE_LEVEL = 10
 export const BONUS_CLICK_CHANCE = 0.05
 
 export const CLICK_VALUE_DEFAULT = 1
+
+export const UPGRADE_SCALE_FACTOR = 1.15
