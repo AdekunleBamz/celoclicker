@@ -23,3 +23,7 @@ export function isAchievementUnlocked(clicks: number, threshold: number): boolea
 export function formatPrestigeCount(n: number): string {
   return `Prestige x${n}`
 }
+
+export function calcOfflineClicks(cps: number, seconds: number): number {
+  return Math.floor(cps * seconds)
+}
