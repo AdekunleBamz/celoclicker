@@ -175,3 +175,6 @@ export const UPGRADE_DISPLAY_NAMES = Object.freeze({
 
 /** How long to wait (ms) before retrying a failed transaction. */
 export const TX_RETRY_DELAY_MS = 3_000
+
+/** Timeout in ms for a pending transaction before it is considered stale. */
+export const TX_TIMEOUT_MS = 60_000
