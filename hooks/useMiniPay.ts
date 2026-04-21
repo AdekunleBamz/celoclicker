@@ -43,6 +43,10 @@ export function useMiniPay() {
   }, [])
 
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
     refreshDetection()
     window.addEventListener('focus', refreshDetection)
     window.addEventListener('ethereum#initialized', refreshDetection as EventListener)
