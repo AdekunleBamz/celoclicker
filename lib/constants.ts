@@ -233,3 +233,5 @@ export const CLICK_TIERS = [1_000, 10_000, 100_000, 1_000_000] as const
 export const CURRENCY_SYMBOL = 'CELO' as const
 
 export const DEFAULT_GAME_STATE_KEY = 'celoclicker_state' as const
+
+export const MAX_SAVE_AGE_MS = 7 * 24 * 60 * 60 * 1_000
