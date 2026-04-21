@@ -271,3 +271,7 @@ export function formatClicks(n: number): string {
   if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`
   return String(n)
 }
+
+export function calcUpgradePrice(base: number, level: number): number {
+  return Math.floor(base * Math.pow(1.15, level))
+}
