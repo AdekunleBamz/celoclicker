@@ -221,3 +221,10 @@ export function formatCelo(celo: number | string): string {
   if (!Number.isFinite(n)) return '0.0000'
   return n.toFixed(4)
 }
+
+/** Clamps a bigint value between min and max (inclusive). */
+export function clampBigint(val: bigint, min: bigint, max: bigint): bigint {
+  if (val < min) return min
+  if (val > max) return max
+  return val
+}
