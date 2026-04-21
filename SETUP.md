@@ -8,14 +8,10 @@ If you haven't deployed the contract yet:
 2. Create a new file `CeloClicker.sol`
 3. Copy the contract code from `CeloClicker.sol` in this repo
 4. Compile with Solidity 0.8.20
-5. Deploy to Celo Mainnet (Chain ID 42220) or Alfajores Testnet (Chain ID 44787)
+5. Deploy to Celo Mainnet (Chain ID: 42220) or Alfajores Testnet
 6. **Copy the deployed contract address**
 
 ## Step 2: Update Environment Variables
-
-```bash
-cp .env.example .env.local
-```
 
 1. Open `.env.local` file
 2. Replace `0x...` with your actual contract address:
@@ -47,7 +43,7 @@ Next.js only loads environment variables at startup, so changes won't take effec
 ## Step 4: Verify
 
 After restarting, the warning should disappear and you should be able to interact with the contract.
-Run `npm run check:fast` to confirm lint and focused utility checks are still green.
+Run `npm run test:utils` to confirm local validation and utility helpers are still green.
 
 ## MiniPay Notes
 
@@ -76,7 +72,7 @@ Run `npm run check:fast` to confirm lint and focused utility checks are still gr
   - Refresh once after opening the app in MiniPay
 
 - **WalletConnect project id rejected?**
-  - Replace placeholder values like `your_project_id_here`
+  - Replace placeholder values like `your_project_id`
   - Use a non-placeholder id with at least 8 characters
 
 - **USDCm mode is disabled?**
