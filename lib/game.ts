@@ -39,3 +39,7 @@ export function getUpgradeLabel(level: number): string {
 export function formatBonus(n: number): string {
   return `+${n}`
 }
+
+export function calcNextPrestigeThreshold(level: number, base: number): number {
+  return base * Math.pow(2, level)
+}
