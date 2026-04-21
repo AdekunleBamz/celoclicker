@@ -184,3 +184,7 @@ export function isHexString(s: string): boolean {
 export function isValidChainId(id: number): boolean {
   return Number.isInteger(id) && id > 0
 }
+
+export function isValidTimestamp(ts: number): boolean {
+  return Number.isFinite(ts) && ts > 0
+}
