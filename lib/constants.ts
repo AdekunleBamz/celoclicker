@@ -201,3 +201,5 @@ export const PRESTIGE_THRESHOLD = 1_000_000
 export const MAX_UPGRADES = 20
 
 export const SAVE_INTERVAL_MS = 5_000
+
+export const INITIAL_CLICKS_PER_SECOND = 0
