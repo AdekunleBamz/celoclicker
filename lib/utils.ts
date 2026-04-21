@@ -177,3 +177,13 @@ export function truncateMiddle(value: string, startChars = 8, endChars = 6): str
   if (value.length <= startChars + endChars + 3) return value
   return `${value.slice(0, startChars)}...${value.slice(-endChars)}`
 }
+
+/**
+ * Formats a bigint click score with thousands separators for display.
+ *
+ * @param clicks - The bigint click count.
+ * @returns Localized number string e.g. "1,234,567".
+ */
+export function formatClickScore(clicks: bigint): string {
+  return Number(clicks).toLocaleString('en-US')
+}
