@@ -43,3 +43,7 @@ export function formatBonus(n: number): string {
 export function calcNextPrestigeThreshold(level: number, base: number): number {
   return base * Math.pow(2, level)
 }
+
+export function getClickValueWithMultiplier(base: number, mult: number): number {
+  return Math.floor(base * mult)
+}
