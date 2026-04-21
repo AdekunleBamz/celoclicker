@@ -164,3 +164,7 @@ export function isValidMultiplierLevel(level: bigint, max = 5n): boolean {
 export function isNonEmptyString(s: unknown): s is string {
   return typeof s === 'string' && s.trim().length > 0
 }
+
+export function isPositiveInt(n: unknown): n is number {
+  return typeof n === 'number' && Number.isInteger(n) && n > 0
+}
