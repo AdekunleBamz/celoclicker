@@ -203,3 +203,5 @@ export const MAX_UPGRADES = 20
 export const SAVE_INTERVAL_MS = 5_000
 
 export const INITIAL_CLICKS_PER_SECOND = 0
+
+export const ACHIEVEMENT_COUNT = 15
