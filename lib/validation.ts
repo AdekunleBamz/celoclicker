@@ -145,3 +145,8 @@ export function isPositiveClicks(clicks: bigint): boolean {
 export function isValidPlayerAddress(address: string): boolean {
   return /^0x[a-fA-F0-9]{40}$/.test(address) && address !== '0x0000000000000000000000000000000000000000'
 }
+
+/** Returns true if the games count is a non-negative bigint. */
+export function isValidGamesCount(n: bigint): boolean {
+  return n >= 0n
+}
