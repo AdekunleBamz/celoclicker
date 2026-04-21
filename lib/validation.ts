@@ -160,3 +160,7 @@ export function isValidClickPower(power: bigint): boolean {
 export function isValidMultiplierLevel(level: bigint, max = 5n): boolean {
   return level >= 0n && level <= max
 }
+
+export function isNonEmptyString(s: unknown): s is string {
+  return typeof s === 'string' && s.trim().length > 0
+}
