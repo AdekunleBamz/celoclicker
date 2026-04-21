@@ -49,7 +49,7 @@ export const UpgradeCard = ({
       </div>
       <button
         onClick={handleClick}
-        disabled={isLoading}
+        disabled={disabled || isLoading}
         type="button"
         aria-label={`Upgrade ${title}`}
         className={`w-full py-2 rounded-lg font-bold transition-colors cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed text-sm relative z-10 ${
