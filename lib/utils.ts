@@ -365,13 +365,6 @@ export function isValidClickCount(n: number): boolean {
   return Number.isInteger(n) && n >= 0
 }
 
-/**
- * Calculates the percentage of a value relative to a total.
- * 
- * @param value - The part value.
- * @param total - The whole value.
- * @returns Rounded percentage as a number (0-100).
- */
 export function toPercent(value: number, total: number): number {
   if (total === 0) return 0
   return Math.round((value / total) * 100)
