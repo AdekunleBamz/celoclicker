@@ -217,3 +217,5 @@ export const CLICK_VALUE_DEFAULT = 1
 export const UPGRADE_SCALE_FACTOR = 1.15
 
 export const COMBO_WINDOW_MS = 2_000
+
+export const MAX_COMBO_MULTIPLIER = 8
