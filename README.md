@@ -126,7 +126,7 @@ npm start
 ### Step 5: Optional Farcaster Configuration
 
 1. Update `public/farcaster.json` with your domain
-2. Update `public/.well-known/farcaster.json` with:
+2. If your hosting setup requires a `/.well-known/farcaster.json` route, mirror the same Farcaster payload there with:
    - Your FID
    - Proper account association
    - Webhook URL
