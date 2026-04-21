@@ -221,3 +221,5 @@ export const COMBO_WINDOW_MS = 2_000
 export const MAX_COMBO_MULTIPLIER = 8
 
 export const SYNC_RETRY_ATTEMPTS = 3
+
+export const OFFLINE_INCOME_CAP_HOURS = 8
