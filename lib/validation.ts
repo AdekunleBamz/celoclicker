@@ -172,3 +172,7 @@ export function isPositiveInt(n: unknown): n is number {
 export function isInRange(n: number, lo: number, hi: number): boolean {
   return n >= lo && n <= hi
 }
+
+export function isEthAddress(s: string): boolean {
+  return /^0x[0-9a-fA-F]{40}$/.test(s)
+}
