@@ -275,3 +275,7 @@ export function formatClicks(n: number): string {
 export function calcUpgradePrice(base: number, level: number): number {
   return Math.floor(base * Math.pow(1.15, level))
 }
+
+export function isPrestigeReady(clicks: number, threshold: number): boolean {
+  return clicks >= threshold
+}
