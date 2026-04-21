@@ -150,3 +150,8 @@ export const GAME_TX_TYPE = Object.freeze({
   UPGRADE_MULT: 'upgrade_mult',
   WITHDRAW: 'withdraw',
 } as const)
+
+/**
+ * Minimum click power a player starts with.
+ */
+export const BASE_CLICK_POWER = 1n
