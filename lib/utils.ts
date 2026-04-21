@@ -260,3 +260,8 @@ export function shortAddress(addr: string): string {
   if (addr.length < 10) return addr
   return `${addr.slice(0, 6)}...${addr.slice(-4)}`
 }
+
+/** Returns true if address is the EVM zero address. */
+export function isZeroAddress(addr: string): boolean {
+  return addr === '0x0000000000000000000000000000000000000000'
+}
