@@ -135,3 +135,8 @@ export const STATS_POLL_INTERVAL_MS = 15_000
  * Maximum number of auto-clicker upgrades a player can purchase.
  */
 export const MAX_AUTO_CLICKER_LEVEL = 10n
+
+/**
+ * Maximum multiplier upgrade level.
+ */
+export const MAX_MULTIPLIER_LEVEL = 5n
