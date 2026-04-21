@@ -295,5 +295,6 @@ export function sumArray(arr: number[]): number {
 }
 
 export function maxOfArray(arr: number[]): number {
-  return arr.reduce((a, b) => Math.max(a, b), 0)
+  if (arr.length === 0) return 0
+  return arr.slice(1).reduce((a, b) => Math.max(a, b), arr[0])
 }
