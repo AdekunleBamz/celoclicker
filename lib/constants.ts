@@ -225,3 +225,5 @@ export const SYNC_RETRY_ATTEMPTS = 3
 export const OFFLINE_INCOME_CAP_HOURS = 8
 
 export const CELO_DECIMALS = 18
+
+export const MIN_WITHDRAW_AMOUNT = 0.01
