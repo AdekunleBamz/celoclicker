@@ -224,9 +224,7 @@ export function formatCelo(celo: number | string): string {
 
 /** Clamps a bigint value between min and max (inclusive). */
 export function clampBigint(val: bigint, min: bigint, max: bigint): bigint {
-  if (val < min) return min
-  if (val > max) return max
-  return val
+  return clampBigInt(val, min, max)
 }
 
 /** Returns 'Level N' display string for a given upgrade level bigint. */
