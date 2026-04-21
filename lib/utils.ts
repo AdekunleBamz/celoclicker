@@ -287,3 +287,7 @@ export function formatMultiplier(m: number): string {
 export function calcClicksPerSecond(upgrades: number[]): number {
   return upgrades.reduce((sum, u) => sum + u, 0)
 }
+
+export function clampNumber(v: number, lo: number, hi: number): number {
+  return Math.max(lo, Math.min(hi, v))
+}
