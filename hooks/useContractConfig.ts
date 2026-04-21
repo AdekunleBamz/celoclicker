@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { celoClickerABI } from '@/lib/abis'
 import { isValidAddress, isZeroAddress, ZERO_ADDRESS } from '@/lib/utils'
-import { CELO_MAINNET_CHAIN_ID } from '@/lib/constants'
+import { CELO_MAINNET_CHAIN_ID, CELO_TESTNET_CHAIN_ID } from '@/lib/constants'
 
 /**
  * Hook to get contract configuration including address, ABI, and validity status
@@ -15,11 +15,17 @@ export function useContractConfig() {
   }, [contractAddress])
 
   /** Expected chain ID for the deployed contract. */
-  const expectedChainId = CELO_MAINNET_CHAIN_ID
+  const configuredChainId = Number.parseInt(process.env.NEXT_PUBLIC_CHAIN_ID?.trim() || '', 10)
+  const expectedChainId =
+    configuredChainId === CELO_TESTNET_CHAIN_ID ? CELO_TESTNET_CHAIN_ID : CELO_MAINNET_CHAIN_ID
 
   /** Builds a Celo explorer URL for the configured contract address. */
+  const explorerBase =
+    expectedChainId === CELO_TESTNET_CHAIN_ID
+      ? 'https://explorer.celo.org/alfajores/address'
+      : 'https://explorer.celo.org/mainnet/address'
   const explorerUrl = isValid
-    ? `https://explorer.celo.org/mainnet/address/${contractAddress}`
+    ? `${explorerBase}/${contractAddress}`
     : null
 
   return {
