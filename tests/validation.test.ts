@@ -305,3 +305,9 @@ describe('lib/validation isPositiveInt', () => {
     expect(isPositiveInt(3.5)).toBe(false)
   })
 })
+
+describe('lib/validation isNumberInRange', () => {
+  it('accepts inclusive numeric bounds', () => {
+    expect(isNumberInRange(10, 1, 10)).toBe(true)
+  })
+})
