@@ -12,6 +12,7 @@ import {
   formatGamesPlayed,
   formatTimestamp,
   formatUpgradeLevel,
+  bigintToPercent,
   formatNumber,
   formatTokenAmount,
   isSameAddress,
@@ -336,5 +337,11 @@ describe('lib/utils formatGamesPlayed', () => {
 describe('lib/utils formatTimestamp', () => {
   it('returns an empty label for invalid timestamps', () => {
     expect(formatTimestamp(0)).toBe('')
+  })
+})
+
+describe('lib/utils bigintToPercent', () => {
+  it('returns zero when total is zero', () => {
+    expect(bigintToPercent(5n, 0n)).toBe(0)
   })
 })
