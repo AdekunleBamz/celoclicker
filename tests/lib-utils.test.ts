@@ -15,6 +15,7 @@ import {
   formatTimestamp,
   formatUpgradeLevel,
   bigintToPercent,
+  isPrestigeReady,
   formatNumber,
   formatTokenAmount,
   isSameAddress,
@@ -365,5 +366,11 @@ describe('lib/utils formatClicks', () => {
 describe('lib/utils calcUpgradePrice', () => {
   it('rounds scaled upgrade prices down', () => {
     expect(calcUpgradePrice(100, 2)).toBe(132)
+  })
+})
+
+describe('lib/utils isPrestigeReady', () => {
+  it('allows prestige at the exact threshold', () => {
+    expect(isPrestigeReady(1000, 1000)).toBe(true)
   })
 })
