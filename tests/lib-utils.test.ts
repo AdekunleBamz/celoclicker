@@ -209,4 +209,8 @@ describe('lib/utils safeParseInt', () => {
   it('parses decimal strings as base ten integers', () => {
     expect(safeParseInt('42')).toBe(42)
   })
+
+  it('returns the fallback for invalid integer input', () => {
+    expect(safeParseInt('not-a-number', 9)).toBe(9)
+  })
 })
