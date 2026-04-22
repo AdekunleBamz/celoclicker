@@ -175,4 +175,8 @@ describe('lib/utils clampBigInt', () => {
   it('raises values below the minimum bound', () => {
     expect(clampBigInt(-5n, 0n, 10n)).toBe(0n)
   })
+
+  it('lowers values above the maximum bound', () => {
+    expect(clampBigInt(15n, 0n, 10n)).toBe(10n)
+  })
 })
