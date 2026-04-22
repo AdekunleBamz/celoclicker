@@ -118,3 +118,9 @@ describe('lib/feeCurrencies getFeeCurrencyLabel', () => {
     expect(getFeeCurrencyLabel('USDC', CELO_MAINNET_CHAIN_ID)).toBe('USDCm')
   })
 })
+
+describe('lib/feeCurrencies getFeeCurrencyAddress', () => {
+  it('returns the USDC fee adapter on Celo mainnet', () => {
+    expect(getFeeCurrencyAddress('USDC', CELO_MAINNET_CHAIN_ID)).toMatch(/^0x[a-fA-F0-9]{40}$/)
+  })
+})
