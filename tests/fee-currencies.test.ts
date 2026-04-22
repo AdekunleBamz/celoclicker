@@ -103,4 +103,8 @@ describe('lib/feeCurrencies getAvailableFeeCurrencies', () => {
   it('includes CELO and USDC on Celo mainnet', () => {
     expect(getAvailableFeeCurrencies(CELO_MAINNET_CHAIN_ID).map((currency) => currency.id)).toEqual(['CELO', 'USDC'])
   })
+
+  it('keeps only CELO available off mainnet', () => {
+    expect(getAvailableFeeCurrencies(44787).map((currency) => currency.id)).toEqual(['CELO'])
+  })
 })
