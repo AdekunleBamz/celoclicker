@@ -221,3 +221,9 @@ describe('lib/validation isValidChainId', () => {
     expect(isValidChainId(1)).toBe(false)
   })
 })
+
+describe('lib/validation isPlaceholderAddress', () => {
+  it('detects placeholder token addresses', () => {
+    expect(isPlaceholderAddress('0x0000000000000000000000000000000000000001')).toBe(true)
+  })
+})
