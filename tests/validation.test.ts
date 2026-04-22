@@ -212,4 +212,8 @@ describe('lib/validation isValidChainId', () => {
   it('accepts Celo mainnet', () => {
     expect(isValidChainId(42220)).toBe(true)
   })
+
+  it('accepts Alfajores testnet', () => {
+    expect(isValidChainId(44787)).toBe(true)
+  })
 })
