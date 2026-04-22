@@ -235,4 +235,8 @@ describe('lib/utils weiToCelo', () => {
   it('converts wei back to whole CELO values', () => {
     expect(weiToCelo(2_000_000_000_000_000_000n)).toBe(2)
   })
+
+  it('converts fractional wei balances to CELO', () => {
+    expect(weiToCelo(1_250_000_000_000_000_000n)).toBe(1.25)
+  })
 })
