@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   celoToWei,
   clampBigInt,
+  clampBigint,
   clicksPerSecond,
   formatElapsedTime,
   formatAddress,
@@ -300,5 +301,11 @@ describe('lib/utils formatCelo', () => {
 
   it('returns zero display text for invalid CELO values', () => {
     expect(formatCelo('not-a-number')).toBe('0.0000')
+  })
+})
+
+describe('lib/utils clampBigint', () => {
+  it('raises lowercase bigint clamps to the minimum', () => {
+    expect(clampBigint(-1n, 0n, 4n)).toBe(0n)
   })
 })
