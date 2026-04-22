@@ -128,3 +128,9 @@ describe('lib/feeCurrencies getFeeCurrencyAddress', () => {
     expect(getFeeCurrencyAddress('CELO', CELO_MAINNET_CHAIN_ID)).toBeUndefined()
   })
 })
+
+describe('lib/feeCurrencies token addresses', () => {
+  it('returns the USDC token address on Celo mainnet', () => {
+    expect(getFeeCurrencyById('USDC', CELO_MAINNET_CHAIN_ID)?.tokenAddress).toMatch(/^0x[a-fA-F0-9]{40}$/)
+  })
+})
