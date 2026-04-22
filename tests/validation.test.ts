@@ -265,3 +265,9 @@ describe('lib/validation isValidPlayerAddress', () => {
     expect(isValidPlayerAddress('0x0000000000000000000000000000000000000000')).toBe(false)
   })
 })
+
+describe('lib/validation isPositiveClicks', () => {
+  it('accepts positive click counts', () => {
+    expect(isPositiveClicks(1n)).toBe(true)
+  })
+})
