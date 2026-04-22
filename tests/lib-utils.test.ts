@@ -9,6 +9,7 @@ import {
   formatClickScore,
   formatClickScoreCompact,
   formatCelo,
+  formatGamesPlayed,
   formatUpgradeLevel,
   formatNumber,
   formatTokenAmount,
@@ -318,5 +319,11 @@ describe('lib/utils clampBigint', () => {
 describe('lib/utils formatUpgradeLevel', () => {
   it('labels upgrade levels for display', () => {
     expect(formatUpgradeLevel(12n)).toBe('Level 12')
+  })
+})
+
+describe('lib/utils formatGamesPlayed', () => {
+  it('uses a singular label for one game', () => {
+    expect(formatGamesPlayed(1n)).toBe('1 game')
   })
 })
