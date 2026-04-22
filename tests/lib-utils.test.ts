@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  clampBigInt,
   formatAddress,
   formatNumber,
   formatTokenAmount,
@@ -168,4 +169,10 @@ describe('lib/utils isSameAddress', () => {
   it('returns false when either address is blank', () => {
     expect(isSameAddress('', '0x1234567890abcdef1234567890abcdef12345678')).toBe(false)
   })
-}
+})
+
+describe('lib/utils clampBigInt', () => {
+  it('raises values below the minimum bound', () => {
+    expect(clampBigInt(-5n, 0n, 10n)).toBe(0n)
+  })
+})
