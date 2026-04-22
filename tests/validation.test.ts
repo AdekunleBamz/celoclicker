@@ -283,3 +283,9 @@ describe('lib/validation isValidClickPower', () => {
     expect(isValidClickPower(0n)).toBe(false)
   })
 })
+
+describe('lib/validation isValidMultiplierLevel', () => {
+  it('accepts custom multiplier caps', () => {
+    expect(isValidMultiplierLevel(3n, 3n)).toBe(true)
+  })
+})
