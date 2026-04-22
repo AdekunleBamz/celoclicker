@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   celoToWei,
   calcUpgradePrice,
+  calcClicksPerSecond,
   clampBigInt,
   clampBigint,
   clicksPerSecond,
@@ -379,5 +380,11 @@ describe('lib/utils isPrestigeReady', () => {
 describe('lib/utils formatMultiplier', () => {
   it('formats multipliers with two decimals', () => {
     expect(formatMultiplier(1.5)).toBe('1.50x')
+  })
+})
+
+describe('lib/utils calcClicksPerSecond', () => {
+  it('sums upgrade click rates', () => {
+    expect(calcClicksPerSecond([1, 2, 3])).toBe(6)
   })
 })
