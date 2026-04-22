@@ -9,6 +9,7 @@ import {
   isSameAddress,
   isValidAddress,
   isZeroAddress,
+  padStart,
   safeParseInt,
   weiToCelo,
 } from '../lib/utils'
@@ -238,5 +239,11 @@ describe('lib/utils weiToCelo', () => {
 
   it('converts fractional wei balances to CELO', () => {
     expect(weiToCelo(1_250_000_000_000_000_000n)).toBe(1.25)
+  })
+})
+
+describe('lib/utils padStart', () => {
+  it('pads values with zeroes by default', () => {
+    expect(padStart(7, 3)).toBe('007')
   })
 })
