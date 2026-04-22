@@ -216,4 +216,8 @@ describe('lib/validation isValidChainId', () => {
   it('accepts Alfajores testnet', () => {
     expect(isValidChainId(44787)).toBe(true)
   })
+
+  it('rejects unsupported chain ids', () => {
+    expect(isValidChainId(1)).toBe(false)
+  })
 })
