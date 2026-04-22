@@ -311,3 +311,9 @@ describe('lib/validation isNumberInRange', () => {
     expect(isNumberInRange(10, 1, 10)).toBe(true)
   })
 })
+
+describe('lib/validation isEthAddress', () => {
+  it('rejects uppercase address prefixes', () => {
+    expect(isEthAddress('0X1234567890abcdef1234567890abcdef12345678')).toBe(false)
+  })
+})
