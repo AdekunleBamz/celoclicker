@@ -295,3 +295,9 @@ describe('lib/validation isNonEmptyString', () => {
     expect(isNonEmptyString('  player  ')).toBe(true)
   })
 })
+
+describe('lib/validation isPositiveInt', () => {
+  it('accepts positive integers', () => {
+    expect(isPositiveInt(3)).toBe(true)
+  })
+})
