@@ -10,6 +10,7 @@ import {
   isValidAddress,
   isZeroAddress,
   safeParseInt,
+  weiToCelo,
 } from '../lib/utils'
 
 describe('lib/utils formatNumber', () => {
@@ -227,5 +228,11 @@ describe('lib/utils celoToWei', () => {
 
   it('converts fractional CELO values to wei', () => {
     expect(celoToWei(1.5)).toBe(1_500_000_000_000_000_000n)
+  })
+})
+
+describe('lib/utils weiToCelo', () => {
+  it('converts wei back to whole CELO values', () => {
+    expect(weiToCelo(2_000_000_000_000_000_000n)).toBe(2)
   })
 })
