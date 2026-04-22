@@ -11,6 +11,7 @@ import {
   isZeroAddress,
   padStart,
   safeParseInt,
+  truncateMiddle,
   weiToCelo,
 } from '../lib/utils'
 
@@ -249,5 +250,11 @@ describe('lib/utils padStart', () => {
 
   it('supports custom padding characters', () => {
     expect(padStart('abc', 5, '-')).toBe('--abc')
+  })
+})
+
+describe('lib/utils truncateMiddle', () => {
+  it('leaves short values unchanged', () => {
+    expect(truncateMiddle('short-value')).toBe('short-value')
   })
 })
