@@ -10,6 +10,7 @@ import {
   formatClickScoreCompact,
   formatCelo,
   formatGamesPlayed,
+  formatTimestamp,
   formatUpgradeLevel,
   formatNumber,
   formatTokenAmount,
@@ -329,5 +330,11 @@ describe('lib/utils formatGamesPlayed', () => {
 
   it('uses a plural label for multiple games', () => {
     expect(formatGamesPlayed(2n)).toBe('2 games')
+  })
+})
+
+describe('lib/utils formatTimestamp', () => {
+  it('returns an empty label for invalid timestamps', () => {
+    expect(formatTimestamp(0)).toBe('')
   })
 })
