@@ -188,4 +188,8 @@ describe('lib/validation isValidUpgradeLevel', () => {
   it('accepts the maximum upgrade level', () => {
     expect(isValidUpgradeLevel(100n)).toBe(true)
   })
+
+  it('rejects negative upgrade levels', () => {
+    expect(isValidUpgradeLevel(-1n)).toBe(false)
+  })
 })
