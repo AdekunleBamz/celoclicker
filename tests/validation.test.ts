@@ -236,4 +236,8 @@ describe('lib/validation isInRange', () => {
   it('accepts values on inclusive range boundaries', () => {
     expect(isInRange(5n, 5n, 10n)).toBe(true)
   })
+
+  it('rejects values below the range', () => {
+    expect(isInRange(4n, 5n, 10n)).toBe(false)
+  })
 })
