@@ -113,4 +113,8 @@ describe('lib/feeCurrencies getFeeCurrencyLabel', () => {
   it('returns the CELO display label', () => {
     expect(getFeeCurrencyLabel('CELO', CELO_MAINNET_CHAIN_ID)).toBe('CELO')
   })
+
+  it('returns the MiniPay USDC display label', () => {
+    expect(getFeeCurrencyLabel('USDC', CELO_MAINNET_CHAIN_ID)).toBe('USDCm')
+  })
 })
