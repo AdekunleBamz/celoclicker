@@ -164,4 +164,8 @@ describe('lib/utils isSameAddress', () => {
       ),
     ).toBe(true)
   })
+
+  it('returns false when either address is blank', () => {
+    expect(isSameAddress('', '0x1234567890abcdef1234567890abcdef12345678')).toBe(false)
+  })
 }
