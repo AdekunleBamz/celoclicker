@@ -344,4 +344,8 @@ describe('lib/utils bigintToPercent', () => {
   it('returns zero when total is zero', () => {
     expect(bigintToPercent(5n, 0n)).toBe(0)
   })
+
+  it('caps percentages at one hundred', () => {
+    expect(bigintToPercent(25n, 10n)).toBe(100)
+  })
 })
