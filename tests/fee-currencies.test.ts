@@ -108,3 +108,9 @@ describe('lib/feeCurrencies getAvailableFeeCurrencies', () => {
     expect(getAvailableFeeCurrencies(44787).map((currency) => currency.id)).toEqual(['CELO'])
   })
 })
+
+describe('lib/feeCurrencies getFeeCurrencyLabel', () => {
+  it('returns the CELO display label', () => {
+    expect(getFeeCurrencyLabel('CELO', CELO_MAINNET_CHAIN_ID)).toBe('CELO')
+  })
+})
