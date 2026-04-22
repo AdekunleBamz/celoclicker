@@ -78,3 +78,9 @@ describe('hooks/useMiniPay getEthereumProvider', () => {
     expect(getEthereumProvider()).toBe(provider)
   })
 })
+
+describe('hooks/useMiniPay hasConnector', () => {
+  it('matches connectors by id', () => {
+    expect(hasConnector([{ id: 'injected', type: 'wallet' }] as never, 'injected')).toBe(true)
+  })
+})
