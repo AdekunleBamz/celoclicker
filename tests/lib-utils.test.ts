@@ -155,4 +155,13 @@ describe('lib/utils isSameAddress', () => {
       ),
     ).toBe(true)
   })
+
+  it('trims whitespace before comparing addresses', () => {
+    expect(
+      isSameAddress(
+        '  0x1234567890abcdef1234567890abcdef12345678',
+        '0x1234567890abcdef1234567890abcdef12345678  ',
+      ),
+    ).toBe(true)
+  })
 }
