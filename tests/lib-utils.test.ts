@@ -8,6 +8,7 @@ import {
   isSameAddress,
   isValidAddress,
   isZeroAddress,
+  safeParseInt,
 } from '../lib/utils'
 
 describe('lib/utils formatNumber', () => {
@@ -201,5 +202,11 @@ describe('lib/utils formatElapsedTime', () => {
 
   it('formats hour durations with remaining minutes', () => {
     expect(formatElapsedTime(7500)).toBe('2h 5m')
+  })
+})
+
+describe('lib/utils safeParseInt', () => {
+  it('parses decimal strings as base ten integers', () => {
+    expect(safeParseInt('42')).toBe(42)
   })
 })
