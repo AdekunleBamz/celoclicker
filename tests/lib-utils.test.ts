@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import {
   celoToWei,
+  calcUpgradePrice,
   clampBigInt,
   clampBigint,
   clicksPerSecond,
@@ -358,5 +359,11 @@ describe('lib/utils formatClicks', () => {
 
   it('formats thousand-scale click counts', () => {
     expect(formatClicks(2_500)).toBe('2.5K')
+  })
+})
+
+describe('lib/utils calcUpgradePrice', () => {
+  it('rounds scaled upgrade prices down', () => {
+    expect(calcUpgradePrice(100, 2)).toBe(132)
   })
 })
