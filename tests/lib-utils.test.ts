@@ -9,6 +9,7 @@ import {
   formatClickScore,
   formatClickScoreCompact,
   formatCelo,
+  formatUpgradeLevel,
   formatNumber,
   formatTokenAmount,
   isSameAddress,
@@ -311,5 +312,11 @@ describe('lib/utils clampBigint', () => {
 
   it('lowers lowercase bigint clamps to the maximum', () => {
     expect(clampBigint(9n, 0n, 4n)).toBe(4n)
+  })
+})
+
+describe('lib/utils formatUpgradeLevel', () => {
+  it('labels upgrade levels for display', () => {
+    expect(formatUpgradeLevel(12n)).toBe('Level 12')
   })
 })
