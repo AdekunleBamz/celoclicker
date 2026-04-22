@@ -277,3 +277,9 @@ describe('lib/validation isValidGamesCount', () => {
     expect(isValidGamesCount(0n)).toBe(true)
   })
 })
+
+describe('lib/validation isValidClickPower', () => {
+  it('rejects zero click power', () => {
+    expect(isValidClickPower(0n)).toBe(false)
+  })
+})
