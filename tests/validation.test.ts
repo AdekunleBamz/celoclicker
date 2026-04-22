@@ -300,4 +300,8 @@ describe('lib/validation isPositiveInt', () => {
   it('accepts positive integers', () => {
     expect(isPositiveInt(3)).toBe(true)
   })
+
+  it('rejects decimal values', () => {
+    expect(isPositiveInt(3.5)).toBe(false)
+  })
 })
