@@ -27,6 +27,7 @@ import {
   isZeroAddress,
   padStart,
   safeParseInt,
+  safeParseIntOrNull,
   truncateMiddle,
   weiToCelo,
 } from '../lib/utils'
@@ -400,5 +401,11 @@ describe('lib/utils clampNumber', () => {
 describe('lib/utils isValidClickCount', () => {
   it('accepts non-negative integer click counts', () => {
     expect(isValidClickCount(0)).toBe(true)
+  })
+})
+
+describe('lib/utils safeParseIntOrNull', () => {
+  it('returns null for invalid integer text', () => {
+    expect(safeParseIntOrNull('nope')).toBeNull()
   })
 })
