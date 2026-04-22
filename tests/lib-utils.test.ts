@@ -326,4 +326,8 @@ describe('lib/utils formatGamesPlayed', () => {
   it('uses a singular label for one game', () => {
     expect(formatGamesPlayed(1n)).toBe('1 game')
   })
+
+  it('uses a plural label for multiple games', () => {
+    expect(formatGamesPlayed(2n)).toBe('2 games')
+  })
 })
