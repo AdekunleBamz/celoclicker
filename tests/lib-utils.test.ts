@@ -198,4 +198,8 @@ describe('lib/utils formatElapsedTime', () => {
   it('formats minute durations with remaining seconds', () => {
     expect(formatElapsedTime(125)).toBe('2m 5s')
   })
+
+  it('formats hour durations with remaining minutes', () => {
+    expect(formatElapsedTime(7500)).toBe('2h 5m')
+  })
 })
