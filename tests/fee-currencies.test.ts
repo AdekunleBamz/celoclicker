@@ -1,8 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import {
+  getAvailableFeeCurrencies,
   getDefaultFeeCurrencyId,
   getFeeCurrencies,
+  getFeeCurrencyAddress,
   getFeeCurrencyById,
+  getFeeCurrencyLabel,
   isFeeCurrencyAvailable,
 } from '../lib/feeCurrencies'
 import { CELO_MAINNET_CHAIN_ID } from '../lib/constants'
@@ -93,5 +96,11 @@ describe('lib/feeCurrencies isFeeCurrencyAvailable', () => {
 
   it('returns true for CELO when chain id is missing', () => {
     expect(isFeeCurrencyAvailable('CELO')).toBe(true)
+  })
+})
+
+describe('lib/feeCurrencies getAvailableFeeCurrencies', () => {
+  it('includes CELO and USDC on Celo mainnet', () => {
+    expect(getAvailableFeeCurrencies(CELO_MAINNET_CHAIN_ID).map((currency) => currency.id)).toEqual(['CELO', 'USDC'])
   })
 })
