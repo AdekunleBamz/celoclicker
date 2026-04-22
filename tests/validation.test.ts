@@ -250,4 +250,8 @@ describe('lib/validation isPurchasableUpgradeLevel', () => {
   it('rejects zero as a purchasable level', () => {
     expect(isPurchasableUpgradeLevel(0n)).toBe(false)
   })
+
+  it('respects custom purchasable level caps', () => {
+    expect(isPurchasableUpgradeLevel(6n, 5n)).toBe(false)
+  })
 })
