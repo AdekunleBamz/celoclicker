@@ -213,4 +213,8 @@ describe('lib/utils safeParseInt', () => {
   it('returns the fallback for invalid integer input', () => {
     expect(safeParseInt('not-a-number', 9)).toBe(9)
   })
+
+  it('keeps the default fallback at zero', () => {
+    expect(safeParseInt('')).toBe(0)
+  })
 })
