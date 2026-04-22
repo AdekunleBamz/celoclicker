@@ -241,3 +241,9 @@ describe('lib/validation isInRange', () => {
     expect(isInRange(4n, 5n, 10n)).toBe(false)
   })
 })
+
+describe('lib/validation isPurchasableUpgradeLevel', () => {
+  it('accepts the first purchasable level', () => {
+    expect(isPurchasableUpgradeLevel(1n)).toBe(true)
+  })
+})
