@@ -96,7 +96,7 @@ export function isValidChainId(chainId: number): boolean {
  * @param address - The address string to check.
  */
 export function isPlaceholderAddress(address: string): boolean {
-  return /^0x0{38}[1-9a-f]$/i.test(address.trim())
+  return /^0x0{39}[1-9a-f]$/i.test(address.trim())
 }
 
 /**
