@@ -184,4 +184,8 @@ describe('lib/validation isValidUpgradeLevel', () => {
   it('accepts the minimum upgrade level', () => {
     expect(isValidUpgradeLevel(0n)).toBe(true)
   })
+
+  it('accepts the maximum upgrade level', () => {
+    expect(isValidUpgradeLevel(100n)).toBe(true)
+  })
 })
