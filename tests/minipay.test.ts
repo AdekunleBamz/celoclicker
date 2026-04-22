@@ -1,5 +1,11 @@
 import { describe, expect, it, vi } from 'vitest'
-import { getInjectedConnector, isMiniPayBrowser } from '../hooks/useMiniPay'
+import {
+  getEthereumProvider,
+  getInjectedConnector,
+  getWalletEnvironmentLabel,
+  hasConnector,
+  isMiniPayBrowser,
+} from '../hooks/useMiniPay'
 
 describe('hooks/useMiniPay isMiniPayBrowser', () => {
   it('returns false when window is undefined', () => {
@@ -56,5 +62,12 @@ describe('hooks/useMiniPay getInjectedConnector', () => {
     ] as never)
 
     expect(connector).toBeUndefined()
+  })
+})
+
+describe('hooks/useMiniPay getEthereumProvider', () => {
+  it('returns null when no ethereum provider is present', () => {
+    vi.stubGlobal('window', {})
+    expect(getEthereumProvider()).toBeNull()
   })
 })
