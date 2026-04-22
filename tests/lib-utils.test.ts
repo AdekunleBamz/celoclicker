@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   celoToWei,
   clampBigInt,
+  clicksPerSecond,
   formatElapsedTime,
   formatAddress,
   formatClickScore,
@@ -278,5 +279,11 @@ describe('lib/utils formatClickScoreCompact', () => {
 
   it('formats thousand-scale click totals compactly', () => {
     expect(formatClickScoreCompact(12_500n)).toBe('12.5K')
+  })
+})
+
+describe('lib/utils clicksPerSecond', () => {
+  it('divides total clicks by elapsed seconds', () => {
+    expect(clicksPerSecond(120n, 30)).toBe(4)
   })
 })
