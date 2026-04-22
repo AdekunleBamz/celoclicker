@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import {
   clampBigInt,
+  formatElapsedTime,
   formatAddress,
   formatNumber,
   formatTokenAmount,
@@ -182,5 +183,11 @@ describe('lib/utils clampBigInt', () => {
 
   it('keeps values already inside the bound', () => {
     expect(clampBigInt(7n, 0n, 10n)).toBe(7n)
+  })
+})
+
+describe('lib/utils formatElapsedTime', () => {
+  it('returns zero seconds for invalid durations', () => {
+    expect(formatElapsedTime(Number.NaN)).toBe('0s')
   })
 })
