@@ -317,3 +317,9 @@ describe('lib/validation isEthAddress', () => {
     expect(isEthAddress('0X1234567890abcdef1234567890abcdef12345678')).toBe(false)
   })
 })
+
+describe('lib/validation isHexString', () => {
+  it('allows an empty hex payload', () => {
+    expect(isHexString('0x')).toBe(true)
+  })
+})
