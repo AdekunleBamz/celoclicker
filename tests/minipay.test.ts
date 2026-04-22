@@ -83,4 +83,8 @@ describe('hooks/useMiniPay hasConnector', () => {
   it('matches connectors by id', () => {
     expect(hasConnector([{ id: 'injected', type: 'wallet' }] as never, 'injected')).toBe(true)
   })
+
+  it('matches connectors by type', () => {
+    expect(hasConnector([{ id: 'browser', type: 'injected' }] as never, 'injected')).toBe(true)
+  })
 })
