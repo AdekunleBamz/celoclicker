@@ -308,4 +308,8 @@ describe('lib/utils clampBigint', () => {
   it('raises lowercase bigint clamps to the minimum', () => {
     expect(clampBigint(-1n, 0n, 4n)).toBe(0n)
   })
+
+  it('lowers lowercase bigint clamps to the maximum', () => {
+    expect(clampBigint(9n, 0n, 4n)).toBe(4n)
+  })
 })
