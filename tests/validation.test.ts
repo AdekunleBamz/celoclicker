@@ -231,3 +231,9 @@ describe('lib/validation isPlaceholderAddress', () => {
     expect(isPlaceholderAddress('0x0000000000000000000000000000000000000000')).toBe(false)
   })
 })
+
+describe('lib/validation isInRange', () => {
+  it('accepts values on inclusive range boundaries', () => {
+    expect(isInRange(5n, 5n, 10n)).toBe(true)
+  })
+})
