@@ -286,4 +286,8 @@ describe('lib/utils clicksPerSecond', () => {
   it('divides total clicks by elapsed seconds', () => {
     expect(clicksPerSecond(120n, 30)).toBe(4)
   })
+
+  it('returns zero for a zero-second elapsed window', () => {
+    expect(clicksPerSecond(120n, 0)).toBe(0)
+  })
 })
