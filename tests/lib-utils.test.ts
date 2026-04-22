@@ -246,4 +246,8 @@ describe('lib/utils padStart', () => {
   it('pads values with zeroes by default', () => {
     expect(padStart(7, 3)).toBe('007')
   })
+
+  it('supports custom padding characters', () => {
+    expect(padStart('abc', 5, '-')).toBe('--abc')
+  })
 })
