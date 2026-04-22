@@ -8,6 +8,7 @@ import {
   formatAddress,
   formatClickScore,
   formatClickScoreCompact,
+  formatClicks,
   formatCelo,
   formatGamesPlayed,
   formatTimestamp,
@@ -347,5 +348,11 @@ describe('lib/utils bigintToPercent', () => {
 
   it('caps percentages at one hundred', () => {
     expect(bigintToPercent(25n, 10n)).toBe(100)
+  })
+})
+
+describe('lib/utils formatClicks', () => {
+  it('formats million-scale click counts', () => {
+    expect(formatClicks(1_200_000)).toBe('1.2M')
   })
 })
