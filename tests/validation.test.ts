@@ -323,3 +323,9 @@ describe('lib/validation isHexString', () => {
     expect(isHexString('0x')).toBe(true)
   })
 })
+
+describe('lib/validation isPositiveChainId', () => {
+  it('rejects zero chain ids', () => {
+    expect(isPositiveChainId(0)).toBe(false)
+  })
+})
