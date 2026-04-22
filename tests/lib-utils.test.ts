@@ -5,6 +5,7 @@ import {
   formatElapsedTime,
   formatAddress,
   formatClickScore,
+  formatClickScoreCompact,
   formatNumber,
   formatTokenAmount,
   isSameAddress,
@@ -267,5 +268,11 @@ describe('lib/utils truncateMiddle', () => {
 describe('lib/utils formatClickScore', () => {
   it('adds thousands separators to click totals', () => {
     expect(formatClickScore(1_234_567n)).toBe('1,234,567')
+  })
+})
+
+describe('lib/utils formatClickScoreCompact', () => {
+  it('formats million-scale click totals compactly', () => {
+    expect(formatClickScoreCompact(1_250_000n)).toBe('1.25M')
   })
 })
