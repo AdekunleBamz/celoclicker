@@ -202,4 +202,8 @@ describe('lib/validation isValidPoints', () => {
   it('accepts zero point totals', () => {
     expect(isValidPoints(0n)).toBe(true)
   })
+
+  it('rejects negative point totals', () => {
+    expect(isValidPoints(-1n)).toBe(false)
+  })
 })
