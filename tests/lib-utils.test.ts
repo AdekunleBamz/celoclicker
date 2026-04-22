@@ -257,4 +257,8 @@ describe('lib/utils truncateMiddle', () => {
   it('leaves short values unchanged', () => {
     expect(truncateMiddle('short-value')).toBe('short-value')
   })
+
+  it('keeps the requested prefix and suffix for long values', () => {
+    expect(truncateMiddle('abcdefghijklmnopqrstuvwxyz', 4, 5)).toBe('abcd...vwxyz')
+  })
 })
