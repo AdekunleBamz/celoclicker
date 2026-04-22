@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest'
-import { formatAddress, formatNumber, formatTokenAmount, isValidAddress, isZeroAddress } from '../lib/utils'
+import {
+  formatAddress,
+  formatNumber,
+  formatTokenAmount,
+  isSameAddress,
+  isValidAddress,
+  isZeroAddress,
+} from '../lib/utils'
 
 describe('lib/utils formatNumber', () => {
   it('abbreviates thousands with a K suffix', () => {
@@ -138,3 +145,14 @@ describe('lib/utils isValidAddress', () => {
     expect(isValidAddress('0x123456789012345678901234567890123456789Z')).toBe(false)
   })
 })
+
+describe('lib/utils isSameAddress', () => {
+  it('matches addresses regardless of letter casing', () => {
+    expect(
+      isSameAddress(
+        '0x1234567890abcdef1234567890abcdef12345678',
+        '0x1234567890ABCDEF1234567890ABCDEF12345678',
+      ),
+    ).toBe(true)
+  })
+}
