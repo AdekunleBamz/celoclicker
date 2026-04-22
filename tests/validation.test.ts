@@ -1,5 +1,26 @@
 import { afterEach, describe, expect, it } from 'vitest'
-import { validateContractAddress, validateEnvironment } from '../lib/validation'
+import {
+  isEthAddress,
+  isHexString,
+  isInRange,
+  isNonEmptyString,
+  isNumberInRange,
+  isPlaceholderAddress,
+  isPositiveChainId,
+  isPositiveClicks,
+  isPositiveInt,
+  isPurchasableUpgradeLevel,
+  isValidChainId,
+  isValidClickPower,
+  isValidGamesCount,
+  isValidMultiplierLevel,
+  isValidPlayerAddress,
+  isValidPoints,
+  isValidScore,
+  isValidUpgradeLevel,
+  validateContractAddress,
+  validateEnvironment,
+} from '../lib/validation'
 
 const originalContractAddress = process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT
 const originalWalletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID
@@ -156,5 +177,11 @@ describe('lib/validation validateEnvironment', () => {
       isValid: false,
       errors: ['NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is still set to a placeholder value'],
     })
+  })
+})
+
+describe('lib/validation isValidUpgradeLevel', () => {
+  it('accepts the minimum upgrade level', () => {
+    expect(isValidUpgradeLevel(0n)).toBe(true)
   })
 })
