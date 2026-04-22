@@ -88,3 +88,10 @@ describe('hooks/useMiniPay hasConnector', () => {
     expect(hasConnector([{ id: 'browser', type: 'injected' }] as never, 'injected')).toBe(true)
   })
 })
+
+describe('hooks/useMiniPay getWalletEnvironmentLabel', () => {
+  it('labels MiniPay browser sessions', () => {
+    vi.stubGlobal('window', { ethereum: { isMiniPay: true } })
+    expect(getWalletEnvironmentLabel()).toBe('MiniPay')
+  })
+})
