@@ -260,4 +260,8 @@ describe('lib/validation isValidPlayerAddress', () => {
   it('accepts valid player addresses with whitespace', () => {
     expect(isValidPlayerAddress('  0x1234567890abcdef1234567890abcdef12345678  ')).toBe(true)
   })
+
+  it('rejects the zero address for players', () => {
+    expect(isValidPlayerAddress('0x0000000000000000000000000000000000000000')).toBe(false)
+  })
 })
