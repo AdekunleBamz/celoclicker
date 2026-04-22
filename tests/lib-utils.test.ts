@@ -194,4 +194,8 @@ describe('lib/utils formatElapsedTime', () => {
   it('formats sub-minute durations as seconds', () => {
     expect(formatElapsedTime(45)).toBe('45s')
   })
+
+  it('formats minute durations with remaining seconds', () => {
+    expect(formatElapsedTime(125)).toBe('2m 5s')
+  })
 })
