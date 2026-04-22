@@ -7,6 +7,7 @@ import {
   formatAddress,
   formatClickScore,
   formatClickScoreCompact,
+  formatCelo,
   formatNumber,
   formatTokenAmount,
   isSameAddress,
@@ -289,5 +290,11 @@ describe('lib/utils clicksPerSecond', () => {
 
   it('returns zero for a zero-second elapsed window', () => {
     expect(clicksPerSecond(120n, 0)).toBe(0)
+  })
+})
+
+describe('lib/utils formatCelo', () => {
+  it('formats numeric CELO values to four decimals', () => {
+    expect(formatCelo(1.23456)).toBe('1.2346')
   })
 })
