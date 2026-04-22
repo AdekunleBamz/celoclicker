@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  celoToWei,
   clampBigInt,
   formatElapsedTime,
   formatAddress,
@@ -216,5 +217,11 @@ describe('lib/utils safeParseInt', () => {
 
   it('keeps the default fallback at zero', () => {
     expect(safeParseInt('')).toBe(0)
+  })
+})
+
+describe('lib/utils celoToWei', () => {
+  it('converts one CELO to wei', () => {
+    expect(celoToWei(1)).toBe(1_000_000_000_000_000_000n)
   })
 })
