@@ -19,6 +19,7 @@ import {
   formatUpgradeLevel,
   bigintToPercent,
   isPrestigeReady,
+  isValidClickCount,
   formatNumber,
   formatTokenAmount,
   isSameAddress,
@@ -393,5 +394,11 @@ describe('lib/utils calcClicksPerSecond', () => {
 describe('lib/utils clampNumber', () => {
   it('keeps numbers within the provided bounds', () => {
     expect(clampNumber(12, 0, 10)).toBe(10)
+  })
+})
+
+describe('lib/utils isValidClickCount', () => {
+  it('accepts non-negative integer click counts', () => {
+    expect(isValidClickCount(0)).toBe(true)
   })
 })
