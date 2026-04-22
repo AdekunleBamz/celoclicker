@@ -329,3 +329,9 @@ describe('lib/validation isPositiveChainId', () => {
     expect(isPositiveChainId(0)).toBe(false)
   })
 })
+
+describe('lib/validation isValidScore', () => {
+  it('accepts zero scores', () => {
+    expect(isValidScore(0)).toBe(true)
+  })
+})
