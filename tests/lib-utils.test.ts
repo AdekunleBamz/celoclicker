@@ -12,6 +12,7 @@ import {
   formatClicks,
   formatCelo,
   formatGamesPlayed,
+  formatMultiplier,
   formatTimestamp,
   formatUpgradeLevel,
   bigintToPercent,
@@ -372,5 +373,11 @@ describe('lib/utils calcUpgradePrice', () => {
 describe('lib/utils isPrestigeReady', () => {
   it('allows prestige at the exact threshold', () => {
     expect(isPrestigeReady(1000, 1000)).toBe(true)
+  })
+})
+
+describe('lib/utils formatMultiplier', () => {
+  it('formats multipliers with two decimals', () => {
+    expect(formatMultiplier(1.5)).toBe('1.50x')
   })
 })
