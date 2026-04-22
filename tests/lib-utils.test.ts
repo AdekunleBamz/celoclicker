@@ -4,6 +4,7 @@ import {
   clampBigInt,
   formatElapsedTime,
   formatAddress,
+  formatClickScore,
   formatNumber,
   formatTokenAmount,
   isSameAddress,
@@ -260,5 +261,11 @@ describe('lib/utils truncateMiddle', () => {
 
   it('keeps the requested prefix and suffix for long values', () => {
     expect(truncateMiddle('abcdefghijklmnopqrstuvwxyz', 4, 5)).toBe('abcd...vwxyz')
+  })
+})
+
+describe('lib/utils formatClickScore', () => {
+  it('adds thousands separators to click totals', () => {
+    expect(formatClickScore(1_234_567n)).toBe('1,234,567')
   })
 })
