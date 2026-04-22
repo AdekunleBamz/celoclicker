@@ -224,4 +224,8 @@ describe('lib/utils celoToWei', () => {
   it('converts one CELO to wei', () => {
     expect(celoToWei(1)).toBe(1_000_000_000_000_000_000n)
   })
+
+  it('converts fractional CELO values to wei', () => {
+    expect(celoToWei(1.5)).toBe(1_500_000_000_000_000_000n)
+  })
 })
