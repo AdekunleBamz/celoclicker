@@ -297,4 +297,8 @@ describe('lib/utils formatCelo', () => {
   it('formats numeric CELO values to four decimals', () => {
     expect(formatCelo(1.23456)).toBe('1.2346')
   })
+
+  it('returns zero display text for invalid CELO values', () => {
+    expect(formatCelo('not-a-number')).toBe('0.0000')
+  })
 })
