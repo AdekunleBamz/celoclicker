@@ -255,3 +255,9 @@ describe('lib/validation isPurchasableUpgradeLevel', () => {
     expect(isPurchasableUpgradeLevel(6n, 5n)).toBe(false)
   })
 })
+
+describe('lib/validation isValidPlayerAddress', () => {
+  it('accepts valid player addresses with whitespace', () => {
+    expect(isValidPlayerAddress('  0x1234567890abcdef1234567890abcdef12345678  ')).toBe(true)
+  })
+})
