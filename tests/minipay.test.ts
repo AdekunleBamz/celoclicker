@@ -70,4 +70,11 @@ describe('hooks/useMiniPay getEthereumProvider', () => {
     vi.stubGlobal('window', {})
     expect(getEthereumProvider()).toBeNull()
   })
+
+  it('returns the current ethereum provider object', () => {
+    const provider = { isMiniPay: true }
+    vi.stubGlobal('window', { ethereum: provider })
+
+    expect(getEthereumProvider()).toBe(provider)
+  })
 })
