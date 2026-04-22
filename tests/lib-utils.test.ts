@@ -5,6 +5,7 @@ import {
   calcClicksPerSecond,
   clampBigInt,
   clampBigint,
+  clampNumber,
   clicksPerSecond,
   formatElapsedTime,
   formatAddress,
@@ -386,5 +387,11 @@ describe('lib/utils formatMultiplier', () => {
 describe('lib/utils calcClicksPerSecond', () => {
   it('sums upgrade click rates', () => {
     expect(calcClicksPerSecond([1, 2, 3])).toBe(6)
+  })
+})
+
+describe('lib/utils clampNumber', () => {
+  it('keeps numbers within the provided bounds', () => {
+    expect(clampNumber(12, 0, 10)).toBe(10)
   })
 })
