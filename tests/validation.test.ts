@@ -207,3 +207,9 @@ describe('lib/validation isValidPoints', () => {
     expect(isValidPoints(-1n)).toBe(false)
   })
 })
+
+describe('lib/validation isValidChainId', () => {
+  it('accepts Celo mainnet', () => {
+    expect(isValidChainId(42220)).toBe(true)
+  })
+})
