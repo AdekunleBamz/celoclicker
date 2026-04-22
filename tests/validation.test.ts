@@ -197,3 +197,9 @@ describe('lib/validation isValidUpgradeLevel', () => {
     expect(isValidUpgradeLevel(101n)).toBe(false)
   })
 })
+
+describe('lib/validation isValidPoints', () => {
+  it('accepts zero point totals', () => {
+    expect(isValidPoints(0n)).toBe(true)
+  })
+})
