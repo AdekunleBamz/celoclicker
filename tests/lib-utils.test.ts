@@ -355,4 +355,8 @@ describe('lib/utils formatClicks', () => {
   it('formats million-scale click counts', () => {
     expect(formatClicks(1_200_000)).toBe('1.2M')
   })
+
+  it('formats thousand-scale click counts', () => {
+    expect(formatClicks(2_500)).toBe('2.5K')
+  })
 })
