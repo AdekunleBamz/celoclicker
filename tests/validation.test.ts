@@ -289,3 +289,9 @@ describe('lib/validation isValidMultiplierLevel', () => {
     expect(isValidMultiplierLevel(3n, 3n)).toBe(true)
   })
 })
+
+describe('lib/validation isNonEmptyString', () => {
+  it('accepts strings with visible text after trimming', () => {
+    expect(isNonEmptyString('  player  ')).toBe(true)
+  })
+})
