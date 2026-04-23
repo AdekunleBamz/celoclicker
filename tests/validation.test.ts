@@ -260,6 +260,10 @@ describe('lib/validation isPlaceholderAddress', () => {
     expect(isPlaceholderAddress('  0x0000000000000000000000000000000000000001  ')).toBe(true)
   })
 
+  it('detects placeholder token addresses with hex letter suffixes', () => {
+    expect(isPlaceholderAddress('0x000000000000000000000000000000000000000A')).toBe(true)
+  })
+
   it('does not treat the zero address as a placeholder', () => {
     expect(isPlaceholderAddress('0x0000000000000000000000000000000000000000')).toBe(false)
   })
