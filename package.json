@@ -1,6 +1,7 @@
 {
   "name": "celoclicker",
   "version": "1.0.0",
+  "description": "On-chain idle clicker game for Celo and MiniPay",
   "private": true,
   "engines": {
     "node": ">=18.0.0"
