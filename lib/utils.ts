@@ -324,8 +324,8 @@ export function calcClicksPerSecond(upgrades: number[]): number {
 }
 
 /**
- * Clamps a number between a lower and upper bound.
- * 
+ * Constrains a number between a lower and upper bound.
+ *
  * @param v - The value to clamp.
  * @param lo - The lower bound.
  * @param hi - The upper bound.
