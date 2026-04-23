@@ -43,7 +43,7 @@ Next.js only loads environment variables at startup, so changes won't take effec
 ## Step 4: Verify
 
 After restarting, the warning should disappear and you should be able to interact with the contract.
-Run `npm run test:utils` to confirm local validation and formatting helpers are still green.
+Run `npm run check:fast` to confirm lint and focused utility checks are still green.
 
 ## MiniPay Notes
 
