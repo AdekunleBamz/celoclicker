@@ -8,7 +8,7 @@ import {
   getFeeCurrencyLabel,
   isFeeCurrencyAvailable,
 } from '../lib/feeCurrencies'
-import { CELO_MAINNET_CHAIN_ID } from '../lib/constants'
+import { CELO_MAINNET_CHAIN_ID, CELO_TESTNET_CHAIN_ID } from '../lib/constants'
 
 describe('lib/feeCurrencies getFeeCurrencies', () => {
   it('always returns both CELO and USDC options', () => {
@@ -26,7 +26,7 @@ describe('lib/feeCurrencies getFeeCurrencies', () => {
   })
 
   it('hides USDC gas payments off mainnet', () => {
-    const usdcCurrency = getFeeCurrencies(44787).find((currency) => currency.id === 'USDC')
+    const usdcCurrency = getFeeCurrencies(CELO_TESTNET_CHAIN_ID).find((currency) => currency.id === 'USDC')
 
     expect(usdcCurrency).toMatchObject({
       id: 'USDC',
@@ -47,7 +47,7 @@ describe('lib/feeCurrencies getDefaultFeeCurrencyId', () => {
   })
 
   it('falls back to CELO inside MiniPay off mainnet', () => {
-    expect(getDefaultFeeCurrencyId(true, 44787)).toBe('CELO')
+    expect(getDefaultFeeCurrencyId(true, CELO_TESTNET_CHAIN_ID)).toBe('CELO')
   })
 
   it('defaults to CELO for non-MiniPay sessions', () => {
@@ -65,7 +65,7 @@ describe('lib/feeCurrencies getFeeCurrencyById', () => {
   })
 
   it('returns USDC without fee addresses off mainnet', () => {
-    expect(getFeeCurrencyById('USDC', 44787)).toMatchObject({
+    expect(getFeeCurrencyById('USDC', CELO_TESTNET_CHAIN_ID)).toMatchObject({
       id: 'USDC',
       isAvailable: false,
       feeCurrency: undefined,
@@ -83,7 +83,7 @@ describe('lib/feeCurrencies getFeeCurrencyById', () => {
 
 describe('lib/feeCurrencies isFeeCurrencyAvailable', () => {
   it('returns false for USDC off mainnet', () => {
-    expect(isFeeCurrencyAvailable('USDC', 44787)).toBe(false)
+    expect(isFeeCurrencyAvailable('USDC', CELO_TESTNET_CHAIN_ID)).toBe(false)
   })
 
   it('returns true for USDC on Celo mainnet', () => {
@@ -91,7 +91,7 @@ describe('lib/feeCurrencies isFeeCurrencyAvailable', () => {
   })
 
   it('returns true for CELO across supported chains', () => {
-    expect(isFeeCurrencyAvailable('CELO', 44787)).toBe(true)
+    expect(isFeeCurrencyAvailable('CELO', CELO_TESTNET_CHAIN_ID)).toBe(true)
   })
 
   it('returns true for CELO when chain id is missing', () => {
@@ -105,7 +105,7 @@ describe('lib/feeCurrencies getAvailableFeeCurrencies', () => {
   })
 
   it('keeps only CELO available off mainnet', () => {
-    expect(getAvailableFeeCurrencies(44787).map((currency) => currency.id)).toEqual(['CELO'])
+    expect(getAvailableFeeCurrencies(CELO_TESTNET_CHAIN_ID).map((currency) => currency.id)).toEqual(['CELO'])
   })
 })
 
