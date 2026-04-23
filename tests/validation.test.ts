@@ -433,6 +433,10 @@ describe('lib/validation isPositiveInt', () => {
   it('rejects decimal values', () => {
     expect(isPositiveInt(3.5)).toBe(false)
   })
+
+  it('rejects numeric strings', () => {
+    expect(isPositiveInt('3')).toBe(false)
+  })
 })
 
 describe('lib/validation isNumberInRange', () => {
