@@ -441,6 +441,10 @@ describe('lib/utils clampBigint', () => {
   it('lowers lowercase bigint clamps to the maximum', () => {
     expect(clampBigint(9n, 0n, 4n)).toBe(4n)
   })
+
+  it('keeps lowercase bigint values inside bounds', () => {
+    expect(clampBigint(3n, 0n, 4n)).toBe(3n)
+  })
 })
 
 describe('lib/utils formatUpgradeLevel', () => {
