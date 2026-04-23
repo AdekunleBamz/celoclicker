@@ -25,5 +25,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    // No custom plugins needed for now
+  ],
 }
