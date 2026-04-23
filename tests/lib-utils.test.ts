@@ -57,6 +57,10 @@ describe('lib/utils formatNumber', () => {
     expect(formatNumber(Number.POSITIVE_INFINITY)).toBe('0')
   })
 
+  it('returns zero for NaN values', () => {
+    expect(formatNumber(Number.NaN)).toBe('0')
+  })
+
   it('uses locale grouping for non-abbreviated values', () => {
     expect(formatNumber(999.5)).toBe('999.5')
   })
