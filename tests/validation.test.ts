@@ -368,6 +368,10 @@ describe('lib/validation isValidClickPower', () => {
     expect(isValidClickPower(1n)).toBe(true)
   })
 
+  it('accepts upgraded click power', () => {
+    expect(isValidClickPower(5n)).toBe(true)
+  })
+
   it('rejects zero click power', () => {
     expect(isValidClickPower(0n)).toBe(false)
   })
