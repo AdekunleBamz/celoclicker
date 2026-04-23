@@ -310,6 +310,10 @@ describe('lib/utils safeParseInt', () => {
 })
 
 describe('lib/utils celoToWei', () => {
+  it('converts zero CELO to zero wei', () => {
+    expect(celoToWei(0)).toBe(0n)
+  })
+
   it('converts one CELO to wei', () => {
     expect(celoToWei(1)).toBe(1_000_000_000_000_000_000n)
   })
