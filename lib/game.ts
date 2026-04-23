@@ -1,9 +1,8 @@
 export const GAME_VERSION = '1.0.0'
 
 /**
- * Calculates the prestige bonus multiplier based on prestige count.
- * @param count - The number of times the player has prestiged.
- * @returns The prestige multiplier.
+ * Computes the prestige bonus multiplier from prestige count.
+ *  count - Number of times prestiged.
  */
 export function calcPrestigeBonus(count: number): number {
   if (count < 0) return 1
