@@ -375,6 +375,10 @@ describe('lib/validation isValidClickPower', () => {
   it('rejects zero click power', () => {
     expect(isValidClickPower(0n)).toBe(false)
   })
+
+  it('rejects negative click power', () => {
+    expect(isValidClickPower(-1n)).toBe(false)
+  })
 })
 
 describe('lib/validation isValidMultiplierLevel', () => {
