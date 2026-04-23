@@ -324,6 +324,10 @@ describe('lib/utils celoToWei', () => {
 })
 
 describe('lib/utils weiToCelo', () => {
+  it('converts zero wei to zero CELO', () => {
+    expect(weiToCelo(0n)).toBe(0)
+  })
+
   it('converts wei back to whole CELO values', () => {
     expect(weiToCelo(2_000_000_000_000_000_000n)).toBe(2)
   })
