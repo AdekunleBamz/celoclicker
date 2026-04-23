@@ -25,6 +25,11 @@ export function formatPrestigeCount(n: number): string {
   return `Prestige x${n}`
 }
 
+/**
+ * Calculates offline clicks earned while the player was away.
+ *  cps - Clicks per second rate.
+ *  seconds - Time offline in seconds.
+ */
 export function calcOfflineClicks(cps: number, seconds: number): number {
   return Math.floor(cps * seconds)
 }
