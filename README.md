@@ -230,7 +230,7 @@ This app uses **Celo fee abstraction** for contract writes:
 
 **WalletConnect setup not working**
 - Confirm `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID` is not a placeholder value
-- Use a project id that is at least 8 characters long
+- Use a project id from https://cloud.walletconnect.com that is at least 8 characters long
 
 ## Support
 
