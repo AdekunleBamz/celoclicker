@@ -282,9 +282,8 @@ export function bigintToPercent(val: bigint, total: bigint): number {
 
 
 /**
- * Formats a number of clicks into a compact string representation.
- * @param n - The number of clicks.
- * @returns A formatted string like "1.5M", "450.2K", or "123".
+ * Formats a click count with K/M suffixes for compact display.
+ * @param n - The click count to format.
  */
 export function formatClicks(n: number): string {
   if (!Number.isFinite(n)) return '0'
