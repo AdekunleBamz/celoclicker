@@ -496,6 +496,10 @@ describe('lib/utils formatClicks', () => {
     expect(formatClicks(999)).toBe('999')
   })
 
+  it('formats the exact thousand click boundary', () => {
+    expect(formatClicks(1_000)).toBe('1.0K')
+  })
+
   it('formats million-scale click counts', () => {
     expect(formatClicks(1_200_000)).toBe('1.2M')
   })
