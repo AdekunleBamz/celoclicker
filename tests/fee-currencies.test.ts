@@ -131,6 +131,10 @@ describe('lib/feeCurrencies getFeeCurrencyAddress', () => {
   it('returns no fee adapter for native CELO gas', () => {
     expect(getFeeCurrencyAddress('CELO', CELO_MAINNET_CHAIN_ID)).toBeUndefined()
   })
+
+  it('returns no USDC fee adapter when chain id is missing', () => {
+    expect(getFeeCurrencyAddress('USDC')).toBeUndefined()
+  })
 })
 
 describe('lib/feeCurrencies token addresses', () => {
