@@ -278,6 +278,10 @@ describe('lib/validation isInRange', () => {
     expect(isInRange(5n, 5n, 10n)).toBe(true)
   })
 
+  it('accepts values at the upper range boundary', () => {
+    expect(isInRange(10n, 5n, 10n)).toBe(true)
+  })
+
   it('rejects values below the range', () => {
     expect(isInRange(4n, 5n, 10n)).toBe(false)
   })
