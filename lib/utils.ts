@@ -302,10 +302,9 @@ export function calcUpgradePrice(base: number, level: number): number {
 }
 
 /**
- * Checks if a player is ready for prestige based on their current click count.
- * 
- * @param clicks - The current click count.
- * @param threshold - The required click count for prestige.
+ * Checks whether a player has reached the threshold needed to prestige.
+ * @param clicks - Current total click count.
+ * @param threshold - Minimum clicks required for prestige.
  * @returns True if the player is ready for prestige.
  */
 export function isPrestigeReady(clicks: number, threshold: number): boolean {
