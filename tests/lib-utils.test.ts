@@ -380,6 +380,10 @@ describe('lib/utils formatClickScoreCompact', () => {
     expect(formatClickScoreCompact(999n)).toBe('999')
   })
 
+  it('compacts the exact thousand score boundary', () => {
+    expect(formatClickScoreCompact(1_000n)).toBe('1.0K')
+  })
+
   it('formats million-scale click totals compactly', () => {
     expect(formatClickScoreCompact(1_250_000n)).toBe('1.25M')
   })
