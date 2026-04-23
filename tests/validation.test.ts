@@ -285,6 +285,10 @@ describe('lib/validation isInRange', () => {
   it('rejects values below the range', () => {
     expect(isInRange(4n, 5n, 10n)).toBe(false)
   })
+
+  it('rejects values above the range', () => {
+    expect(isInRange(11n, 5n, 10n)).toBe(false)
+  })
 })
 
 describe('lib/validation isPurchasableUpgradeLevel', () => {
