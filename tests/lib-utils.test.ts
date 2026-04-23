@@ -255,6 +255,10 @@ describe('lib/utils clampBigInt', () => {
   it('keeps values already inside the bound', () => {
     expect(clampBigInt(7n, 0n, 10n)).toBe(7n)
   })
+
+  it('works with negative bounds', () => {
+    expect(clampBigInt(-7n, -10n, -1n)).toBe(-7n)
+  })
 })
 
 describe('lib/utils formatElapsedTime', () => {
