@@ -2,7 +2,7 @@
  * Validation utilities for CeloClicker
  * @module validation
  */
-import { CONTRACT_ADDRESS_ENV_KEY } from './constants'
+import { CONTRACT_ADDRESS_ENV_KEY, WALLETCONNECT_PROJECT_ID_ENV_KEY } from './constants'
 import { isValidAddress, isZeroAddress } from './utils'
 
 const WALLETCONNECT_PLACEHOLDER_IDS = new Set([
@@ -47,14 +47,14 @@ export function validateEnvironment(): {
   
   const walletConnectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID?.trim()
   if (!walletConnectId) {
-    errors.push('NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is not set')
+    errors.push(`${WALLETCONNECT_PROJECT_ID_ENV_KEY} is not set`)
   } else {
     if (isWalletConnectProjectIdPlaceholder(walletConnectId)) {
-      errors.push('NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is still set to a placeholder value')
+      errors.push(`${WALLETCONNECT_PROJECT_ID_ENV_KEY} is still set to a placeholder value`)
     }
 
     if (walletConnectId.length < 8) {
-      errors.push('NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID appears too short to be valid')
+      errors.push(`${WALLETCONNECT_PROJECT_ID_ENV_KEY} appears too short to be valid`)
     }
   }
   
