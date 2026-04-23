@@ -454,6 +454,10 @@ describe('lib/utils formatUpgradeLevel', () => {
 })
 
 describe('lib/utils formatGamesPlayed', () => {
+  it('uses a plural label for zero games', () => {
+    expect(formatGamesPlayed(0n)).toBe('0 games')
+  })
+
   it('uses a singular label for one game', () => {
     expect(formatGamesPlayed(1n)).toBe('1 game')
   })
