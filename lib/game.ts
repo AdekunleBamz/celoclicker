@@ -8,6 +8,11 @@ export function isComboActive(lastClick: number, timeout: number): boolean {
   return Date.now() - lastClick < timeout
 }
 
+/**
+ * Returns the effective combo multiplier capped at a maximum.
+ *  combo - Current combo count.
+ *  max - Maximum allowed multiplier.
+ */
 export function getComboMultiplier(combo: number, max: number): number {
   return Math.min(combo, max)
 }
