@@ -503,4 +503,8 @@ describe('lib/validation isValidScore', () => {
   it('accepts zero scores', () => {
     expect(isValidScore(0)).toBe(true)
   })
+
+  it('rejects negative scores', () => {
+    expect(isValidScore(-1)).toBe(false)
+  })
 })
