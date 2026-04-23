@@ -528,3 +528,9 @@ describe('lib/validation isValidMultiplier', () => {
     expect(isValidMultiplier(Number.POSITIVE_INFINITY)).toBe(false)
   })
 })
+
+describe('lib/validation isValidTimestamp', () => {
+  it('accepts positive timestamps', () => {
+    expect(isValidTimestamp(1)).toBe(true)
+  })
+})
