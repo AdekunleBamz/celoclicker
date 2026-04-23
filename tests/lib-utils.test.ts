@@ -296,6 +296,10 @@ describe('lib/utils safeParseInt', () => {
     expect(safeParseInt('  42  ')).toBe(42)
   })
 
+  it('parses signed integer strings', () => {
+    expect(safeParseInt('-7')).toBe(-7)
+  })
+
   it('returns the fallback for invalid integer input', () => {
     expect(safeParseInt('not-a-number', 9)).toBe(9)
   })
