@@ -15,6 +15,9 @@ export const APP_NAME = 'CeloClicker'
 /** Environment variable key for the contract address */
 export const CONTRACT_ADDRESS_ENV_KEY = 'NEXT_PUBLIC_CELOCLICKER_CONTRACT'
 
+/** Environment variable key for the WalletConnect project ID */
+export const WALLETCONNECT_PROJECT_ID_ENV_KEY = 'NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID'
+
 /**
  * Game configuration settings including intervals and animation durations
  */
