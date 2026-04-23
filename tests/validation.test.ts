@@ -393,6 +393,10 @@ describe('lib/validation isValidMultiplierLevel', () => {
   it('rejects levels above the default multiplier cap', () => {
     expect(isValidMultiplierLevel(6n)).toBe(false)
   })
+
+  it('rejects negative multiplier levels', () => {
+    expect(isValidMultiplierLevel(-1n)).toBe(false)
+  })
 })
 
 describe('lib/validation isNonEmptyString', () => {
