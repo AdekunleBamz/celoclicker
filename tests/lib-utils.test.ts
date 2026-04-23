@@ -471,6 +471,10 @@ describe('lib/utils formatTimestamp', () => {
   it('returns an empty label for invalid timestamps', () => {
     expect(formatTimestamp(0)).toBe('')
   })
+
+  it('returns an empty label for NaN timestamps', () => {
+    expect(formatTimestamp(Number.NaN)).toBe('')
+  })
 })
 
 describe('lib/utils bigintToPercent', () => {
