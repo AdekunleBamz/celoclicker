@@ -519,4 +519,8 @@ describe('lib/validation isValidMultiplier', () => {
   it('accepts the minimum multiplier', () => {
     expect(isValidMultiplier(1)).toBe(true)
   })
+
+  it('rejects multipliers below one', () => {
+    expect(isValidMultiplier(0.99)).toBe(false)
+  })
 })
