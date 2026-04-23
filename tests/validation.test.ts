@@ -267,6 +267,10 @@ describe('lib/validation isPlaceholderAddress', () => {
   it('does not treat the zero address as a placeholder', () => {
     expect(isPlaceholderAddress('0x0000000000000000000000000000000000000000')).toBe(false)
   })
+
+  it('does not treat ordinary addresses as placeholders', () => {
+    expect(isPlaceholderAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe(false)
+  })
 })
 
 describe('lib/validation isInRange', () => {
