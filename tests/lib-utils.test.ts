@@ -232,6 +232,15 @@ describe('lib/utils isSameAddress', () => {
   it('returns false when either address is blank', () => {
     expect(isSameAddress('', '0x1234567890abcdef1234567890abcdef12345678')).toBe(false)
   })
+
+  it('returns false for different addresses', () => {
+    expect(
+      isSameAddress(
+        '0x1234567890abcdef1234567890abcdef12345678',
+        '0x2234567890abcdef1234567890abcdef12345678',
+      ),
+    ).toBe(false)
+  })
 })
 
 describe('lib/utils clampBigInt', () => {
