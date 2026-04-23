@@ -347,8 +347,7 @@ export function clampNumber(v: number, lo: number, hi: number): number {
 
 /**
  * Validates that a value is a non-negative integer click count.
- * @param n - The number to validate.
- * @returns True if the number is a valid click count.
+ *  n - The number to validate.
  */
 export function isValidClickCount(n: number): boolean {
   return Number.isInteger(n) && n >= 0
