@@ -507,4 +507,8 @@ describe('lib/validation isValidScore', () => {
   it('rejects negative scores', () => {
     expect(isValidScore(-1)).toBe(false)
   })
+
+  it('rejects NaN scores', () => {
+    expect(isValidScore(Number.NaN)).toBe(false)
+  })
 })
