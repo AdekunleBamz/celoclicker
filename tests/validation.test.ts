@@ -447,6 +447,10 @@ describe('lib/validation isNumberInRange', () => {
   it('accepts inclusive numeric bounds', () => {
     expect(isNumberInRange(10, 1, 10)).toBe(true)
   })
+
+  it('rejects numbers below the lower bound', () => {
+    expect(isNumberInRange(0, 1, 10)).toBe(false)
+  })
 })
 
 describe('lib/validation isEthAddress', () => {
