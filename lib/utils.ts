@@ -238,6 +238,10 @@ export function formatGamesPlayed(n: bigint): string {
 }
 
 /** Converts a timestamp in ms to a locale time string. */
+/**
+ * Converts a millisecond timestamp to a locale time string.
+ *  ms - Timestamp in milliseconds.
+ */
 export function formatTimestamp(ms: number): string {
   return new Date(ms).toLocaleTimeString()
 }
