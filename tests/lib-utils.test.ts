@@ -91,6 +91,10 @@ describe('lib/utils formatAddress', () => {
     expect(formatAddress('0x12345678')).toBe('0x12345678')
   })
 
+  it('truncates addresses longer than ten characters', () => {
+    expect(formatAddress('0x123456789')).toBe('0x1234...6789')
+  })
+
   it('truncates long addresses for display', () => {
     expect(formatAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe('0x1234...5678')
   })
