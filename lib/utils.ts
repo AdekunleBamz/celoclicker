@@ -273,6 +273,10 @@ export function formatMultiplier(m: number): string {
   return `${m.toFixed(2)}x`
 }
 
+/**
+ * Sums all upgrade values to compute total clicks per second.
+ * @param upgrades - Array of upgrade rate values.
+ */
 export function calcClicksPerSecond(upgrades: number[]): number {
   return upgrades.reduce((sum, u) => sum + u, 0)
 }
