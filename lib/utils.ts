@@ -365,6 +365,11 @@ export function isValidClickCount(n: number): boolean {
   return Number.isInteger(n) && n >= 0
 }
 
+/**
+ * Converts a part-over-total ratio into a rounded percentage.
+ *  value - The partial value.
+ *  total - The total value.
+ */
 export function toPercent(value: number, total: number): number {
   if (total === 0) return 0
   return Math.round((value / total) * 100)
