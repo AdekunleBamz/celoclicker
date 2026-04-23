@@ -389,6 +389,10 @@ describe('lib/validation isValidMultiplierLevel', () => {
   it('accepts custom multiplier caps', () => {
     expect(isValidMultiplierLevel(3n, 3n)).toBe(true)
   })
+
+  it('rejects levels above the default multiplier cap', () => {
+    expect(isValidMultiplierLevel(6n)).toBe(false)
+  })
 })
 
 describe('lib/validation isNonEmptyString', () => {
