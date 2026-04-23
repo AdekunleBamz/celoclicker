@@ -137,6 +137,10 @@ describe('lib/utils formatTokenAmount', () => {
     expect(formatTokenAmount('123.4567', 'USDC')).toBe('123.46 USDC')
   })
 
+  it('formats token amounts without a symbol suffix', () => {
+    expect(formatTokenAmount('12.5')).toBe('12.5')
+  })
+
   it('handles whole-number token balances without decimals', () => {
     expect(formatTokenAmount('200', 'USDC')).toBe('200 USDC')
   })
