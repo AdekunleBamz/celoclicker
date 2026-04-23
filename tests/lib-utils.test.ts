@@ -427,6 +427,10 @@ describe('lib/utils formatCelo', () => {
   it('returns zero display text for invalid CELO values', () => {
     expect(formatCelo('not-a-number')).toBe('0.0000')
   })
+
+  it('returns zero display text for infinite CELO values', () => {
+    expect(formatCelo(Number.POSITIVE_INFINITY)).toBe('0.0000')
+  })
 })
 
 describe('lib/utils clampBigint', () => {
