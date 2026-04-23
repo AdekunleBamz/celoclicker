@@ -405,6 +405,10 @@ describe('lib/utils clicksPerSecond', () => {
   it('returns zero for a zero-second elapsed window', () => {
     expect(clicksPerSecond(120n, 0)).toBe(0)
   })
+
+  it('returns zero for invalid elapsed windows', () => {
+    expect(clicksPerSecond(120n, Number.NaN)).toBe(0)
+  })
 })
 
 describe('lib/utils formatCelo', () => {
