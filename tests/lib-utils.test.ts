@@ -266,6 +266,10 @@ describe('lib/utils formatElapsedTime', () => {
     expect(formatElapsedTime(Number.NaN)).toBe('0s')
   })
 
+  it('returns zero seconds for negative durations', () => {
+    expect(formatElapsedTime(-5)).toBe('0s')
+  })
+
   it('formats sub-minute durations as seconds', () => {
     expect(formatElapsedTime(45)).toBe('45s')
   })
