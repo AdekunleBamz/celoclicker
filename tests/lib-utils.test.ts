@@ -359,6 +359,10 @@ describe('lib/utils truncateMiddle', () => {
   it('keeps the requested prefix and suffix for long values', () => {
     expect(truncateMiddle('abcdefghijklmnopqrstuvwxyz', 4, 5)).toBe('abcd...vwxyz')
   })
+
+  it('uses readable defaults for long values', () => {
+    expect(truncateMiddle('abcdefghijklmnopqrstuvwxyz')).toBe('abcdefgh...uvwxyz')
+  })
 })
 
 describe('lib/utils formatClickScore', () => {
