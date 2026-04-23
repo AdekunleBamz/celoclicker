@@ -39,6 +39,11 @@ describe('lib/feeCurrencies getFeeCurrencies', () => {
     const usdcCurrency = getFeeCurrencies().find((currency) => currency.id === 'USDC')
     expect(usdcCurrency?.isAvailable).toBe(false)
   })
+
+  it('keeps CELO available when chain id is missing', () => {
+    const celoCurrency = getFeeCurrencies().find((currency) => currency.id === 'CELO')
+    expect(celoCurrency?.isAvailable).toBe(true)
+  })
 })
 
 describe('lib/feeCurrencies getDefaultFeeCurrencyId', () => {
