@@ -117,6 +117,10 @@ describe('lib/feeCurrencies getFeeCurrencyLabel', () => {
   it('returns the MiniPay USDC display label', () => {
     expect(getFeeCurrencyLabel('USDC', CELO_MAINNET_CHAIN_ID)).toBe('USDCm')
   })
+
+  it('keeps the USDC display label when chain id is missing', () => {
+    expect(getFeeCurrencyLabel('USDC')).toBe('USDCm')
+  })
 })
 
 describe('lib/feeCurrencies getFeeCurrencyAddress', () => {
