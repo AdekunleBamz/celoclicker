@@ -110,7 +110,7 @@ export function isPlaceholderAddress(address: string): boolean {
  * @param min - Minimum allowed value.
  * @param max - Maximum allowed value.
  */
-export function isInRange(value: bigint, min: bigint, max: bigint): boolean {
+export function isBigIntInRange(value: bigint, min: bigint, max: bigint): boolean {
   return value >= min && value <= max
 }
 
