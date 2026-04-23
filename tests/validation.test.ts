@@ -329,6 +329,10 @@ describe('lib/validation isValidPlayerAddress', () => {
   it('rejects short player addresses', () => {
     expect(isValidPlayerAddress('0x1234')).toBe(false)
   })
+
+  it('rejects non-hex player addresses', () => {
+    expect(isValidPlayerAddress('0x1234567890abcdef1234567890abcdef1234567Z')).toBe(false)
+  })
 })
 
 describe('lib/validation isPositiveClicks', () => {
