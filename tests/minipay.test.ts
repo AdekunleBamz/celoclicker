@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   getEthereumProvider,
   getInjectedConnector,
@@ -6,6 +6,10 @@ import {
   hasConnector,
   isMiniPayBrowser,
 } from '../hooks/useMiniPay'
+
+afterEach(() => {
+  vi.unstubAllGlobals()
+})
 
 describe('hooks/useMiniPay isMiniPayBrowser', () => {
   it('returns false when window is undefined', () => {
