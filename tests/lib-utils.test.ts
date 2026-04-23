@@ -113,6 +113,10 @@ describe('lib/utils formatTokenAmount', () => {
     expect(formatTokenAmount(undefined, 'CELO')).toBe('0 CELO')
   })
 
+  it('returns zero for empty amount strings', () => {
+    expect(formatTokenAmount('', 'CELO')).toBe('0 CELO')
+  })
+
   it('returns zero without trailing space when symbol is missing', () => {
     expect(formatTokenAmount(undefined)).toBe('0')
   })
