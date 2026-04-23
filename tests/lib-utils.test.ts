@@ -45,6 +45,10 @@ describe('lib/utils formatNumber', () => {
     expect(formatNumber(2_450_000_000)).toBe('2.45B')
   })
 
+  it('abbreviates the exact billion boundary', () => {
+    expect(formatNumber(1_000_000_000)).toBe('1.00B')
+  })
+
   it('preserves sign when abbreviating negative numbers', () => {
     expect(formatNumber(-2500)).toBe('-2.50K')
   })
