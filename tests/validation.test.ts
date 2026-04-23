@@ -440,6 +440,10 @@ describe('lib/validation isPositiveInt', () => {
 })
 
 describe('lib/validation isNumberInRange', () => {
+  it('accepts inclusive lower numeric bounds', () => {
+    expect(isNumberInRange(1, 1, 10)).toBe(true)
+  })
+
   it('accepts inclusive numeric bounds', () => {
     expect(isNumberInRange(10, 1, 10)).toBe(true)
   })
