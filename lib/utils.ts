@@ -261,6 +261,11 @@ export function formatClicks(n: number): string {
   return String(n)
 }
 
+/**
+ * Calculates the cost of an upgrade given its base price and current level.
+ * @param base - The base cost of the upgrade.
+ * @param level - The current upgrade level.
+ */
 export function calcUpgradePrice(base: number, level: number): number {
   return Math.floor(base * Math.pow(1.15, level))
 }
