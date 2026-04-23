@@ -482,6 +482,10 @@ describe('lib/utils bigintToPercent', () => {
     expect(bigintToPercent(5n, 0n)).toBe(0)
   })
 
+  it('calculates regular bigint percentages', () => {
+    expect(bigintToPercent(1n, 4n)).toBe(25)
+  })
+
   it('caps percentages at one hundred', () => {
     expect(bigintToPercent(25n, 10n)).toBe(100)
   })
