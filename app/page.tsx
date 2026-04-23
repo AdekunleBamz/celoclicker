@@ -125,12 +125,18 @@ export default function Home() {
   })
 
   const transactionOverrides = useMemo(
-    () => (
-      selectedFeeCurrency.feeCurrency
-        ? { feeCurrency: selectedFeeCurrency.feeCurrency }
-        : {}
-    ),
-    [selectedFeeCurrency.feeCurrency]
+    () => {
+      const overrides: Record<string, unknown> = {}
+      if (selectedFeeCurrency.feeCurrency) {
+        overrides.feeCurrency = selectedFeeCurrency.feeCurrency
+      }
+      // MiniPay only supports legacy (type 0) transactions on Celo
+      if (isMiniPay) {
+        overrides.type = 'legacy'
+      }
+      return overrides
+    },
+    [selectedFeeCurrency.feeCurrency, isMiniPay]
   )
 
   const pendingAutoPointsLabel = pendingAuto ? pendingAuto.toLocaleString() : '0'

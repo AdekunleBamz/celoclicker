@@ -47,7 +47,20 @@ export function useMiniPay() {
     window.addEventListener('focus', refreshDetection)
     window.addEventListener('ethereum#initialized', refreshDetection as EventListener)
 
+    // Poll for 5s in case the provider is injected after initial render
+    let attempts = 0
+    const timer = setInterval(() => {
+      attempts++
+      if (isMiniPayBrowser()) {
+        clearInterval(timer)
+        setIsMiniPay(true)
+      } else if (attempts >= 20) {
+        clearInterval(timer)
+      }
+    }, 250)
+
     return () => {
+      clearInterval(timer)
       window.removeEventListener('focus', refreshDetection)
       window.removeEventListener('ethereum#initialized', refreshDetection as EventListener)
     }

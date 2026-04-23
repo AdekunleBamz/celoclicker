@@ -7,6 +7,7 @@ import { WagmiProvider } from 'wagmi'
 import { celo, celoAlfajores } from 'wagmi/chains'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { APP_NAME, CELO_MAINNET_CHAIN_ID } from '@/lib/constants'
+import { isMiniPayBrowser } from '@/hooks/useMiniPay'
 
 let wagmiConfig: ReturnType<typeof getDefaultConfig> | null = null
 let queryClientInstance: QueryClient | null = null
@@ -49,11 +50,24 @@ function getQueryClient() {
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false)
+  const [isMiniPay, setIsMiniPay] = useState(false)
   const config = useMemo(() => getWagmiConfig(), [])
   const queryClient = useMemo(() => getQueryClient(), [])
 
   useEffect(() => {
     setMounted(true)
+    // Poll for MiniPay provider (may be injected asynchronously)
+    let attempts = 0
+    const timer = setInterval(() => {
+      attempts++
+      if (isMiniPayBrowser()) {
+        clearInterval(timer)
+        setIsMiniPay(true)
+      } else if (attempts >= 20) {
+        clearInterval(timer)
+      }
+    }, 250)
+    return () => clearInterval(timer)
   }, [])
 
   if (!mounted || !config) {
@@ -70,7 +84,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider>{children}</RainbowKitProvider>
+        {/* Skip RainbowKit inside MiniPay — it provides its own injected wallet */}
+        {isMiniPay ? (
+          children
+        ) : (
+          <RainbowKitProvider>{children}</RainbowKitProvider>
+        )}
       </QueryClientProvider>
     </WagmiProvider>
   )
