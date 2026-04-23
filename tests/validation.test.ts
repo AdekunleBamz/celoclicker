@@ -66,6 +66,10 @@ describe('lib/validation validateContractAddress', () => {
   it('rejects zero address values with surrounding whitespace', () => {
     expect(validateContractAddress('  0x0000000000000000000000000000000000000000  ')).toBe(false)
   })
+
+  it('rejects placeholder contract addresses', () => {
+    expect(validateContractAddress('0x0000000000000000000000000000000000000001')).toBe(false)
+  })
 })
 
 describe('lib/validation validateEnvironment', () => {

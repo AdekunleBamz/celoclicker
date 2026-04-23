@@ -24,6 +24,7 @@ export function validateContractAddress(address: string): boolean {
   const normalizedAddress = typeof address === 'string' ? address.trim() : ''
   if (!normalizedAddress) return false
   if (isZeroAddress(normalizedAddress)) return false
+  if (isPlaceholderAddress(normalizedAddress)) return false
   return isValidAddress(normalizedAddress)
 }
 
