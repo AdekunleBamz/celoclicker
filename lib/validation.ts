@@ -5,6 +5,12 @@
 import { CONTRACT_ADDRESS_ENV_KEY } from './constants'
 import { isValidAddress, isZeroAddress } from './utils'
 
+const WALLETCONNECT_PLACEHOLDER_IDS = new Set([
+  'your_project_id',
+  'your_project_id_here',
+  'walletconnect_project_id',
+])
+
 /**
  * Validates if a string is a valid Ethereum contract address format
  * @param address - The address string to validate
@@ -39,13 +45,8 @@ export function validateEnvironment(): {
     errors.push('NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is not set')
   } else {
     const normalizedProjectId = walletConnectId.toLowerCase()
-    const placeholderIds = new Set([
-      'your_project_id',
-      'your_project_id_here',
-      'walletconnect_project_id',
-    ])
 
-    if (placeholderIds.has(normalizedProjectId)) {
+    if (WALLETCONNECT_PLACEHOLDER_IDS.has(normalizedProjectId)) {
       errors.push('NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is still set to a placeholder value')
     }
 
