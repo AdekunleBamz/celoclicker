@@ -29,6 +29,11 @@ export function calcOfflineClicks(cps: number, seconds: number): number {
   return Math.floor(cps * seconds)
 }
 
+/**
+ * Checks if the current score beats the previous best.
+ *  current - The current score.
+ *  best - The best score to beat.
+ */
 export function isNewHighScore(current: number, best: number): boolean {
   return current > best
 }
