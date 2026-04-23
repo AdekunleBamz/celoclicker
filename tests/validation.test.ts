@@ -245,6 +245,10 @@ describe('lib/validation isValidChainId', () => {
   it('rejects unsupported chain ids', () => {
     expect(isValidChainId(1)).toBe(false)
   })
+
+  it('rejects decimal chain ids', () => {
+    expect(isValidChainId(42220.5)).toBe(false)
+  })
 })
 
 describe('lib/validation isPlaceholderAddress', () => {
