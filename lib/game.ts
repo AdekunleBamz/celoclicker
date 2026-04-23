@@ -11,10 +11,9 @@ export function calcPrestigeBonus(count: number): number {
 }
 
 /**
- * Checks if a combo is currently active based on the last click time and timeout.
- * @param lastClick - Timestamp of the last click in ms.
- * @param timeout - Combo timeout duration in ms.
- * @returns True when the combo is still active.
+ * Determines whether a click combo is still active.
+ *  lastClick - Timestamp of the last click.
+ *  timeout - Combo timeout in milliseconds.
  */
 export function isComboActive(lastClick: number, timeout: number): boolean {
   if (lastClick <= 0) return false
