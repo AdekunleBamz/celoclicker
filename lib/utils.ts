@@ -243,6 +243,11 @@ export function formatTimestamp(ms: number): string {
 }
 
 /** Returns percentage of val out of total as a number (0-100). */
+/**
+ * Computes a percentage from a bigint numerator and denominator.
+ *  val - The partial value.
+ *  total - The total value.
+ */
 export function bigintToPercent(val: bigint, total: bigint): number {
   if (total === 0n) return 0
   return Math.min(100, (Number(val) / Number(total)) * 100)
