@@ -28,10 +28,11 @@ export function getComboMultiplier(combo: number, max: number): number {
   return Math.max(1, Math.min(combo, max))
 }
 
-/** Compute total clicks-per-second from a base rate and multiplier.
- * @param base - Base clicks per second.
- * @param multiplier - Multiplier to apply.
- * @returns Total CPS after multiplier.
+/** Compute total clicks-per-second from a base rate and multiplier. */
+/**
+ * Computes total clicks-per-second from a base rate and multiplier.
+ *  base - Base clicks per second.
+ *  multiplier - Multiplier to apply.
  */
 export function calcTotalCps(base: number, multiplier: number): number {
   return base * multiplier
