@@ -403,6 +403,10 @@ describe('lib/validation isNonEmptyString', () => {
   it('accepts strings with visible text after trimming', () => {
     expect(isNonEmptyString('  player  ')).toBe(true)
   })
+
+  it('rejects empty strings', () => {
+    expect(isNonEmptyString('')).toBe(false)
+  })
 })
 
 describe('lib/validation isPositiveInt', () => {
