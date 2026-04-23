@@ -4,6 +4,11 @@ export function calcPrestigeBonus(count: number): number {
   return Math.pow(2, count)
 }
 
+/**
+ * Determines whether a click combo is still active.
+ *  lastClick - Timestamp of the last click.
+ *  timeout - Combo timeout in milliseconds.
+ */
 export function isComboActive(lastClick: number, timeout: number): boolean {
   return Date.now() - lastClick < timeout
 }
