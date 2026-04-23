@@ -18,6 +18,7 @@ import {
   isValidPoints,
   isValidScore,
   isValidUpgradeLevel,
+  isWalletConnectProjectIdPlaceholder,
   validateContractAddress,
   validateEnvironment,
 } from '../lib/validation'
@@ -187,6 +188,12 @@ describe('lib/validation validateEnvironment', () => {
       isValid: false,
       errors: ['NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is still set to a placeholder value'],
     })
+  })
+})
+
+describe('lib/validation isWalletConnectProjectIdPlaceholder', () => {
+  it('detects placeholder project ids after trimming', () => {
+    expect(isWalletConnectProjectIdPlaceholder('  your_project_id_here  ')).toBe(true)
   })
 })
 
