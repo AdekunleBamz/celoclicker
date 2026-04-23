@@ -233,6 +233,10 @@ export function formatUpgradeLevel(level: bigint): string {
 }
 
 /** Formats a games-played count as a readable string, e.g. "42 games". */
+/**
+ * Formats a games-played count with correct pluralization.
+ *  n - The bigint games count.
+ */
 export function formatGamesPlayed(n: bigint): string {
   return `${n.toString()} game${n === 1n ? '' : 's'}`
 }
