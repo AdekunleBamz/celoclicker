@@ -290,6 +290,10 @@ export function toPercent(value: number, total: number): number {
   return Math.round((value / total) * 100)
 }
 
+/**
+ * Sums all numbers in an array.
+ *  arr - Array of numbers to sum.
+ */
 export function sumArray(arr: number[]): number {
   return arr.reduce((a, b) => a + b, 0)
 }
