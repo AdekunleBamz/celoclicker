@@ -2,6 +2,7 @@
   "name": "celoclicker",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://github.com/AdekunleBamz/celoclicker#readme",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
