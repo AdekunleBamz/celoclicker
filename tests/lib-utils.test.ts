@@ -37,6 +37,10 @@ describe('lib/utils formatNumber', () => {
     expect(formatNumber(1500)).toBe('1.50K')
   })
 
+  it('abbreviates the exact thousand boundary', () => {
+    expect(formatNumber(1000)).toBe('1.00K')
+  })
+
   it('abbreviates billion-scale values with a B suffix', () => {
     expect(formatNumber(2_450_000_000)).toBe('2.45B')
   })
