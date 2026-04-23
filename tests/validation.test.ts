@@ -537,4 +537,8 @@ describe('lib/validation isValidTimestamp', () => {
   it('rejects zero timestamps', () => {
     expect(isValidTimestamp(0)).toBe(false)
   })
+
+  it('rejects NaN timestamps', () => {
+    expect(isValidTimestamp(Number.NaN)).toBe(false)
+  })
 })
