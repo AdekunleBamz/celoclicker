@@ -292,6 +292,10 @@ describe('lib/utils safeParseInt', () => {
     expect(safeParseInt('42')).toBe(42)
   })
 
+  it('parses decimal strings with surrounding spaces', () => {
+    expect(safeParseInt('  42  ')).toBe(42)
+  })
+
   it('returns the fallback for invalid integer input', () => {
     expect(safeParseInt('not-a-number', 9)).toBe(9)
   })
