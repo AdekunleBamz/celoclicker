@@ -8,6 +8,7 @@ export const LoadingSpinner = ({ size = 'md', label = 'Loading' }: { size?: 'sm'
   return (
     <div
       aria-label={label}
+      aria-live="polite"
       role="status"
       className={`${sizeClasses[size]} border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin`}
     />
