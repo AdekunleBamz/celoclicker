@@ -49,7 +49,7 @@ export const UpgradeCard = ({
       </div>
       <button
         onClick={handleClick}
-        disabled={isLoading}
+        disabled={disabled || isLoading}
         type="button"
         aria-label={`Upgrade ${title}`}
         aria-disabled={!canAfford}
