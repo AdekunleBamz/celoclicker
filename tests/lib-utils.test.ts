@@ -53,6 +53,10 @@ describe('lib/utils formatNumber', () => {
     expect(formatNumber(2500000n)).toBe('2.50M')
   })
 
+  it('abbreviates the exact million boundary', () => {
+    expect(formatNumber(1_000_000)).toBe('1.00M')
+  })
+
   it('handles negative bigint values with suffixes', () => {
     expect(formatNumber(-2500000n)).toBe('-2.50M')
   })
