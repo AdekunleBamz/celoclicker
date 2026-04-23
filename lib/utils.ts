@@ -255,6 +255,10 @@ export function shortAddress(addr: string): string {
   return `${normalizedAddress.slice(0, 6)}...${normalizedAddress.slice(-4)}`
 }
 
+/**
+ * Formats a click count with K/M suffixes for compact display.
+ * @param n - The click count to format.
+ */
 export function formatClicks(n: number): string {
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`
   if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`
