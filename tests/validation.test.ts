@@ -533,4 +533,8 @@ describe('lib/validation isValidTimestamp', () => {
   it('accepts positive timestamps', () => {
     expect(isValidTimestamp(1)).toBe(true)
   })
+
+  it('rejects zero timestamps', () => {
+    expect(isValidTimestamp(0)).toBe(false)
+  })
 })
