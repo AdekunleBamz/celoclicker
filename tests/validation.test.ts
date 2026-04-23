@@ -411,6 +411,10 @@ describe('lib/validation isNonEmptyString', () => {
   it('rejects whitespace-only strings', () => {
     expect(isNonEmptyString('   ')).toBe(false)
   })
+
+  it('rejects non-string values', () => {
+    expect(isNonEmptyString(123)).toBe(false)
+  })
 })
 
 describe('lib/validation isPositiveInt', () => {
