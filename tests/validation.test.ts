@@ -458,6 +458,10 @@ describe('lib/validation isNumberInRange', () => {
 })
 
 describe('lib/validation isEthAddress', () => {
+  it('accepts lowercase Ethereum addresses', () => {
+    expect(isEthAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe(true)
+  })
+
   it('rejects uppercase address prefixes', () => {
     expect(isEthAddress('0X1234567890abcdef1234567890abcdef12345678')).toBe(false)
   })
