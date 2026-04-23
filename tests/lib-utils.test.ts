@@ -345,6 +345,10 @@ describe('lib/utils padStart', () => {
   it('supports custom padding characters', () => {
     expect(padStart('abc', 5, '-')).toBe('--abc')
   })
+
+  it('leaves values longer than the target width unchanged', () => {
+    expect(padStart('abcdef', 3)).toBe('abcdef')
+  })
 })
 
 describe('lib/utils truncateMiddle', () => {
