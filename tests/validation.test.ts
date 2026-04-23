@@ -523,4 +523,8 @@ describe('lib/validation isValidMultiplier', () => {
   it('rejects multipliers below one', () => {
     expect(isValidMultiplier(0.99)).toBe(false)
   })
+
+  it('rejects infinite multipliers', () => {
+    expect(isValidMultiplier(Number.POSITIVE_INFINITY)).toBe(false)
+  })
 })
