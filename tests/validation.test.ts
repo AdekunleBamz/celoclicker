@@ -475,6 +475,10 @@ describe('lib/validation isHexString', () => {
   it('allows an empty hex payload', () => {
     expect(isHexString('0x')).toBe(true)
   })
+
+  it('accepts populated hex strings', () => {
+    expect(isHexString('0xabcdef1234')).toBe(true)
+  })
 })
 
 describe('lib/validation isPositiveChainId', () => {
