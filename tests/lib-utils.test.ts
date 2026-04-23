@@ -376,6 +376,10 @@ describe('lib/utils formatClickScore', () => {
 })
 
 describe('lib/utils formatClickScoreCompact', () => {
+  it('keeps small click totals unabridged', () => {
+    expect(formatClickScoreCompact(999n)).toBe('999')
+  })
+
   it('formats million-scale click totals compactly', () => {
     expect(formatClickScoreCompact(1_250_000n)).toBe('1.25M')
   })
