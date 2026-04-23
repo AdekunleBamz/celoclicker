@@ -22,7 +22,7 @@ export function isComboActive(lastClick: number, timeout: number): boolean {
 }
 
 /**
- * Gets the current combo multiplier capped at a maximum value.
+ * Returns the effective combo multiplier capped at a maximum value.
  * @param combo - The current combo count.
  * @param max - The maximum allowed multiplier.
  * @returns The capped combo multiplier.
