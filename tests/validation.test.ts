@@ -304,6 +304,10 @@ describe('lib/validation isPurchasableUpgradeLevel', () => {
     expect(isPurchasableUpgradeLevel(10n)).toBe(true)
   })
 
+  it('rejects levels above the default purchasable cap', () => {
+    expect(isPurchasableUpgradeLevel(11n)).toBe(false)
+  })
+
   it('respects custom purchasable level caps', () => {
     expect(isPurchasableUpgradeLevel(6n, 5n)).toBe(false)
   })
