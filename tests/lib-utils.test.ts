@@ -492,6 +492,10 @@ describe('lib/utils bigintToPercent', () => {
 })
 
 describe('lib/utils formatClicks', () => {
+  it('keeps small click counts unformatted', () => {
+    expect(formatClicks(999)).toBe('999')
+  })
+
   it('formats million-scale click counts', () => {
     expect(formatClicks(1_200_000)).toBe('1.2M')
   })
