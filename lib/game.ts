@@ -33,6 +33,10 @@ export function isNewHighScore(current: number, best: number): boolean {
   return current > best
 }
 
+/**
+ * Returns a human-readable label for an upgrade level.
+ *  level - The current upgrade level.
+ */
 export function getUpgradeLabel(level: number): string {
   return `Level ${level}`
 }
