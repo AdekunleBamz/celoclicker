@@ -206,6 +206,10 @@ describe('lib/validation isValidUpgradeLevel', () => {
     expect(isValidUpgradeLevel(100n)).toBe(true)
   })
 
+  it('accepts upgrade levels inside the cap', () => {
+    expect(isValidUpgradeLevel(42n)).toBe(true)
+  })
+
   it('rejects negative upgrade levels', () => {
     expect(isValidUpgradeLevel(-1n)).toBe(false)
   })
