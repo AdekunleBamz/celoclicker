@@ -179,6 +179,10 @@ describe('lib/utils isZeroAddress', () => {
     expect(isZeroAddress('0X0000000000000000000000000000000000000000')).toBe(true)
   })
 
+  it('matches mixed-case zero-address values', () => {
+    expect(isZeroAddress('0x0000000000000000000000000000000000000000'.toUpperCase())).toBe(true)
+  })
+
   it('returns false for blank input', () => {
     expect(isZeroAddress('')).toBe(false)
   })
