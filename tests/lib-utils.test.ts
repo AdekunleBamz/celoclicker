@@ -201,6 +201,10 @@ describe('lib/utils isValidAddress', () => {
     expect(isValidAddress('0x1234')).toBe(false)
   })
 
+  it('rejects addresses with an uppercase hex prefix', () => {
+    expect(isValidAddress('0X1234567890abcdef1234567890abcdef12345678')).toBe(false)
+  })
+
   it('rejects addresses containing non-hex characters', () => {
     expect(isValidAddress('0x123456789012345678901234567890123456789Z')).toBe(false)
   })
