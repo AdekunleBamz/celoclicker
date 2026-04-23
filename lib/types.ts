@@ -39,9 +39,7 @@ export interface UpgradeCosts {
   multiplierCost: bigint
 }
 
-/**
- * Generic async operation state for UI loading indicators.
- */
+/** Possible states for async UI operations. */
 export type AsyncStatus = 'idle' | 'loading' | 'success' | 'error'
 
 /**
