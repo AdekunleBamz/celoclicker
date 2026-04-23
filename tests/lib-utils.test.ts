@@ -274,6 +274,10 @@ describe('lib/utils formatElapsedTime', () => {
     expect(formatElapsedTime(45)).toBe('45s')
   })
 
+  it('floors fractional seconds for display', () => {
+    expect(formatElapsedTime(45.9)).toBe('45s')
+  })
+
   it('formats minute durations with remaining seconds', () => {
     expect(formatElapsedTime(125)).toBe('2m 5s')
   })
