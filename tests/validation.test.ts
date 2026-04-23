@@ -493,6 +493,10 @@ describe('lib/validation isPositiveChainId', () => {
   it('rejects zero chain ids', () => {
     expect(isPositiveChainId(0)).toBe(false)
   })
+
+  it('rejects decimal chain id values', () => {
+    expect(isPositiveChainId(1.5)).toBe(false)
+  })
 })
 
 describe('lib/validation isValidScore', () => {
