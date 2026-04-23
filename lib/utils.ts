@@ -294,6 +294,10 @@ export function sumArray(arr: number[]): number {
   return arr.reduce((a, b) => a + b, 0)
 }
 
+/**
+ * Returns the largest number in an array.
+ *  arr - Array of numbers.
+ */
 export function maxOfArray(arr: number[]): number {
   if (arr.length === 0) return 0
   return arr.slice(1).reduce((a, b) => Math.max(a, b), arr[0])
