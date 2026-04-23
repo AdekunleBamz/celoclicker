@@ -465,6 +465,10 @@ describe('lib/validation isEthAddress', () => {
   it('rejects uppercase address prefixes', () => {
     expect(isEthAddress('0X1234567890abcdef1234567890abcdef12345678')).toBe(false)
   })
+
+  it('rejects short Ethereum addresses', () => {
+    expect(isEthAddress('0x1234')).toBe(false)
+  })
 })
 
 describe('lib/validation isHexString', () => {
