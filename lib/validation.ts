@@ -11,6 +11,10 @@ const WALLETCONNECT_PLACEHOLDER_IDS = new Set([
   'walletconnect_project_id',
 ])
 
+export function isWalletConnectProjectIdPlaceholder(projectId: string): boolean {
+  return WALLETCONNECT_PLACEHOLDER_IDS.has(projectId.trim().toLowerCase())
+}
+
 /**
  * Validates if a string is a valid Ethereum contract address format
  * @param address - The address string to validate
@@ -44,9 +48,7 @@ export function validateEnvironment(): {
   if (!walletConnectId) {
     errors.push('NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is not set')
   } else {
-    const normalizedProjectId = walletConnectId.toLowerCase()
-
-    if (WALLETCONNECT_PLACEHOLDER_IDS.has(normalizedProjectId)) {
+    if (isWalletConnectProjectIdPlaceholder(walletConnectId)) {
       errors.push('NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is still set to a placeholder value')
     }
 
