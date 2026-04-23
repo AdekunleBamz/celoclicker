@@ -366,6 +366,10 @@ describe('lib/utils truncateMiddle', () => {
 })
 
 describe('lib/utils formatClickScore', () => {
+  it('formats zero click totals', () => {
+    expect(formatClickScore(0n)).toBe('0')
+  })
+
   it('adds thousands separators to click totals', () => {
     expect(formatClickScore(1_234_567n)).toBe('1,234,567')
   })
