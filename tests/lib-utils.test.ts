@@ -420,6 +420,10 @@ describe('lib/utils formatCelo', () => {
     expect(formatCelo(1.23456)).toBe('1.2346')
   })
 
+  it('formats string CELO values to four decimals', () => {
+    expect(formatCelo('2.5')).toBe('2.5000')
+  })
+
   it('returns zero display text for invalid CELO values', () => {
     expect(formatCelo('not-a-number')).toBe('0.0000')
   })
