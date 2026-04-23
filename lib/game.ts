@@ -68,20 +68,9 @@ export function formatPrestigeCount(n: number): string {
 }
 
 /**
- * Returns a short description for a prestige count.
- * @param count - Number of prestiges earned.
- */
-export function getPrestigeDescription(count: number): string {
-  if (count <= 0) return 'No prestige yet'
-  if (count === 1) return 'First prestige achieved'
-  return `${count} prestiges earned`
-}
-
-/**
- * Calculates offline click earnings based on CPS and elapsed time.
- * @param cps - Clicks per second.
- * @param seconds - Number of seconds offline.
- * @returns Total offline clicks earned.
+ * Calculates offline clicks earned while the player was away.
+ *  cps - Clicks per second rate.
+ *  seconds - Time offline in seconds.
  */
 export function calcOfflineClicks(cps: number, seconds: number): number {
   if (!Number.isFinite(cps) || cps < 0 || seconds < 0) return 0
