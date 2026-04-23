@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest run",
-    "test:utils": "vitest run tests/lib-utils.test.ts tests/validation.test.ts",
+    "test:utils": "vitest run tests/lib-utils.test.ts tests/validation.test.ts tests/fee-currencies.test.ts tests/minipay.test.ts",
     "check:fast": "npm run lint && npm run test:utils"
   },
   "dependencies": {
