@@ -31,6 +31,7 @@ export const GAME_CONFIG = {
     PENDING_AUTO: 1000,
     LEADERBOARD: 5000,
     BALANCES: 7000,
+    STALE_TIME: 2000,
   },
   /** Animation durations in milliseconds */
   ANIMATION_DURATION: {
