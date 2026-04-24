@@ -23,6 +23,8 @@ export const Card = memo(function Card({ children, className = '', glass = false
   )
 })
 
+Card.displayName = 'Card'
+
 /** Props for the Button component. */
 export interface ButtonProps extends HTMLMotionProps<'button'> {
   /** Visual variant of the button. */
@@ -65,6 +67,8 @@ export const Button = memo(function Button({
   )
 })
 
+Button.displayName = 'Button'
+
 /** Props for the Badge component. */
 export interface BadgeProps {
   /** The text to display in the badge. */
@@ -96,3 +100,5 @@ export const Badge = memo(function Badge({
     </span>
   )
 })
+
+Badge.displayName = 'Badge'
