@@ -14,11 +14,11 @@ export const StatCard = memo(function StatCard({ label, value, valueColor = 'tex
       <div className="text-gray-400 text-xs mb-1">{label}</div>
       <div className="flex items-center gap-2">
         {icon && (
-          <span className="text-lg" role="img" aria-label={label}>
+          <span className="text-lg" aria-hidden="true">
             {icon}
           </span>
         )}
-        <div className={`text-xl font-bold ${valueColor}`}>{value}</div>
+        <div className={`text-xl font-bold ${valueColor}`} aria-label={`${label} is ${value}`}>{value}</div>
       </div>
     </Card>
   )
