@@ -14,6 +14,8 @@ module.exports = {
         'primary': 'var(--primary)',
         'secondary': 'var(--secondary)',
         'accent': 'var(--accent)',
+        'success': 'var(--success)',
+        'error': 'var(--error)',
       },
       fontFamily: {
         'display': ['var(--font-orbitron)', 'JetBrains Mono', 'monospace'],
