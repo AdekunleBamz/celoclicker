@@ -45,6 +45,11 @@ export function calcNextPrestigeThreshold(level: number, base: number): number {
   return base * Math.pow(2, level)
 }
 
+/**
+ * Applies multiplier to base click value and returns the floor.
+ *  base - Base clicks per click.
+ *  mult - Multiplier to apply.
+ */
 export function getClickValueWithMultiplier(base: number, mult: number): number {
   return Math.floor(base * mult)
 }
