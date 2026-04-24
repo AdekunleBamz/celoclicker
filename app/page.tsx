@@ -24,6 +24,10 @@ interface FloatingNumber {
   y: number
 }
 
+/**
+ * Main application page for CeloClicker.
+ * Handles the game loop, wallet connections, and on-chain interactions.
+ */
 export default function Home() {
   const { address, isConnected } = useAccount()
   const chainId = useChainId()
@@ -155,7 +159,8 @@ export default function Home() {
     const x = e.clientX - rect.left
     const y = e.clientY - rect.top
 
-    const earnedPoints = Number(clickPower) * (1 + Number(multiplierLevel))
+    const multiplier = 1 + Number(multiplierLevel)
+    const earnedPoints = Number(clickPower) * multiplier
     const floatingId = Date.now()
 
     setFloatingNumbers(prev => [
@@ -179,9 +184,11 @@ export default function Home() {
     }
 
     // Remove floating number after animation
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setFloatingNumbers(prev => prev.filter(num => num.id !== floatingId))
     }, GAME_CONFIG.ANIMATION_DURATION.FLOATING_NUMBER)
+
+    return () => clearTimeout(timer)
   }, [isConnected, isContractValid, isPending, isConfirming, clickPower, multiplierLevel, contractAddress, celoClickerABI, transactionOverrides, writeContract])
 
   const handleUpgrade = useCallback((type: 'clickPower' | 'autoClicker' | 'multiplier') => {
