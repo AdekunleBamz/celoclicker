@@ -21,6 +21,10 @@ export function isAchievementUnlocked(clicks: number, threshold: number): boolea
   return clicks >= threshold
 }
 
+/**
+ * Formats prestige count with a display label.
+ *  n - Number of times prestiged.
+ */
 export function formatPrestigeCount(n: number): string {
   return `Prestige x${n}`
 }
