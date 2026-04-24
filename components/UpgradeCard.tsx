@@ -23,6 +23,8 @@ export interface UpgradeCardProps {
   upgradeLabel?: string
   /** Optional callback for insufficient funds. */
   onInsufficientFunds?: () => void
+  /** Additional CSS classes. */
+  className?: string
 }
 
 /**
@@ -39,6 +41,7 @@ export const UpgradeCard = memo(function UpgradeCard({
   isLoading = false,
   upgradeLabel = 'UPGRADE',
   onInsufficientFunds,
+  className = '',
 }: UpgradeCardProps) {
   const canAfford = points >= cost && !disabled && !isLoading
 
@@ -51,7 +54,7 @@ export const UpgradeCard = memo(function UpgradeCard({
   }
 
   return (
-    <Card className="flex flex-col gap-3" glass>
+    <Card className={`flex flex-col gap-3 ${className}`.trim()} glass>
       <div className="flex justify-between items-start">
         <div>
           <div className={`font-bold ${color} pixel-font-small`}>{title}</div>
