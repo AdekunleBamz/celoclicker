@@ -415,7 +415,7 @@ export default function Home() {
                       aria-busy={isConnectingWallet}
                       className="px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-bold hover:scale-105 transition-transform glow-purple disabled:cursor-not-allowed disabled:opacity-70"
                     >
-                      {isConnectingWallet ? 'Connecting...' : isMiniPay ? 'Connect MiniPay' : 'Connect Wallet'}
+                      {isConnectingWallet || isConnectingAccount ? 'Connecting...' : isMiniPay ? 'Connect MiniPay' : 'Connect Wallet'}
                     </button>
                   )}
                 </ConnectButton.Custom>
