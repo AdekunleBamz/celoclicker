@@ -275,21 +275,8 @@ export default function Home() {
     }
   }, [selectedFeeCurrencyId, usdcFeeCurrency?.isAvailable])
 
-  useEffect(() => {
-    if (!isMiniPay || isConnected || !injectedConnector || isConnectingWallet || hasAttemptedMiniPayConnect) {
-      return
-    }
-
-    setHasAttemptedMiniPayConnect(true)
-    connect({ connector: injectedConnector })
-  }, [
-    connect,
-    hasAttemptedMiniPayConnect,
-    injectedConnector,
-    isConnected,
-    isConnectingWallet,
-    isMiniPay,
-  ])
+  // Use centralized auto-connect logic for MiniPay
+  useMiniPayAutoConnect(connectors, connect, isConnected, isConnectingWallet)
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
