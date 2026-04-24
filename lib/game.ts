@@ -49,6 +49,11 @@ export function getClickValueWithMultiplier(base: number, mult: number): number 
   return Math.floor(base * mult)
 }
 
+/**
+ * Checks if an upgrade has reached its maximum allowed level.
+ *  level - Current upgrade level.
+ *  max - Maximum allowed level.
+ */
 export function isMaxUpgradeLevel(level: number, max: number): boolean {
   return level >= max
 }
