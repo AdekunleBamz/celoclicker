@@ -34,6 +34,13 @@ function resolveAppOrigin() {
 const appOrigin = resolveAppOrigin()
 const logoUrl = new URL('/icon.png', appOrigin).toString()
 
+export const viewport = {
+  themeColor: '#35D07F',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+}
+
 export const metadata: Metadata = {
   metadataBase: appOrigin,
   title: {
@@ -43,7 +50,6 @@ export const metadata: Metadata = {
   description: 'Addictive on-chain clicker game on Celo Alfajores. Click, upgrade, and dominate the leaderboard in this premium GameFi experience.',
   keywords: ['Celo', 'Clicker', 'GameFi', 'Blockchain', 'Crypto', 'Web3', 'MiniPay'],
   authors: [{ name: 'AdekunleBamz' }],
-  themeColor: '#35D07F',
   icons: {
     icon: [
       { url: '/logo-mark.svg', type: 'image/svg+xml' },
