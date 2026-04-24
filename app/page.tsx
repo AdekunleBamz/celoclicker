@@ -58,6 +58,7 @@ export default function Home() {
     query: {
       enabled: !!address,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.BALANCES,
+      staleTime: GAME_CONFIG.REFETCH_INTERVALS.STALE_TIME,
     },
   })
 
