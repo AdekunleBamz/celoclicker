@@ -18,14 +18,20 @@ function getEthereum() {
 }
 
 /**
- * Check if running inside MiniPay browser
+ * Check if the current environment is the MiniPay browser.
+ * Uses the window.ethereum.isMiniPay flag.
+ * 
+ * @returns True if inside MiniPay.
  */
 export function isMiniPayBrowser() {
   return Boolean(getEthereum()?.isMiniPay)
 }
 
 /**
- * Get the injected wallet connector from available connectors
+ * Get the injected wallet connector from available connectors.
+ * 
+ * @param connectors - Array of wagmi connectors.
+ * @returns The injected connector if found, undefined otherwise.
  */
 export function getInjectedConnector(connectors: readonly Connector[]) {
   return connectors.find((connector) => {
@@ -61,6 +67,36 @@ export function useMiniPay() {
   }, [refreshDetection])
 
   return isMiniPay
+}
+
+/**
+ * Hook to automatically connect to the injected wallet when inside MiniPay.
+ * 
+ * @param connectors - Available connectors.
+ * @param connect - Connect function from useConnect.
+ * @param isConnected - Connection status from useAccount.
+ * @param isConnecting - Pending status from useConnect.
+ */
+export function useMiniPayAutoConnect(
+  connectors: readonly Connector[],
+  connect: (args: { connector: Connector }) => void,
+  isConnected: boolean,
+  isConnecting: boolean
+) {
+  const isMiniPay = useMiniPay()
+  const [hasAttempted, setHasAttempted] = useState(false)
+
+  useEffect(() => {
+    if (!isMiniPay || isConnected || isConnecting || hasAttempted) {
+      return
+    }
+
+    const injected = getInjectedConnector(connectors)
+    if (injected) {
+      setHasAttempted(true)
+      connect({ connector: injected })
+    }
+  }, [isMiniPay, isConnected, isConnecting, hasAttempted, connectors, connect])
 }
 
 /**
