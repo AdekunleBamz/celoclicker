@@ -49,15 +49,26 @@ function getQueryClient() {
   return queryClientInstance
 }
 
+/**
+ * Root application providers including Wagmi, RainbowKit, and React Query.
+ * Handles server-side rendering hydration and MiniPay auto-detection.
+ */
 export function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false)
   const [isMiniPay, setIsMiniPay] = useState(false)
+  
+  // Initialize configurations only once
   const config = useMemo(() => getWagmiConfig(), [])
   const queryClient = useMemo(() => getQueryClient(), [])
 
   useEffect(() => {
+    // Hydrate state to ensure client-only components render correctly
     setMounted(true)
-    // Poll for MiniPay provider (may be injected asynchronously)
+    
+    /**
+     * Poll for MiniPay provider injection.
+     * Some mobile browsers inject the provider after the initial DOM load.
+     */
     let attempts = 0
     const timer = setInterval(() => {
       attempts++
@@ -68,9 +79,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
         clearInterval(timer)
       }
     }, 250)
+    
     return () => clearInterval(timer)
   }, [])
 
+  // Show a loading screen until the app is mounted on the client
   if (!mounted || !config) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-950 via-indigo-950 to-purple-950">
@@ -78,7 +91,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
           <div className="mb-4">
             <LoadingSpinner size="lg" />
           </div>
-          <p className="text-gray-400 pixel-font text-sm">LOADING...</p>
+          <p className="text-gray-400 pixel-font text-sm">INITIALIZING...</p>
         </div>
       </div>
     )
@@ -87,7 +100,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        {/* Skip RainbowKit inside MiniPay — it provides its own injected wallet */}
+        {/* 
+          Conditional rendering for RainbowKit:
+          Skip RainbowKit modal inside MiniPay because MiniPay uses an injected wallet 
+          provider that should be connected directly without extra UI layers.
+        */}
         {isMiniPay ? (
           children
         ) : (
