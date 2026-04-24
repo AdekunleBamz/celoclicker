@@ -167,7 +167,7 @@ export function isMaxUpgradeLevel(level: number, max: number): boolean {
 }
 
 /**
- * Formats CPS (clicks per second) for display.
+ * Formats a clicks-per-second value with one decimal place.
  * @param cps - Clicks per second value.
  * @returns Formatted CPS string.
  */
