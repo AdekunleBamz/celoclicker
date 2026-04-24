@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { memo, useState, useEffect } from 'react'
 
 interface ToastProps {
   message: string
@@ -7,7 +7,7 @@ interface ToastProps {
   onClose: () => void
 }
 
-export function Toast({ message, isVisible, onClose }: ToastProps) {
+export const Toast = memo(function Toast({ message, isVisible, onClose }: ToastProps) {
   useEffect(() => {
     if (isVisible) {
       const timer = setTimeout(onClose, 3000)
