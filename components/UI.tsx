@@ -2,7 +2,7 @@ import { ReactNode, memo } from 'react'
 import { motion, HTMLMotionProps } from 'framer-motion'
 
 /** Props for the Card component. */
-interface CardProps {
+export interface CardProps {
   /** The content of the card. */
   children: ReactNode
   /** Additional CSS classes. */
