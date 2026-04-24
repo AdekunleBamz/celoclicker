@@ -24,7 +24,7 @@ export const Card = memo(function Card({ children, className = '', glass = false
 })
 
 /** Props for the Button component. */
-interface ButtonProps extends HTMLMotionProps<'button'> {
+export interface ButtonProps extends HTMLMotionProps<'button'> {
   /** Visual variant of the button. */
   variant?: 'primary' | 'secondary' | 'accent' | 'ghost'
   /** Whether the button should take up the full width of its container. */
