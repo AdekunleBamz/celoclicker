@@ -7,6 +7,9 @@ interface CardProps {
   glass?: boolean
 }
 
+/**
+ * Reusable Card component with optional glassmorphism effect.
+ */
 export function Card({ children, className = '', glass = false }: CardProps) {
   const baseClasses = glass ? 'glass-game' : 'bg-black/30'
   return (
@@ -21,6 +24,9 @@ interface ButtonProps extends HTMLMotionProps<'button'> {
   fullWidth?: boolean
 }
 
+/**
+ * Reusable animated Button component with multiple variants.
+ */
 export function Button({
   children,
   variant = 'primary',
