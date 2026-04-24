@@ -283,6 +283,10 @@ export function isPrestigeReady(clicks: number, threshold: number): boolean {
   return clicks >= threshold
 }
 
+/**
+ * Formats a multiplier value with two decimals and an x suffix.
+ * @param m - The multiplier value.
+ */
 export function formatMultiplier(m: number): string {
   return `${m.toFixed(2)}x`
 }
