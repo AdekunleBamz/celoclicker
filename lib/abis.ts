@@ -1,3 +1,7 @@
+/**
+ * ABI for the CeloClicker smart contract.
+ * Includes events and functions for clicking, upgrades, and stats.
+ */
 export const celoClickerABI = [
   {
     anonymous: false,
