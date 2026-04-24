@@ -46,7 +46,7 @@ export function validateEnvironment(): {
     ])
 
     if (placeholderIds.has(normalizedProjectId)) {
-    errors.push('NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is still set to a placeholder value')
+      errors.push('NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is still set to a placeholder value')
     }
 
     if (walletConnectId.length < 8) {
@@ -172,7 +172,6 @@ export function isPositiveInt(n: unknown): n is number {
 export function isInRange(n: number, lo: number, hi: number): boolean {
   return n >= lo && n <= hi
 }
-
 
 /**
  * Returns true if the string is a valid hex string starting with 0x.
