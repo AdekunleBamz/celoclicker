@@ -22,10 +22,16 @@ export type FeeCurrencyConfig = {
   isAvailable: boolean
 }
 
-/** USDC token address on Celo mainnet */
+/** 
+ * USDC token address on Celo mainnet.
+ * This is the standard Mento-wrapped USDC (USDCm).
+ */
 const USDC_MAINNET_TOKEN_ADDRESS = '0xcebA9300f2b948710d2653dD7B07f33A8B32118C' as const
 
-/** USDC fee adapter address on Celo mainnet */
+/** 
+ * USDC fee adapter address on Celo mainnet.
+ * Used for paying gas fees in USDC via Celo's native fee currency abstraction.
+ */
 const USDC_MAINNET_ADAPTER_ADDRESS = '0x2F25deB3848C207fc8E0c34035B3Ba7fC157602B' as const
 
 /**
