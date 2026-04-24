@@ -2,7 +2,7 @@ import { memo } from 'react'
 import { Card } from './UI'
 
 /** Props for the StatCard component. */
-interface StatCardProps {
+export interface StatCardProps {
   /** Label for the statistic. */
   label: string
   /** The value to display. */
