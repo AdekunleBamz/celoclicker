@@ -291,6 +291,12 @@ export function calcClicksPerSecond(upgrades: number[]): number {
   return upgrades.reduce((sum, u) => sum + u, 0)
 }
 
+/**
+ * Constrains a number between a lower and upper bound.
+ * @param v - The value to clamp.
+ * @param lo - The lower bound.
+ * @param hi - The upper bound.
+ */
 export function clampNumber(v: number, lo: number, hi: number): number {
   return Math.max(lo, Math.min(hi, v))
 }
