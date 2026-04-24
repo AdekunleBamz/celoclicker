@@ -55,30 +55,51 @@ export function calcOfflineClicks(cps: number, seconds: number): number {
   return Math.floor(cps * seconds)
 }
 
+/**
+ * Checks if a new high score has been achieved.
+ */
 export function isNewHighScore(current: number, best: number): boolean {
   return current > best
 }
 
+/**
+ * Returns a label for a given upgrade level.
+ */
 export function getUpgradeLabel(level: number): string {
   return `Level ${level}`
 }
 
+/**
+ * Formats a bonus value for display.
+ */
 export function formatBonus(n: number): string {
   return `+${n}`
 }
 
+/**
+ * Calculates the click threshold for the next prestige level.
+ */
 export function calcNextPrestigeThreshold(level: number, base: number): number {
   return base * Math.pow(2, level)
 }
 
+/**
+ * Calculates the effective click value after applying a multiplier.
+ */
 export function getClickValueWithMultiplier(base: number, mult: number): number {
   return Math.floor(base * mult)
 }
 
+/**
+ * Checks if an upgrade has reached its maximum level.
+ */
 export function isMaxUpgradeLevel(level: number, max: number): boolean {
   return level >= max
 }
 
+/**
+ * Formats CPS (clicks per second) for display.
+ */
 export function formatCps(cps: number): string {
   return `${cps.toFixed(1)} CPS`
 }
