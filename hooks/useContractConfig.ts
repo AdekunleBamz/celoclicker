@@ -8,7 +8,11 @@ import { isValidAddress, isZeroAddress, ZERO_ADDRESS } from '@/lib/utils'
  * 
  * @returns An object containing the contract address, ABI, and an isValid boolean flag.
  */
-export function useContractConfig() {
+export function useContractConfig(): {
+  address: `0x${string}`
+  abi: typeof celoClickerABI
+  isValid: boolean
+} {
   const contractAddress = process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT || ZERO_ADDRESS
 
   const isValid = useMemo(() => {
