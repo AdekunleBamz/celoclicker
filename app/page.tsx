@@ -80,6 +80,7 @@ export default function Home() {
     query: {
       enabled: !!address && isContractValid,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PLAYER_STATS,
+      staleTime: GAME_CONFIG.REFETCH_INTERVALS.STALE_TIME,
     },
   })
 
