@@ -206,17 +206,21 @@ export default function Home() {
       return
     }
 
+    const functionName = type === 'clickPower' ? 'upgradeClickPower' : 
+                         type === 'autoClicker' ? 'upgradeAutoClicker' : 
+                         'upgradeMultiplier'
+
+    console.log(`Initiating ${type} upgrade...`)
+
     try {
       writeContract({
         address: contractAddress,
         abi: celoClickerABI,
-        functionName: type === 'clickPower' ? 'upgradeClickPower' : 
-                       type === 'autoClicker' ? 'upgradeAutoClicker' : 
-                       'upgradeMultiplier',
+        functionName,
         ...transactionOverrides,
       })
     } catch (error) {
-      console.error('Error sending upgrade transaction:', error)
+      console.error(`Error sending ${type} upgrade transaction:`, error)
       alert('Failed to send transaction. Please try again.')
     }
   }, [isConnected, isContractValid, isPending, isConfirming, contractAddress, celoClickerABI, transactionOverrides, writeContract])
@@ -235,6 +239,8 @@ export default function Home() {
     if (isPending || isConfirming) {
       return
     }
+
+    console.log('Claiming auto-clicker points...')
 
     try {
       writeContract({
