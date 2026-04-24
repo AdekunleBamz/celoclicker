@@ -52,3 +52,5 @@ export const EmptyState = memo(function EmptyState({
     </section>
   )
 })
+
+EmptyState.displayName = 'EmptyState'
