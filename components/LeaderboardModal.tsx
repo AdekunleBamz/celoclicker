@@ -115,6 +115,7 @@ export const LeaderboardModal = memo(function LeaderboardModal({
             <button
               onClick={onClose}
               type="button"
+              autoFocus
               className="w-full mt-6 py-4 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl font-bold text-lg hover:scale-105 transition-transform shadow-lg shadow-purple-500/20"
             >
               CLOSE
