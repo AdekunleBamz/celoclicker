@@ -6,7 +6,7 @@ import { formatAddress, formatNumber, isZeroAddress } from '@/lib/utils';
 import { LeaderboardTuple } from '@/lib/types';
 
 /** Props for the LeaderboardModal component. */
-interface LeaderboardModalProps {
+export interface LeaderboardModalProps {
   /** Whether the modal is visible. */
   isOpen: boolean;
   /** Function to close the modal. */
