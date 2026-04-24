@@ -53,6 +53,10 @@ export function isMaxUpgradeLevel(level: number, max: number): boolean {
   return level >= max
 }
 
+/**
+ * Formats a clicks-per-second value with one decimal place.
+ *  cps - Clicks per second value.
+ */
 export function formatCps(cps: number): string {
   return `${cps.toFixed(1)} CPS`
 }
