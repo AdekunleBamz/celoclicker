@@ -23,3 +23,5 @@ export const ContractWarning = memo(function ContractWarning() {
     </div>
   )
 })
+
+ContractWarning.displayName = 'ContractWarning'
