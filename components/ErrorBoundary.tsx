@@ -58,6 +58,8 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                   window.location.reload()
                 }}
                 className="px-6 py-3 bg-purple-500 hover:bg-purple-600 rounded-lg font-bold transition-colors w-full"
+                type="button"
+                aria-label="Reboot the application"
               >
                 Reboot Application
               </button>
