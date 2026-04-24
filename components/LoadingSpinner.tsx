@@ -2,7 +2,8 @@ import { memo } from 'react'
 
 /**
  * Reusable animated loading spinner component.
- * 
+ */
+
 /** Props for the LoadingSpinner component. */
 export interface LoadingSpinnerProps {
   /** Visual size of the spinner (sm, md, lg). */
@@ -30,3 +31,4 @@ export const LoadingSpinner = memo(function LoadingSpinner({
   )
 })
 
+LoadingSpinner.displayName = 'LoadingSpinner'
