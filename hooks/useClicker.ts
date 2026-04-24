@@ -25,6 +25,7 @@ export function useClicker() {
     query: {
       enabled: !!address && isValid,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PLAYER_STATS,
+      staleTime: GAME_CONFIG.REFETCH_INTERVALS.STALE_TIME,
     },
   })
 
@@ -36,6 +37,7 @@ export function useClicker() {
     args: [address as `0x${string}`],
     query: {
       enabled: !!address && isValid,
+      staleTime: GAME_CONFIG.REFETCH_INTERVALS.STALE_TIME,
     },
   })
 
@@ -48,6 +50,7 @@ export function useClicker() {
     query: {
       enabled: !!address && isValid && !!playerData && (playerData as PlayerStatsTuple)[2] > 0n,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PENDING_AUTO,
+      staleTime: GAME_CONFIG.REFETCH_INTERVALS.STALE_TIME,
     },
   })
 
