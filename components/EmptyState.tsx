@@ -12,6 +12,8 @@ interface EmptyStateProps {
   onAction?: () => void
   /** Optional label for the action button. */
   actionLabel?: string
+  /** Optional additional CSS classes. */
+  className?: string
 }
 
 /**
@@ -22,11 +24,12 @@ export const EmptyState = memo(function EmptyState({
   description, 
   icon = '📭',
   onAction,
-  actionLabel = 'Try Again'
+  actionLabel = 'Try Again',
+  className = ''
 }: EmptyStateProps) {
   return (
     <section 
-      className="text-center py-12 px-6 border-2 border-dashed border-white/5 rounded-2xl" 
+      className={`text-center py-12 px-6 border-2 border-dashed border-white/5 rounded-2xl ${className}`.trim()} 
       aria-live="polite"
     >
       <div className="text-6xl mb-4 grayscale opacity-50" role="img" aria-hidden="true">{icon}</div>
