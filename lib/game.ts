@@ -67,6 +67,11 @@ export function formatBonus(n: number): string {
   return `+${n}`
 }
 
+/**
+ * Calculates the click threshold for the next prestige level.
+ *  level - Current prestige level.
+ *  base - Base threshold before scaling.
+ */
 export function calcNextPrestigeThreshold(level: number, base: number): number {
   return base * Math.pow(2, level)
 }
