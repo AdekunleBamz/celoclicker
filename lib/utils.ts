@@ -255,13 +255,27 @@ export function shortAddress(addr: string): string {
   return `${normalizedAddress.slice(0, 6)}...${normalizedAddress.slice(-4)}`
 }
 
+/**
+ * Formats a number of clicks into a compact string representation.
+ * @param n - The number of clicks.
+ * @returns A formatted string like "1.5M", "450.2K", or "123".
+ */
 export function formatClicks(n: number): string {
+  if (!Number.isFinite(n)) return '0'
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`
   if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`
   return String(n)
 }
 
+/**
+ * Calculates the next upgrade price given a base cost and current level.
+ * Cost scales by 1.15x per level.
+ * @param base - The base cost of the upgrade at level 0.
+ * @param level - The current level of the upgrade.
+ * @returns The calculated price rounded down to the nearest integer.
+ */
 export function calcUpgradePrice(base: number, level: number): number {
+  if (level < 0) return base
   return Math.floor(base * Math.pow(1.15, level))
 }
 
