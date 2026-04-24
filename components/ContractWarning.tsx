@@ -2,8 +2,9 @@
 
 import { useContractConfig } from '@/hooks/useContractConfig'
 import { CONTRACT_ADDRESS_ENV_KEY } from '@/lib/constants'
+import { memo } from 'react'
 
-export function ContractWarning() {
+export const ContractWarning = memo(function ContractWarning() {
   const { isValid } = useContractConfig()
 
   if (isValid) return null
@@ -21,4 +22,4 @@ export function ContractWarning() {
       </div>
     </div>
   )
-}
+})
