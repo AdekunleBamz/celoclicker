@@ -39,8 +39,14 @@ export interface UpgradeCosts {
   multiplierCost: bigint
 }
 
-/** Possible states for async UI operations. */
-export type AsyncStatus = 'idle' | 'loading' | 'success' | 'error'
+/** 
+ * Possible states for asynchronous operations within the UI.
+ */
+export type AsyncStatus = 
+  | 'idle'    /** Operation has not started. */
+  | 'loading' /** Operation is currently in progress. */
+  | 'success' /** Operation completed successfully. */
+  | 'error'   /** Operation failed with an error. */
 
 /**
  * A range of bigint values with an inclusive min and max.
