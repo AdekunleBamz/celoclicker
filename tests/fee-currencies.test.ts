@@ -44,6 +44,13 @@ describe('lib/feeCurrencies getFeeCurrencies', () => {
     const celoCurrency = getFeeCurrencies().find((currency) => currency.id === 'CELO')
     expect(celoCurrency?.isAvailable).toBe(true)
   })
+
+  it('includes description text for each currency', () => {
+    const currencies = getFeeCurrencies(CELO_MAINNET_CHAIN_ID)
+    currencies.forEach((currency) => {
+      expect(currency.description.length).toBeGreaterThan(0)
+    })
+  })
 })
 
 describe('lib/feeCurrencies getDefaultFeeCurrencyId', () => {
@@ -83,6 +90,10 @@ describe('lib/feeCurrencies getFeeCurrencyById', () => {
       isAvailable: true,
       feeCurrency: expect.stringMatching(/^0x[a-fA-F0-9]{40}$/),
     })
+  })
+
+  it('returns undefined for an unknown currency id', () => {
+    expect(getFeeCurrencyById('UNKNOWN' as 'CELO', CELO_MAINNET_CHAIN_ID)).toBeUndefined()
   })
 })
 
@@ -126,6 +137,10 @@ describe('lib/feeCurrencies getFeeCurrencyLabel', () => {
   it('keeps the USDC display label when chain id is missing', () => {
     expect(getFeeCurrencyLabel('USDC')).toBe('USDCm')
   })
+
+  it('falls back to the raw id for unknown currencies', () => {
+    expect(getFeeCurrencyLabel('UNKNOWN' as 'CELO')).toBe('UNKNOWN')
+  })
 })
 
 describe('lib/feeCurrencies getFeeCurrencyAddress', () => {
@@ -145,5 +160,9 @@ describe('lib/feeCurrencies getFeeCurrencyAddress', () => {
 describe('lib/feeCurrencies token addresses', () => {
   it('returns the USDC token address on Celo mainnet', () => {
     expect(getFeeCurrencyById('USDC', CELO_MAINNET_CHAIN_ID)?.tokenAddress).toMatch(/^0x[a-fA-F0-9]{40}$/)
+  })
+
+  it('has no token address for USDC off mainnet', () => {
+    expect(getFeeCurrencyById('USDC', CELO_TESTNET_CHAIN_ID)?.tokenAddress).toBeUndefined()
   })
 })
