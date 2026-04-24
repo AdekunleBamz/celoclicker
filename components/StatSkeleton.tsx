@@ -26,3 +26,5 @@ export const StatSkeleton = memo(function StatSkeleton({
     </div>
   )
 })
+
+StatSkeleton.displayName = 'StatSkeleton'
