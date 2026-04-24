@@ -15,6 +15,7 @@ import { UpgradeCard } from '@/components/UpgradeCard'
 import { ContractWarning } from '@/components/ContractWarning'
 import { useContractConfig } from '@/hooks/useContractConfig'
 import { getInjectedConnector, useMiniPay, useMiniPayAutoConnect } from '@/hooks/useMiniPay'
+import { useConnection } from '@/hooks/useConnection'
 import type { LeaderboardTuple, PlayerStatsTuple, UpgradeCostsTuple } from '@/lib/types'
 
 interface FloatingNumber {
@@ -31,7 +32,7 @@ import { LeaderboardModal } from '@/components/LeaderboardModal'
  * Handles the game loop, wallet connections, and on-chain interactions.
  */
 export default function Home() {
-  const { address, isConnected } = useAccount()
+  const { address, isConnected, isConnecting: isConnectingAccount } = useConnection()
   const chainId = useChainId()
   const { connect, connectors, isPending: isConnectingWallet } = useConnect()
   const [floatingNumbers, setFloatingNumbers] = useState<FloatingNumber[]>([])
