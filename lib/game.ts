@@ -33,6 +33,11 @@ export function calcTotalCps(base: number, multiplier: number): number {
   return base * multiplier
 }
 
+/**
+ * Checks if an achievement is unlocked based on the current click count.
+ * @param clicks - The player's current click count.
+ * @param threshold - The threshold required to unlock the achievement.
+ */
 export function isAchievementUnlocked(clicks: number, threshold: number): boolean {
   return clicks >= threshold
 }
