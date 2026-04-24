@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     default: `${APP_NAME} | On-Chain Idle Game`,
     template: `%s | ${APP_NAME}`,
   },
-  description: 'Addictive on-chain clicker game on Celo Alfajores. Click, upgrade, and dominate the leaderboard in this premium GameFi experience.',
+  description: 'Addictive on-chain idle game on Celo. Click, upgrade, and climb the leaderboard in this premium GameFi experience.',
   keywords: ['Celo', 'Clicker', 'GameFi', 'Blockchain', 'Crypto', 'Web3', 'MiniPay'],
   authors: [{ name: 'AdekunleBamz' }],
   icons: {
