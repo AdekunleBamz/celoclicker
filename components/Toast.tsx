@@ -52,3 +52,5 @@ export const Toast = memo(function Toast({
     </AnimatePresence>
   )
 })
+
+Toast.displayName = 'Toast'
