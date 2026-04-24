@@ -119,10 +119,8 @@ export const DEFAULT_ANIMATION_EASING = 'cubic-bezier(0.4, 0, 0.2, 1)'
  */
 export const MAX_RENDERED_LEADERBOARD_ENTRIES = 50
 
-/**
- * Number of milliseconds a "success" toast or notification should be visible.
- */
-export const SUCCESS_TOAST_DURATION_MS = 3000
+/** Number of milliseconds a "success" toast or notification should be visible. */
+export const SUCCESS_TOAST_DURATION_MS = 3000 as const
 
 /**
  * Number of milliseconds an "error" toast or notification should be visible.
@@ -231,6 +229,7 @@ export const CELO_DECIMALS = 18
 
 export const MIN_WITHDRAW_AMOUNT = 0.01
 
+/** Milestone threshold tiers for clicks. */
 export const CLICK_TIERS = [1_000, 10_000, 100_000, 1_000_000] as const
 
 export const CURRENCY_SYMBOL = 'CELO' as const
