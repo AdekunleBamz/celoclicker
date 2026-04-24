@@ -11,6 +11,8 @@ export interface StatCardProps {
   valueColor?: string
   /** Optional icon to display next to the value. */
   icon?: string
+  /** Optional additional CSS classes. */
+  className?: string
 }
 
 /**
@@ -20,10 +22,11 @@ export const StatCard = memo(function StatCard({
   label, 
   value, 
   valueColor = 'text-purple-400', 
-  icon 
+  icon,
+  className = ''
 }: StatCardProps) {
   return (
-    <Card className="p-3" glass>
+    <Card className={`p-3 ${className}`.trim()} glass>
       <div className="text-gray-400 text-[10px] font-bold uppercase tracking-wider mb-1">{label}</div>
       <div className="flex items-center gap-2">
         {icon && (
