@@ -156,10 +156,9 @@ export function getClickValueWithMultiplier(base: number, mult: number): number 
 }
 
 /**
- * Checks if an upgrade has reached its maximum level.
- * @param level - Current upgrade level.
- * @param max - Maximum allowed level.
- * @returns True when the level is at or above max.
+ * Checks if an upgrade has reached its maximum allowed level.
+ *  level - Current upgrade level.
+ *  max - Maximum allowed level.
  */
 export function isMaxUpgradeLevel(level: number, max: number): boolean {
   return level >= max
