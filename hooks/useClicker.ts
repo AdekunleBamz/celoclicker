@@ -1,8 +1,13 @@
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
+import { useMemo } from 'react'
 import { useContractConfig } from './useContractConfig'
 import { GAME_CONFIG } from '@/lib/constants'
 import type { PlayerStatsTuple, UpgradeCostsTuple, LeaderboardTuple } from '@/lib/types'
 
+/**
+ * Hook to manage game state and interactions with the CeloClicker contract.
+ * Provides player stats, upgrade costs, and write functions.
+ */
 export function useClicker() {
   const { address, isConnected } = useAccount()
   const { address: contractAddress, abi, isValid } = useContractConfig()
@@ -64,31 +69,51 @@ export function useClicker() {
     hash,
   })
 
-  const [points, clickPower, autoClickerLevel, multiplierLevel, totalClicks, gamesPlayed] =
-    (playerData as PlayerStatsTuple) || [0n, 0n, 0n, 0n, 0n, 0n]
+  return useMemo(() => {
+    const [points, clickPower, autoClickerLevel, multiplierLevel, totalClicks, gamesPlayed] =
+      (playerData as PlayerStatsTuple) || [0n, 0n, 0n, 0n, 0n, 0n]
 
-  const [clickPowerCost, autoClickerCost, multiplierCost] =
-    (upgradeCosts as UpgradeCostsTuple) || [0n, 0n, 0n]
+    const [clickPowerCost, autoClickerCost, multiplierCost] =
+      (upgradeCosts as UpgradeCostsTuple) || [0n, 0n, 0n]
 
-  return {
+    return {
+      address,
+      isConnected,
+      playerStats: {
+        points,
+        clickPower,
+        autoClickerLevel,
+        multiplierLevel,
+        totalClicks,
+        gamesPlayed,
+      },
+      upgradeCosts: {
+        clickPowerCost,
+        autoClickerCost,
+        multiplierCost,
+      },
+      pendingAuto: Number(pendingAuto || 0n),
+      leaderboardData: leaderboardData as LeaderboardTuple,
+      isLoading: isLoadingPlayer || isLoadingCosts,
+      isPending,
+      isConfirming,
+      isSuccess,
+      writeError,
+      txError,
+      writeContract,
+      refetchPlayer,
+      contractAddress,
+      abi,
+    }
+  }, [
     address,
     isConnected,
-    playerStats: {
-      points,
-      clickPower,
-      autoClickerLevel,
-      multiplierLevel,
-      totalClicks,
-      gamesPlayed,
-    },
-    upgradeCosts: {
-      clickPowerCost,
-      autoClickerCost,
-      multiplierCost,
-    },
-    pendingAuto: Number(pendingAuto || 0n),
-    leaderboardData: leaderboardData as LeaderboardTuple,
-    isLoading: isLoadingPlayer || isLoadingCosts,
+    playerData,
+    upgradeCosts,
+    pendingAuto,
+    leaderboardData,
+    isLoadingPlayer,
+    isLoadingCosts,
     isPending,
     isConfirming,
     isSuccess,
@@ -98,5 +123,5 @@ export function useClicker() {
     refetchPlayer,
     contractAddress,
     abi,
-  }
+  ])
 }
