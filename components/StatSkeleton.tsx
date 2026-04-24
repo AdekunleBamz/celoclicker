@@ -1,13 +1,22 @@
 import { memo } from 'react'
 
-export const StatSkeleton = memo(function StatSkeleton() {
+/**
+ * Loading skeleton for player statistics.
+ * 
+ * @param count - Number of skeleton cards to render (default: 1).
+ */
+export const StatSkeleton = memo(function StatSkeleton({ count = 1 }: { count?: number }) {
   return (
-    <div className="bg-black/30 rounded-lg p-3 w-full" aria-hidden="true">
-      <div className="w-16 h-3 bg-gray-700/50 rounded mb-2 animate-pulse" />
-      <div className="flex items-center gap-2">
-        <div className="w-6 h-6 bg-gray-700/50 rounded-full animate-pulse" />
-        <div className="w-24 h-6 bg-gray-700/50 rounded animate-pulse" />
-      </div>
+    <div className="space-y-3 w-full">
+      {Array.from({ length: count }).map((_, i) => (
+        <div key={i} className="bg-black/30 rounded-lg p-3 w-full" aria-hidden="true">
+          <div className="w-16 h-3 bg-gray-700/50 rounded mb-2 animate-pulse" />
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 bg-gray-700/50 rounded-full animate-pulse" />
+            <div className="w-24 h-6 bg-gray-700/50 rounded animate-pulse" />
+          </div>
+        </div>
+      ))}
     </div>
   )
 })
