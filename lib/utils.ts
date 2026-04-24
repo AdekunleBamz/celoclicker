@@ -113,6 +113,15 @@ export function clampBigInt(value: bigint, min: bigint, max: bigint): bigint {
 }
 
 /**
+ * Returns true if the value is a positive bigint (> 0).
+ * 
+ * @param value - The bigint to check.
+ */
+export function isPositiveBigInt(value: bigint): boolean {
+  return value > 0n
+}
+
+/**
  * Returns a human-readable elapsed time string (e.g. "2h 5m") from a number of seconds.
  *
  * @param seconds - Elapsed time in seconds.
