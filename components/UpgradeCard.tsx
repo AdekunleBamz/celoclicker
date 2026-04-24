@@ -2,7 +2,7 @@ import { memo } from 'react'
 import { Card } from './UI'
 
 /** Props for the UpgradeCard component. */
-interface UpgradeCardProps {
+export interface UpgradeCardProps {
   /** Title of the upgrade. */
   title: string
   /** Current level of the upgrade. */
