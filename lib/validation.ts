@@ -173,12 +173,6 @@ export function isInRange(n: number, lo: number, hi: number): boolean {
   return n >= lo && n <= hi
 }
 
-/**
- * Returns true if the string is a valid Ethereum address format.
- */
-export function isEthAddress(s: string): boolean {
-  return /^0x[0-9a-fA-F]{40}$/.test(s)
-}
 
 /**
  * Returns true if the string is a valid hex string starting with 0x.
