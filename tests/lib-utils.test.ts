@@ -33,6 +33,14 @@ describe('lib/utils formatNumber', () => {
   it('keeps non-abbreviated negative values readable', () => {
     expect(formatNumber(-500)).toBe('-500')
   })
+
+  it('returns zero string when given zero', () => {
+    expect(formatNumber(0)).toBe('0')
+  })
+
+  it('returns zero string for NaN input', () => {
+    expect(formatNumber(NaN)).toBe('0')
+  })
 })
 
 describe('lib/utils formatAddress', () => {
@@ -54,6 +62,10 @@ describe('lib/utils formatAddress', () => {
 
   it('returns an empty string for whitespace-only addresses', () => {
     expect(formatAddress('   ')).toBe('')
+  })
+
+  it('returns an empty string for undefined input', () => {
+    expect(formatAddress(undefined as unknown as string)).toBe('')
   })
 })
 
@@ -105,6 +117,10 @@ describe('lib/utils formatTokenAmount', () => {
   it('rounds tiny token balances to four decimal places', () => {
     expect(formatTokenAmount('0.00009', 'CELO')).toBe('0.0001 CELO')
   })
+
+  it('returns zero for empty string input', () => {
+    expect(formatTokenAmount('', 'CELO')).toBe('0 CELO')
+  })
 })
 
 describe('lib/utils isZeroAddress', () => {
@@ -137,10 +153,18 @@ describe('lib/utils isValidAddress', () => {
   it('rejects addresses containing non-hex characters', () => {
     expect(isValidAddress('0x123456789012345678901234567890123456789Z')).toBe(false)
   })
+
+  it('rejects addresses missing the 0x prefix', () => {
+    expect(isValidAddress('1234567890123456789012345678901234567890')).toBe(false)
+  })
 })
 
 describe('lib/utils maxOfArray', () => {
   it('returns the highest value for negative-only arrays', () => {
     expect(maxOfArray([-10, -7, -20])).toBe(-7)
+  })
+
+  it('returns zero for an empty array', () => {
+    expect(maxOfArray([])).toBe(0)
   })
 })
