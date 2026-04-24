@@ -14,7 +14,7 @@ import { StatCard } from '@/components/StatCard'
 import { UpgradeCard } from '@/components/UpgradeCard'
 import { ContractWarning } from '@/components/ContractWarning'
 import { useContractConfig } from '@/hooks/useContractConfig'
-import { getInjectedConnector, useMiniPay } from '@/hooks/useMiniPay'
+import { getInjectedConnector, useMiniPay, useMiniPayAutoConnect } from '@/hooks/useMiniPay'
 import type { LeaderboardTuple, PlayerStatsTuple, UpgradeCostsTuple } from '@/lib/types'
 
 interface FloatingNumber {
