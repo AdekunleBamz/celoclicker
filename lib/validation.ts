@@ -152,38 +152,65 @@ export function isValidMultiplierLevel(level: bigint, max = 5n): boolean {
   return level >= 0n && level <= max
 }
 
+/**
+ * Returns true if the given value is a non-empty string.
+ */
 export function isNonEmptyString(s: unknown): s is string {
   return typeof s === 'string' && s.trim().length > 0
 }
 
+/**
+ * Returns true if the given value is a positive integer.
+ */
 export function isPositiveInt(n: unknown): n is number {
   return typeof n === 'number' && Number.isInteger(n) && n > 0
 }
 
+/**
+ * Returns true if the number is within the inclusive range [lo, hi].
+ */
 export function isInRange(n: number, lo: number, hi: number): boolean {
   return n >= lo && n <= hi
 }
 
+/**
+ * Returns true if the string is a valid Ethereum address format.
+ */
 export function isEthAddress(s: string): boolean {
   return /^0x[0-9a-fA-F]{40}$/.test(s)
 }
 
+/**
+ * Returns true if the string is a valid hex string starting with 0x.
+ */
 export function isHexString(s: string): boolean {
   return /^0x[0-9a-fA-F]*$/.test(s)
 }
 
+/**
+ * Returns true if the ID is a valid positive chain identifier.
+ */
 export function isPositiveChainId(id: number): boolean {
   return Number.isInteger(id) && id > 0
 }
 
+/**
+ * Returns true if the value is a finite positive timestamp.
+ */
 export function isValidTimestamp(ts: number): boolean {
   return Number.isFinite(ts) && ts > 0
 }
 
+/**
+ * Returns true if the score is a finite non-negative number.
+ */
 export function isValidScore(score: number): boolean {
   return Number.isFinite(score) && score >= 0
 }
 
+/**
+ * Returns true if the multiplier is a finite number greater than or equal to 1.
+ */
 export function isValidMultiplier(m: number): boolean {
   return Number.isFinite(m) && m >= 1
 }
