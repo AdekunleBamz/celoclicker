@@ -1,11 +1,12 @@
 import { memo } from 'react'
 
-/**
- * Loading skeleton for player statistics.
- * 
- * @param count - Number of skeleton cards to render (default: 1).
- */
-export const StatSkeleton = memo(function StatSkeleton({ count = 1 }: { count?: number }) {
+/** Props for the StatSkeleton component. */
+export interface StatSkeletonProps {
+  /** Number of skeleton cards to render (default: 1). */
+  count?: number
+}
+
+export const StatSkeleton = memo(function StatSkeleton({ count = 1 }: StatSkeletonProps) {
   return (
     <div className="space-y-3 w-full">
       {Array.from({ length: count }).map((_, i) => (
