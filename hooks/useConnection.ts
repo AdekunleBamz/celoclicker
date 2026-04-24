@@ -4,7 +4,12 @@ import { useAccount } from 'wagmi'
  * A simple hook to get the connection status of the user's wallet.
  * @returns An object with address, isConnected, and isConnecting properties.
  */
-export function useConnection() {
+export function useConnection(): {
+  address: string | undefined
+  isConnected: boolean
+  isConnecting: boolean
+  hasAddress: boolean
+} {
   const { address, isConnected, isConnecting } = useAccount()
   
   return {
