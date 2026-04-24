@@ -3,16 +3,18 @@ import { memo } from 'react'
 /**
  * Reusable animated loading spinner component.
  * 
- * @param size - Visual size of the spinner (sm, md, lg).
- * @param label - Accessibility label for screen readers.
- */
+/** Props for the LoadingSpinner component. */
+export interface LoadingSpinnerProps {
+  /** Visual size of the spinner (sm, md, lg). */
+  size?: 'sm' | 'md' | 'lg'
+  /** Accessibility label for screen readers. */
+  label?: string
+}
+
 export const LoadingSpinner = memo(function LoadingSpinner({ 
   size = 'md',
   label = 'Loading'
-}: { 
-  size?: 'sm' | 'md' | 'lg',
-  label?: string
-}) {
+}: LoadingSpinnerProps) {
   const sizeClasses = {
     sm: 'w-4 h-4',
     md: 'w-8 h-8',
