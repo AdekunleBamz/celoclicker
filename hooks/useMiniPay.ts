@@ -6,7 +6,8 @@ type MiniPayEthereum = {
 }
 
 /**
- * Get the ethereum provider from window if available
+ * Get the ethereum provider from window if available.
+ * Returns null if not in a browser environment or provider is missing.
  */
 function getEthereum() {
   if (typeof window === 'undefined') {
@@ -33,7 +34,9 @@ export function getInjectedConnector(connectors: readonly Connector[]) {
 }
 
 /**
- * Hook to detect if running inside MiniPay browser
+ * Hook to detect if running inside MiniPay browser.
+ * Listens for window focus and ethereum initialization events to refresh.
+ * @returns boolean true if inside MiniPay.
  */
 export function useMiniPay() {
   const [isMiniPay, setIsMiniPay] = useState(() => isMiniPayBrowser())
