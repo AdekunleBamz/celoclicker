@@ -17,6 +17,8 @@ export interface LeaderboardModalProps {
   isLoading: boolean;
   /** Current player address. */
   playerAddress: string | undefined;
+  /** Additional CSS classes for the modal content. */
+  className?: string;
 }
 
 /**
@@ -28,6 +30,7 @@ export const LeaderboardModal = memo(function LeaderboardModal({
   leaderboardData,
   isLoading,
   playerAddress,
+  className = '',
 }: LeaderboardModalProps) {
   return (
     <AnimatePresence>
@@ -48,7 +51,7 @@ export const LeaderboardModal = memo(function LeaderboardModal({
             role="dialog"
             aria-modal="true"
             aria-labelledby="leaderboard-title"
-            className="glass-game rounded-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+            className={`glass-game rounded-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto ${className}`.trim()}
           >
             <h2 id="leaderboard-title" className="text-3xl font-bold text-purple-400 mb-6 pixel-font text-center">
               LEADERBOARD
