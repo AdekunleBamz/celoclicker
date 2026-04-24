@@ -3,7 +3,7 @@ import { memo, useEffect } from 'react'
 import { SUCCESS_TOAST_DURATION_MS } from '@/lib/constants'
 
 /** Props for the Toast component. */
-interface ToastProps {
+export interface ToastProps {
   /** The message to display in the toast. */
   message: string
   /** Whether the toast is currently visible. */
