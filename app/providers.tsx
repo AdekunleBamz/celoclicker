@@ -8,6 +8,7 @@ import { celo, celoAlfajores } from 'wagmi/chains'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { APP_NAME, CELO_MAINNET_CHAIN_ID } from '@/lib/constants'
 import { isMiniPayBrowser } from '@/hooks/useMiniPay'
+import { LoadingSpinner } from '@/components/LoadingSpinner'
 
 let wagmiConfig: ReturnType<typeof getDefaultConfig> | null = null
 let queryClientInstance: QueryClient | null = null
@@ -73,8 +74,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
   if (!mounted || !config) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-950 via-indigo-950 to-purple-950">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin mx-auto mb-4"></div>
+        <div className="text-center flex flex-col items-center">
+          <div className="mb-4">
+            <LoadingSpinner size="lg" />
+          </div>
           <p className="text-gray-400 pixel-font text-sm">LOADING...</p>
         </div>
       </div>
