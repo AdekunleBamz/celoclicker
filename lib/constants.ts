@@ -189,53 +189,77 @@ export const LEADERBOARD_REFRESH_MS = 30_000
 /** Zero address constant for EVM chains. */
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000' as const
 
+/** The maximum total click score allowed for a single player. */
 export const MAX_CLICK_SCORE = 1_000_000
 
+/** Minimum delay in milliseconds between consecutive clicks. */
 export const CLICK_COOLDOWN_MS = 500
 
+/** The base price for first-level upgrades. */
 export const UPGRADE_PRICE_BASE = 100
 
+/** Interval in milliseconds at which the auto-clicker triggers. */
 export const AUTO_CLICK_INTERVAL_MS = 1_000
 
+/** The total points required before a player can prestige. */
 export const PRESTIGE_THRESHOLD = 1_000_000
 
+/** The maximum number of upgrades a player can hold. */
 export const MAX_UPGRADES = 20
 
+/** Interval in milliseconds at which game state is automatically saved. */
 export const SAVE_INTERVAL_MS = 5_000
 
+/** The initial points-per-second for a new player. */
 export const INITIAL_CLICKS_PER_SECOND = 0
 
+/** The total number of unlockable achievements in the game. */
 export const ACHIEVEMENT_COUNT = 15
 
+/** The base multiplier value applied to score bonuses. */
 export const MULTIPLIER_BASE = 1.5
 
+/** The maximum level of prestige a player can reach. */
 export const MAX_PRESTIGE_LEVEL = 10
 
+/** The probability (0-1) of triggering a bonus critical click. */
 export const BONUS_CLICK_CHANCE = 0.05
 
+/** The default point value for a single base click. */
 export const CLICK_VALUE_DEFAULT = 1
 
+/** The exponential factor by which upgrade costs scale per level. */
 export const UPGRADE_SCALE_FACTOR = 1.15
 
+/** Window in milliseconds to maintain a click combo chain. */
 export const COMBO_WINDOW_MS = 2_000
 
+/** The maximum multiplier allowed for a single combo chain. */
 export const MAX_COMBO_MULTIPLIER = 8
 
+/** Maximum number of retry attempts for syncing state to the server. */
 export const SYNC_RETRY_ATTEMPTS = 3
 
+/** The maximum number of hours for which offline income can accumulate. */
 export const OFFLINE_INCOME_CAP_HOURS = 8
 
+/** Number of decimals for the native CELO token. */
 export const CELO_DECIMALS = 18
 
+/** The minimum amount of CELO required for a withdrawal transaction. */
 export const MIN_WITHDRAW_AMOUNT = 0.01
 
-/** Milestone threshold tiers for clicks. */
+/** Milestone threshold tiers for click counts. */
 export const CLICK_TIERS = [1_000, 10_000, 100_000, 1_000_000] as const
 
+/** Primary currency symbol used in the application. */
 export const CURRENCY_SYMBOL = 'CELO' as const
 
+/** LocalStorage key used for persisting game state. */
 export const DEFAULT_GAME_STATE_KEY = 'celoclicker_state' as const
 
+/** Maximum age in milliseconds for a local save before it's considered expired. */
 export const MAX_SAVE_AGE_MS = 7 * 24 * 60 * 60 * 1_000
 
+/** Cost of the very first upgrade purchase. */
 export const FIRST_UPGRADE_COST = 50
