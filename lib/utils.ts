@@ -6,7 +6,10 @@ export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 /**
  * Formats a number with K, M, B suffixes for display
  * @param num - The number to format (bigint or number)
- * @returns Formatted string with suffix (e.g., "1.5K", "2.3M", "1B")
+ * @returns Formatted string with suffix (e.g., "1.50K", "2.30M", "1.00B")
+ * @example
+ * formatNumber(1500) // "1.50K"
+ * formatNumber(1000000) // "1.00M"
  */
 export function formatNumber(num: bigint | number): string {
   const n = typeof num === 'bigint' ? Number(num) : num
