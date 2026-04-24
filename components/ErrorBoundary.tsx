@@ -3,21 +3,21 @@
 import { Component, ReactNode } from 'react'
 
 /** Props for the ErrorBoundary component. */
-interface Props {
+export interface ErrorBoundaryProps {
   /** The children components to be wrapped by the boundary. */
   children: ReactNode
 }
 
 /** State for the ErrorBoundary component. */
-interface State {
+export interface ErrorBoundaryState {
   /** Whether an error has been caught. */
   hasError: boolean
   /** The error object caught by the boundary. */
   error?: Error
 }
 
-export class ErrorBoundary extends Component<Props, State> {
-  constructor(props: Props) {
+export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
     super(props)
     this.state = { hasError: false }
   }
@@ -25,7 +25,7 @@ export class ErrorBoundary extends Component<Props, State> {
   /**
    * Catch errors and update state to trigger fallback UI.
    */
-  static getDerivedStateFromError(error: Error): State {
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
     return { hasError: true, error }
   }
 
