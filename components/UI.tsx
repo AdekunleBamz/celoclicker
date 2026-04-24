@@ -66,7 +66,7 @@ export const Button = memo(function Button({
 })
 
 /** Props for the Badge component. */
-interface BadgeProps {
+export interface BadgeProps {
   /** The text to display in the badge. */
   children: ReactNode
   /** Visual variant of the badge. */
