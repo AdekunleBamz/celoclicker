@@ -45,3 +45,4 @@ export const StatCard = memo(function StatCard({
   )
 })
 
+StatCard.displayName = 'StatCard'
