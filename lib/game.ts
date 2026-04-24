@@ -43,6 +43,16 @@ export function isAchievementUnlocked(clicks: number, threshold: number): boolea
 }
 
 /**
+ * Calculates the next achievement threshold based on the current threshold.
+ * @param currentThreshold - The current achievement threshold.
+ * @returns The next threshold value.
+ */
+export function calcNextAchievementThreshold(currentThreshold: number): number {
+  if (currentThreshold <= 0) return 100
+  return currentThreshold * 10
+}
+
+/**
  * Formats prestige count with a display label.
  * @param n - Number of times prestiged.
  */
