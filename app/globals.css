@@ -10,20 +10,18 @@
     --primary: #9333ea;
     --secondary: #6366f1;
     --accent: #ec4899;
+    --success: #10b981;
+    --error: #ef4444;
   }
 
   * {
-    border-color: rgb(31 41 55);
-  }
-
-  :focus {
-    outline: none;
+    border-color: rgba(255, 255, 255, 0.1);
   }
 
   :focus-visible {
     outline: 2px solid var(--celo-green);
     outline-offset: 4px;
-    box-shadow: 0 0 0 4px rgba(53, 208, 127, 0.3);
+    box-shadow: 0 0 0 4px rgba(53, 208, 127, 0.4);
   }
 
   body {
