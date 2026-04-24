@@ -13,7 +13,9 @@ interface UpgradeCardProps {
   onInsufficientFunds?: () => void
 }
 
-export const UpgradeCard = ({
+import { memo } from 'react'
+
+export const UpgradeCard = memo(function UpgradeCard({
   title,
   currentLevel,
   cost,
@@ -62,6 +64,6 @@ export const UpgradeCard = ({
       </button>
     </div>
   )
-}
+})
 
 UpgradeCard.displayName = 'UpgradeCard'
