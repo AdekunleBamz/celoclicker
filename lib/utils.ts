@@ -279,35 +279,87 @@ export function calcUpgradePrice(base: number, level: number): number {
   return Math.floor(base * Math.pow(1.15, level))
 }
 
+/**
+ * Checks if a player is ready for prestige based on their current click count.
+ * 
+ * @param clicks - The current click count.
+ * @param threshold - The required click count for prestige.
+ * @returns True if the player is ready for prestige.
+ */
 export function isPrestigeReady(clicks: number, threshold: number): boolean {
   return clicks >= threshold
 }
 
+/**
+ * Formats a multiplier value for display (e.g., "1.50x").
+ * 
+ * @param m - The multiplier value.
+ * @returns Formatted multiplier string.
+ */
 export function formatMultiplier(m: number): string {
   return `${m.toFixed(2)}x`
 }
 
+/**
+ * Calculates total clicks per second from an array of upgrade values.
+ * 
+ * @param upgrades - Array of points-per-second values from various upgrades.
+ * @returns Total clicks per second.
+ */
 export function calcClicksPerSecond(upgrades: number[]): number {
   return upgrades.reduce((sum, u) => sum + u, 0)
 }
 
+/**
+ * Clamps a number between a lower and upper bound.
+ * 
+ * @param v - The value to clamp.
+ * @param lo - The lower bound.
+ * @param hi - The upper bound.
+ * @returns The clamped value.
+ */
 export function clampNumber(v: number, lo: number, hi: number): number {
   return Math.max(lo, Math.min(hi, v))
 }
 
+/**
+ * Validates if a number is a valid click count (non-negative integer).
+ * 
+ * @param n - The number to validate.
+ * @returns True if the number is a valid click count.
+ */
 export function isValidClickCount(n: number): boolean {
   return Number.isInteger(n) && n >= 0
 }
 
+/**
+ * Calculates the percentage of a value relative to a total.
+ * 
+ * @param value - The part value.
+ * @param total - The whole value.
+ * @returns Rounded percentage as a number (0-100).
+ */
 export function toPercent(value: number, total: number): number {
   if (total === 0) return 0
   return Math.round((value / total) * 100)
 }
 
+/**
+ * Calculates the sum of an array of numbers.
+ * 
+ * @param arr - The array of numbers to sum.
+ * @returns The total sum.
+ */
 export function sumArray(arr: number[]): number {
   return arr.reduce((a, b) => a + b, 0)
 }
 
+/**
+ * Finds the maximum value in an array of numbers.
+ * 
+ * @param arr - The array of numbers.
+ * @returns The maximum value, or 0 if the array is empty.
+ */
 export function maxOfArray(arr: number[]): number {
   if (arr.length === 0) return 0
   return arr.slice(1).reduce((a, b) => Math.max(a, b), arr[0])
