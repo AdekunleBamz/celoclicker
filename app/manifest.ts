@@ -1,5 +1,9 @@
 import { MetadataRoute } from 'next'
 
+/**
+ * Generates the web app manifest for CeloClicker.
+ * Provides metadata used when the app is installed on mobile devices.
+ */
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'CeloClicker',
