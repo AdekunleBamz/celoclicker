@@ -3,9 +3,6 @@ import type { Metadata } from 'next'
 import { Providers } from './providers'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { APP_NAME } from '@/lib/constants'
-import { Orbitron, Press_Start_2P } from 'next-pixel-fonts-placeholder' // Wait, I should use real next/font/google
-
-// Actually, I'll use next/font/google correctly
 import { Orbitron, Press_Start_2P } from 'next/font/google'
 
 const orbitron = Orbitron({
@@ -34,6 +31,10 @@ function resolveAppOrigin() {
 const appOrigin = resolveAppOrigin()
 const logoUrl = new URL('/icon.png', appOrigin).toString()
 
+/**
+ * Viewport configuration for Next.js 14.
+ * Optimizes the app for mobile devices.
+ */
 export const viewport = {
   themeColor: '#35D07F',
   width: 'device-width',
@@ -41,6 +42,10 @@ export const viewport = {
   maximumScale: 1,
 }
 
+/**
+ * Global metadata for the application.
+ * Includes SEO, OpenGraph, and Twitter card configurations.
+ */
 export const metadata: Metadata = {
   metadataBase: appOrigin,
   title: {
@@ -82,6 +87,10 @@ export const metadata: Metadata = {
   },
 }
 
+/**
+ * Root layout component that wraps the entire application.
+ * Provides global styles, fonts, and error handling.
+ */
 export default function RootLayout({
   children,
 }: {
