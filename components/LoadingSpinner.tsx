@@ -8,7 +8,11 @@ export const LoadingSpinner = memo(function LoadingSpinner({ size = 'md' }: { si
   }
 
   return (
-    <div className={`${sizeClasses[size]} border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin`} />
+    <div 
+      className={`${sizeClasses[size]} border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin`}
+      role="status"
+      aria-label="Loading"
+    />
   )
 })
 
