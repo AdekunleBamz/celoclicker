@@ -3,7 +3,7 @@
  * @module validation
  */
 import { CONTRACT_ADDRESS_ENV_KEY } from './constants'
-import { isValidAddress, isZeroAddress } from './utils'
+import { isValidAddress, isZeroAddress, isPositiveBigInt } from './utils'
 
 /**
  * Validates if a string is a valid Ethereum contract address format
@@ -134,7 +134,7 @@ export function isValidPlayerAddress(address: string): boolean {
  * @param clicks - The bigint click count to validate.
  */
 export function isPositiveClicks(clicks: bigint): boolean {
-  return clicks > 0n
+  return isPositiveBigInt(clicks)
 }
 
 /** Returns true if the games count is a non-negative bigint. */
