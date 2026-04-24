@@ -37,6 +37,10 @@ export function getUpgradeLabel(level: number): string {
   return `Level ${level}`
 }
 
+/**
+ * Formats a bonus value with a leading plus sign.
+ *  n - The bonus value to format.
+ */
 export function formatBonus(n: number): string {
   return `+${n}`
 }
