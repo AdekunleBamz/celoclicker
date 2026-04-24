@@ -24,6 +24,7 @@ export function usePlayerStats(address: Address | undefined) {
     query: {
       enabled: !!address && isValid,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PLAYER_STATS,
+      staleTime: GAME_CONFIG.REFETCH_INTERVALS.STALE_TIME,
     },
   })
 
