@@ -159,6 +159,11 @@ export const GAME_TX_TYPE = Object.freeze({
 export const BASE_CLICK_POWER = 1n
 
 /**
+ * Duration in milliseconds within which consecutive clicks maintain a combo.
+ */
+export const COMBO_TIMEOUT_MS = 2_000
+
+/**
  * Minimum points required to appear on the leaderboard.
  */
 export const MIN_LEADERBOARD_POINTS = 1n
