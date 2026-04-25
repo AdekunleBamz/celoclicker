@@ -24,9 +24,10 @@ export const LoadingSpinner = memo(function LoadingSpinner({
 
   return (
     <div 
-      className={`${sizeClasses[size]} border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin`}
+      className={`${sizeClasses[size]} border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin motion-reduce:animate-[spin_1.5s_linear_infinite]`}
       role="status"
       aria-label={label}
+      aria-busy="true"
     />
   )
 })
