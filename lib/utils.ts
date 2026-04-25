@@ -369,6 +369,17 @@ export function pluralize(count: number, singular: string, plural: string): stri
 }
 
 /**
+ * Capitalizes the first letter of a string.
+ * 
+ * @param s - The string to capitalize.
+ * @returns The capitalized string.
+ */
+export function capitalize(s: string): string {
+  if (!s) return ''
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+/**
  * Finds the maximum value in an array of numbers.
  * 
  * @param arr - The array of numbers.
