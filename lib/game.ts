@@ -105,6 +105,19 @@ export function isMaxLevel(level: number, max: number): boolean {
 }
 
 /**
+ * Calculates the click multiplier for a given upgrade level.
+ * Each level adds `step` to the base multiplier of 1.
+ *
+ * @param level - Current upgrade level.
+ * @param step - How much each level increases the multiplier. Defaults to 0.1.
+ * @returns The computed multiplier (always >= 1).
+ */
+export function calcClickMultiplier(level: number, step = 0.1): number {
+  if (level <= 0) return 1
+  return 1 + level * step
+}
+
+/**
  * Formats a bonus value for display.
  * @param n - The bonus amount.
  * @returns Formatted bonus string.
