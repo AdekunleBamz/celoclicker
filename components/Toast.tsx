@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { memo, useEffect } from 'react'
-import { SUCCESS_TOAST_DURATION_MS } from '@/lib/constants'
+import { SUCCESS_TOAST_DURATION_MS, ERROR_TOAST_DURATION_MS } from '@/lib/constants'
 
 /** Props for the Toast component. */
 export interface ToastProps {
@@ -26,9 +26,10 @@ export const Toast = memo(function Toast({
 }: ToastProps) {
   useEffect(() => {
     if (!isVisible) return
-    const timer = setTimeout(onClose, SUCCESS_TOAST_DURATION_MS)
+    const duration = type === 'error' ? ERROR_TOAST_DURATION_MS : SUCCESS_TOAST_DURATION_MS
+    const timer = setTimeout(onClose, duration)
     return () => clearTimeout(timer)
-  }, [isVisible, onClose])
+  }, [isVisible, onClose, type])
 
   const icon = type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'
   const bgColor = type === 'success' ? 'bg-celo-green/90' : type === 'error' ? 'bg-red-500/90' : 'bg-indigo-600/90'
