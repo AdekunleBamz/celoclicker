@@ -267,17 +267,6 @@ export function bigintToPercent(val: bigint, total: bigint): number {
   return Math.min(100, (Number(val) / Number(total)) * 100)
 }
 
-/**
- * Formats a percentage value for display.
- * @param value - A number in the range 0–100.
- * @param decimals - Number of decimal places. Defaults to 1.
- * @returns Formatted string e.g. "42.5%".
- */
-export function formatPercent(value: number, decimals = 1): string {
-  if (!Number.isFinite(value)) return '0%'
-  return `${Math.max(0, Math.min(100, value)).toFixed(decimals)}%`
-}
-
 
 /**
  * Formats a number of clicks into a compact string representation.
@@ -423,4 +412,9 @@ export function formatPercent(value: number): string {
 export function maxOfArray(arr: number[]): number {
   if (arr.length === 0) return 0
   return arr.slice(1).reduce((a, b) => Math.max(a, b), arr[0])
+}
+
+/** Returns true when value is a non-empty string after trimming. */
+export function isNonEmptyString(value: unknown): value is string {
+  return typeof value === 'string' && value.trim().length > 0
 }
