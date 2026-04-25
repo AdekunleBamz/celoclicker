@@ -63,6 +63,15 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
               >
                 Reboot Application
               </button>
+              {this.state.error && (
+                <button
+                  onClick={() => navigator.clipboard?.writeText(this.state.error!.message)}
+                  type="button"
+                  className="px-6 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-bold transition-colors w-full text-gray-400"
+                >
+                  Copy Error Message
+                </button>
+              )}
             </div>
           </div>
         </div>
