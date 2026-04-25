@@ -1,7 +1,7 @@
 import { useReadContract } from 'wagmi'
 import { useMemo } from 'react'
 import { useContractConfig } from './useContractConfig'
-import { GAME_CONFIG } from '@/lib/constants'
+import { GAME_CONFIG, MAX_UPGRADE_LEVEL } from '@/lib/constants'
 import type { Address } from 'viem'
 import type { PlayerStatsTuple } from '@/lib/types'
 import { ZERO_ADDRESS } from '@/lib/utils'
@@ -53,6 +53,8 @@ export function usePlayerStats(address: Address | undefined) {
       hasAnyUpgrade: autoClickerLevel > 0n || multiplierLevel > 0n,
       /** True if the player is eligible for a multiplier upgrade (at least level 1 click power). */
       canMultiplier: clickPower > 1n,
+      /** True when click power has reached the contract maximum. */
+      isMaxClickPower: clickPower >= MAX_UPGRADE_LEVEL,
       refetch,
       error,
       isLoading,
