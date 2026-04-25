@@ -37,6 +37,7 @@ export const StatCard = memo(function StatCard({
         <div 
           className={`text-xl font-bold ${valueColor} pixel-font-small`} 
           aria-label={`${label}: ${value}`}
+          title={String(value)}
         >
           {value}
         </div>
