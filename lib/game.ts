@@ -99,6 +99,11 @@ export function getUpgradeLabel(level: number): string {
   return `Level ${level}`
 }
 
+/** Returns true when level has reached the maximum allowed value. */
+export function isMaxLevel(level: number, max: number): boolean {
+  return level >= max
+}
+
 /**
  * Formats a bonus value for display.
  * @param n - The bonus amount.
