@@ -42,6 +42,7 @@ function getQueryClient() {
       defaultOptions: {
         queries: {
           refetchOnWindowFocus: false,
+          retry: 1,
         },
       },
     })
