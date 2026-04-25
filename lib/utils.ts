@@ -148,6 +148,17 @@ export function safeParseInt(value: string, fallback = 0): number {
 }
 
 /**
+ * Safely parses a string to a float, returning a fallback value on failure.
+ *
+ * @param value - The string to parse.
+ * @param fallback - Value returned when parsing fails. Defaults to 0.
+ */
+export function safeParseFloat(value: string, fallback = 0): number {
+  const parsed = parseFloat(value)
+  return Number.isFinite(parsed) ? parsed : fallback
+}
+
+/**
  * Converts a value in CELO (18-decimal) to its wei representation as a bigint.
  *
  * @param celo - Amount in CELO (e.g. 1.5 = 1.5 CELO).
