@@ -20,7 +20,7 @@ export function useContractConfig(): {
   }, [contractAddress])
 
   return {
-    address: contractAddress as `0x${string}`,
+    address: contractAddress.toLowerCase() as `0x${string}`,
     abi: celoClickerABI,
     isValid,
   }
