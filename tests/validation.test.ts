@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest'
-import { validateContractAddress, validateEnvironment } from '../lib/validation'
+import { isValidPlayerAddress, validateContractAddress, validateEnvironment } from '../lib/validation'
 
 const originalContractAddress = process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT
 const originalWalletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID
@@ -25,6 +25,16 @@ describe('lib/validation validateContractAddress', () => {
 
   it('accepts valid addresses with surrounding whitespace', () => {
     expect(validateContractAddress(' 0x1234567890123456789012345678901234567890 ')).toBe(true)
+  })
+})
+
+describe('lib/validation isValidPlayerAddress', () => {
+  it('accepts a valid address with surrounding whitespace', () => {
+    expect(isValidPlayerAddress(' 0x1234567890123456789012345678901234567890 ')).toBe(true)
+  })
+
+  it('rejects the zero address regardless of case', () => {
+    expect(isValidPlayerAddress('0X0000000000000000000000000000000000000000')).toBe(false)
   })
 })
 
