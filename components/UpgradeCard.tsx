@@ -78,7 +78,7 @@ export const UpgradeCard = memo(function UpgradeCard({
         disabled={disabled || isLoading}
         type="button"
         aria-label={`Upgrade ${title} for ${cost.toLocaleString()} points`}
-        className={`w-full py-2.5 rounded-lg font-bold transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed text-xs relative z-10 ${
+        className={`w-full py-2.5 rounded-lg font-bold transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed text-xs relative z-10 ${
           color === 'text-purple-400' ? 'bg-purple-500/50 hover:bg-purple-500 hover:glow-purple' :
           color === 'text-indigo-400' ? 'bg-indigo-500/50 hover:bg-indigo-500 hover:glow-purple' :
           'bg-pink-500/50 hover:bg-pink-500 hover:glow-purple'
