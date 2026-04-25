@@ -11,6 +11,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Addictive on-chain idle clicker game on Celo',
     start_url: '/',
     display: 'standalone',
+    orientation: 'portrait',
     background_color: '#2E3338',
     theme_color: '#35D07F',
     icons: [
