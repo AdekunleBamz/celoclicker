@@ -202,6 +202,18 @@ export function isValidScore(score: number): boolean {
 }
 
 /**
+ * Returns true if the string is a valid http or https URL.
+ */
+export function isValidUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url)
+    return parsed.protocol === 'http:' || parsed.protocol === 'https:'
+  } catch {
+    return false
+  }
+}
+
+/**
  * Returns true if the multiplier is a finite number greater than or equal to 1.
  */
 export function isValidMultiplier(m: number): boolean {
