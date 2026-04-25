@@ -321,7 +321,9 @@ export function calcClicksPerSecond(upgrades: number[]): number {
  * @returns The clamped value.
  */
 export function clampNumber(v: number, lo: number, hi: number): number {
-  return Math.max(lo, Math.min(hi, v))
+  const low = Math.min(lo, hi)
+  const high = Math.max(lo, hi)
+  return Math.max(low, Math.min(high, v))
 }
 
 /**
