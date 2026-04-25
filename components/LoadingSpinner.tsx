@@ -6,8 +6,8 @@ import { memo } from 'react'
 
 /** Props for the LoadingSpinner component. */
 export interface LoadingSpinnerProps {
-  /** Visual size of the spinner (sm, md, lg). */
-  size?: 'sm' | 'md' | 'lg'
+  /** Visual size of the spinner (sm, md, lg, xl). */
+  size?: 'sm' | 'md' | 'lg' | 'xl'
   /** Accessibility label for screen readers. */
   label?: string
 }
@@ -20,6 +20,7 @@ export const LoadingSpinner = memo(function LoadingSpinner({
     sm: 'w-4 h-4',
     md: 'w-8 h-8',
     lg: 'w-12 h-12',
+    xl: 'w-16 h-16',
   }
 
   return (
