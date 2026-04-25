@@ -146,3 +146,13 @@ export function isMaxUpgradeLevel(level: number, max: number): boolean {
 export function formatCps(cps: number): string {
   return `${cps.toFixed(1)} CPS`
 }
+
+/**
+ * Calculates how many points are needed to afford the next upgrade.
+ * @param cost - The upgrade cost.
+ * @param points - Current player points.
+ * @returns Points still needed, or 0 if affordable.
+ */
+export function pointsToNextUpgrade(cost: number, points: number): number {
+  return Math.max(0, cost - points)
+}
