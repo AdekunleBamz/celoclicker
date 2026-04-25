@@ -101,3 +101,8 @@ export interface PlayerRank {
   rank: number
   points: bigint
 }
+
+/**
+ * Describes the connectivity state of the user's wallet.
+ */
+export type NetworkStatus = 'connected' | 'disconnected' | 'connecting' | 'wrong-chain'
