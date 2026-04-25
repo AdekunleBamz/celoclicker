@@ -28,9 +28,11 @@
     @apply bg-gradient-to-br from-purple-950 via-indigo-950 to-purple-950 text-white;
     font-family: 'Orbitron', sans-serif;
     min-height: 100vh;
+    min-height: 100dvh;
     overflow-x: hidden;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
 
