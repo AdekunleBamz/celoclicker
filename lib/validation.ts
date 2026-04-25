@@ -2,7 +2,7 @@
  * Validation utilities for CeloClicker
  * @module validation
  */
-import { CONTRACT_ADDRESS_ENV_KEY, SUPPORTED_CHAIN_IDS } from './constants'
+import { CONTRACT_ADDRESS_ENV_KEY, SUPPORTED_CHAIN_IDS, MIN_WALLET_CONNECT_ID_LENGTH } from './constants'
 import { isValidAddress, isZeroAddress, isPositiveBigInt } from './utils'
 
 /**
@@ -49,7 +49,7 @@ export function validateEnvironment(): {
       errors.push('NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is still set to a placeholder value')
     }
 
-    if (walletConnectId.length < 8) {
+    if (walletConnectId.length < MIN_WALLET_CONNECT_ID_LENGTH) {
       errors.push('NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID appears too short to be valid')
     }
   }
