@@ -57,7 +57,7 @@ export const Button = memo(function Button({
       className={`
         ${fullWidth ? 'w-full' : ''}
         ${variantClasses[variant]}
-        py-3 px-6 rounded-lg font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed
+        py-3 px-6 rounded-lg font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50
         ${className}
       `}
       {...props}
