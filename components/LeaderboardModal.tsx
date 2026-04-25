@@ -95,7 +95,7 @@ export const LeaderboardModal = memo(function LeaderboardModal({
                               'text-gray-500'
                             }`}
                           >
-                            #{idx + 1}
+                            {idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx + 1}`}
                           </div>
                           <div>
                             <div className={`font-mono text-sm ${isCurrentPlayer ? 'text-white font-bold' : 'text-gray-400'}`}>
