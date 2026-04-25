@@ -164,6 +164,12 @@ export const BASE_CLICK_POWER = 1n
 export const COMBO_TIMEOUT_MS = 2_000
 
 /**
+ * Maximum number of hours of offline earnings the contract awards.
+ * Click income accumulated beyond this cap is discarded.
+ */
+export const OFFLINE_EARNINGS_CAP_HOURS = 8
+
+/**
  * Minimum points required to appear on the leaderboard.
  */
 export const MIN_LEADERBOARD_POINTS = 1n
