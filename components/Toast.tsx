@@ -25,10 +25,9 @@ export const Toast = memo(function Toast({
   type = 'success' 
 }: ToastProps) {
   useEffect(() => {
-    if (isVisible) {
-      const timer = setTimeout(onClose, SUCCESS_TOAST_DURATION_MS)
-      return () => clearTimeout(timer)
-    }
+    if (!isVisible) return
+    const timer = setTimeout(onClose, SUCCESS_TOAST_DURATION_MS)
+    return () => clearTimeout(timer)
   }, [isVisible, onClose])
 
   const icon = type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'
