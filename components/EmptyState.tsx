@@ -39,7 +39,7 @@ export const EmptyState = memo(function EmptyState({
       >
         {icon}
       </div>
-      <h3 className="text-xl font-bold text-gray-300 mb-2 pixel-font">{title}</h3>
+      <h3 className="text-xl font-bold text-gray-200 mb-2 pixel-font">{title}</h3>
       <p className="text-gray-500 text-sm max-w-xs mx-auto mb-6">{description}</p>
       {onAction && (
         <button
