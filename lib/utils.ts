@@ -357,6 +357,18 @@ export function sumArray(arr: number[]): number {
 }
 
 /**
+ * Returns the plural form of a word based on a count.
+ * 
+ * @param count - The number to check.
+ * @param singular - The singular form of the word.
+ * @param plural - The plural form of the word.
+ * @returns The appropriate form based on count.
+ */
+export function pluralize(count: number, singular: string, plural: string): string {
+  return count === 1 ? singular : plural
+}
+
+/**
  * Finds the maximum value in an array of numbers.
  * 
  * @param arr - The array of numbers.
