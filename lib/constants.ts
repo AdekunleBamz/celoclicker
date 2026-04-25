@@ -170,6 +170,11 @@ export const COMBO_TIMEOUT_MS = 2_000
 export const OFFLINE_EARNINGS_CAP_HOURS = 8
 
 /**
+ * Minimum character length accepted as a plausible WalletConnect project ID.
+ */
+export const MIN_WALLET_CONNECT_ID_LENGTH = 8
+
+/**
  * Minimum points required to appear on the leaderboard.
  */
 export const MIN_LEADERBOARD_POINTS = 1n
