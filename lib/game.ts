@@ -76,7 +76,7 @@ export function formatPrestigeCount(n: number): string {
  * @returns Total offline clicks earned.
  */
 export function calcOfflineClicks(cps: number, seconds: number): number {
-  if (cps < 0 || seconds < 0) return 0
+  if (!Number.isFinite(cps) || cps < 0 || seconds < 0) return 0
   return Math.floor(cps * seconds)
 }
 
