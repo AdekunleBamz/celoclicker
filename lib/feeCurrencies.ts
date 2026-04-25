@@ -135,3 +135,12 @@ export function getFeeCurrencyAddress(
 ): `0x${string}` | undefined {
   return getFeeCurrencyById(id, chainId)?.feeCurrency
 }
+
+/**
+ * Returns the CELO fee currency config, which is always available as the fallback.
+ *
+ * @param chainId - Optional chain ID passed through to the resolver.
+ */
+export function getFallbackFeeCurrency(chainId?: number): FeeCurrencyConfig {
+  return getFeeCurrencies(chainId)[0]
+}
