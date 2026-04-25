@@ -153,7 +153,8 @@ export function safeParseInt(value: string, fallback = 0): number {
  * @param celo - Amount in CELO (e.g. 1.5 = 1.5 CELO).
  */
 export function celoToWei(celo: number): bigint {
-  return BigInt(Math.round(celo * 1e18))
+  const safeAmount = Math.max(0, celo)
+  return BigInt(Math.round(safeAmount * 1e18))
 }
 
 /**
