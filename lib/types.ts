@@ -92,3 +92,12 @@ export interface GameActionButtonProps {
   /** Click handler for the action. */
   onClick: () => void
 }
+
+/**
+ * A player's position in the leaderboard alongside their score.
+ */
+export interface PlayerRank {
+  address: `0x${string}`
+  rank: number
+  points: bigint
+}
