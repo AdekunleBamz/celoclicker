@@ -231,9 +231,8 @@ export function clicksPerSecond(totalClicks: bigint, elapsedSeconds: number): nu
 export function formatCelo(celo: number | string): string {
   const n = Number(celo)
   if (!Number.isFinite(n)) return '0.0000'
-  return n.toFixed(4)
+  return n.toFixed(4).replace(/\.?0+$/, '') || '0'
 }
-
 
 /** Returns 'Level N' display string for a given upgrade level bigint. */
 export function formatUpgradeLevel(level: bigint): string {
