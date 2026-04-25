@@ -380,6 +380,17 @@ export function capitalize(s: string): string {
 }
 
 /**
+ * Formats a number as a percentage string with one decimal place.
+ * 
+ * @param value - The value to format (0-1 range expected).
+ * @returns Formatted percentage string e.g. "45.2%".
+ */
+export function formatPercent(value: number): string {
+  if (!Number.isFinite(value)) return '0%'
+  return `${(value * 100).toFixed(1)}%`
+}
+
+/**
  * Finds the maximum value in an array of numbers.
  * 
  * @param arr - The array of numbers.
