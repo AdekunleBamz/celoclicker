@@ -2,7 +2,7 @@
  * Validation utilities for CeloClicker
  * @module validation
  */
-import { CONTRACT_ADDRESS_ENV_KEY } from './constants'
+import { CONTRACT_ADDRESS_ENV_KEY, SUPPORTED_CHAIN_IDS } from './constants'
 import { isValidAddress, isZeroAddress, isPositiveBigInt } from './utils'
 
 /**
@@ -84,8 +84,7 @@ export function isValidPoints(points: bigint): boolean {
  * @param chainId - The numeric chain ID to check.
  */
 export function isValidChainId(chainId: number): boolean {
-  // Inline check to avoid circular imports with constants
-  return chainId === 42220 || chainId === 44787
+  return (SUPPORTED_CHAIN_IDS as readonly number[]).includes(chainId)
 }
 
 /**
