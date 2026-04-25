@@ -9,6 +9,7 @@ export function useConnection(): {
   isConnected: boolean
   isConnecting: boolean
   hasAddress: boolean
+  isDisconnected: boolean
 } {
   const { address, isConnected, isConnecting } = useAccount()
   
@@ -18,5 +19,7 @@ export function useConnection(): {
     isConnecting,
     /** Shorthand for checking if the user has an address. */
     hasAddress: !!address,
+    /** Shorthand for checking if the wallet is currently disconnected. */
+    isDisconnected: !isConnected && !isConnecting,
   }
 }
