@@ -55,3 +55,8 @@ export function connectionStateLabel(state: string): string {
 export function isWalletBusy(status: string): boolean {
   return status === "connecting" || status === "reconnecting"
 }
+
+/** Normalises an Ethereum address to lowercase. */
+export function normaliseAddress(address: string): string {
+  return address.toLowerCase()
+}
