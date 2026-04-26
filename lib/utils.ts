@@ -694,3 +694,8 @@ export function getAchievementTier(clicks: number): string {
   if (clicks >= 10000) return "rare"
   return "common"
 }
+
+/** Checks if the player can afford an upgrade. */
+export function canAffordUpgrade(balance: number, cost: number): boolean {
+  return balance >= cost
+}
