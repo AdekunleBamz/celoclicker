@@ -469,8 +469,9 @@ export default function Home() {
                       : 'CLICK THE STAR!'}
                 </p>
                 {(writeError || txError) && (
-                  <p className="mt-2 text-red-400 text-xs" role="alert">
-                    Error: {writeError?.message?.includes('user rejected') 
+                  <p className="mt-2 max-w-sm text-center text-red-300 text-xs leading-relaxed break-words" role="alert">
+                    Transaction error:{' '}
+                    {writeError?.message?.includes('user rejected')
                       ? 'Transaction was rejected. Please try again.' 
                       : writeError?.message?.includes('insufficient funds')
                       ? 'Insufficient funds for gas. Please check your balance.'
