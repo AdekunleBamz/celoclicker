@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { CELO_MAINNET_CHAIN_ID } from '../lib/constants'
-import { isHexString, isValidChainId, isValidPlayerAddress } from '../lib/validation'
+import { isHexString, isValidChainId, isValidPlayerAddress, isValidUrl } from '../lib/validation'
 
 describe('validation ui guards: isValidChainId', () => {
   it('accepts supported integer chain IDs', () => {
@@ -29,5 +29,15 @@ describe('validation ui guards: isHexString', () => {
 
   it('rejects malformed hex strings', () => {
     expect(isHexString('abc123')).toBe(false)
+  })
+})
+
+describe('validation ui guards: isValidUrl', () => {
+  it('accepts trimmed https URLs', () => {
+    expect(isValidUrl('  https://celoclicker.app  ')).toBe(true)
+  })
+
+  it('rejects empty strings', () => {
+    expect(isValidUrl('   ')).toBe(false)
   })
 })
