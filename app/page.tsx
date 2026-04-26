@@ -303,6 +303,10 @@ export default function Home() {
             CELOCLICKER
           </h1>
           <p className="text-gray-400 text-sm">Click • Upgrade • Dominate</p>
+          <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-celo-green/30 bg-celo-green/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-celo-green">
+            <span aria-hidden="true">{selectedFeeCurrency.id === 'USDC' ? '💵' : '⛽'}</span>
+            Fee Mode: {selectedFeeCurrency.label}
+          </div>
           <p className="text-gray-500 text-xs mt-3 max-w-xl mx-auto">
             Gameplay still runs on points. The currency switch below only changes how transaction fees are paid: CELO on web by default, USDCm on MiniPay by default.
           </p>
