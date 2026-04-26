@@ -208,7 +208,7 @@ export function isInRange(n: number, lo: number, hi: number): boolean {
  * Returns true if the string is a valid hex string starting with 0x.
  */
 export function isHexString(s: string): boolean {
-  return /^0x[0-9a-fA-F]*$/.test(s)
+  return /^0x[0-9a-fA-F]*$/.test(s.trim())
 }
 
 /**
