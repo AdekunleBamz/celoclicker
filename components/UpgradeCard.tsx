@@ -44,6 +44,7 @@ export const UpgradeCard = memo(function UpgradeCard({
   className = '',
 }: UpgradeCardProps) {
   const canAfford = points >= cost && !disabled && !isLoading
+  const missingPoints = points >= cost ? 0n : cost - points
 
   const handleClick = () => {
     if (canAfford) {
@@ -94,6 +95,11 @@ export const UpgradeCard = memo(function UpgradeCard({
           upgradeLabel
         )}
       </button>
+      {!isLoading && !disabled && !canAfford && (
+        <p className="text-[10px] text-gray-500 uppercase tracking-wider text-center">
+          Need {missingPoints.toLocaleString()} more points
+        </p>
+      )}
     </Card>
   )
 })
