@@ -88,6 +88,17 @@ export function isValidChainId(chainId: number): boolean {
 }
 
 /**
+ * Returns true when the value looks like a valid Ethereum transaction hash.
+ * Expects a 0x-prefixed 64-character hex string.
+ *
+ * @param hash - The hash string to validate.
+ */
+export function isValidTxHash(hash: string): boolean {
+  if (typeof hash !== 'string') return false
+  return /^0x[a-fA-F0-9]{64}$/.test(hash.trim())
+}
+
+/**
  * Returns true when the given chain ID is one of the officially supported Celo chains.
  *
  * @param chainId - The numeric chain ID to check.
