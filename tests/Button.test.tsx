@@ -1,3 +1,4 @@
+import { vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { Button } from '../components/UI'
 
@@ -23,7 +24,7 @@ describe('Button', () => {
   })
 
   it('handles click events', () => {
-    const onClick = jest.fn()
+    const onClick = vi.fn()
     render(<Button onClick={onClick}>Click Me</Button>)
     fireEvent.click(screen.getByText('Click Me'))
     expect(onClick).toHaveBeenCalledTimes(1)
@@ -32,5 +33,15 @@ describe('Button', () => {
   it('passes disabled prop', () => {
     render(<Button disabled>Disabled</Button>)
     expect(screen.getByText('Disabled').closest('button')).toBeDisabled()
+  })
+
+  it('adds aria-disabled when disabled', () => {
+    render(<Button disabled>Disabled A11y</Button>)
+    expect(screen.getByRole('button', { name: 'Disabled A11y' })).toHaveAttribute('aria-disabled', 'true')
+  })
+
+  it('defaults button type to "button"', () => {
+    render(<Button>Type Check</Button>)
+    expect(screen.getByRole('button', { name: 'Type Check' })).toHaveAttribute('type', 'button')
   })
 })

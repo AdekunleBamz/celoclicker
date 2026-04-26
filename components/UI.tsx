@@ -9,15 +9,17 @@ export interface CardProps {
   className?: string
   /** Whether to apply glassmorphism effect. */
   glass?: boolean
+  /** Optional accessibility label for assistive technology. */
+  ariaLabel?: string
 }
 
 /**
  * Reusable Card component with optional glassmorphism effect.
  */
-export const Card = memo(function Card({ children, className = '', glass = false }: CardProps) {
+export const Card = memo(function Card({ children, className = '', glass = false, ariaLabel }: CardProps) {
   const baseClasses = glass ? 'glass-game' : 'bg-black/30'
   return (
-    <div className={`${baseClasses} rounded-lg p-4 ${className}`}>
+    <div aria-label={ariaLabel} className={`${baseClasses} rounded-lg p-4 ${className}`}>
       {children}
     </div>
   )
@@ -41,6 +43,8 @@ export const Button = memo(function Button({
   variant = 'primary',
   fullWidth = false,
   className = '',
+  type = 'button',
+  disabled,
   ...props
 }: ButtonProps) {
   const variantClasses = {
@@ -52,13 +56,16 @@ export const Button = memo(function Button({
 
   return (
     <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={disabled ? undefined : { scale: 1.02 }}
+      whileTap={disabled ? undefined : { scale: 0.98 }}
+      type={type}
+      disabled={disabled}
+      aria-disabled={disabled ? 'true' : undefined}
       className={`
         focus-ring-game
         ${fullWidth ? 'w-full' : ''}
         ${variantClasses[variant]}
-        py-3 px-6 rounded-lg font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed
+        py-3 px-6 rounded-lg font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-celo-green/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40
         ${className}
       `}
       {...props}
@@ -78,6 +85,8 @@ export interface BadgeProps {
   variant?: 'success' | 'warning' | 'info' | 'purple'
   /** Additional CSS classes. */
   className?: string
+  /** Optional accessibility label for assistive technology. */
+  ariaLabel?: string
 }
 
 /**
@@ -86,7 +95,8 @@ export interface BadgeProps {
 export const Badge = memo(function Badge({ 
   children, 
   variant = 'info',
-  className = '' 
+  className = '',
+  ariaLabel
 }: BadgeProps) {
   const variants = {
     success: 'bg-celo-green/20 text-celo-green border-celo-green/30',
@@ -96,7 +106,7 @@ export const Badge = memo(function Badge({
   }
 
   return (
-    <span className={`px-2 py-0.5 rounded text-[10px] font-bold border uppercase tracking-wider ${variants[variant]} ${className}`}>
+    <span aria-label={ariaLabel} className={`px-2 py-0.5 rounded text-[10px] font-bold border uppercase tracking-wider ${variants[variant]} ${className}`}>
       {children}
     </span>
   )

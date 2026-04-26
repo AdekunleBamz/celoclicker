@@ -26,4 +26,9 @@ describe('Card', () => {
     const { container } = render(<Card className="my-custom-class">Test</Card>)
     expect(container.firstChild).toHaveClass('my-custom-class')
   })
+
+  it('supports an explicit aria label', () => {
+    render(<Card ariaLabel="Player stats card">Stats</Card>)
+    expect(screen.getByLabelText('Player stats card')).toBeInTheDocument()
+  })
 })
