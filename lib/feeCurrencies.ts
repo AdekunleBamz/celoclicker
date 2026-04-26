@@ -189,3 +189,10 @@ export function getFeeCurrencyTokenAddress(
 export function isCeloNativeCurrency(id: FeeCurrencyId): boolean {
   return id === 'CELO'
 }
+
+/**
+ * Returns an array of all supported fee currency IDs regardless of chain.
+ */
+export function getAllFeeCurrencyIds(): FeeCurrencyId[] {
+  return getFeeCurrencies().map((c) => c.id)
+}
