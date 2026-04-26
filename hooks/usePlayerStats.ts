@@ -156,3 +156,15 @@ export function isFullyUpgraded(
     multiplierLevel >= maxLevel
   )
 }
+
+/**
+ * Returns the average points per click based on total points and total clicks.
+ * Returns 0 when no clicks have been recorded.
+ *
+ * @param totalPoints - Cumulative points earned.
+ * @param totalClicks - Total number of clicks recorded.
+ */
+export function avgPointsPerClick(totalPoints: bigint, totalClicks: bigint): number {
+  if (totalClicks === 0n) return 0
+  return Number(totalPoints) / Number(totalClicks)
+}
