@@ -12,6 +12,7 @@
     --accent: #ec4899;
     --success: #10b981;
     --error: #ef4444;
+    --focus-ring: rgba(53, 208, 127, 0.95);
   }
 
   * {
@@ -19,7 +20,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--celo-green);
+    outline: 2px solid var(--focus-ring);
     outline-offset: 4px;
     box-shadow: 0 0 0 4px rgba(53, 208, 127, 0.4);
   }
@@ -37,6 +38,17 @@
 }
 
 @layer utilities {
+  .focus-ring-game {
+    outline: 2px solid transparent;
+    outline-offset: 4px;
+    transition: box-shadow 0.2s ease, outline-color 0.2s ease;
+  }
+
+  .focus-ring-game:focus-visible {
+    outline-color: var(--focus-ring);
+    box-shadow: 0 0 0 4px rgba(53, 208, 127, 0.35);
+  }
+
   .pixel-font {
     font-family: 'Press Start 2P', cursive;
   }
