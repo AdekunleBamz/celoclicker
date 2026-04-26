@@ -294,3 +294,15 @@ export function getABIFunctionInputs(abi: typeof celoClickerABI, functionName: s
 export function countReadOnlyFunctions(abi: typeof celoClickerABI): number {
   return abi.filter((item) => item.type === "function" && (item.stateMutability === "view" || item.stateMutability === "pure")).length
 }
+
+/**
+ * Returns a map of event names to their indexed parameter count.
+ */
+export function getABIEventIndexMap(abi: typeof celoClickerABI): Record<string, number> {
+  const map: Record<string, number> = {}
+  abi.filter((item) => item.type === "event").forEach((event: any) => {
+    const indexed = (event.inputs || []).filter((inp: any) => inp.indexed).length
+    if (event.name) map[event.name] = indexed
+  })
+  return map
+}
