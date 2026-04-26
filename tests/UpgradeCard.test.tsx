@@ -1,5 +1,6 @@
+import { beforeEach, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { UpgradeCard } from '../components/UpgradeCard'
+import { formatUpgradeLevelText, getUpgradeActionLabel, UpgradeCard } from '../components/UpgradeCard'
 
 describe('UpgradeCard', () => {
   const defaultProps = {
@@ -8,11 +9,11 @@ describe('UpgradeCard', () => {
     cost: 100n,
     points: 500n,
     color: 'text-purple-400',
-    onUpgrade: jest.fn(),
+    onUpgrade: vi.fn(),
   }
 
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   it('renders title, level, and cost', () => {
@@ -35,6 +36,7 @@ describe('UpgradeCard', () => {
     render(<UpgradeCard {...defaultProps} disabled />)
     const button = screen.getByRole('button', { name: /Upgrade Test Upgrade/i })
     expect(button).toBeDisabled()
+    expect(button).toHaveAttribute('aria-disabled', 'true')
   })
 
   it('shows loading state', () => {
@@ -45,7 +47,7 @@ describe('UpgradeCard', () => {
   })
 
   it('calls onInsufficientFunds when clicked without enough points', () => {
-    const onInsufficientFunds = jest.fn()
+    const onInsufficientFunds = vi.fn()
     render(<UpgradeCard {...defaultProps} points={50n} onInsufficientFunds={onInsufficientFunds} />)
     
     const button = screen.getByRole('button', { name: /Upgrade Test Upgrade/i })
@@ -53,5 +55,20 @@ describe('UpgradeCard', () => {
     
     expect(defaultProps.onUpgrade).not.toHaveBeenCalled()
     expect(onInsufficientFunds).toHaveBeenCalledTimes(1)
+  })
+
+  it('shows a tooltip-style title for missing points', () => {
+    render(<UpgradeCard {...defaultProps} points={90n} />)
+    expect(screen.getByText(/Need 10 more points/i)).toHaveAttribute('title', '10 points required')
+  })
+})
+
+describe('UpgradeCard helpers', () => {
+  it('returns processing label while loading', () => {
+    expect(getUpgradeActionLabel(true, 'BUY')).toBe('PROCESSING')
+  })
+
+  it('keeps existing level prefixes intact', () => {
+    expect(formatUpgradeLevelText('Level 3')).toBe('Level 3')
   })
 })

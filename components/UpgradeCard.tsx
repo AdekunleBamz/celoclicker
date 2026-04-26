@@ -27,6 +27,17 @@ export interface UpgradeCardProps {
   className?: string
 }
 
+/** Returns the button label for the upgrade action based on loading state. */
+export function getUpgradeActionLabel(isLoading: boolean, label: string): string {
+  return isLoading ? 'PROCESSING' : label
+}
+
+/** Normalizes the level text to avoid duplicated "Level" prefixes. */
+export function formatUpgradeLevelText(level: string | number): string {
+  const levelText = String(level).trim()
+  return /^level\s+/i.test(levelText) ? levelText : `Level ${levelText}`
+}
+
 /**
  * Card component for displaying and purchasing game upgrades.
  */
@@ -61,11 +72,11 @@ export const UpgradeCard = memo(function UpgradeCard({
         <div>
           <div className={`font-bold ${color} pixel-font-small`}>{title}</div>
           <div className="text-[10px] text-gray-500 uppercase font-bold tracking-widest mt-0.5">
-            Level {currentLevel}
+            {formatUpgradeLevelText(currentLevel)}
           </div>
         </div>
         <div className="text-right">
-          <div className="text-celo-gold font-bold flex items-center justify-end gap-1">
+          <div className="text-celo-gold font-bold tabular-nums flex items-center justify-end gap-1">
             <span aria-hidden="true">⭐</span>
             {cost.toLocaleString()}
           </div>
@@ -81,6 +92,7 @@ export const UpgradeCard = memo(function UpgradeCard({
         type="button"
         aria-label={`Upgrade ${title} for ${cost.toLocaleString()} points`}
         aria-busy={isLoading}
+        aria-disabled={disabled || isLoading ? 'true' : undefined}
         className={`focus-ring-game w-full py-2.5 rounded-lg font-bold transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed text-xs relative z-10 ${
           color === 'text-purple-400' ? (isLocked ? 'bg-purple-500/30 text-gray-200' : 'bg-purple-500/50 hover:bg-purple-500 hover:glow-purple') :
           color === 'text-indigo-400' ? (isLocked ? 'bg-indigo-500/30 text-gray-200' : 'bg-indigo-500/50 hover:bg-indigo-500 hover:glow-purple') :
@@ -90,14 +102,14 @@ export const UpgradeCard = memo(function UpgradeCard({
         {isLoading ? (
           <span className="flex items-center justify-center gap-2">
             <span className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            PROCESSING
+            {getUpgradeActionLabel(isLoading, upgradeLabel)}
           </span>
         ) : (
-          upgradeLabel
+          getUpgradeActionLabel(isLoading, upgradeLabel)
         )}
       </button>
       {!isLoading && !disabled && !canAfford && (
-        <p className="text-[10px] text-gray-500 uppercase tracking-wider text-center">
+        <p title={`${missingPoints.toLocaleString()} points required`} className="text-[10px] text-gray-500 tabular-nums uppercase tracking-wider text-center">
           Need {missingPoints.toLocaleString()} more points
         </p>
       )}
