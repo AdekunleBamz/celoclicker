@@ -4,6 +4,13 @@ import { useContractConfig } from '@/hooks/useContractConfig'
 import { CONTRACT_ADDRESS_ENV_KEY } from '@/lib/constants'
 import { memo, useState } from 'react'
 
+/**
+ * Returns the contract warning message shown in the fallback banner.
+ */
+export function getContractWarningMessage(envKey = CONTRACT_ADDRESS_ENV_KEY): string {
+  return `Please set a valid ${envKey} value in your environment variables`
+}
+
 export const ContractWarning = memo(function ContractWarning() {
   const { isValid } = useContractConfig()
   const [dismissed, setDismissed] = useState(false)
@@ -16,9 +23,7 @@ export const ContractWarning = memo(function ContractWarning() {
         <span className="text-2xl mt-0.5" aria-hidden="true">⚠️</span>
         <div>
           <div className="font-bold text-yellow-400">Contract Not Configured</div>
-          <div className="text-sm text-yellow-300">
-            Please set a valid {CONTRACT_ADDRESS_ENV_KEY} value in your environment variables
-          </div>
+          <div className="text-sm text-yellow-300">{getContractWarningMessage()}</div>
         </div>
         <button
           onClick={() => setDismissed(true)}
