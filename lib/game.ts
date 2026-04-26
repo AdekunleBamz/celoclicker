@@ -274,3 +274,16 @@ export function calcComboTimeout(baseTimeoutMs: number, prestige: number): numbe
   const reduction = Math.min(prestige * 50, baseTimeoutMs - minMs)
   return Math.max(minMs, baseTimeoutMs - reduction)
 }
+
+/**
+ * Returns true when a random roll falls within the bonus click probability.
+ * Uses the provided random value to allow deterministic testing.
+ *
+ * @param chance - Probability of a bonus click (0-1). Default is 0.05 (5%).
+ * @param roll - A random number between 0 and 1. Defaults to Math.random().
+ */
+export function isBonusClick(chance = 0.05, roll = Math.random()): boolean {
+  if (chance <= 0) return false
+  if (chance >= 1) return true
+  return roll < chance
+}
