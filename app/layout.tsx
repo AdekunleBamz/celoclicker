@@ -98,7 +98,7 @@ export default function RootLayout({
           content="a0dba87e1bb6548dd476dd39b4b9be850d6227db14fd409a46b92f9830bec8ba765395dc51d1eb6ea22759804b6fc39a3d03f2156ffcc483547ae7197bb94aa5"
         />
       </head>
-      <body className={`${orbitron.variable} ${pressStart2P.variable}`} suppressHydrationWarning>
+      <body className={`${orbitron.variable} ${pressStart2P.variable} antialiased`} suppressHydrationWarning>
         <ErrorBoundary>
           <Providers>{children}</Providers>
         </ErrorBoundary>
