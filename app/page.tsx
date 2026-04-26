@@ -644,12 +644,14 @@ export default function Home() {
                     const pts = pointsList[idx]
                     
                     if (!addr || isZeroAddress(addr)) return null
+                    const isCurrentPlayer = addr.toLowerCase() === address?.toLowerCase()
+                    const rankLabel = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx + 1}`
 
                     return (
                       <div
                           key={`${addr}-${idx}`}
                         className={`flex justify-between items-center p-4 rounded-lg ${
-                          addr === address ? 'bg-purple-500/30 border-2 border-purple-400' : 'bg-black/20'
+                          isCurrentPlayer ? 'bg-purple-500/30 border-2 border-purple-400' : 'bg-black/20'
                         }`}
                       >
                         <div className="flex items-center gap-4">
@@ -659,11 +661,12 @@ export default function Home() {
                             idx === 2 ? 'text-orange-400' : 
                             'text-gray-500'
                           }`}>
-                            #{idx + 1}
+                            {rankLabel}
                           </div>
                           <div>
-                            <div className="font-mono text-sm text-gray-400">
+                            <div className={`font-mono text-sm ${isCurrentPlayer ? 'text-white font-bold' : 'text-gray-400'}`}>
                               {formatAddress(addr)}
+                              {isCurrentPlayer && <span className="ml-2 rounded-full bg-purple-500 px-1.5 py-0.5 text-[10px] text-white">YOU</span>}
                             </div>
                           </div>
                         </div>
