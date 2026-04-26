@@ -144,3 +144,113 @@ export function getFeeCurrencyAddress(
 export function getFallbackFeeCurrency(chainId?: number): FeeCurrencyConfig {
   return getFeeCurrencies(chainId)[0]
 }
+
+/**
+ * Returns the symbol for a fee currency id.
+ * Falls back to the id string when the currency is not found.
+ *
+ * @param id - The fee currency identifier.
+ * @param chainId - Optional chain ID for availability resolution.
+ */
+export function getFeeCurrencySymbol(id: FeeCurrencyId, chainId?: number): string {
+  return getFeeCurrencyById(id, chainId)?.symbol ?? id
+}
+
+/**
+ * Returns the description string for the given fee currency.
+ * Falls back to an empty string when not found.
+ *
+ * @param id - The fee currency identifier.
+ * @param chainId - Optional chain ID for availability resolution.
+ */
+export function getFeeCurrencyDescription(id: FeeCurrencyId, chainId?: number): string {
+  return getFeeCurrencyById(id, chainId)?.description ?? ''
+}
+
+/**
+ * Returns the ERC-20 token address used for balance queries for the given fee currency.
+ * Returns undefined when the currency has no associated token address.
+ *
+ * @param id - The fee currency identifier.
+ * @param chainId - Optional chain ID for availability resolution.
+ */
+export function getFeeCurrencyTokenAddress(
+  id: FeeCurrencyId,
+  chainId?: number
+): Address | undefined {
+  return getFeeCurrencyById(id, chainId)?.tokenAddress
+}
+
+/**
+ * Returns true when the given fee currency id is the native CELO token.
+ *
+ * @param id - The fee currency identifier.
+ */
+export function isCeloNativeCurrency(id: FeeCurrencyId): boolean {
+  return id === 'CELO'
+}
+
+/**
+ * Returns an array of all supported fee currency IDs regardless of chain.
+ */
+export function getAllFeeCurrencyIds(): FeeCurrencyId[] {
+  return getFeeCurrencies().map((c) => c.id)
+}
+
+/**
+ * Returns true when the given fee currency id is USDC.
+ *
+ * @param id - The fee currency identifier.
+ */
+export function isUSDCFeeCurrency(id: FeeCurrencyId): boolean {
+  return id === 'USDC'
+}
+
+/**
+ * Returns the user-facing display name (label) for a fee currency.
+ * When the currency is unavailable on the current chain the id is returned instead.
+ *
+ * @param id - The fee currency identifier.
+ * @param chainId - Optional chain ID for availability resolution.
+ */
+export function getFeeCurrencyDisplayName(id: FeeCurrencyId, chainId?: number): string {
+  const config = getFeeCurrencyById(id, chainId)
+  if (!config || !config.isAvailable) return id
+  return config.label
+}
+
+/**
+ * Counts how many fee currencies are available on the given chain.
+ *
+ * @param chainId - Optional chain ID.
+ */
+export function countAvailableFeeCurrencies(chainId?: number): number {
+  return getAvailableFeeCurrencies(chainId).length
+}
+
+/**
+ * Looks up a fee currency config by its fee abstraction address.
+ * Returns undefined when no currency uses that address.
+ *
+ * @param address - The fee currency (adapter) address.
+ * @param chainId - Optional chain ID for availability resolution.
+ */
+export function getFeeCurrencyByAddress(
+  address: Address,
+  chainId?: number
+): FeeCurrencyConfig | undefined {
+  return getFeeCurrencies(chainId).find(
+    (c) => c.feeCurrency?.toLowerCase() === address.toLowerCase()
+  )
+}
+
+/**
+ * Returns fee currencies sorted so that available ones appear first.
+ * Unavailable currencies are appended at the end in their original order.
+ *
+ * @param chainId - Optional chain ID for availability resolution.
+ */
+export function sortFeeCurrencies(chainId?: number): FeeCurrencyConfig[] {
+  const all = getFeeCurrencies(chainId)
+  return [...all.filter((c) => c.isAvailable), ...all.filter((c) => !c.isAvailable)]
+}
