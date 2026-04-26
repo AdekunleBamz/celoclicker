@@ -532,3 +532,14 @@ export function relativeTime(timestampSec: number): string {
   const diffDay = Math.floor(diffHr / 24)
   return `${diffDay}d ago`
 }
+
+/**
+ * Clamps a number between a minimum and maximum value.
+ *
+ * @param value - The value to clamp.
+ * @param min - Lower bound.
+ * @param max - Upper bound.
+ */
+export function clamp(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max)
+}
