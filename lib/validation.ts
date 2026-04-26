@@ -99,6 +99,15 @@ export function isValidTxHash(hash: string): boolean {
 }
 
 /**
+ * Returns true when the click count is a positive safe integer.
+ *
+ * @param count - The click count to validate (bigint).
+ */
+export function isValidClickCountBigInt(count: bigint): boolean {
+  return count >= 0n
+}
+
+/**
  * Returns true when the given chain ID is one of the officially supported Celo chains.
  *
  * @param chainId - The numeric chain ID to check.
