@@ -180,3 +180,6 @@ export interface PlayerStats {
   totalClicks: bigint
   gamesPlayed: bigint
 }
+
+/** Direction used when sorting leaderboard or history entries. */
+export type SortOrder = 'asc' | 'desc'
