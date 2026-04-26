@@ -58,17 +58,19 @@ export function isWalletBusy(status: string): boolean {
 
 /** Normalises an Ethereum address to lowercase. */
 export function normaliseAddress(address: string): string {
-  return address.toLowerCase()
+  return address.trim().toLowerCase()
 }
 
 /** Returns true if an address matches the 0x + 40 hex char pattern. */
 export function isValidAddressFormat(address: string): boolean {
-  return /^0x[0-9a-fA-F]{40}$/.test(address)
+  return /^0x[0-9a-fA-F]{40}$/.test(address.trim())
 }
 
 /** Returns an accessibility-friendly label for a wallet address. */
 export function addressAccessibilityLabel(address: string): string {
-  return "Wallet " + address.slice(0, 6) + "..." + address.slice(-4)
+  const normalized = address.trim()
+  if (normalized.length <= 10) return "Wallet " + normalized
+  return "Wallet " + normalized.slice(0, 6) + "..." + normalized.slice(-4)
 }
 
 /** Returns a CSS color string for a connection status. */
@@ -87,7 +89,10 @@ export function connectionStatusEmoji(status: string): string {
 
 /** Returns a display name for a wallet, preferring ENS or truncating address. */
 export function walletDisplayName(address: string, ens?: string): string {
-  return ens ? ens : address.slice(0, 6) + "..." + address.slice(-4)
+  if (ens?.trim()) return ens.trim()
+  const normalized = address.trim()
+  if (normalized.length <= 10) return normalized
+  return normalized.slice(0, 6) + "..." + normalized.slice(-4)
 }
 
 /** Returns true if the wallet is currently in a reconnecting state. */
@@ -98,5 +103,6 @@ export function isReconnecting(status: string): boolean {
 /** Returns a formatted error message for a connection failure. */
 export function formatConnectionError(error: unknown): string {
   if (error instanceof Error) return "Connection failed: " + error.message
+  if (typeof error === "string" && error.trim()) return "Connection failed: " + error.trim()
   return "Connection failed: unknown error"
 }
