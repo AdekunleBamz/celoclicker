@@ -11,9 +11,9 @@ export const ContractWarning = memo(function ContractWarning() {
   if (isValid || dismissed) return null
 
   return (
-    <div className="bg-yellow-500/20 border-2 border-yellow-500 rounded-lg p-4 mb-4">
-      <div className="flex items-center gap-2">
-        <span className="text-2xl">⚠️</span>
+    <div className="bg-yellow-500/20 border-2 border-yellow-500 rounded-lg p-4 mb-4" role="alert">
+      <div className="flex items-start gap-2">
+        <span className="text-2xl mt-0.5" aria-hidden="true">⚠️</span>
         <div>
           <div className="font-bold text-yellow-400">Contract Not Configured</div>
           <div className="text-sm text-yellow-300">
@@ -23,8 +23,8 @@ export const ContractWarning = memo(function ContractWarning() {
         <button
           onClick={() => setDismissed(true)}
           type="button"
-          aria-label="Dismiss warning"
-          className="text-yellow-300 hover:text-white text-sm px-2 py-1 rounded hover:bg-yellow-500/30 transition-colors"
+          aria-label="Dismiss contract configuration warning"
+          className="focus-ring-game ml-auto shrink-0 text-yellow-300 hover:text-white text-sm px-2 py-1 rounded hover:bg-yellow-500/30 transition-colors"
         >
           ✕
         </button>

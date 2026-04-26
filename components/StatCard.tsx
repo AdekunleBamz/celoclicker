@@ -34,4 +34,6 @@ export const StatCard = memo(function StatCard({
       </div>
     </Card>
   )
-}
+})
+
+StatCard.displayName = 'StatCard'
