@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { isValidAddressFormat, normaliseAddress } from '../hooks/useConnection'
+import { addressAccessibilityLabel, isValidAddressFormat, normaliseAddress } from '../hooks/useConnection'
 
 describe('connection helpers: normaliseAddress', () => {
   it('trims whitespace before lowering case', () => {
@@ -10,5 +10,11 @@ describe('connection helpers: normaliseAddress', () => {
 describe('connection helpers: isValidAddressFormat', () => {
   it('accepts values with surrounding whitespace', () => {
     expect(isValidAddressFormat('  0x1234567890abcdef1234567890abcdef12345678  ')).toBe(true)
+  })
+})
+
+describe('connection helpers: addressAccessibilityLabel', () => {
+  it('keeps short addresses readable without forced truncation', () => {
+    expect(addressAccessibilityLabel(' 0x1234 ')).toBe('Wallet 0x1234')
   })
 })
