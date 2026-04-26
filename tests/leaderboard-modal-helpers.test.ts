@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getLeaderboardRankLabel, isCurrentLeaderboardPlayer } from '../components/LeaderboardModal'
+import { getLeaderboardRankLabel, hasLeaderboardEntries, isCurrentLeaderboardPlayer } from '../components/LeaderboardModal'
 
 describe('leaderboard modal helpers: getLeaderboardRankLabel', () => {
   it('returns medal labels for top three ranks', () => {
@@ -25,5 +25,25 @@ describe('leaderboard modal helpers: isCurrentLeaderboardPlayer', () => {
 
   it('returns false when player address is missing', () => {
     expect(isCurrentLeaderboardPlayer('0xabcdef1234567890abcdef1234567890abcdef12')).toBe(false)
+  })
+})
+
+describe('leaderboard modal helpers: hasLeaderboardEntries', () => {
+  it('returns false when all addresses are zero-address placeholders', () => {
+    expect(
+      hasLeaderboardEntries([
+        '0x0000000000000000000000000000000000000000',
+        '0x0000000000000000000000000000000000000000',
+      ])
+    ).toBe(false)
+  })
+
+  it('returns true when at least one real address exists', () => {
+    expect(
+      hasLeaderboardEntries([
+        '0x0000000000000000000000000000000000000000',
+        '0x1234567890abcdef1234567890abcdef12345678',
+      ])
+    ).toBe(true)
   })
 })
