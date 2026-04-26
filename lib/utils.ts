@@ -665,3 +665,8 @@ export function formatBonus(value: number): string {
 export function canAffordUpgrade(balance: number, cost: number): boolean {
   return balance >= cost
 }
+
+/** Returns combo timeout scaled by prestige level. */
+export function calcComboTimeout(base: number, prestige: number): number {
+  return Math.max(500, base - prestige * 100)
+}
