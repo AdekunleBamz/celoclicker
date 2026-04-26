@@ -63,7 +63,7 @@ export function normaliseAddress(address: string): string {
 
 /** Returns true if an address matches the 0x + 40 hex char pattern. */
 export function isValidAddressFormat(address: string): boolean {
-  return /^0x[0-9a-fA-F]{40}$/.test(address)
+  return /^0x[0-9a-fA-F]{40}$/.test(address.trim())
 }
 
 /** Returns an accessibility-friendly label for a wallet address. */
