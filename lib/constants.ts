@@ -314,3 +314,6 @@ export const PRESTIGE_BONUS_BASE = 2
 
 /** How long the visual click feedback animation plays in milliseconds. */
 export const CLICK_FEEDBACK_DURATION_MS = 200
+
+/** Number of auto-clicks batched per contract call to reduce gas costs. */
+export const AUTO_CLICK_BATCH_SIZE = 10
