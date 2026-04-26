@@ -571,3 +571,10 @@ export function clamp(value: number, min: number, max: number): number {
 export function lerp(start: number, end: number, t: number): number {
   return start + (end - start) * t
 }
+
+/** Returns the minimum value in a numeric array. */
+export function minOfArray(arr: number[]): number {
+  if (arr.length === 0) return 0
+  if (arr.length === 1) return arr[0]
+  return arr.reduce((min, v) => v < min ? v : min, arr[0])
+}
