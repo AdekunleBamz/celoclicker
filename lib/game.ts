@@ -94,7 +94,8 @@ export function isNewHighScore(current: number, best: number): boolean {
  * @returns Formatted level string.
  */
 export function getUpgradeLabel(level: number): string {
-  return `Level ${level}`
+  const safeLevel = Number.isFinite(level) ? Math.max(0, Math.floor(level)) : 0
+  return `Level ${safeLevel}`
 }
 
 /** Returns true when level has reached the maximum allowed value. */
