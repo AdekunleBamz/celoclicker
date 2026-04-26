@@ -411,9 +411,17 @@ export default function Home() {
                         openConnectModal()
                       }}
                       type="button"
-                      className="px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-bold hover:scale-105 transition-transform glow-purple"
+                      aria-busy={isConnectingWallet || isConnectingAccount}
+                      className="px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-bold hover:scale-105 transition-transform glow-purple focus-ring-game"
                     >
-                      {isConnectingWallet || isConnectingAccount ? 'Connecting...' : isMiniPay ? 'Connect MiniPay' : 'Connect Wallet'}
+                      {isConnectingWallet || isConnectingAccount ? (
+                        <span className="flex items-center gap-2">
+                          <span className="h-3 w-3 rounded-full border-2 border-white/40 border-t-white animate-spin" />
+                          Connecting...
+                        </span>
+                      ) : (
+                        isMiniPay ? 'Connect MiniPay' : 'Connect Wallet'
+                      )}
                     </button>
                   )}
                 </ConnectButton.Custom>
