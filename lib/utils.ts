@@ -595,3 +595,9 @@ export function filterFinite(arr: number[]): number[] {
 export function countWhere<T>(arr: T[], predicate: (item: T) => boolean): number {
   return arr.filter(predicate).length
 }
+
+/** Rounds a number to the given decimal places. */
+export function roundToDecimalPlaces(value: number, places: number): number {
+  const factor = Math.pow(10, places)
+  return Math.round(value * factor) / factor
+}
