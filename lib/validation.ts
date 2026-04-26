@@ -108,6 +108,16 @@ export function isValidClickCountBigInt(count: bigint): boolean {
 }
 
 /**
+ * Returns true when value is a finite, non-negative number suitable for
+ * use as a CPS (clicks-per-second) rate.
+ *
+ * @param cps - The value to validate.
+ */
+export function isValidCps(cps: number): boolean {
+  return Number.isFinite(cps) && cps >= 0
+}
+
+/**
  * Returns true when the given chain ID is one of the officially supported Celo chains.
  *
  * @param chainId - The numeric chain ID to check.
