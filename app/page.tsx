@@ -514,13 +514,16 @@ export default function Home() {
                         setSelectedFeeCurrencyId(currency.id)
                       }}
                       disabled={!currency.isAvailable}
-                      className={`rounded-lg border px-3 py-3 text-left transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
+                      className={`rounded-lg border px-3 py-3 text-left transition-all disabled:opacity-40 disabled:cursor-not-allowed ${
                         isSelected
-                          ? 'border-celo-green bg-celo-green/20'
+                          ? 'border-celo-green bg-celo-green/20 shadow-[0_0_0_1px_rgba(53,208,127,0.3)]'
                           : 'border-white/10 bg-black/20 hover:border-celo-green/40'
                       }`}
                     >
-                      <div className="font-bold">{currency.label}</div>
+                      <div className="font-bold flex items-center gap-2">
+                        {currency.label}
+                        {isSelected && <span className="text-celo-green text-xs">● Active</span>}
+                      </div>
                       <div className="text-xs text-gray-400 mt-1">{currency.description}</div>
                     </button>
                   )
