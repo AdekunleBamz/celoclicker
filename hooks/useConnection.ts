@@ -93,3 +93,15 @@ export function addressAccessibilityLabel(address: string | undefined): string {
   if (!address || address.length < 8) return 'unknown wallet'
   return `wallet ending in ${address.slice(-4)}`
 }
+
+/**
+ * Returns a colour class name based on connection state for use in status badges.
+ *
+ * @param isConnected - Whether the wallet is connected.
+ * @param isConnecting - Whether a connection attempt is in progress.
+ */
+export function connectionStatusColor(isConnected: boolean, isConnecting: boolean): string {
+  if (isConnected) return 'text-green-400'
+  if (isConnecting) return 'text-yellow-400'
+  return 'text-red-400'
+}
