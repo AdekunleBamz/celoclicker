@@ -184,3 +184,18 @@ export function formatCps(cps: number): string {
 export function pointsToNextUpgrade(cost: number, points: number): number {
   return Math.max(0, cost - points)
 }
+
+/**
+ * Returns the combined click value after applying prestige and combo multipliers.
+ *
+ * @param base - Base click value.
+ * @param prestigeMultiplier - Multiplier from prestige level.
+ * @param comboMultiplier - Multiplier from the current combo chain.
+ */
+export function calcCombinedClickValue(
+  base: number,
+  prestigeMultiplier: number,
+  comboMultiplier: number,
+): number {
+  return base * prestigeMultiplier * comboMultiplier
+}
