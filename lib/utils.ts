@@ -69,7 +69,11 @@ export function formatTokenAmount(value?: string, symbol?: string): string {
     absoluteValue >= 100 ? 2 :
     absoluteValue >= 1 ? 3 :
     absoluteValue >= 0.01 ? 4 : 6
-  const formattedValue = safeNumericValue.toFixed(decimals).replace(/\.?0+$/, '')
+  const fixedValue = safeNumericValue.toFixed(decimals).replace(/\.?0+$/, '')
+  const formattedValue =
+    absoluteValue >= 1000
+      ? Number(fixedValue).toLocaleString('en-US', { maximumFractionDigits: decimals })
+      : fixedValue
 
   return `${formattedValue} ${symbol ?? ''}`.trim()
 }
