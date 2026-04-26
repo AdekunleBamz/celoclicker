@@ -278,3 +278,6 @@ export const MAX_SAVE_AGE_MS = 7 * 24 * 60 * 60 * 1_000
 
 /** Cost of the very first upgrade purchase. */
 export const FIRST_UPGRADE_COST = 50
+
+/** Number of entries shown per page in the leaderboard view. */
+export const LEADERBOARD_PAGE_SIZE = 25
