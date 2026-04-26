@@ -261,3 +261,16 @@ export function formatBonus(bonus: number): string {
 export function canAffordUpgrade(playerPoints: number, upgradeCost: number): boolean {
   return playerPoints >= upgradeCost
 }
+
+/**
+ * Returns the combo timeout duration in milliseconds, scaling down slightly per prestige.
+ * Higher prestige gives a shorter but still fair combo window.
+ *
+ * @param baseTimeoutMs - The base combo timeout in milliseconds.
+ * @param prestige - The player's current prestige count.
+ */
+export function calcComboTimeout(baseTimeoutMs: number, prestige: number): number {
+  const minMs = 500
+  const reduction = Math.min(prestige * 50, baseTimeoutMs - minMs)
+  return Math.max(minMs, baseTimeoutMs - reduction)
+}
