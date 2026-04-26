@@ -3,6 +3,7 @@ import {
   getEthereumProvider,
   getInjectedConnector,
   isMiniPayEnvironment,
+  isInjectedConnector,
   getWalletEnvironmentLabel,
   hasConnector,
   isMiniPayBrowser,
@@ -131,5 +132,15 @@ describe('hooks/useMiniPay isMiniPayEnvironment', () => {
   it('returns true when MiniPay provider is detected', () => {
     vi.stubGlobal('window', { ethereum: { isMiniPay: true } })
     expect(isMiniPayEnvironment()).toBe(true)
+  })
+})
+
+describe('hooks/useMiniPay isInjectedConnector', () => {
+  it('recognizes injected connectors by type', () => {
+    expect(isInjectedConnector({ id: 'metamask', type: 'injected' } as never)).toBe(true)
+  })
+
+  it('recognizes injected connectors by id', () => {
+    expect(isInjectedConnector({ id: 'INJECTED', type: 'wallet' } as never)).toBe(true)
   })
 })
