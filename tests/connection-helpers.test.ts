@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addressAccessibilityLabel, isValidAddressFormat, normaliseAddress, walletDisplayName } from '../hooks/useConnection'
+import { addressAccessibilityLabel, formatConnectionError, isValidAddressFormat, normaliseAddress, walletDisplayName } from '../hooks/useConnection'
 
 describe('connection helpers: normaliseAddress', () => {
   it('trims whitespace before lowering case', () => {
@@ -26,5 +26,11 @@ describe('connection helpers: walletDisplayName', () => {
 
   it('keeps very short addresses as-is', () => {
     expect(walletDisplayName(' 0x1234 ')).toBe('0x1234')
+  })
+})
+
+describe('connection helpers: formatConnectionError', () => {
+  it('keeps informative string-based errors', () => {
+    expect(formatConnectionError(' wallet not installed ')).toBe('Connection failed: wallet not installed')
   })
 })
