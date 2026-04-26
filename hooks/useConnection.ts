@@ -94,3 +94,9 @@ export function walletDisplayName(address: string, ens?: string): string {
 export function isReconnecting(status: string): boolean {
   return status === "reconnecting"
 }
+
+/** Returns a formatted error message for a connection failure. */
+export function formatConnectionError(error: unknown): string {
+  if (error instanceof Error) return "Connection failed: " + error.message
+  return "Connection failed: unknown error"
+}
