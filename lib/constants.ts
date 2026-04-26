@@ -317,3 +317,6 @@ export const CLICK_FEEDBACK_DURATION_MS = 200
 
 /** Number of auto-clicks batched per contract call to reduce gas costs. */
 export const AUTO_CLICK_BATCH_SIZE = 10
+
+/** How often (in ms) the app checks for and processes pending offline earnings. */
+export const OFFLINE_EARNINGS_CHECK_INTERVAL_MS = 60_000
