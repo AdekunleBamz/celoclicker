@@ -38,3 +38,14 @@ export function connectionStateLabel(isConnected: boolean, isConnecting: boolean
   if (isConnecting) return 'Connecting…'
   return 'Disconnected'
 }
+
+/**
+ * Returns true when any async wallet operation is in progress
+ * (connecting or reconnecting).
+ *
+ * @param isConnecting - Pending connection flag.
+ * @param isReconnecting - Pending reconnection flag.
+ */
+export function isWalletBusy(isConnecting: boolean, isReconnecting: boolean): boolean {
+  return isConnecting || isReconnecting
+}
