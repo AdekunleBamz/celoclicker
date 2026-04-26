@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   getAvailableFeeCurrencies,
   getDefaultFeeCurrencyId,
+  getFeeCurrencyCallout,
   getFeeCurrencies,
   getFeeCurrencyAddress,
   getFeeCurrencyById,
@@ -169,6 +170,16 @@ describe('lib/feeCurrencies getFeeCurrencyAddress', () => {
 
   it('returns no USDC fee adapter when chain id is missing', () => {
     expect(getFeeCurrencyAddress('USDC')).toBeUndefined()
+  })
+})
+
+describe('lib/feeCurrencies getFeeCurrencyCallout', () => {
+  it('returns native callout for CELO', () => {
+    expect(getFeeCurrencyCallout('CELO', CELO_TESTNET_CHAIN_ID)).toBe('Native gas mode')
+  })
+
+  it('returns mainnet requirement callout when USDC is unavailable', () => {
+    expect(getFeeCurrencyCallout('USDC', CELO_TESTNET_CHAIN_ID)).toBe('Mainnet required')
   })
 })
 
