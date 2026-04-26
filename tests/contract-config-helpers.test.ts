@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { isConfiguredContractAddress, resolveContractAddress } from '../hooks/useContractConfig'
+import { getContractConfigStatusLabel, isConfiguredContractAddress, resolveContractAddress } from '../hooks/useContractConfig'
 import { getContractWarningMessage } from '../components/ContractWarning'
 
 describe('contract config helpers: resolveContractAddress', () => {
@@ -27,5 +27,15 @@ describe('contract config helpers: isConfiguredContractAddress', () => {
 describe('contract config helpers: getContractWarningMessage', () => {
   it('includes the provided env key in warning copy', () => {
     expect(getContractWarningMessage('NEXT_PUBLIC_TEST_CONTRACT')).toContain('NEXT_PUBLIC_TEST_CONTRACT')
+  })
+})
+
+describe('contract config helpers: getContractConfigStatusLabel', () => {
+  it('returns configured label for valid states', () => {
+    expect(getContractConfigStatusLabel(true)).toBe('Configured')
+  })
+
+  it('returns not-configured label for invalid states', () => {
+    expect(getContractConfigStatusLabel(false)).toBe('Not configured')
   })
 })
