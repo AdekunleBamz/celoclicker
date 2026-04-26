@@ -45,6 +45,7 @@ export const UpgradeCard = memo(function UpgradeCard({
 }: UpgradeCardProps) {
   const canAfford = points >= cost && !disabled && !isLoading
   const missingPoints = points >= cost ? 0n : cost - points
+  const isLocked = !canAfford && !disabled && !isLoading
 
   const handleClick = () => {
     if (canAfford) {
@@ -81,9 +82,9 @@ export const UpgradeCard = memo(function UpgradeCard({
         aria-label={`Upgrade ${title} for ${cost.toLocaleString()} points`}
         aria-busy={isLoading}
         className={`focus-ring-game w-full py-2.5 rounded-lg font-bold transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed text-xs relative z-10 ${
-          color === 'text-purple-400' ? 'bg-purple-500/50 hover:bg-purple-500 hover:glow-purple' :
-          color === 'text-indigo-400' ? 'bg-indigo-500/50 hover:bg-indigo-500 hover:glow-purple' :
-          'bg-pink-500/50 hover:bg-pink-500 hover:glow-purple'
+          color === 'text-purple-400' ? (isLocked ? 'bg-purple-500/30 text-gray-200' : 'bg-purple-500/50 hover:bg-purple-500 hover:glow-purple') :
+          color === 'text-indigo-400' ? (isLocked ? 'bg-indigo-500/30 text-gray-200' : 'bg-indigo-500/50 hover:bg-indigo-500 hover:glow-purple') :
+          (isLocked ? 'bg-pink-500/30 text-gray-200' : 'bg-pink-500/50 hover:bg-pink-500 hover:glow-purple')
         }`}
       >
         {isLoading ? (
