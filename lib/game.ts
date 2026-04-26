@@ -302,3 +302,16 @@ export function calcTotalEarnings(
 ): number {
   return Math.floor((manualClicks + autoIncome) * multiplier)
 }
+
+/**
+ * Returns a tier label based on total click count milestones.
+ *
+ * @param totalClicks - The player's all-time click count.
+ * @returns A string tier label: "Bronze", "Silver", "Gold", or "Legend".
+ */
+export function getAchievementTier(totalClicks: number): string {
+  if (totalClicks >= 1_000_000) return 'Legend'
+  if (totalClicks >= 100_000) return 'Gold'
+  if (totalClicks >= 10_000) return 'Silver'
+  return 'Bronze'
+}
