@@ -419,7 +419,12 @@ export function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0
 }
 
-/** Returns the minimum value in an array of numbers, or 0 if empty. */
+/**
+ * Returns the minimum value in an array of numbers, or 0 if empty.
+ *
+ * @param arr - Array of numbers to search.
+ * @returns Minimum value, or 0 for an empty array.
+ */
 export function minOfArray(arr: number[]): number {
   if (arr.length === 0) return 0
   if (arr.length === 1) return arr[0]
