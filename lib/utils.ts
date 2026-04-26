@@ -500,3 +500,17 @@ export function capitalize(str: string): string {
   if (!str) return ''
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 }
+
+/**
+ * Converts a snake_case or kebab-case identifier to Title Case.
+ * E.g. "auto_clicker" -> "Auto Clicker".
+ *
+ * @param str - The identifier string.
+ */
+export function identifierToTitle(str: string): string {
+  return str
+    .replace(/[-_]+/g, ' ')
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ')
+}
