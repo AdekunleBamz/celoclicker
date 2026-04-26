@@ -308,3 +308,6 @@ export const UPGRADE_DISPLAY_LABELS = Object.freeze({
   AUTO_CLICKER: 'Auto Clicker',
   MULTIPLIER: 'Score Multiplier',
 } as const)
+
+/** Base exponent used when calculating the prestige bonus multiplier (2^prestige). */
+export const PRESTIGE_BONUS_BASE = 2
