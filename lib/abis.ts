@@ -306,3 +306,11 @@ export function getABIEventIndexMap(abi: typeof celoClickerABI): Record<string, 
   })
   return map
 }
+
+/**
+ * Returns the state mutability of a function (view, pure, nonpayable, payable).
+ */
+export function getABIFunctionMutability(abi: typeof celoClickerABI, functionName: string): string | undefined {
+  const fn = abi.find((item) => item.type === "function" && item.name === functionName)
+  return fn && fn.type === "function" ? fn.stateMutability : undefined
+}
