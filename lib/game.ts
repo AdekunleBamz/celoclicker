@@ -223,3 +223,18 @@ export function getNextPrestigeThreshold(currentPrestige: number): number {
   if (currentPrestige <= 0) return base
   return base * Math.pow(2, currentPrestige)
 }
+
+/**
+ * Returns a human-readable label for a given upgrade type key.
+ *
+ * @param upgradeKey - The upgrade key (e.g. "CLICK_POWER", "AUTO_CLICKER").
+ * @returns A display label string.
+ */
+export function getUpgradeLabel(upgradeKey: string): string {
+  const labels: Record<string, string> = {
+    CLICK_POWER: 'Click Power',
+    AUTO_CLICKER: 'Auto Clicker',
+    MULTIPLIER: 'Score Multiplier',
+  }
+  return labels[upgradeKey] ?? upgradeKey
+}
