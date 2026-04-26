@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useAccount, useBalance, useChainId, useConnect, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion, AnimatePresence } from 'framer-motion'
-import { formatNumber, formatTokenAmount } from '@/lib/utils'
+import { formatNumber, formatTokenAmount, isZeroAddress } from '@/lib/utils'
 import { GAME_CONFIG } from '@/lib/constants'
 import { getDefaultFeeCurrencyId, getFeeCurrencies, type FeeCurrencyId } from '@/lib/feeCurrencies'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
@@ -124,6 +124,14 @@ export default function Home() {
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.LEADERBOARD,
     },
   })
+  const leaderboardEntryCount = useMemo(() => {
+    if (!leaderboardData) {
+      return 0
+    }
+
+    const [addresses] = leaderboardData as LeaderboardTuple
+    return addresses.filter((addr) => addr && !isZeroAddress(addr)).length
+  }, [leaderboardData])
 
   const { writeContract, data: hash, isPending, error: writeError } = useWriteContract()
 
@@ -576,7 +584,11 @@ export default function Home() {
               aria-controls="leaderboard-dialog"
               className="w-full py-3 bg-gradient-to-r from-celo-green to-celo-gold rounded-lg font-bold hover:scale-105 transition-transform glow-green mt-4 cursor-pointer relative z-10"
             >
-              {showLeaderboard ? 'Hide' : 'Show'} Leaderboard
+              {isLoadingLeaderboard
+                ? 'Loading Leaderboard...'
+                : showLeaderboard
+                  ? 'Hide Leaderboard'
+                  : `Show Leaderboard${leaderboardEntryCount ? ` (${leaderboardEntryCount})` : ''}`}
             </button>
           </div>
         </div>
