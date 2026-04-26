@@ -30,4 +30,6 @@ export const LoadingSpinner = memo(function LoadingSpinner({
       className={`${sizeClasses[size]} border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin`}
     />
   )
-}
+})
+
+LoadingSpinner.displayName = 'LoadingSpinner'
