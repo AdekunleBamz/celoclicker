@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getLeaderboardRankLabel, hasLeaderboardEntries, isCurrentLeaderboardPlayer } from '../components/LeaderboardModal'
+import { getLeaderboardRankLabel, getLeaderboardRowClass, hasLeaderboardEntries, isCurrentLeaderboardPlayer } from '../components/LeaderboardModal'
 
 describe('leaderboard modal helpers: getLeaderboardRankLabel', () => {
   it('returns medal labels for top three ranks', () => {
@@ -45,5 +45,15 @@ describe('leaderboard modal helpers: hasLeaderboardEntries', () => {
         '0x1234567890abcdef1234567890abcdef12345678',
       ])
     ).toBe(true)
+  })
+})
+
+describe('leaderboard modal helpers: getLeaderboardRowClass', () => {
+  it('returns highlighted classes for the current player', () => {
+    expect(getLeaderboardRowClass(true)).toContain('bg-purple-500/30')
+  })
+
+  it('returns neutral classes for non-current rows', () => {
+    expect(getLeaderboardRowClass(false)).toContain('bg-black/20')
   })
 })
