@@ -586,3 +586,8 @@ export function calcAutoClickerIncome(cps: number, ms: number): number {
 export function getNextPrestigeThreshold(level: number, base: number): number {
   return base * Math.pow(2, level)
 }
+
+/** Returns a display label for an upgrade type. */
+export function getUpgradeLabel(type: string): string {
+  return type.charAt(0).toUpperCase() + type.slice(1).replace(/_/g, " ")
+}
