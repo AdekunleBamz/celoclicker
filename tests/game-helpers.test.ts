@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatBonus, formatCps, formatPrestigeCount } from '../lib/game'
+import { formatBonus, formatCps, formatPrestigeCount, getUpgradeLabel } from '../lib/game'
 
 describe('game helpers: formatPrestigeCount', () => {
   it('formats positive counts with grouping', () => {
@@ -28,5 +28,15 @@ describe('game helpers: formatCps', () => {
 
   it('omits trailing decimal zero for whole values', () => {
     expect(formatCps(3)).toBe('3 CPS')
+  })
+})
+
+describe('game helpers: getUpgradeLabel', () => {
+  it('floors decimal levels', () => {
+    expect(getUpgradeLabel(3.9)).toBe('Level 3')
+  })
+
+  it('clamps negative levels to zero', () => {
+    expect(getUpgradeLabel(-2)).toBe('Level 0')
   })
 })
