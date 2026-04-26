@@ -257,3 +257,10 @@ export function getABIEventNames(abi: typeof celoClickerABI): string[] {
     .map((item) => item.name)
     .filter((name) => name !== undefined) as string[]
 }
+
+/**
+ * Counts the total number of function definitions in the ABI.
+ */
+export function countABIFunctions(abi: typeof celoClickerABI): number {
+  return abi.filter((item) => item.type === "function").length
+}
