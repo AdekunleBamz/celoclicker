@@ -42,6 +42,7 @@ export const Button = memo(function Button({
   fullWidth = false,
   className = '',
   type = 'button',
+  disabled,
   ...props
 }: ButtonProps) {
   const variantClasses = {
@@ -56,6 +57,8 @@ export const Button = memo(function Button({
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       type={type}
+      disabled={disabled}
+      aria-disabled={disabled ? 'true' : undefined}
       className={`
         ${fullWidth ? 'w-full' : ''}
         ${variantClasses[variant]}
