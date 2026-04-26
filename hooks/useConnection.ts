@@ -25,3 +25,17 @@ export function useConnection(): {
     isDisconnected: !isConnected && !isConnecting,
   }
 }
+
+/**
+ * Returns true when the provided address matches the currently connected wallet.
+ *
+ * @param connectedAddress - The active wallet address from the hook.
+ * @param targetAddress - The address to compare against.
+ */
+export function isCurrentUser(
+  connectedAddress: string | undefined,
+  targetAddress: string | undefined
+): boolean {
+  if (!connectedAddress || !targetAddress) return false
+  return connectedAddress.toLowerCase() === targetAddress.toLowerCase()
+}
