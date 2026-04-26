@@ -243,3 +243,14 @@ export function getFeeCurrencyByAddress(
     (c) => c.feeCurrency?.toLowerCase() === address.toLowerCase()
   )
 }
+
+/**
+ * Returns fee currencies sorted so that available ones appear first.
+ * Unavailable currencies are appended at the end in their original order.
+ *
+ * @param chainId - Optional chain ID for availability resolution.
+ */
+export function sortFeeCurrencies(chainId?: number): FeeCurrencyConfig[] {
+  const all = getFeeCurrencies(chainId)
+  return [...all.filter((c) => c.isAvailable), ...all.filter((c) => !c.isAvailable)]
+}
