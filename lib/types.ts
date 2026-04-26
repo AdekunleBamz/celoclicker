@@ -138,3 +138,15 @@ export type AchievementTier = 'Bronze' | 'Silver' | 'Gold' | 'Legend'
 
 /** Discriminated string union for upgrade type keys used across the game. */
 export type UpgradeKey = 'CLICK_POWER' | 'AUTO_CLICKER' | 'MULTIPLIER'
+
+/**
+ * Describes a single click event recorded by the game.
+ */
+export interface ClickEvent {
+  /** Timestamp of the click in milliseconds. */
+  timestamp: number
+  /** Point value earned from this click including multipliers. */
+  value: number
+  /** Whether this click triggered a bonus reward. */
+  isBonus: boolean
+}
