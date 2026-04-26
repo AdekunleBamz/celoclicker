@@ -418,3 +418,20 @@ export function maxOfArray(arr: number[]): number {
 export function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0
 }
+
+/**
+ * Formats a duration in milliseconds as a human-readable string.
+ * E.g. 90500 -> "1m 30s", 3600000 -> "1h 0m".
+ *
+ * @param ms - Duration in milliseconds.
+ */
+export function formatDuration(ms: number): string {
+  if (!Number.isFinite(ms) || ms < 0) return '0s'
+  const totalSeconds = Math.floor(ms / 1000)
+  const h = Math.floor(totalSeconds / 3600)
+  const m = Math.floor((totalSeconds % 3600) / 60)
+  const s = totalSeconds % 60
+  if (h > 0) return `${h}h ${m}m`
+  if (m > 0) return `${m}m ${s}s`
+  return `${s}s`
+}
