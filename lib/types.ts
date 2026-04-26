@@ -150,3 +150,15 @@ export interface ClickEvent {
   /** Whether this click triggered a bonus reward. */
   isBonus: boolean
 }
+
+/**
+ * Represents offline earnings that accumulated while the player was away.
+ */
+export interface OfflineEarnings {
+  /** Points accumulated offline. */
+  points: number
+  /** Duration of absence in milliseconds. */
+  absenceMs: number
+  /** Whether the earnings were already claimed. */
+  claimed: boolean
+}
