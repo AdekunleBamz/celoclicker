@@ -50,3 +50,8 @@ export function connectionStateLabel(state: string): string {
   }
   return labels[state] ?? "Unknown"
 }
+
+/** Returns true if a wallet operation is in progress. */
+export function isWalletBusy(status: string): boolean {
+  return status === "connecting" || status === "reconnecting"
+}
