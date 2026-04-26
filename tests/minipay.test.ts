@@ -103,6 +103,10 @@ describe('hooks/useMiniPay hasConnector', () => {
   it('returns false when connectors do not match', () => {
     expect(hasConnector([{ id: 'walletconnect', type: 'walletConnect' }] as never, 'injected')).toBe(false)
   })
+
+  it('matches connector keys using trimmed case-insensitive input', () => {
+    expect(hasConnector([{ id: 'WalletConnect', type: 'walletConnect' }] as never, '  walletconnect  ')).toBe(true)
+  })
 })
 
 describe('hooks/useMiniPay getWalletEnvironmentLabel', () => {
