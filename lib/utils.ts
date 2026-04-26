@@ -620,3 +620,11 @@ export function medianOfArray(arr: number[]): number {
 export function clampNum(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max)
 }
+
+/** Normalizes an array of numbers to the [0, 1] range. */
+export function normalizeArray(arr: number[]): number[] {
+  const min = Math.min(...arr)
+  const max = Math.max(...arr)
+  if (max === min) return arr.map(() => 0)
+  return arr.map(v => (v - min) / (max - min))
+}
