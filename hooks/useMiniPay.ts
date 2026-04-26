@@ -125,5 +125,5 @@ export function hasConnector(connectors: readonly import('wagmi').Connector[], i
  * Returns 'MiniPay' inside the MiniPay app, otherwise 'Browser'.
  */
 export function getWalletEnvironmentLabel(): string {
-  return isMiniPayBrowser() ? 'MiniPay' : 'Browser'
+  return isMiniPayBrowser() ? 'MiniPay Wallet' : 'Web Browser'
 }
