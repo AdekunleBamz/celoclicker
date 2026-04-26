@@ -77,3 +77,10 @@ export function connectionStatusColor(status: string): string {
   if (status === "connecting" || status === "reconnecting") return "#f59e0b"
   return "#ef4444"
 }
+
+/** Returns an emoji indicator for a connection status. */
+export function connectionStatusEmoji(status: string): string {
+  if (status === "connected") return "🟢"
+  if (status === "connecting" || status === "reconnecting") return "🟡"
+  return "🔴"
+}
