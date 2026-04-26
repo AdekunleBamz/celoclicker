@@ -32,6 +32,12 @@ export function getUpgradeActionLabel(isLoading: boolean, label: string): string
   return isLoading ? 'PROCESSING' : label
 }
 
+/** Normalizes the level text to avoid duplicated "Level" prefixes. */
+export function formatUpgradeLevelText(level: string | number): string {
+  const levelText = String(level).trim()
+  return /^level\s+/i.test(levelText) ? levelText : `Level ${levelText}`
+}
+
 /**
  * Card component for displaying and purchasing game upgrades.
  */
@@ -66,7 +72,7 @@ export const UpgradeCard = memo(function UpgradeCard({
         <div>
           <div className={`font-bold ${color} pixel-font-small`}>{title}</div>
           <div className="text-[10px] text-gray-500 uppercase font-bold tracking-widest mt-0.5">
-            Level {currentLevel}
+            {formatUpgradeLevelText(currentLevel)}
           </div>
         </div>
         <div className="text-right">
