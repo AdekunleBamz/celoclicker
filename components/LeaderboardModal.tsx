@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LoadingSpinner } from './LoadingSpinner';
 import { EmptyState } from './EmptyState';
@@ -32,6 +32,19 @@ export const LeaderboardModal = memo(function LeaderboardModal({
   playerAddress,
   className = '',
 }: LeaderboardModalProps) {
+  useEffect(() => {
+    if (!isOpen) return
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose()
+      }
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [isOpen, onClose])
+
   return (
     <AnimatePresence>
       {isOpen && (
