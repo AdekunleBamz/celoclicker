@@ -27,6 +27,11 @@ export interface UpgradeCardProps {
   className?: string
 }
 
+/** Returns the button label for the upgrade action based on loading state. */
+export function getUpgradeActionLabel(isLoading: boolean, label: string): string {
+  return isLoading ? 'PROCESSING' : label
+}
+
 /**
  * Card component for displaying and purchasing game upgrades.
  */
@@ -91,10 +96,10 @@ export const UpgradeCard = memo(function UpgradeCard({
         {isLoading ? (
           <span className="flex items-center justify-center gap-2">
             <span className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            PROCESSING
+            {getUpgradeActionLabel(isLoading, upgradeLabel)}
           </span>
         ) : (
-          upgradeLabel
+          getUpgradeActionLabel(isLoading, upgradeLabel)
         )}
       </button>
       {!isLoading && !disabled && !canAfford && (
