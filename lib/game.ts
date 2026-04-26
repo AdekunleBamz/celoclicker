@@ -238,3 +238,16 @@ export function getUpgradeLabel(upgradeKey: string): string {
   }
   return labels[upgradeKey] ?? upgradeKey
 }
+
+/**
+ * Formats a bonus value as a signed string for display in upgrade cards.
+ * Positive bonuses show as "+X", negative as "-X".
+ *
+ * @param bonus - The numeric bonus value.
+ * @returns Formatted bonus string e.g. "+5", "-2", "+0".
+ */
+export function formatBonus(bonus: number): string {
+  if (!Number.isFinite(bonus)) return '+0'
+  const rounded = Math.round(bonus)
+  return rounded >= 0 ? `+${rounded}` : `${rounded}`
+}
