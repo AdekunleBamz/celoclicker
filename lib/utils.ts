@@ -675,3 +675,8 @@ export function calcComboTimeout(base: number, prestige: number): number {
 export function isBonusClick(random: () => number, chance: number): boolean {
   return random() < chance
 }
+
+/** Calculates total earnings from manual and auto income. */
+export function calcTotalEarnings(manual: number, auto: number, ms: number, cps: number): number {
+  return manual + auto + calcAutoClickerIncome(cps, ms)
+}
