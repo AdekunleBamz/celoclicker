@@ -39,3 +39,14 @@ export function isCurrentUser(
   if (!connectedAddress || !targetAddress) return false
   return connectedAddress.toLowerCase() === targetAddress.toLowerCase()
 }
+
+/** Returns a human-readable label for a wallet connection state. */
+export function connectionStateLabel(state: string): string {
+  const labels: Record<string, string> = {
+    connected: "Connected",
+    disconnected: "Disconnected",
+    connecting: "Connecting...",
+    reconnecting: "Reconnecting...",
+  }
+  return labels[state] ?? "Unknown"
+}
