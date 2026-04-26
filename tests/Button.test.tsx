@@ -34,4 +34,9 @@ describe('Button', () => {
     render(<Button disabled>Disabled</Button>)
     expect(screen.getByText('Disabled').closest('button')).toBeDisabled()
   })
+
+  it('defaults button type to "button"', () => {
+    render(<Button>Type Check</Button>)
+    expect(screen.getByRole('button', { name: 'Type Check' })).toHaveAttribute('type', 'button')
+  })
 })
