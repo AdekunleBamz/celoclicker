@@ -287,3 +287,18 @@ export function isBonusClick(chance = 0.05, roll = Math.random()): boolean {
   if (chance >= 1) return true
   return roll < chance
 }
+
+/**
+ * Calculates total earnings combining manual clicks and auto-clicker income.
+ *
+ * @param manualClicks - Points from direct player clicks.
+ * @param autoIncome - Points from auto-clicker during the session.
+ * @param multiplier - Global score multiplier to apply.
+ */
+export function calcTotalEarnings(
+  manualClicks: number,
+  autoIncome: number,
+  multiplier: number,
+): number {
+  return Math.floor((manualClicks + autoIncome) * multiplier)
+}
