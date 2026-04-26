@@ -47,7 +47,7 @@ export function getFeeCurrencies(chainId?: number): FeeCurrencyConfig[] {
       id: 'CELO',
       label: 'CELO',
       symbol: 'CELO',
-      description: 'Pay gas with native CELO on web or mobile.',
+      description: 'Pay gas in native CELO (fastest default on web and wallet).',
       isAvailable: true,
     },
     {
