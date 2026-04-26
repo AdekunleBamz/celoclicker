@@ -431,7 +431,12 @@ export function minOfArray(arr: number[]): number {
   return arr.slice(1).reduce((a, b) => Math.min(a, b), arr[0])
 }
 
-/** Returns the average of an array of numbers, or 0 if empty. */
+/**
+ * Returns the average of an array of numbers, or 0 if empty.
+ *
+ * @param arr - Array of numbers to average.
+ * @returns Arithmetic mean, or 0 for an empty array.
+ */
 export function avgOfArray(arr: number[]): number {
   if (arr.length === 0) return 0
   if (arr.length === 1) return arr[0]
