@@ -84,7 +84,7 @@ export function isValidPoints(points: bigint): boolean {
  * @param chainId - The numeric chain ID to check.
  */
 export function isValidChainId(chainId: number): boolean {
-  return SUPPORTED_CHAIN_IDS.includes(chainId)
+  return Number.isInteger(chainId) && SUPPORTED_CHAIN_IDS.includes(chainId)
 }
 
 /**
@@ -115,15 +115,6 @@ export function isValidClickCountBigInt(count: bigint): boolean {
  */
 export function isValidCps(cps: number): boolean {
   return Number.isFinite(cps) && cps >= 0
-}
-
-/**
- * Returns true when the given chain ID is one of the officially supported Celo chains.
- *
- * @param chainId - The numeric chain ID to check.
- */
-export function isValidChainId(chainId: number): boolean {
-  return (SUPPORTED_CHAIN_IDS as readonly number[]).includes(chainId)
 }
 
 /**
