@@ -236,8 +236,9 @@ export function isValidScore(score: number): boolean {
  * Returns true if the string is a valid http or https URL.
  */
 export function isValidUrl(url: string): boolean {
+  if (typeof url !== 'string' || !url.trim()) return false
   try {
-    const parsed = new URL(url)
+    const parsed = new URL(url.trim())
     return parsed.protocol === 'http:' || parsed.protocol === 'https:'
   } catch {
     return false
