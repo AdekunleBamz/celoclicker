@@ -321,3 +321,16 @@ export function getABIFunctionMutability(abi: typeof celoClickerABI, functionNam
 export function countPayableFunctions(abi: typeof celoClickerABI): number {
   return abi.filter((item) => item.type === "function" && item.stateMutability === "payable").length
 }
+
+/**
+ * Groups ABI items by their type (event, function, etc.).
+ */
+export function groupABIByType(abi: typeof celoClickerABI): Record<string, any[]> {
+  const groups: Record<string, any[]> = {}
+  abi.forEach((item: any) => {
+    const type = item.type || "unknown"
+    if (!groups[type]) groups[type] = []
+    groups[type].push(item)
+  })
+  return groups
+}
