@@ -196,3 +196,12 @@ export function isCeloNativeCurrency(id: FeeCurrencyId): boolean {
 export function getAllFeeCurrencyIds(): FeeCurrencyId[] {
   return getFeeCurrencies().map((c) => c.id)
 }
+
+/**
+ * Returns true when the given fee currency id is USDC.
+ *
+ * @param id - The fee currency identifier.
+ */
+export function isUSDCFeeCurrency(id: FeeCurrencyId): boolean {
+  return id === 'USDC'
+}
