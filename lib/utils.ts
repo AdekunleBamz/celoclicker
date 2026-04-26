@@ -585,3 +585,8 @@ export function avgOfArray(arr: number[]): number {
   if (arr.length === 1) return arr[0]
   return arr.reduce((a, b) => a + b, 0) / arr.length
 }
+
+/** Filters out NaN and Infinity from a numeric array. */
+export function filterFinite(arr: number[]): number[] {
+  return arr.filter(v => Number.isFinite(v))
+}
