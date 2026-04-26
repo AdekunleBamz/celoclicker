@@ -35,7 +35,9 @@ export function isMiniPayBrowser() {
  */
 export function getInjectedConnector(connectors: readonly Connector[]) {
   return connectors.find((connector) => {
-    return connector.type === 'injected' || connector.id === 'injected'
+    const connectorType = connector.type.toLowerCase()
+    const connectorId = connector.id.toLowerCase()
+    return connectorType === 'injected' || connectorId === 'injected'
   })
 }
 
