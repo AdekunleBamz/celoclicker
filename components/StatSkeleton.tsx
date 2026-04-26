@@ -15,7 +15,13 @@ export const StatSkeleton = memo(function StatSkeleton({
   const safeCount = Number.isFinite(count) ? Math.max(0, Math.floor(count)) : 0
 
   return (
-    <div className={`space-y-3 w-full ${className}`.trim()}>
+    <div
+      className={`space-y-3 w-full ${className}`.trim()}
+      role="status"
+      aria-live="polite"
+      aria-busy={safeCount > 0}
+      aria-label="Loading statistics"
+    >
       {Array.from({ length: safeCount }).map((_, i) => (
         <div key={i} className="bg-black/30 rounded-lg p-3 w-full" aria-hidden="true">
           <div className="w-16 h-3 bg-gray-700/50 rounded mb-2 animate-pulse" />
