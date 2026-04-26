@@ -89,7 +89,10 @@ export function connectionStatusEmoji(status: string): string {
 
 /** Returns a display name for a wallet, preferring ENS or truncating address. */
 export function walletDisplayName(address: string, ens?: string): string {
-  return ens ? ens : address.slice(0, 6) + "..." + address.slice(-4)
+  if (ens?.trim()) return ens.trim()
+  const normalized = address.trim()
+  if (normalized.length <= 10) return normalized
+  return normalized.slice(0, 6) + "..." + normalized.slice(-4)
 }
 
 /** Returns true if the wallet is currently in a reconnecting state. */
