@@ -296,3 +296,12 @@ export function isValidPrestigeCount(count: number): boolean {
 export function isValidComboCount(combo: number): boolean {
   return Number.isInteger(combo) && combo >= 0 && Number.isSafeInteger(combo)
 }
+
+/**
+ * Returns true when the duration is a finite positive number of milliseconds.
+ *
+ * @param ms - Duration in milliseconds.
+ */
+export function isValidDurationMs(ms: number): boolean {
+  return Number.isFinite(ms) && ms > 0
+}
