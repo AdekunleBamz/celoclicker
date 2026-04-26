@@ -301,3 +301,10 @@ export const ACHIEVEMENT_TIERS = Object.freeze({
 
 /** Point multiplier applied when a bonus click is triggered. */
 export const BONUS_CLICK_MULTIPLIER = 3
+
+/** Human-readable display labels for each upgrade key used in the UI. */
+export const UPGRADE_DISPLAY_LABELS = Object.freeze({
+  CLICK_POWER: 'Click Power',
+  AUTO_CLICKER: 'Auto Clicker',
+  MULTIPLIER: 'Score Multiplier',
+} as const)
