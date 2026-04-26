@@ -89,3 +89,8 @@ export function connectionStatusEmoji(status: string): string {
 export function walletDisplayName(address: string, ens?: string): string {
   return ens ? ens : address.slice(0, 6) + "..." + address.slice(-4)
 }
+
+/** Returns true if the wallet is currently in a reconnecting state. */
+export function isReconnecting(status: string): boolean {
+  return status === "reconnecting"
+}
