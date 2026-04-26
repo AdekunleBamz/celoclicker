@@ -155,6 +155,7 @@ export function isPurchasableUpgradeLevel(level: bigint, maxLevel = 10n): boolea
  * @param address - The address string to validate.
  */
 export function isValidPlayerAddress(address: string): boolean {
+  if (typeof address !== 'string') return false
   const normalized = address.trim()
   return /^0x[a-fA-F0-9]{40}$/.test(normalized) && normalized.toLowerCase() !== '0x0000000000000000000000000000000000000000'
 }
