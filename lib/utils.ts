@@ -606,3 +606,12 @@ export function roundToDecimalPlaces(value: number, places: number): number {
 export function sumArray(arr: number[]): number {
   return arr.reduce((a, b) => a + b, 0)
 }
+
+/** Returns median value of a numeric array. */
+export function medianOfArray(arr: number[]): number {
+  if (arr.length === 0) return 0
+  const sorted = [...arr].sort((a, b) => a - b)
+  const mid = Math.floor(sorted.length / 2)
+  const isOdd = sorted.length % 2 !== 0
+  return isOdd ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2
+}
