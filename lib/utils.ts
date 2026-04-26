@@ -617,3 +617,11 @@ export function isBonusClick(random: () => number, chance: number): boolean {
 export function calcTotalEarnings(manual: number, auto: number, ms: number, cps: number): number {
   return manual + auto + calcAutoClickerIncome(cps, ms)
 }
+
+/** Returns an achievement tier label based on click count milestones. */
+export function getAchievementTier(clicks: number): string {
+  if (clicks >= 1000000) return "legendary"
+  if (clicks >= 100000) return "epic"
+  if (clicks >= 10000) return "rare"
+  return "common"
+}
