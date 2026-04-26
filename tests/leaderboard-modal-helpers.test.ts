@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getLeaderboardRankLabel, getLeaderboardRowClass, hasLeaderboardEntries, isCurrentLeaderboardPlayer } from '../components/LeaderboardModal'
+import { getLeaderboardCloseLabel, getLeaderboardRankLabel, getLeaderboardRowClass, hasLeaderboardEntries, isCurrentLeaderboardPlayer } from '../components/LeaderboardModal'
 
 describe('leaderboard modal helpers: getLeaderboardRankLabel', () => {
   it('returns medal labels for top three ranks', () => {
@@ -55,5 +55,15 @@ describe('leaderboard modal helpers: getLeaderboardRowClass', () => {
 
   it('returns neutral classes for non-current rows', () => {
     expect(getLeaderboardRowClass(false)).toContain('bg-black/20')
+  })
+})
+
+describe('leaderboard modal helpers: getLeaderboardCloseLabel', () => {
+  it('returns loading-aware close label', () => {
+    expect(getLeaderboardCloseLabel(true)).toBe('Close leaderboard while loading')
+  })
+
+  it('returns default close label when not loading', () => {
+    expect(getLeaderboardCloseLabel(false)).toBe('Close leaderboard')
   })
 })
