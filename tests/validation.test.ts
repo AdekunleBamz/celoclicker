@@ -84,4 +84,14 @@ describe('lib/validation validateEnvironment', () => {
       ],
     })
   })
+
+  it('rejects short wallet connect project ids', () => {
+    process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT = '0x1234567890123456789012345678901234567890'
+    process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID = 'abc123'
+
+    expect(validateEnvironment()).toEqual({
+      isValid: false,
+      errors: ['NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID appears too short to be valid'],
+    })
+  })
 })
