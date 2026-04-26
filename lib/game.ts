@@ -121,7 +121,9 @@ export function calcClickMultiplier(level: number, step = 0.1): number {
  * @returns Formatted bonus string.
  */
 export function formatBonus(n: number): string {
-  return `+${n}`
+  if (!Number.isFinite(n) || n <= 0) return '+0'
+  const normalized = Number.isInteger(n) ? n.toLocaleString() : n.toFixed(2).replace(/\.?0+$/, '')
+  return `+${normalized}`
 }
 
 /**
