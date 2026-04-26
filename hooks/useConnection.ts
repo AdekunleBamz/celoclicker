@@ -58,7 +58,7 @@ export function isWalletBusy(status: string): boolean {
 
 /** Normalises an Ethereum address to lowercase. */
 export function normaliseAddress(address: string): string {
-  return address.toLowerCase()
+  return address.trim().toLowerCase()
 }
 
 /** Returns true if an address matches the 0x + 40 hex char pattern. */
