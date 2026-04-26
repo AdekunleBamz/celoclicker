@@ -105,3 +105,15 @@ export function connectionStatusColor(isConnected: boolean, isConnecting: boolea
   if (isConnecting) return 'text-yellow-400'
   return 'text-red-400'
 }
+
+/**
+ * Returns an emoji indicator for the current connection state.
+ *
+ * @param isConnected - Whether the wallet is connected.
+ * @param isConnecting - Whether a connection is being established.
+ */
+export function connectionStatusEmoji(isConnected: boolean, isConnecting: boolean): string {
+  if (isConnected) return '🟢'
+  if (isConnecting) return '🟡'
+  return '🔴'
+}
