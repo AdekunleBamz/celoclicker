@@ -160,7 +160,9 @@ export function isMaxUpgradeLevel(level: number, max: number): boolean {
  *  cps - Clicks per second value.
  */
 export function formatCps(cps: number): string {
-  return `${cps.toFixed(1)} CPS`
+  if (!Number.isFinite(cps) || cps <= 0) return '0 CPS'
+  const normalized = cps.toFixed(1).replace(/\.0$/, '')
+  return `${normalized} CPS`
 }
 
 /**
