@@ -452,3 +452,17 @@ export function truncateAddress(
   if (!address || address.length < prefixLen + suffixLen + 2) return address
   return `${address.slice(0, prefixLen + 2)}...${address.slice(-suffixLen)}`
 }
+
+/**
+ * Formats a bigint value as a compact display string with K/M/B suffixes.
+ * E.g. 1_500_000n -> "1.5M".
+ *
+ * @param value - The bigint value to format.
+ */
+export function formatBigIntCompact(value: bigint): string {
+  const n = Number(value)
+  if (n >= 1_000_000_000) return `${(n / 1_000_000_000).toFixed(1).replace(/\.0$/, '')}B`
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1).replace(/\.0$/, '')}M`
+  if (n >= 1_000) return `${(n / 1_000).toFixed(1).replace(/\.0$/, '')}K`
+  return String(n)
+}
