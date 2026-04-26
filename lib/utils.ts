@@ -430,3 +430,17 @@ export function avgOfArray(arr: number[]): number {
   if (arr.length === 0) return 0
   return arr.reduce((sum, n) => sum + n, 0) / arr.length
 }
+
+/**
+ * Rounds a number to a specified number of decimal places.
+ *
+ * @param value - The number to round.
+ * @param places - Number of decimal places (0-10). Clamped to valid range.
+ * @returns The rounded number.
+ */
+export function roundToDecimalPlaces(value: number, places: number): number {
+  if (!Number.isFinite(value)) return 0
+  const safePlaces = Math.max(0, Math.min(10, Math.floor(places)))
+  const factor = Math.pow(10, safePlaces)
+  return Math.round(value * factor) / factor
+}
