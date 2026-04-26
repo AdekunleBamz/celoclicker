@@ -246,3 +246,14 @@ export const celoClickerABI = [
     type: 'function',
   },
 ] as const
+
+/**
+ * Extracts all event names from the ABI.
+ * Useful for filtering events or building event type maps.
+ */
+export function getABIEventNames(abi: typeof celoClickerABI): string[] {
+  return abi
+    .filter((item) => item.type === 'event')
+    .map((item) => item.name)
+    .filter((name) => name !== undefined) as string[]
+}
