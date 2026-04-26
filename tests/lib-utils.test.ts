@@ -177,4 +177,12 @@ describe('lib/utils formatClicks', () => {
   it('formats million values with one decimal M suffix', () => {
     expect(formatClicks(1_500_000)).toBe('1.5M')
   })
+
+  it('omits trailing .0 for exact thousand values', () => {
+    expect(formatClicks(1_000)).toBe('1K')
+  })
+
+  it('preserves sign for negative compact values', () => {
+    expect(formatClicks(-2_500)).toBe('-2.5K')
+  })
 })
