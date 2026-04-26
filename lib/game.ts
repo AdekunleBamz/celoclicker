@@ -173,7 +173,8 @@ export function formatCps(cps: number): string {
  * @returns Points still needed, or 0 if affordable.
  */
 export function pointsToNextUpgrade(cost: number, points: number): number {
-  return Math.max(0, cost - points)
+  if (!Number.isFinite(cost) || !Number.isFinite(points)) return 0
+  return Math.max(0, Math.ceil(cost - points))
 }
 /**
  * Returns a tier label based on total click count milestones.
