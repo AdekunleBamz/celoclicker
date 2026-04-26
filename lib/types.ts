@@ -162,3 +162,6 @@ export interface OfflineEarnings {
   /** Whether the earnings were already claimed. */
   claimed: boolean
 }
+
+/** Visual variant for toast notification messages. */
+export type ToastVariant = 'info' | 'success' | 'warning' | 'error'
