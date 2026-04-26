@@ -251,3 +251,13 @@ export function formatBonus(bonus: number): string {
   const rounded = Math.round(bonus)
   return rounded >= 0 ? `+${rounded}` : `${rounded}`
 }
+
+/**
+ * Returns true when the player has enough points to afford an upgrade.
+ *
+ * @param playerPoints - The player's current click/point balance.
+ * @param upgradeCost - The cost of the upgrade.
+ */
+export function canAffordUpgrade(playerPoints: number, upgradeCost: number): boolean {
+  return playerPoints >= upgradeCost
+}
