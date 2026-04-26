@@ -131,6 +131,7 @@ export default function Home() {
   const { isLoading: isConfirming, isSuccess, error: txError } = useWaitForTransactionReceipt({
     hash,
   })
+  const isTxBusy = isPending || isConfirming
 
   const transactionOverrides = useMemo(
     () => (
