@@ -181,3 +181,18 @@ export function getAchievementTier(totalClicks: number): string {
   if (totalClicks >= 10_000) return 'Silver'
   return 'Bronze'
 }
+
+/**
+ * Returns a human-readable label for a given upgrade type key.
+ *
+ * @param upgradeKey - The upgrade key (e.g. "CLICK_POWER", "AUTO_CLICKER").
+ * @returns A display label string.
+ */
+export function getUpgradeLabel(upgradeKey: string): string {
+  const labels: Record<string, string> = {
+    CLICK_POWER: 'Click Power',
+    AUTO_CLICKER: 'Auto Clicker',
+    MULTIPLIER: 'Score Multiplier',
+  }
+  return labels[upgradeKey] ?? upgradeKey
+}
