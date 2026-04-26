@@ -59,3 +59,15 @@ export function isWalletBusy(isConnecting: boolean, isReconnecting: boolean): bo
 export function normaliseAddress(address: string | undefined): string | undefined {
   return address ? address.toLowerCase() : undefined
 }
+
+/**
+ * Returns true when two wallet addresses refer to the same account
+ * using a case-insensitive comparison.
+ *
+ * @param a - First address.
+ * @param b - Second address.
+ */
+export function isSameAddress(a: string | undefined, b: string | undefined): boolean {
+  if (!a || !b) return false
+  return a.toLowerCase() === b.toLowerCase()
+}
