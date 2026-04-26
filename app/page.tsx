@@ -207,7 +207,7 @@ export default function Home() {
       return
     }
 
-    if (isPending || isConfirming) {
+    if (isTxBusy) {
       return
     }
 
@@ -228,7 +228,7 @@ export default function Home() {
       console.error(`Error sending ${type} upgrade transaction:`, error)
       alert('Failed to send transaction. Please try again.')
     }
-  }, [isConnected, isContractValid, isPending, isConfirming, contractAddress, celoClickerABI, transactionOverrides, writeContract])
+  }, [isConnected, isContractValid, isTxBusy, contractAddress, celoClickerABI, transactionOverrides, writeContract])
 
   const handleClaimAuto = useCallback(() => {
     if (!isConnected) {
@@ -241,7 +241,7 @@ export default function Home() {
       return
     }
 
-    if (isPending || isConfirming) {
+    if (isTxBusy) {
       return
     }
 
@@ -258,7 +258,7 @@ export default function Home() {
       console.error('Error sending claim transaction:', error)
       alert('Failed to send transaction. Please try again.')
     }
-  }, [isConnected, isContractValid, isPending, isConfirming, contractAddress, celoClickerABI, transactionOverrides, writeContract])
+  }, [isConnected, isContractValid, isTxBusy, contractAddress, celoClickerABI, transactionOverrides, writeContract])
 
   useEffect(() => {
     if (isSuccess) {
