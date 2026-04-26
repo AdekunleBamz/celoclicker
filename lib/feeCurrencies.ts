@@ -180,3 +180,12 @@ export function getFeeCurrencyTokenAddress(
 ): Address | undefined {
   return getFeeCurrencyById(id, chainId)?.tokenAddress
 }
+
+/**
+ * Returns true when the given fee currency id is the native CELO token.
+ *
+ * @param id - The fee currency identifier.
+ */
+export function isCeloNativeCurrency(id: FeeCurrencyId): boolean {
+  return id === 'CELO'
+}
