@@ -660,3 +660,8 @@ export function formatBonus(value: number): string {
   const pct = value + "%"
   return sign + pct
 }
+
+/** Checks if the player can afford an upgrade. */
+export function canAffordUpgrade(balance: number, cost: number): boolean {
+  return balance >= cost
+}
