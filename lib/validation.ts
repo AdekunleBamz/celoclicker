@@ -305,3 +305,13 @@ export function isValidComboCount(combo: number): boolean {
 export function isValidDurationMs(ms: number): boolean {
   return Number.isFinite(ms) && ms > 0
 }
+
+/**
+ * Returns true when the value is a finite number representing a valid CELO amount
+ * (non-negative and within JavaScript's safe number range).
+ *
+ * @param amount - The CELO amount as a number.
+ */
+export function isValidCeloAmount(amount: number): boolean {
+  return Number.isFinite(amount) && amount >= 0 && amount <= Number.MAX_SAFE_INTEGER
+}
