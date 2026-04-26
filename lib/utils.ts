@@ -434,3 +434,140 @@ export function formatPercent(value: number): string {
 export function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0
 }
+
+/**
+ * Formats a duration in milliseconds as a human-readable string.
+ * E.g. 90500 -> "1m 30s", 3600000 -> "1h 0m".
+ *
+ * @param ms - Duration in milliseconds.
+ */
+export function formatDuration(ms: number): string {
+  if (!Number.isFinite(ms) || ms < 0) return '0s'
+  const totalSeconds = Math.floor(ms / 1000)
+  const h = Math.floor(totalSeconds / 3600)
+  const m = Math.floor((totalSeconds % 3600) / 60)
+  const s = totalSeconds % 60
+  if (h > 0) return `${h}h ${m}m`
+  if (m > 0) return `${m}m ${s}s`
+  return `${s}s`
+}
+
+/**
+ * Truncates an Ethereum address for display purposes.
+ * E.g. "0x1234...5678".
+ *
+ * @param address - The full 0x-prefixed address string.
+ * @param prefixLen - Number of characters to show after "0x" prefix (default 4).
+ * @param suffixLen - Number of characters to show at the end (default 4).
+ */
+export function truncateAddress(
+  address: string,
+  prefixLen = 4,
+  suffixLen = 4
+): string {
+  if (!address || address.length < prefixLen + suffixLen + 2) return address
+  return `${address.slice(0, prefixLen + 2)}...${address.slice(-suffixLen)}`
+}
+
+/**
+ * Formats a bigint value as a compact display string with K/M/B suffixes.
+ * E.g. 1_500_000n -> "1.5M".
+ *
+ * @param value - The bigint value to format.
+ */
+export function formatBigIntCompact(value: bigint): string {
+  const n = Number(value)
+  if (n >= 1_000_000_000) return `${(n / 1_000_000_000).toFixed(1).replace(/\.0$/, '')}B`
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1).replace(/\.0$/, '')}M`
+  if (n >= 1_000) return `${(n / 1_000).toFixed(1).replace(/\.0$/, '')}K`
+  return String(n)
+}
+
+/**
+ * Returns a percentage string from a numerator and denominator.
+ * E.g. percentageOf(3, 4) -> "75.0%"
+ *
+ * @param part - The numerator value.
+ * @param total - The denominator value. Returns "0%" when zero.
+ * @param decimals - Number of decimal places (default 1).
+ */
+export function percentageOf(part: number, total: number, decimals = 1): string {
+  if (total === 0) return '0%'
+  return `${((part / total) * 100).toFixed(decimals)}%`
+}
+
+/**
+ * Pads a number string with leading zeroes up to a minimum width.
+ * E.g. zeroPad(5, 3) -> "005".
+ *
+ * @param value - The numeric value to pad.
+ * @param width - Minimum total width (default 2).
+ */
+export function zeroPad(value: number, width = 2): string {
+  return String(Math.floor(value)).padStart(width, '0')
+}
+
+/**
+ * Capitalises the first character of a string and lowercases the rest.
+ *
+ * @param str - Input string.
+ */
+export function capitalize(str: string): string {
+  if (!str) return ''
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
+}
+
+/**
+ * Converts a snake_case or kebab-case identifier to Title Case.
+ * E.g. "auto_clicker" -> "Auto Clicker".
+ *
+ * @param str - The identifier string.
+ */
+export function identifierToTitle(str: string): string {
+  return str
+    .replace(/[-_]+/g, ' ')
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ')
+}
+
+/**
+ * Returns a relative time string from a past Unix timestamp in seconds.
+ * E.g. "2 hours ago", "just now".
+ *
+ * @param timestampSec - Unix timestamp in seconds.
+ */
+export function relativeTime(timestampSec: number): string {
+  const diffSec = Math.floor(Date.now() / 1000) - timestampSec
+  if (diffSec < 10) return 'just now'
+  if (diffSec < 60) return `${diffSec}s ago`
+  const diffMin = Math.floor(diffSec / 60)
+  if (diffMin < 60) return `${diffMin}m ago`
+  const diffHr = Math.floor(diffMin / 60)
+  if (diffHr < 24) return `${diffHr}h ago`
+  const diffDay = Math.floor(diffHr / 24)
+  return `${diffDay}d ago`
+}
+
+/**
+ * Clamps a number between a minimum and maximum value.
+ *
+ * @param value - The value to clamp.
+ * @param min - Lower bound.
+ * @param max - Upper bound.
+ */
+export function clamp(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max)
+}
+
+/**
+ * Linearly interpolates between two numbers.
+ * Returns start when t=0, end when t=1.
+ *
+ * @param start - Starting value.
+ * @param end - Ending value.
+ * @param t - Interpolation factor, typically in [0, 1].
+ */
+export function lerp(start: number, end: number, t: number): number {
+  return start + (end - start) * t
+}
