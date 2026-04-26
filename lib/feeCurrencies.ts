@@ -205,3 +205,16 @@ export function getAllFeeCurrencyIds(): FeeCurrencyId[] {
 export function isUSDCFeeCurrency(id: FeeCurrencyId): boolean {
   return id === 'USDC'
 }
+
+/**
+ * Returns the user-facing display name (label) for a fee currency.
+ * When the currency is unavailable on the current chain the id is returned instead.
+ *
+ * @param id - The fee currency identifier.
+ * @param chainId - Optional chain ID for availability resolution.
+ */
+export function getFeeCurrencyDisplayName(id: FeeCurrencyId, chainId?: number): string {
+  const config = getFeeCurrencyById(id, chainId)
+  if (!config || !config.isAvailable) return id
+  return config.label
+}
