@@ -56,7 +56,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                   this.setState({ hasError: false, error: undefined })
                   window.location.reload()
                 }}
-                className="px-6 py-3 bg-purple-500 hover:bg-purple-600 rounded-lg font-bold transition-colors w-full"
+                className="px-6 py-3 bg-purple-500 hover:bg-purple-600 rounded-lg font-bold transition-colors w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-celo-green/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
                 type="button"
                 aria-label="Reboot the application"
               >
@@ -66,7 +66,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                 <button
                   onClick={() => navigator.clipboard?.writeText(this.state.error!.message)}
                   type="button"
-                  className="px-6 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-bold transition-colors w-full text-gray-400"
+                  className="px-6 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-bold transition-colors w-full text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-celo-green/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
                 >
                   Copy Error Message
                 </button>
