@@ -21,4 +21,9 @@ describe('Badge', () => {
     const { container } = render(<Badge className="test-badge">Custom</Badge>)
     expect(container.firstChild).toHaveClass('test-badge')
   })
+
+  it('supports an explicit aria label', () => {
+    render(<Badge ariaLabel="Network status badge">Online</Badge>)
+    expect(screen.getByLabelText('Network status badge')).toBeInTheDocument()
+  })
 })
