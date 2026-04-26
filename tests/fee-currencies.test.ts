@@ -51,6 +51,11 @@ describe('lib/feeCurrencies getFeeCurrencies', () => {
       expect(currency.description.length).toBeGreaterThan(0)
     })
   })
+
+  it('describes CELO as native gas mode', () => {
+    const celoCurrency = getFeeCurrencies(CELO_MAINNET_CHAIN_ID).find((currency) => currency.id === 'CELO')
+    expect(celoCurrency?.description.toLowerCase()).toContain('native celo')
+  })
 })
 
 describe('lib/feeCurrencies getDefaultFeeCurrencyId', () => {
