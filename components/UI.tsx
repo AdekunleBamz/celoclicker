@@ -82,6 +82,8 @@ export interface BadgeProps {
   variant?: 'success' | 'warning' | 'info' | 'purple'
   /** Additional CSS classes. */
   className?: string
+  /** Optional accessibility label for assistive technology. */
+  ariaLabel?: string
 }
 
 /**
@@ -90,7 +92,8 @@ export interface BadgeProps {
 export const Badge = memo(function Badge({ 
   children, 
   variant = 'info',
-  className = '' 
+  className = '',
+  ariaLabel
 }: BadgeProps) {
   const variants = {
     success: 'bg-celo-green/20 text-celo-green border-celo-green/30',
@@ -100,7 +103,7 @@ export const Badge = memo(function Badge({
   }
 
   return (
-    <span className={`px-2 py-0.5 rounded text-[10px] font-bold border uppercase tracking-wider ${variants[variant]} ${className}`}>
+    <span aria-label={ariaLabel} className={`px-2 py-0.5 rounded text-[10px] font-bold border uppercase tracking-wider ${variants[variant]} ${className}`}>
       {children}
     </span>
   )
