@@ -19,15 +19,16 @@ export function formatNumber(num: bigint | number): string {
 
   const abs = Math.abs(n)
   const sign = n < 0 ? '-' : ''
+  const compact = (value: number) => value.toFixed(2).replace(/\.?0+$/, '')
 
   if (abs >= 1_000_000_000) {
-    return sign + (abs / 1_000_000_000).toFixed(2) + 'B'
+    return sign + compact(abs / 1_000_000_000) + 'B'
   }
   if (abs >= 1_000_000) {
-    return sign + (abs / 1_000_000).toFixed(2) + 'M'
+    return sign + compact(abs / 1_000_000) + 'M'
   }
   if (abs >= 1_000) {
-    return sign + (abs / 1_000).toFixed(2) + 'K'
+    return sign + compact(abs / 1_000) + 'K'
   }
   return n.toLocaleString()
 }
@@ -68,7 +69,11 @@ export function formatTokenAmount(value?: string, symbol?: string): string {
     absoluteValue >= 100 ? 2 :
     absoluteValue >= 1 ? 3 :
     absoluteValue >= 0.01 ? 4 : 6
-  const formattedValue = safeNumericValue.toFixed(decimals).replace(/\.?0+$/, '')
+  const fixedValue = safeNumericValue.toFixed(decimals).replace(/\.?0+$/, '')
+  const formattedValue =
+    absoluteValue >= 1000
+      ? Number(fixedValue).toLocaleString('en-US', { maximumFractionDigits: decimals })
+      : fixedValue
 
   return `${formattedValue} ${symbol ?? ''}`.trim()
 }
@@ -283,13 +288,8 @@ export function bigintToPercent(val: bigint, total: bigint): number {
 /** Truncates a hex address to short form: 0x1234...abcd */
 export function shortAddress(addr: string): string {
   const normalizedAddress = typeof addr === 'string' ? addr.trim() : ''
-  if (!normalizedAddress || normalizedAddress.length < 10) return normalizedAddress
+  if (!normalizedAddress || normalizedAddress.length <= 10) return normalizedAddress
   return `${normalizedAddress.slice(0, 6)}...${normalizedAddress.slice(-4)}`
-}
-
-/** Returns true if address is the EVM zero address. */
-export function isZeroAddress(addr: string): boolean {
-  return addr === '0x0000000000000000000000000000000000000000'
 }
 
 /**
@@ -298,9 +298,14 @@ export function isZeroAddress(addr: string): boolean {
  */
 export function formatClicks(n: number): string {
   if (!Number.isFinite(n)) return '0'
-  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`
-  if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`
-  return String(n)
+
+  const abs = Math.abs(n)
+  const sign = n < 0 ? '-' : ''
+  const compact = (value: number) => value.toFixed(1).replace(/\.0$/, '')
+
+  if (abs >= 1_000_000) return `${sign}${compact(abs / 1_000_000)}M`
+  if (abs >= 1_000) return `${sign}${compact(abs / 1_000)}K`
+  return n.toLocaleString()
 }
 
 /**
@@ -372,7 +377,8 @@ export function isValidClickCount(n: number): boolean {
  */
 export function toPercent(value: number, total: number): number {
   if (total === 0) return 0
-  return Math.round((value / total) * 100)
+  const percent = Math.round((value / total) * 100)
+  return Math.max(0, Math.min(100, percent))
 }
 
 /**
