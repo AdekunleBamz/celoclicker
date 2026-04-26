@@ -281,6 +281,10 @@ export function bigintToPercent(val: bigint, total: bigint): number {
 }
 
 /** Truncates a hex address to short form: 0x1234...abcd */
+/**
+ * Truncates a hex address to short form for UI display.
+ *  addr - The address string to truncate.
+ */
 export function shortAddress(addr: string): string {
   const normalizedAddress = typeof addr === 'string' ? addr.trim() : ''
   if (!normalizedAddress || normalizedAddress.length < 10) return normalizedAddress
