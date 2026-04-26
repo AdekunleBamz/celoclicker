@@ -581,3 +581,8 @@ export function calcCombinedClickValue(base: number, prestige: number, combo: nu
 export function calcAutoClickerIncome(cps: number, ms: number): number {
   return cps * (ms / 1000)
 }
+
+/** Returns the next prestige threshold based on current level. */
+export function getNextPrestigeThreshold(level: number, base: number): number {
+  return base * Math.pow(2, level)
+}
