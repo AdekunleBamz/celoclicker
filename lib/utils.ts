@@ -670,3 +670,8 @@ export function canAffordUpgrade(balance: number, cost: number): boolean {
 export function calcComboTimeout(base: number, prestige: number): number {
   return Math.max(500, base - prestige * 100)
 }
+
+/** Returns true if a click should be a bonus click. */
+export function isBonusClick(random: () => number, chance: number): boolean {
+  return random() < chance
+}
