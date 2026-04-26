@@ -127,3 +127,11 @@ export function hasConnector(connectors: readonly import('wagmi').Connector[], i
 export function getWalletEnvironmentLabel(): string {
   return isMiniPayBrowser() ? 'MiniPay Wallet' : 'Web Browser'
 }
+
+/**
+ * Returns true when the runtime environment is MiniPay.
+ * Useful for concise branching in UI components.
+ */
+export function isMiniPayEnvironment(): boolean {
+  return isMiniPayBrowser()
+}
