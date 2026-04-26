@@ -112,11 +112,11 @@ describe('hooks/useMiniPay hasConnector', () => {
 describe('hooks/useMiniPay getWalletEnvironmentLabel', () => {
   it('labels regular browser sessions', () => {
     vi.stubGlobal('window', {})
-    expect(getWalletEnvironmentLabel()).toBe('Browser')
+    expect(getWalletEnvironmentLabel()).toBe('Web Browser')
   })
 
   it('labels MiniPay browser sessions', () => {
     vi.stubGlobal('window', { ethereum: { isMiniPay: true } })
-    expect(getWalletEnvironmentLabel()).toBe('MiniPay')
+    expect(getWalletEnvironmentLabel()).toBe('MiniPay Wallet')
   })
 })
