@@ -5,6 +5,14 @@ import { EmptyState } from './EmptyState';
 import { formatAddress, formatNumber, isZeroAddress } from '@/lib/utils';
 import { LeaderboardTuple } from '@/lib/types';
 
+/** Returns the display label for a leaderboard rank index. */
+export function getLeaderboardRankLabel(index: number): string {
+  if (index === 0) return '🥇'
+  if (index === 1) return '🥈'
+  if (index === 2) return '🥉'
+  return `#${index + 1}`
+}
+
 /** Props for the LeaderboardModal component. */
 export interface LeaderboardModalProps {
   /** Whether the modal is visible. */
@@ -108,7 +116,7 @@ export const LeaderboardModal = memo(function LeaderboardModal({
                               'text-gray-500'
                             }`}
                           >
-                            {idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx + 1}`}
+                            {getLeaderboardRankLabel(idx)}
                           </div>
                           <div>
                             <div className={`font-mono text-sm ${isCurrentPlayer ? 'text-white font-bold' : 'text-gray-400'}`}>
