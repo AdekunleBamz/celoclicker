@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import {
   getAvailableFeeCurrencies,
+  getFeeCurrencyAvailabilityHint,
   getDefaultFeeCurrencyId,
   getFeeCurrencyCallout,
   getFeeCurrencies,
@@ -190,5 +191,15 @@ describe('lib/feeCurrencies token addresses', () => {
 
   it('has no token address for USDC off mainnet', () => {
     expect(getFeeCurrencyById('USDC', CELO_TESTNET_CHAIN_ID)?.tokenAddress).toBeUndefined()
+  })
+})
+
+describe('lib/feeCurrencies getFeeCurrencyAvailabilityHint', () => {
+  it('returns available hint for native CELO', () => {
+    expect(getFeeCurrencyAvailabilityHint('CELO', CELO_TESTNET_CHAIN_ID)).toBe('Available')
+  })
+
+  it('returns network switch hint for unavailable USDC', () => {
+    expect(getFeeCurrencyAvailabilityHint('USDC', CELO_TESTNET_CHAIN_ID)).toBe('Switch to Celo mainnet to enable')
   })
 })
