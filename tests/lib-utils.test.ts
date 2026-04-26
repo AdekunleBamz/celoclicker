@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { formatAddress, formatClicks, formatNumber, formatTokenAmount, isValidAddress, isZeroAddress, maxOfArray } from '../lib/utils'
+import { formatAddress, formatClicks, formatNumber, formatTokenAmount, isValidAddress, isZeroAddress, maxOfArray, shortAddress, toPercent } from '../lib/utils'
 
 describe('lib/utils formatNumber', () => {
   it('abbreviates thousands with a K suffix', () => {
-    expect(formatNumber(1500)).toBe('1.50K')
+    expect(formatNumber(1500)).toBe('1.5K')
   })
 
   it('abbreviates billion-scale values with a B suffix', () => {
@@ -11,15 +11,19 @@ describe('lib/utils formatNumber', () => {
   })
 
   it('preserves sign when abbreviating negative numbers', () => {
-    expect(formatNumber(-2500)).toBe('-2.50K')
+    expect(formatNumber(-2500)).toBe('-2.5K')
   })
 
   it('handles bigint values in the millions', () => {
-    expect(formatNumber(2500000n)).toBe('2.50M')
+    expect(formatNumber(2500000n)).toBe('2.5M')
   })
 
   it('handles negative bigint values with suffixes', () => {
-    expect(formatNumber(-2500000n)).toBe('-2.50M')
+    expect(formatNumber(-2500000n)).toBe('-2.5M')
+  })
+
+  it('omits trailing decimal zeros in compact values', () => {
+    expect(formatNumber(1000)).toBe('1K')
   })
 
   it('returns zero for non-finite values', () => {
@@ -69,6 +73,16 @@ describe('lib/utils formatAddress', () => {
   })
 })
 
+describe('lib/utils shortAddress', () => {
+  it('does not truncate values that are 10 characters long', () => {
+    expect(shortAddress('0x12345678')).toBe('0x12345678')
+  })
+
+  it('trims whitespace and truncates long addresses', () => {
+    expect(shortAddress('  0x1234567890abcdef1234567890abcdef12345678  ')).toBe('0x1234...5678')
+  })
+})
+
 describe('lib/utils formatTokenAmount', () => {
   it('returns zero when the amount is blank', () => {
     expect(formatTokenAmount(undefined, 'CELO')).toBe('0 CELO')
@@ -95,11 +109,11 @@ describe('lib/utils formatTokenAmount', () => {
   })
 
   it('parses comma-formatted token balances', () => {
-    expect(formatTokenAmount('1,234.567', 'USDC')).toBe('1234.57 USDC')
+    expect(formatTokenAmount('1,234.567', 'USDC')).toBe('1,234.57 USDC')
   })
 
   it('parses comma-formatted balances with surrounding whitespace', () => {
-    expect(formatTokenAmount('  1,234.567  ', 'USDC')).toBe('1234.57 USDC')
+    expect(formatTokenAmount('  1,234.567  ', 'USDC')).toBe('1,234.57 USDC')
   })
 
   it('keeps three decimals for medium-sized token balances', () => {
@@ -172,5 +186,23 @@ describe('lib/utils maxOfArray', () => {
 describe('lib/utils formatClicks', () => {
   it('formats million values with one decimal M suffix', () => {
     expect(formatClicks(1_500_000)).toBe('1.5M')
+  })
+
+  it('omits trailing .0 for exact thousand values', () => {
+    expect(formatClicks(1_000)).toBe('1K')
+  })
+
+  it('preserves sign for negative compact values', () => {
+    expect(formatClicks(-2_500)).toBe('-2.5K')
+  })
+})
+
+describe('lib/utils toPercent', () => {
+  it('clamps values above 100 percent', () => {
+    expect(toPercent(150, 100)).toBe(100)
+  })
+
+  it('clamps negative values to zero percent', () => {
+    expect(toPercent(-20, 100)).toBe(0)
   })
 })

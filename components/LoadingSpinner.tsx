@@ -10,11 +10,14 @@ export interface LoadingSpinnerProps {
   size?: 'sm' | 'md' | 'lg' | 'xl'
   /** Accessibility label for screen readers. */
   label?: string
+  /** Optional classes for the outer wrapper. */
+  className?: string
 }
 
 export const LoadingSpinner = memo(function LoadingSpinner({ 
   size = 'md',
-  label = 'Loading'
+  label = 'Loading',
+  className = ''
 }: LoadingSpinnerProps) {
   const sizeClasses = {
     sm: 'w-4 h-4',
@@ -27,7 +30,7 @@ export const LoadingSpinner = memo(function LoadingSpinner({
     <div
       aria-live="polite"
       role="status"
-      className="inline-flex items-center justify-center"
+      className={`inline-flex items-center justify-center ${className}`.trim()}
     >
       <span className="sr-only">{label}</span>
       <span

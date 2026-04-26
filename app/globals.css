@@ -12,6 +12,7 @@
     --accent: #ec4899;
     --success: #10b981;
     --error: #ef4444;
+    --focus-ring: rgba(53, 208, 127, 0.95);
   }
 
   * {
@@ -19,7 +20,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--celo-green);
+    outline: 2px solid var(--focus-ring);
     outline-offset: 4px;
     box-shadow: 0 0 0 4px rgba(53, 208, 127, 0.4);
   }
@@ -37,6 +38,17 @@
 }
 
 @layer utilities {
+  .focus-ring-game {
+    outline: 2px solid transparent;
+    outline-offset: 4px;
+    transition: box-shadow 0.2s ease, outline-color 0.2s ease;
+  }
+
+  .focus-ring-game:focus-visible {
+    outline-color: var(--focus-ring);
+    box-shadow: 0 0 0 4px rgba(53, 208, 127, 0.35);
+  }
+
   .pixel-font {
     font-family: 'Press Start 2P', cursive;
   }
@@ -69,15 +81,17 @@
     box-shadow:
       0 8px 32px 0 rgba(0, 0, 0, 0.37),
       inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .glass-game:hover {
-    border-color: rgba(147, 51, 234, 0.4);
-    background: rgba(99, 102, 241, 0.15);
-    box-shadow:
-      0 12px 48px 0 rgba(0, 0, 0, 0.5),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  @media (hover: hover) and (pointer: fine) {
+    .glass-game:hover {
+      border-color: rgba(147, 51, 234, 0.4);
+      background: rgba(99, 102, 241, 0.15);
+      box-shadow:
+        0 12px 48px 0 rgba(0, 0, 0, 0.5),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
   }
 
   .animate-bounce-slow {

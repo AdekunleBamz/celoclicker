@@ -5,7 +5,7 @@ import { MetadataRoute } from 'next'
  * Controls how search engine crawlers interact with the site.
  */
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://celoclicker.vercel.app'
+  const baseUrl = (process.env.NEXT_PUBLIC_APP_URL?.trim() || 'https://celoclicker.vercel.app').replace(/\/+$/, '')
   return {
     rules: {
       userAgent: '*',

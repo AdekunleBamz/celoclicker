@@ -24,7 +24,7 @@ export const ContractWarning = memo(function ContractWarning() {
           onClick={() => setDismissed(true)}
           type="button"
           aria-label="Dismiss contract configuration warning"
-          className="ml-auto shrink-0 text-yellow-300 hover:text-white text-sm px-2 py-1 rounded hover:bg-yellow-500/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300/70"
+          className="focus-ring-game ml-auto shrink-0 text-yellow-300 hover:text-white text-sm px-2 py-1 rounded hover:bg-yellow-500/30 transition-colors"
         >
           ✕
         </button>
