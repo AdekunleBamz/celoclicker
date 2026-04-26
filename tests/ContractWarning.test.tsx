@@ -1,21 +1,28 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { ContractWarning } from '../components/ContractWarning'
 import { useContractConfig } from '@/hooks/useContractConfig'
 import { CONTRACT_ADDRESS_ENV_KEY } from '@/lib/constants'
 
-jest.mock('@/hooks/useContractConfig', () => ({
-  useContractConfig: jest.fn()
+vi.mock('@/hooks/useContractConfig', () => ({
+  useContractConfig: vi.fn()
 }))
+
+beforeEach(() => {
+  vi.clearAllMocks()
+})
+
+const mockedUseContractConfig = vi.mocked(useContractConfig)
 
 describe('ContractWarning', () => {
   it('renders nothing when contract is valid', () => {
-    ;(useContractConfig as jest.Mock).mockReturnValue({ isValid: true })
+    mockedUseContractConfig.mockReturnValue({ isValid: true } as never)
     const { container } = render(<ContractWarning />)
     expect(container).toBeEmptyDOMElement()
   })
 
   it('renders warning when contract is invalid', () => {
-    ;(useContractConfig as jest.Mock).mockReturnValue({ isValid: false })
+    mockedUseContractConfig.mockReturnValue({ isValid: false } as never)
     render(<ContractWarning />)
     
     expect(screen.getByRole('alert')).toBeInTheDocument()
