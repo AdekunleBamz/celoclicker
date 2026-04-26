@@ -54,8 +54,8 @@ export const Button = memo(function Button({
 
   return (
     <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={disabled ? undefined : { scale: 1.02 }}
+      whileTap={disabled ? undefined : { scale: 0.98 }}
       type={type}
       disabled={disabled}
       aria-disabled={disabled ? 'true' : undefined}
