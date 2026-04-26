@@ -87,7 +87,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
   // Show a loading screen until the app is mounted on the client
   if (!mounted || !config) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-950 via-indigo-950 to-purple-950">
+      <div
+        className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-950 via-indigo-950 to-purple-950"
+        role="status"
+        aria-live="polite"
+        aria-busy="true"
+      >
         <div className="text-center flex flex-col items-center">
           <div className="mb-4">
             <LoadingSpinner size="lg" />
