@@ -68,7 +68,9 @@ export function isValidAddressFormat(address: string): boolean {
 
 /** Returns an accessibility-friendly label for a wallet address. */
 export function addressAccessibilityLabel(address: string): string {
-  return "Wallet " + address.slice(0, 6) + "..." + address.slice(-4)
+  const normalized = address.trim()
+  if (normalized.length <= 10) return "Wallet " + normalized
+  return "Wallet " + normalized.slice(0, 6) + "..." + normalized.slice(-4)
 }
 
 /** Returns a CSS color string for a connection status. */
