@@ -269,3 +269,12 @@ export function isValidTokenAmount(amount: string): boolean {
   const n = parseFloat(amount.trim())
   return Number.isFinite(n) && n >= 0
 }
+
+/**
+ * Returns true when the leaderboard rank is a valid positive integer.
+ *
+ * @param rank - The rank number to validate.
+ */
+export function isValidLeaderboardRank(rank: number): boolean {
+  return Number.isInteger(rank) && rank >= 1
+}
