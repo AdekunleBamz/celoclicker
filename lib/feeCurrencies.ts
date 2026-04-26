@@ -218,3 +218,12 @@ export function getFeeCurrencyDisplayName(id: FeeCurrencyId, chainId?: number): 
   if (!config || !config.isAvailable) return id
   return config.label
 }
+
+/**
+ * Counts how many fee currencies are available on the given chain.
+ *
+ * @param chainId - Optional chain ID.
+ */
+export function countAvailableFeeCurrencies(chainId?: number): number {
+  return getAvailableFeeCurrencies(chainId).length
+}
