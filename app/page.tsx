@@ -156,7 +156,7 @@ export default function Home() {
       return
     }
 
-    if (isPending || isConfirming) {
+    if (isTxBusy) {
       return // Prevent multiple clicks while transaction is pending
     }
 
@@ -194,7 +194,7 @@ export default function Home() {
     }, GAME_CONFIG.ANIMATION_DURATION.FLOATING_NUMBER)
 
     return () => clearTimeout(timer)
-  }, [isConnected, isContractValid, isPending, isConfirming, clickPower, multiplierLevel, contractAddress, celoClickerABI, transactionOverrides, writeContract])
+  }, [isConnected, isContractValid, isTxBusy, clickPower, multiplierLevel, contractAddress, celoClickerABI, transactionOverrides, writeContract])
 
   const handleUpgrade = useCallback((type: 'clickPower' | 'autoClicker' | 'multiplier') => {
     if (!isConnected) {
