@@ -35,6 +35,7 @@ export const viewport = {
  */
 export const metadata: Metadata = {
   metadataBase: appOrigin,
+  applicationName: APP_NAME,
   title: {
     default: `${APP_NAME} | On-Chain Idle Game`,
     template: `%s | ${APP_NAME}`,
@@ -68,6 +69,14 @@ export const metadata: Metadata = {
     description: 'Addictive on-chain clicker game on Celo',
     images: ['/icon.png'],
     creator: '@AdekunleBamz',
+  },
+  appleWebApp: {
+    title: APP_NAME,
+    capable: true,
+    statusBarStyle: 'black-translucent',
+  },
+  alternates: {
+    canonical: '/',
   },
   other: {
     'og:logo': logoUrl,
