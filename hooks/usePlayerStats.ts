@@ -168,3 +168,19 @@ export function avgPointsPerClick(totalPoints: bigint, totalClicks: bigint): num
   if (totalClicks === 0n) return 0
   return Number(totalPoints) / Number(totalClicks)
 }
+
+/**
+ * Returns a display string for the combined upgrade summary.
+ * E.g. "CP:3 AC:2 MP:1".
+ *
+ * @param clickPower - Click power upgrade level.
+ * @param autoClickerLevel - Auto-clicker upgrade level.
+ * @param multiplierLevel - Multiplier upgrade level.
+ */
+export function upgradeSummary(
+  clickPower: bigint,
+  autoClickerLevel: bigint,
+  multiplierLevel: bigint
+): string {
+  return `CP:${clickPower} AC:${autoClickerLevel} MP:${multiplierLevel}`
+}
