@@ -106,3 +106,80 @@ export interface PlayerRank {
  * Describes the connectivity state of the user's wallet.
  */
 export type NetworkStatus = 'connected' | 'disconnected' | 'connecting' | 'wrong-chain'
+
+/**
+ * Tracks statistics for a single play session.
+ */
+export interface GameSessionStats {
+  /** Total manual clicks made in this session. */
+  manualClicks: number
+  /** Total auto-clicker income earned in this session. */
+  autoIncome: number
+  /** Duration of the session in milliseconds. */
+  durationMs: number
+  /** Timestamp when the session started. */
+  startedAt: number
+}
+
+/**
+ * Tracks the current state of the player's click combo chain.
+ */
+export interface ComboState {
+  /** Current combo depth (number of consecutive clicks). */
+  count: number
+  /** Timestamp of the most recent click in the chain. */
+  lastClickAt: number
+  /** Whether the combo is currently active. */
+  isActive: boolean
+}
+
+/** Union type for the four achievement tier labels. */
+export type AchievementTier = 'Bronze' | 'Silver' | 'Gold' | 'Legend'
+
+/** Discriminated string union for upgrade type keys used across the game. */
+export type UpgradeKey = 'CLICK_POWER' | 'AUTO_CLICKER' | 'MULTIPLIER'
+
+/**
+ * Describes a single click event recorded by the game.
+ */
+export interface ClickEvent {
+  /** Timestamp of the click in milliseconds. */
+  timestamp: number
+  /** Point value earned from this click including multipliers. */
+  value: number
+  /** Whether this click triggered a bonus reward. */
+  isBonus: boolean
+}
+
+/**
+ * Represents offline earnings that accumulated while the player was away.
+ */
+export interface OfflineEarnings {
+  /** Points accumulated offline. */
+  points: number
+  /** Duration of absence in milliseconds. */
+  absenceMs: number
+  /** Whether the earnings were already claimed. */
+  claimed: boolean
+}
+
+/** Visual variant for toast notification messages. */
+export type ToastVariant = 'info' | 'success' | 'warning' | 'error'
+
+/** Status of a contract read or write call throughout its lifecycle. */
+export type ContractCallStatus = 'idle' | 'pending' | 'mining' | 'confirmed' | 'reverted'
+
+/**
+ * Decoded player statistics object derived from the on-chain tuple.
+ */
+export interface PlayerStats {
+  points: bigint
+  clickPower: bigint
+  autoClickerLevel: bigint
+  multiplierLevel: bigint
+  totalClicks: bigint
+  gamesPlayed: bigint
+}
+
+/** Direction used when sorting leaderboard or history entries. */
+export type SortOrder = 'asc' | 'desc'
