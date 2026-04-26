@@ -35,6 +35,11 @@ describe('Button', () => {
     expect(screen.getByText('Disabled').closest('button')).toBeDisabled()
   })
 
+  it('adds aria-disabled when disabled', () => {
+    render(<Button disabled>Disabled A11y</Button>)
+    expect(screen.getByRole('button', { name: 'Disabled A11y' })).toHaveAttribute('aria-disabled', 'true')
+  })
+
   it('defaults button type to "button"', () => {
     render(<Button>Type Check</Button>)
     expect(screen.getByRole('button', { name: 'Type Check' })).toHaveAttribute('type', 'button')
