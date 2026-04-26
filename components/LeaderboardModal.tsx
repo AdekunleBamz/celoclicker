@@ -52,7 +52,7 @@ export const LeaderboardModal = memo(function LeaderboardModal({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 bg-black/80 backdrop-blur-[2px] flex items-center justify-center z-50 p-4"
           onClick={onClose}
         >
           <motion.div
@@ -64,7 +64,7 @@ export const LeaderboardModal = memo(function LeaderboardModal({
             role="dialog"
             aria-modal="true"
             aria-labelledby="leaderboard-title"
-            className={`glass-game rounded-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto ${className}`.trim()}
+            className={`glass-game rounded-2xl p-6 max-w-2xl w-full max-h-[85vh] sm:max-h-[80vh] overflow-y-auto ${className}`.trim()}
           >
             <h2 id="leaderboard-title" className="text-3xl font-bold text-purple-400 mb-6 pixel-font text-center">
               LEADERBOARD
