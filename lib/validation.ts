@@ -258,3 +258,14 @@ export function isValidUrl(url: string): boolean {
 export function isValidMultiplier(m: number): boolean {
   return Number.isFinite(m) && m >= 1
 }
+
+/**
+ * Returns true when the given token amount string represents a parseable non-negative value.
+ *
+ * @param amount - The amount string to validate (e.g. "1.5", "0.001").
+ */
+export function isValidTokenAmount(amount: string): boolean {
+  if (typeof amount !== 'string' || !amount.trim()) return false
+  const n = parseFloat(amount.trim())
+  return Number.isFinite(n) && n >= 0
+}
