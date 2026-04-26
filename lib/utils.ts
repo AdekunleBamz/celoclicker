@@ -633,3 +633,8 @@ export function normalizeArray(arr: number[]): number[] {
 export function allPositive(arr: number[]): boolean {
   return arr.every(v => v > 0)
 }
+
+/** Merges prestige and combo multipliers for total click value. */
+export function calcCombinedClickValue(base: number, prestige: number, combo: number): number {
+  return base * prestige * combo
+}
