@@ -39,4 +39,9 @@ describe('StatSkeleton', () => {
     const { container } = render(<StatSkeleton count={1} animated={false} />)
     expect(container.querySelectorAll('.animate-pulse').length).toBe(0)
   })
+
+  it('renders one card element per requested count', () => {
+    render(<StatSkeleton count={4} />)
+    expect(screen.getAllByTestId('stat-skeleton-card')).toHaveLength(4)
+  })
 })
