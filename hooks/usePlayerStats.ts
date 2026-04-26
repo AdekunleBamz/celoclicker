@@ -119,3 +119,19 @@ export function effectiveClickValue(
   if (multiplierLevel === 0n) return clickPower
   return clickPower * (baseMultiplier ** multiplierLevel)
 }
+
+/**
+ * Returns a short rank label based on total games played.
+ * Useful for showing player experience tier in the UI.
+ *
+ * @param gamesPlayed - Total number of game sessions completed.
+ */
+export function playerRankLabel(gamesPlayed: bigint): string {
+  const n = Number(gamesPlayed)
+  if (n === 0) return 'Newcomer'
+  if (n < 5) return 'Rookie'
+  if (n < 20) return 'Player'
+  if (n < 50) return 'Veteran'
+  if (n < 100) return 'Elite'
+  return 'Legend'
+}
