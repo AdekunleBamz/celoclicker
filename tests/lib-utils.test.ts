@@ -3,7 +3,7 @@ import { formatAddress, formatClicks, formatNumber, formatTokenAmount, isValidAd
 
 describe('lib/utils formatNumber', () => {
   it('abbreviates thousands with a K suffix', () => {
-    expect(formatNumber(1500)).toBe('1.50K')
+    expect(formatNumber(1500)).toBe('1.5K')
   })
 
   it('abbreviates billion-scale values with a B suffix', () => {
@@ -11,15 +11,19 @@ describe('lib/utils formatNumber', () => {
   })
 
   it('preserves sign when abbreviating negative numbers', () => {
-    expect(formatNumber(-2500)).toBe('-2.50K')
+    expect(formatNumber(-2500)).toBe('-2.5K')
   })
 
   it('handles bigint values in the millions', () => {
-    expect(formatNumber(2500000n)).toBe('2.50M')
+    expect(formatNumber(2500000n)).toBe('2.5M')
   })
 
   it('handles negative bigint values with suffixes', () => {
-    expect(formatNumber(-2500000n)).toBe('-2.50M')
+    expect(formatNumber(-2500000n)).toBe('-2.5M')
+  })
+
+  it('omits trailing decimal zeros in compact values', () => {
+    expect(formatNumber(1000)).toBe('1K')
   })
 
   it('returns zero for non-finite values', () => {
