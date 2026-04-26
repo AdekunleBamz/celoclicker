@@ -628,3 +628,8 @@ export function normalizeArray(arr: number[]): number[] {
   if (max === min) return arr.map(() => 0)
   return arr.map(v => (v - min) / (max - min))
 }
+
+/** Returns true if all numbers in array are positive. */
+export function allPositive(arr: number[]): boolean {
+  return arr.every(v => v > 0)
+}
