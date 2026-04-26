@@ -89,3 +89,16 @@ export function estimateAutoClickerPps(
   const pointsPerTick = Number(autoClickerLevel * pointsPerLevel)
   return (pointsPerTick / intervalMs) * 1000
 }
+
+/**
+ * Returns a progress fraction (0–1) towards the next upgrade level.
+ * Clamps the output to the [0, 1] range.
+ *
+ * @param currentPoints - The player's current point balance.
+ * @param upgradeCost - The cost of the next upgrade level.
+ */
+export function upgradeProgress(currentPoints: bigint, upgradeCost: bigint): number {
+  if (upgradeCost === 0n) return 1
+  const ratio = Number(currentPoints) / Number(upgradeCost)
+  return Math.min(Math.max(ratio, 0), 1)
+}
