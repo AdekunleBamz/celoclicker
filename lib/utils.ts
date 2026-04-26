@@ -590,3 +590,8 @@ export function avgOfArray(arr: number[]): number {
 export function filterFinite(arr: number[]): number[] {
   return arr.filter(v => Number.isFinite(v))
 }
+
+/** Counts elements in an array satisfying a predicate. */
+export function countWhere<T>(arr: T[], predicate: (item: T) => boolean): number {
+  return arr.filter(predicate).length
+}
