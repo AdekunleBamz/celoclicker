@@ -1,6 +1,6 @@
 import { beforeEach, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { UpgradeCard } from '../components/UpgradeCard'
+import { getUpgradeActionLabel, UpgradeCard } from '../components/UpgradeCard'
 
 describe('UpgradeCard', () => {
   const defaultProps = {
@@ -55,5 +55,11 @@ describe('UpgradeCard', () => {
     
     expect(defaultProps.onUpgrade).not.toHaveBeenCalled()
     expect(onInsufficientFunds).toHaveBeenCalledTimes(1)
+  })
+})
+
+describe('UpgradeCard helpers', () => {
+  it('returns processing label while loading', () => {
+    expect(getUpgradeActionLabel(true, 'BUY')).toBe('PROCESSING')
   })
 })
