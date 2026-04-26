@@ -411,6 +411,7 @@ export function formatPercent(value: number): string {
  */
 export function maxOfArray(arr: number[]): number {
   if (arr.length === 0) return 0
+  if (arr.length === 1) return arr[0]
   return arr.slice(1).reduce((a, b) => Math.max(a, b), arr[0])
 }
 
