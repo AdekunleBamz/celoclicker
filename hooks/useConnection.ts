@@ -82,3 +82,14 @@ export function isValidAddressFormat(address: string | undefined): boolean {
   if (!address) return false
   return /^0x[0-9a-fA-F]{40}$/.test(address)
 }
+
+/**
+ * Returns a masked version of the address suitable for accessibility labels.
+ * E.g. "0xAbCd...1234" -> "wallet ending in 1234".
+ *
+ * @param address - The wallet address string.
+ */
+export function addressAccessibilityLabel(address: string | undefined): string {
+  if (!address || address.length < 8) return 'unknown wallet'
+  return `wallet ending in ${address.slice(-4)}`
+}
