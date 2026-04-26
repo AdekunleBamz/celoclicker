@@ -11,6 +11,13 @@ export function resolveContractAddress(value?: string): `0x${string}` {
 }
 
 /**
+ * Returns true when a resolved contract address can be safely used in the app.
+ */
+export function isConfiguredContractAddress(address: string): boolean {
+  return isValidAddress(address) && !isZeroAddress(address)
+}
+
+/**
  * Provides the current CeloClicker contract configuration.
  * Resolves the address from environment variables and checks its validity.
  * 
@@ -24,7 +31,7 @@ export function useContractConfig(): {
   const contractAddress = resolveContractAddress(process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT)
 
   const isValid = useMemo(() => {
-    return isValidAddress(contractAddress) && !isZeroAddress(contractAddress)
+    return isConfiguredContractAddress(contractAddress)
   }, [contractAddress])
 
   return {
