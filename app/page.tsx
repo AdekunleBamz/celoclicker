@@ -376,7 +376,7 @@ export default function Home() {
             {autoClickerLevel > 0n && pendingAuto && Number(pendingAuto) > 0 && (
               <button
                 onClick={handleClaimAuto}
-                disabled={isPending || isConfirming}
+                disabled={isTxBusy}
                 type="button"
                 aria-label={`Claim ${pendingAutoPointsLabel} auto clicker points`}
                 className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-bold hover:scale-105 transition-transform glow-purple disabled:opacity-50 cursor-pointer relative z-10"
@@ -425,7 +425,7 @@ export default function Home() {
                   onClick={handleClick}
                   whileTap={{ scale: 0.9 }}
                   whileHover={{ scale: 1.05 }}
-                  disabled={isPending || isConfirming}
+                  disabled={isTxBusy}
                   type="button"
                   aria-label="Click to earn points"
                   className="w-64 h-64 bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 rounded-full flex items-center justify-center text-8xl font-bold glow-purple hover:glow-gold transition-all duration-300 disabled:opacity-50 relative overflow-hidden cursor-pointer z-30"
@@ -545,8 +545,8 @@ export default function Home() {
                 points={points}
                 color="text-purple-400"
                 onUpgrade={() => handleUpgrade('clickPower')}
-                disabled={isPending || isConfirming}
-                isLoading={isPending || isConfirming}
+                disabled={isTxBusy}
+                isLoading={isTxBusy}
               />
               <UpgradeCard
                 title="Auto-Clicker"
@@ -555,8 +555,8 @@ export default function Home() {
                 points={points}
                 color="text-indigo-400"
                 onUpgrade={() => handleUpgrade('autoClicker')}
-                disabled={isPending || isConfirming}
-                isLoading={isPending || isConfirming}
+                disabled={isTxBusy}
+                isLoading={isTxBusy}
               />
               <UpgradeCard
                 title="Multiplier"
@@ -565,8 +565,8 @@ export default function Home() {
                 points={points}
                 color="text-pink-400"
                 onUpgrade={() => handleUpgrade('multiplier')}
-                disabled={isPending || isConfirming}
-                isLoading={isPending || isConfirming}
+                disabled={isTxBusy}
+                isLoading={isTxBusy}
               />
             </div>
 
