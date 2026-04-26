@@ -211,3 +211,15 @@ export function calcAutoClickerIncome(cps: number, elapsedMs: number): number {
   if (cps <= 0 || elapsedMs <= 0) return 0
   return Math.floor((cps * elapsedMs) / 1000)
 }
+
+/**
+ * Returns the click threshold required to reach the next prestige level.
+ * Each prestige level doubles the threshold from a base of 1,000,000.
+ *
+ * @param currentPrestige - The player's current prestige count.
+ */
+export function getNextPrestigeThreshold(currentPrestige: number): number {
+  const base = 1_000_000
+  if (currentPrestige <= 0) return base
+  return base * Math.pow(2, currentPrestige)
+}
