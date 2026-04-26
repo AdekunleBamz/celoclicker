@@ -265,3 +265,15 @@ export function sortFeeCurrencies(chainId?: number): FeeCurrencyConfig[] {
   const all = getFeeCurrencies(chainId)
   return [...all.filter((c) => c.isAvailable), ...all.filter((c) => !c.isAvailable)]
 }
+
+/**
+ * Returns a short availability hint for fee mode UI controls.
+ *
+ * @param id - The fee currency identifier.
+ * @param chainId - Optional chain ID for availability resolution.
+ */
+export function getFeeCurrencyAvailabilityHint(id: FeeCurrencyId, chainId?: number): string {
+  if (isFeeCurrencyAvailable(id, chainId)) return 'Available'
+  if (id === 'USDC') return 'Switch to Celo mainnet to enable'
+  return 'Unavailable'
+}
