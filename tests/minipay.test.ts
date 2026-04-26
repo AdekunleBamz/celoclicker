@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   getEthereumProvider,
   getInjectedConnector,
+  isMiniPayEnvironment,
   getWalletEnvironmentLabel,
   hasConnector,
   isMiniPayBrowser,
@@ -118,5 +119,17 @@ describe('hooks/useMiniPay getWalletEnvironmentLabel', () => {
   it('labels MiniPay browser sessions', () => {
     vi.stubGlobal('window', { ethereum: { isMiniPay: true } })
     expect(getWalletEnvironmentLabel()).toBe('MiniPay Wallet')
+  })
+})
+
+describe('hooks/useMiniPay isMiniPayEnvironment', () => {
+  it('returns false for non-MiniPay sessions', () => {
+    vi.stubGlobal('window', {})
+    expect(isMiniPayEnvironment()).toBe(false)
+  })
+
+  it('returns true when MiniPay provider is detected', () => {
+    vi.stubGlobal('window', { ethereum: { isMiniPay: true } })
+    expect(isMiniPayEnvironment()).toBe(true)
   })
 })
