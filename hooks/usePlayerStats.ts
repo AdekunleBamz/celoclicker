@@ -102,3 +102,20 @@ export function upgradeProgress(currentPoints: bigint, upgradeCost: bigint): num
   const ratio = Number(currentPoints) / Number(upgradeCost)
   return Math.min(Math.max(ratio, 0), 1)
 }
+
+/**
+ * Returns the effective clicks per point multiplied by the multiplier level.
+ * Useful for deriving total click value with upgrades applied.
+ *
+ * @param clickPower - Current click power level.
+ * @param multiplierLevel - Current multiplier upgrade level.
+ * @param baseMultiplier - Base multiplier value applied at level 1 (default 2).
+ */
+export function effectiveClickValue(
+  clickPower: bigint,
+  multiplierLevel: bigint,
+  baseMultiplier = 2n
+): bigint {
+  if (multiplierLevel === 0n) return clickPower
+  return clickPower * (baseMultiplier ** multiplierLevel)
+}
