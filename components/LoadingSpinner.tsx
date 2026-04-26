@@ -25,10 +25,16 @@ export const LoadingSpinner = memo(function LoadingSpinner({
 
   return (
     <div
-      aria-label="Loading"
+      aria-live="polite"
       role="status"
-      className={`${sizeClasses[size]} border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin`}
-    />
+      className="inline-flex items-center justify-center"
+    >
+      <span className="sr-only">{label}</span>
+      <span
+        aria-hidden="true"
+        className={`${sizeClasses[size]} border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin`}
+      />
+    </div>
   )
 })
 
