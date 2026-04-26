@@ -14,12 +14,14 @@ export interface ErrorBoundaryState {
   hasError: boolean
   /** The error object caught by the boundary. */
   error?: Error
+  /** Whether the error message was copied to clipboard. */
+  copied?: boolean
 }
 
 export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
     super(props)
-    this.state = { hasError: false }
+    this.state = { hasError: false, copied: false }
   }
 
   /**
@@ -53,7 +55,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
             <div className="flex flex-col gap-3">
               <button
                 onClick={() => {
-                  this.setState({ hasError: false, error: undefined })
+                  this.setState({ hasError: false, error: undefined, copied: false })
                   window.location.reload()
                 }}
                 className="px-6 py-3 bg-purple-500 hover:bg-purple-600 rounded-lg font-bold transition-colors w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-celo-green/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
@@ -64,11 +66,14 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
               </button>
               {this.state.error && (
                 <button
-                  onClick={() => navigator.clipboard?.writeText(this.state.error!.message)}
+                  onClick={async () => {
+                    await navigator.clipboard?.writeText(this.state.error!.message)
+                    this.setState({ copied: true })
+                  }}
                   type="button"
                   className="px-6 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-bold transition-colors w-full text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-celo-green/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
                 >
-                  Copy Error Message
+                  {this.state.copied ? 'Copied Error Message' : 'Copy Error Message'}
                 </button>
               )}
             </div>
