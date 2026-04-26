@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatBonus, formatPrestigeCount } from '../lib/game'
+import { formatBonus, formatCps, formatPrestigeCount } from '../lib/game'
 
 describe('game helpers: formatPrestigeCount', () => {
   it('formats positive counts with grouping', () => {
@@ -18,5 +18,15 @@ describe('game helpers: formatBonus', () => {
 
   it('formats decimal bonuses compactly', () => {
     expect(formatBonus(12.5)).toBe('+12.5')
+  })
+})
+
+describe('game helpers: formatCps', () => {
+  it('returns 0 CPS for invalid values', () => {
+    expect(formatCps(Number.NaN)).toBe('0 CPS')
+  })
+
+  it('omits trailing decimal zero for whole values', () => {
+    expect(formatCps(3)).toBe('3 CPS')
   })
 })
