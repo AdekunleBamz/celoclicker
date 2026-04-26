@@ -461,8 +461,12 @@ export default function Home() {
                   </AnimatePresence>
                 </motion.button>
 
-                <p className="mt-6 text-gray-400 pixel-font text-xs">
-                  {isPending ? '⏳ WAITING FOR WALLET...' : isConfirming ? '⏳ PROCESSING TRANSACTION...' : 'CLICK THE STAR!'}
+                <p className={`mt-6 pixel-font text-xs ${isPending || isConfirming ? 'text-celo-gold' : 'text-gray-400'}`}>
+                  {isPending
+                    ? '⏳ APPROVE IN WALLET...'
+                    : isConfirming
+                      ? '⏳ CONFIRMING ON CELO...'
+                      : 'CLICK THE STAR!'}
                 </p>
                 {(writeError || txError) && (
                   <p className="mt-2 text-red-400 text-xs" role="alert">
