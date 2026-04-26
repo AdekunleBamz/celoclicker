@@ -25,13 +25,17 @@ export const StatCard = memo(function StatCard({
   icon,
   className = ''
 }: StatCardProps) {
+  const valueText = String(value)
+
   return (
     <Card className={`p-3 transition-transform duration-200 hover:scale-[1.02] ${className}`.trim()} glass>
       <div className="text-gray-400 text-[10px] font-bold uppercase tracking-wider mb-1">{label}</div>
       <div className="flex items-center gap-2">
         {icon && <span aria-hidden="true" className="text-lg">{icon}</span>}
-        <div className={`text-xl font-bold ${valueColor}`}>{value}</div>
+        <div aria-label={`${label} value ${valueText}`} className={`text-xl font-bold tabular-nums ${valueColor}`}>{value}</div>
       </div>
     </Card>
   )
-}
+})
+
+StatCard.displayName = 'StatCard'
