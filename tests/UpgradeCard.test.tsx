@@ -1,6 +1,6 @@
 import { beforeEach, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { getUpgradeActionLabel, UpgradeCard } from '../components/UpgradeCard'
+import { formatUpgradeLevelText, getUpgradeActionLabel, UpgradeCard } from '../components/UpgradeCard'
 
 describe('UpgradeCard', () => {
   const defaultProps = {
@@ -61,5 +61,9 @@ describe('UpgradeCard', () => {
 describe('UpgradeCard helpers', () => {
   it('returns processing label while loading', () => {
     expect(getUpgradeActionLabel(true, 'BUY')).toBe('PROCESSING')
+  })
+
+  it('keeps existing level prefixes intact', () => {
+    expect(formatUpgradeLevelText('Level 3')).toBe('Level 3')
   })
 })
