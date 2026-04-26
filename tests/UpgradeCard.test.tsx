@@ -1,3 +1,4 @@
+import { beforeEach, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { UpgradeCard } from '../components/UpgradeCard'
 
@@ -8,11 +9,11 @@ describe('UpgradeCard', () => {
     cost: 100n,
     points: 500n,
     color: 'text-purple-400',
-    onUpgrade: jest.fn(),
+    onUpgrade: vi.fn(),
   }
 
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   it('renders title, level, and cost', () => {
@@ -45,7 +46,7 @@ describe('UpgradeCard', () => {
   })
 
   it('calls onInsufficientFunds when clicked without enough points', () => {
-    const onInsufficientFunds = jest.fn()
+    const onInsufficientFunds = vi.fn()
     render(<UpgradeCard {...defaultProps} points={50n} onInsufficientFunds={onInsufficientFunds} />)
     
     const button = screen.getByRole('button', { name: /Upgrade Test Upgrade/i })
