@@ -19,15 +19,16 @@ export function formatNumber(num: bigint | number): string {
 
   const abs = Math.abs(n)
   const sign = n < 0 ? '-' : ''
+  const compact = (value: number) => value.toFixed(2).replace(/\.?0+$/, '')
 
   if (abs >= 1_000_000_000) {
-    return sign + (abs / 1_000_000_000).toFixed(2) + 'B'
+    return sign + compact(abs / 1_000_000_000) + 'B'
   }
   if (abs >= 1_000_000) {
-    return sign + (abs / 1_000_000).toFixed(2) + 'M'
+    return sign + compact(abs / 1_000_000) + 'M'
   }
   if (abs >= 1_000) {
-    return sign + (abs / 1_000).toFixed(2) + 'K'
+    return sign + compact(abs / 1_000) + 'K'
   }
   return n.toLocaleString()
 }
