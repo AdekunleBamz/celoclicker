@@ -466,3 +466,14 @@ export function roundToDecimalPlaces(value: number, places: number): number {
 export function filterFinite(arr: number[]): number[] {
   return arr.filter(Number.isFinite)
 }
+
+/**
+ * Counts how many elements in an array satisfy a predicate.
+ *
+ * @param arr - Array to scan.
+ * @param predicate - Test function applied to each element.
+ * @returns Number of elements for which the predicate returns true.
+ */
+export function countWhere<T>(arr: T[], predicate: (item: T) => boolean): number {
+  return arr.reduce((count, item) => (predicate(item) ? count + 1 : count), 0)
+}
