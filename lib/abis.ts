@@ -246,3 +246,91 @@ export const celoClickerABI = [
     type: 'function',
   },
 ] as const
+
+/**
+ * Extracts all event names from the ABI.
+ * Useful for filtering events or building event type maps.
+ */
+export function getABIEventNames(abi: typeof celoClickerABI): string[] {
+  return abi
+    .filter((item) => item.type === 'event')
+    .map((item) => item.name)
+    .filter((name) => name !== undefined) as string[]
+}
+
+/**
+ * Counts the total number of function definitions in the ABI.
+ */
+export function countABIFunctions(abi: typeof celoClickerABI): number {
+  return abi.filter((item) => item.type === "function").length
+}
+
+/**
+ * Checks if the ABI includes a specific event by name.
+ */
+export function hasABIEvent(abi: typeof celoClickerABI, eventName: string): boolean {
+  return abi.some((item) => item.type === "event" && item.name === eventName)
+}
+
+/**
+ * Checks if the ABI includes a specific function by name.
+ */
+export function hasABIFunction(abi: typeof celoClickerABI, functionName: string): boolean {
+  return abi.some((item) => item.type === "function" && item.name === functionName)
+}
+
+/**
+ * Extracts the input parameter names from a function definition.
+ */
+export function getABIFunctionInputs(abi: typeof celoClickerABI, functionName: string): string[] {
+  const fn = abi.find((item) => item.type === "function" && item.name === functionName)
+  if (!fn || fn.type !== "function") return []
+  return (fn.inputs || []).map((input: any) => input.name).filter(Boolean)
+}
+
+/**
+ * Returns the total number of read-only functions in the ABI.
+ */
+export function countReadOnlyFunctions(abi: typeof celoClickerABI): number {
+  return abi.filter((item) => item.type === "function" && (item.stateMutability === "view" || item.stateMutability === "pure")).length
+}
+
+/**
+ * Returns a map of event names to their indexed parameter count.
+ */
+export function getABIEventIndexMap(abi: typeof celoClickerABI): Record<string, number> {
+  const map: Record<string, number> = {}
+  abi.filter((item) => item.type === "event").forEach((event: any) => {
+    const indexed = (event.inputs || []).filter((inp: any) => inp.indexed).length
+    if (event.name) map[event.name] = indexed
+  })
+  return map
+}
+
+/**
+ * Returns the state mutability of a function (view, pure, nonpayable, payable).
+ */
+export function getABIFunctionMutability(abi: typeof celoClickerABI, functionName: string): string | undefined {
+  const fn = abi.find((item) => item.type === "function" && item.name === functionName)
+  return fn && fn.type === "function" ? fn.stateMutability : undefined
+}
+
+/**
+ * Counts payable functions (those that accept ETH/CELO transfers).
+ */
+export function countPayableFunctions(abi: typeof celoClickerABI): number {
+  return abi.filter((item) => item.type === "function" && item.stateMutability === "payable").length
+}
+
+/**
+ * Groups ABI items by their type (event, function, etc.).
+ */
+export function groupABIByType(abi: typeof celoClickerABI): Record<string, any[]> {
+  const groups: Record<string, any[]> = {}
+  abi.forEach((item: any) => {
+    const type = item.type || "unknown"
+    if (!groups[type]) groups[type] = []
+    groups[type].push(item)
+  })
+  return groups
+}
