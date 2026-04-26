@@ -41,6 +41,7 @@ export const Button = memo(function Button({
   variant = 'primary',
   fullWidth = false,
   className = '',
+  type = 'button',
   ...props
 }: ButtonProps) {
   const variantClasses = {
@@ -54,6 +55,7 @@ export const Button = memo(function Button({
     <motion.button
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
+      type={type}
       className={`
         ${fullWidth ? 'w-full' : ''}
         ${variantClasses[variant]}
