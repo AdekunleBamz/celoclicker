@@ -283,7 +283,7 @@ export default function Home() {
   useMiniPayAutoConnect(connectors, connect, isConnected, isConnectingWallet)
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-6 sm:py-8 relative overflow-hidden">
       {/* Background particles */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
@@ -295,20 +295,24 @@ export default function Home() {
         <ContractWarning />
         
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="mx-auto mb-5 flex h-24 w-24 items-center justify-center rounded-[28px] border border-white/10 bg-black/20 p-3 shadow-[0_20px_60px_rgba(8,17,24,0.45)]">
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="mx-auto mb-4 sm:mb-5 flex h-20 w-20 sm:h-24 sm:w-24 items-center justify-center rounded-[24px] sm:rounded-[28px] border border-white/10 bg-black/20 p-3 shadow-[0_20px_60px_rgba(8,17,24,0.45)]">
             <Image src="/logo-mark.svg" alt="CeloClicker logo" width={72} height={72} priority className="h-full w-full" />
           </div>
-          <h1 className="text-6xl font-bold mb-2 bg-gradient-to-r from-celo-green via-celo-gold to-cyan-300 bg-clip-text text-transparent animate-pulse-glow pixel-font">
+          <h1 className="text-4xl sm:text-6xl font-bold mb-2 bg-gradient-to-r from-celo-green via-celo-gold to-cyan-300 bg-clip-text text-transparent animate-pulse-glow pixel-font">
             CELOCLICKER
           </h1>
-          <p className="text-gray-400 text-sm">Click • Upgrade • Dominate</p>
+          <p className="text-gray-400 text-xs sm:text-sm">Click • Upgrade • Dominate</p>
+          <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-celo-green/30 bg-celo-green/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-celo-green">
+            <span aria-hidden="true">{selectedFeeCurrency.id === 'USDC' ? '💵' : '⛽'}</span>
+            Fee Mode: {selectedFeeCurrency.label}
+          </div>
           <p className="text-gray-500 text-xs mt-3 max-w-xl mx-auto">
             Gameplay still runs on points. The currency switch below only changes how transaction fees are paid: CELO on web by default, USDCm on MiniPay by default.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* Left Column - Stats */}
           <div role="region" aria-label="Player statistics" className="glass-game rounded-2xl p-6 space-y-4">
             <h2 className="text-2xl font-bold text-purple-400 mb-4 pixel-font">STATS</h2>
@@ -411,9 +415,17 @@ export default function Home() {
                         openConnectModal()
                       }}
                       type="button"
-                      className="px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-bold hover:scale-105 transition-transform glow-purple"
+                      aria-busy={isConnectingWallet || isConnectingAccount}
+                      className="px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-bold hover:scale-105 transition-transform glow-purple focus-ring-game"
                     >
-                      {isConnectingWallet || isConnectingAccount ? 'Connecting...' : isMiniPay ? 'Connect MiniPay' : 'Connect Wallet'}
+                      {isConnectingWallet || isConnectingAccount ? (
+                        <span className="flex items-center gap-2">
+                          <span className="h-3 w-3 rounded-full border-2 border-white/40 border-t-white animate-spin" />
+                          Connecting...
+                        </span>
+                      ) : (
+                        isMiniPay ? 'Connect MiniPay' : 'Connect Wallet'
+                      )}
                     </button>
                   )}
                 </ConnectButton.Custom>
@@ -449,12 +461,17 @@ export default function Home() {
                   </AnimatePresence>
                 </motion.button>
 
-                <p className="mt-6 text-gray-400 pixel-font text-xs">
-                  {isPending ? '⏳ WAITING FOR WALLET...' : isConfirming ? '⏳ PROCESSING TRANSACTION...' : 'CLICK THE STAR!'}
+                <p className={`mt-6 pixel-font text-xs ${isPending || isConfirming ? 'text-celo-gold' : 'text-gray-400'}`}>
+                  {isPending
+                    ? '⏳ APPROVE IN WALLET...'
+                    : isConfirming
+                      ? '⏳ CONFIRMING ON CELO...'
+                      : 'CLICK THE STAR!'}
                 </p>
                 {(writeError || txError) && (
-                  <p className="mt-2 text-red-400 text-xs" role="alert">
-                    Error: {writeError?.message?.includes('user rejected') 
+                  <p className="mt-2 max-w-sm text-center text-red-300 text-xs leading-relaxed break-words" role="alert">
+                    Transaction error:{' '}
+                    {writeError?.message?.includes('user rejected')
                       ? 'Transaction was rejected. Please try again.' 
                       : writeError?.message?.includes('insufficient funds')
                       ? 'Insufficient funds for gas. Please check your balance.'
@@ -463,8 +480,8 @@ export default function Home() {
                 )}
 
                 <div className="mt-4 text-center">
-                  <div className="text-2xl font-bold text-celo-green">{clickCount}</div>
-                  <div className="text-xs text-gray-500">Session Clicks</div>
+                  <div className="text-3xl font-extrabold text-celo-green tabular-nums">{formatNumber(clickCount)}</div>
+                  <div className="text-[10px] uppercase tracking-wider text-gray-500">Session Clicks</div>
                 </div>
               </>
             )}
@@ -499,13 +516,16 @@ export default function Home() {
                         setSelectedFeeCurrencyId(currency.id)
                       }}
                       disabled={!currency.isAvailable}
-                      className={`rounded-lg border px-3 py-3 text-left transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
+                      className={`focus-ring-game rounded-lg border px-3 py-3 text-left transition-all disabled:opacity-40 disabled:cursor-not-allowed ${
                         isSelected
-                          ? 'border-celo-green bg-celo-green/20'
+                          ? 'border-celo-green bg-celo-green/20 shadow-[0_0_0_1px_rgba(53,208,127,0.3)]'
                           : 'border-white/10 bg-black/20 hover:border-celo-green/40'
                       }`}
                     >
-                      <div className="font-bold">{currency.label}</div>
+                      <div className="font-bold flex items-center gap-2">
+                        {currency.label}
+                        {isSelected && <span className="text-celo-green text-xs">● Active</span>}
+                      </div>
                       <div className="text-xs text-gray-400 mt-1">{currency.description}</div>
                     </button>
                   )
@@ -627,12 +647,14 @@ export default function Home() {
                     const pts = pointsList[idx]
                     
                     if (!addr || isZeroAddress(addr)) return null
+                    const isCurrentPlayer = addr.toLowerCase() === address?.toLowerCase()
+                    const rankLabel = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx + 1}`
 
                     return (
                       <div
                           key={`${addr}-${idx}`}
                         className={`flex justify-between items-center p-4 rounded-lg ${
-                          addr === address ? 'bg-purple-500/30 border-2 border-purple-400' : 'bg-black/20'
+                          isCurrentPlayer ? 'bg-purple-500/30 border-2 border-purple-400' : 'bg-black/20'
                         }`}
                       >
                         <div className="flex items-center gap-4">
@@ -642,11 +664,12 @@ export default function Home() {
                             idx === 2 ? 'text-orange-400' : 
                             'text-gray-500'
                           }`}>
-                            #{idx + 1}
+                            {rankLabel}
                           </div>
                           <div>
-                            <div className="font-mono text-sm text-gray-400">
+                            <div className={`font-mono text-sm ${isCurrentPlayer ? 'text-white font-bold' : 'text-gray-400'}`}>
                               {formatAddress(addr)}
+                              {isCurrentPlayer && <span className="ml-2 rounded-full bg-purple-500 px-1.5 py-0.5 text-[10px] text-white">YOU</span>}
                             </div>
                           </div>
                         </div>
