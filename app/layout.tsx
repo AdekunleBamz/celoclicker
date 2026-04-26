@@ -35,6 +35,7 @@ export const viewport = {
  */
 export const metadata: Metadata = {
   metadataBase: appOrigin,
+  applicationName: APP_NAME,
   title: {
     default: `${APP_NAME} | On-Chain Idle Game`,
     template: `%s | ${APP_NAME}`,
