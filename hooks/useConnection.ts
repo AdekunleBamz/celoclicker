@@ -65,3 +65,8 @@ export function normaliseAddress(address: string): string {
 export function isValidAddressFormat(address: string): boolean {
   return /^0x[0-9a-fA-F]{40}$/.test(address)
 }
+
+/** Returns an accessibility-friendly label for a wallet address. */
+export function addressAccessibilityLabel(address: string): string {
+  return "Wallet " + address.slice(0, 6) + "..." + address.slice(-4)
+}
