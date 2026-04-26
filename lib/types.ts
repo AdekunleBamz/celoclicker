@@ -120,3 +120,15 @@ export interface GameSessionStats {
   /** Timestamp when the session started. */
   startedAt: number
 }
+
+/**
+ * Tracks the current state of the player's click combo chain.
+ */
+export interface ComboState {
+  /** Current combo depth (number of consecutive clicks). */
+  count: number
+  /** Timestamp of the most recent click in the chain. */
+  lastClickAt: number
+  /** Whether the combo is currently active. */
+  isActive: boolean
+}
