@@ -3,6 +3,14 @@ import { celoClickerABI } from '@/lib/abis'
 import { isValidAddress, isZeroAddress, ZERO_ADDRESS } from '@/lib/utils'
 
 /**
+ * Resolves and normalizes a contract address from an optional env value.
+ */
+export function resolveContractAddress(value?: string): `0x${string}` {
+  const normalized = value?.trim() || ZERO_ADDRESS
+  return normalized.toLowerCase() as `0x${string}`
+}
+
+/**
  * Provides the current CeloClicker contract configuration.
  * Resolves the address from environment variables and checks its validity.
  * 
@@ -13,14 +21,14 @@ export function useContractConfig(): {
   abi: typeof celoClickerABI
   isValid: boolean
 } {
-  const contractAddress = process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT || ZERO_ADDRESS
+  const contractAddress = resolveContractAddress(process.env.NEXT_PUBLIC_CELOCLICKER_CONTRACT)
 
   const isValid = useMemo(() => {
     return isValidAddress(contractAddress) && !isZeroAddress(contractAddress)
   }, [contractAddress])
 
   return {
-    address: contractAddress.toLowerCase() as `0x${string}`,
+    address: contractAddress,
     abi: celoClickerABI,
     isValid,
   }
