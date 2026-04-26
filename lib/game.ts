@@ -64,7 +64,8 @@ export function calcNextAchievementThreshold(currentThreshold: number): number {
  * @returns Formatted prestige string.
  */
 export function formatPrestigeCount(n: number): string {
-  return `Prestige x${n}`
+  const safeCount = Number.isFinite(n) ? Math.max(0, Math.floor(n)) : 0
+  return `Prestige x${safeCount.toLocaleString()}`
 }
 
 /**
