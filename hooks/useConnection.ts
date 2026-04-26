@@ -49,3 +49,13 @@ export function connectionStateLabel(isConnected: boolean, isConnecting: boolean
 export function isWalletBusy(isConnecting: boolean, isReconnecting: boolean): boolean {
   return isConnecting || isReconnecting
 }
+
+/**
+ * Normalises a wallet address to lowercase for consistent comparisons.
+ * Returns undefined when address is not provided.
+ *
+ * @param address - The 0x-prefixed wallet address.
+ */
+export function normaliseAddress(address: string | undefined): string | undefined {
+  return address ? address.toLowerCase() : undefined
+}
