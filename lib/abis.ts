@@ -271,3 +271,10 @@ export function countABIFunctions(abi: typeof celoClickerABI): number {
 export function hasABIEvent(abi: typeof celoClickerABI, eventName: string): boolean {
   return abi.some((item) => item.type === "event" && item.name === eventName)
 }
+
+/**
+ * Checks if the ABI includes a specific function by name.
+ */
+export function hasABIFunction(abi: typeof celoClickerABI, functionName: string): boolean {
+  return abi.some((item) => item.type === "function" && item.name === functionName)
+}
