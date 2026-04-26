@@ -25,6 +25,11 @@ describe('lib/feeCurrencies getFeeCurrencies', () => {
     })
   })
 
+  it('mentions MiniPay recommendation for USDC on mainnet', () => {
+    const usdcCurrency = getFeeCurrencies(CELO_MAINNET_CHAIN_ID).find((currency) => currency.id === 'USDC')
+    expect(usdcCurrency?.description.toLowerCase()).toContain('minipay')
+  })
+
   it('hides USDC gas payments off mainnet', () => {
     const usdcCurrency = getFeeCurrencies(CELO_TESTNET_CHAIN_ID).find((currency) => currency.id === 'USDC')
 
