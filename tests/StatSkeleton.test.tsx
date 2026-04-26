@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { StatSkeleton } from '../components/StatSkeleton'
 
 describe('StatSkeleton', () => {
@@ -28,5 +28,10 @@ describe('StatSkeleton', () => {
   it('applies custom className', () => {
     const { container } = render(<StatSkeleton className="mb-5" />)
     expect(container.firstChild).toHaveClass('mb-5')
+  })
+
+  it('exposes loading semantics for assistive technology', () => {
+    render(<StatSkeleton count={1} />)
+    expect(screen.getByRole('status', { name: 'Loading statistics' })).toHaveAttribute('aria-busy', 'true')
   })
 })
