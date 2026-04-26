@@ -70,6 +70,11 @@ export const metadata: Metadata = {
     images: ['/icon.png'],
     creator: '@AdekunleBamz',
   },
+  appleWebApp: {
+    title: APP_NAME,
+    capable: true,
+    statusBarStyle: 'black-translucent',
+  },
   alternates: {
     canonical: '/',
   },
