@@ -55,9 +55,10 @@ export const Button = memo(function Button({
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       className={`
+        focus-ring-game
         ${fullWidth ? 'w-full' : ''}
         ${variantClasses[variant]}
-        py-3 px-6 rounded-lg font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50
+        py-3 px-6 rounded-lg font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed
         ${className}
       `}
       {...props}
