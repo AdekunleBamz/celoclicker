@@ -15,6 +15,16 @@ describe('StatSkeleton', () => {
     expect(skeletons.length).toBe(9)
   })
 
+  it('floors non-integer count values', () => {
+    const { container } = render(<StatSkeleton count={2.8} />)
+    expect(container.querySelectorAll('.animate-pulse').length).toBe(6)
+  })
+
+  it('renders nothing for negative count values', () => {
+    const { container } = render(<StatSkeleton count={-2} />)
+    expect(container.querySelectorAll('.animate-pulse').length).toBe(0)
+  })
+
   it('applies custom className', () => {
     const { container } = render(<StatSkeleton className="mb-5" />)
     expect(container.firstChild).toHaveClass('mb-5')
