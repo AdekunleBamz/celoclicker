@@ -591,3 +591,9 @@ export function getNextPrestigeThreshold(level: number, base: number): number {
 export function getUpgradeLabel(type: string): string {
   return type.charAt(0).toUpperCase() + type.slice(1).replace(/_/g, " ")
 }
+
+/** Formats a bonus as a signed display string, e.g. +10%. */
+export function formatBonus(value: number): string {
+  const sign = value >= 0 ? "+" : ""
+  return sign + value + "%"
+}
