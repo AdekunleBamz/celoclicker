@@ -290,3 +290,11 @@ export const PRESTIGE_CLICK_BASE = 1_000_000
 
 /** Multiplier applied to the prestige threshold for each subsequent prestige level. */
 export const PRESTIGE_THRESHOLD_MULTIPLIER = 2
+
+/** Click count thresholds for each achievement tier label. */
+export const ACHIEVEMENT_TIERS = Object.freeze({
+  BRONZE: 0,
+  SILVER: 10_000,
+  GOLD: 100_000,
+  LEGEND: 1_000_000,
+} as const)
