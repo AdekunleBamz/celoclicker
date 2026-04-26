@@ -418,3 +418,9 @@ export function maxOfArray(arr: number[]): number {
 export function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0
 }
+
+/** Returns the minimum value in an array of numbers, or 0 if empty. */
+export function minOfArray(arr: number[]): number {
+  if (arr.length === 0) return 0
+  return arr.slice(1).reduce((a, b) => Math.min(a, b), arr[0])
+}
