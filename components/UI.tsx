@@ -9,15 +9,17 @@ export interface CardProps {
   className?: string
   /** Whether to apply glassmorphism effect. */
   glass?: boolean
+  /** Optional accessibility label for assistive technology. */
+  ariaLabel?: string
 }
 
 /**
  * Reusable Card component with optional glassmorphism effect.
  */
-export const Card = memo(function Card({ children, className = '', glass = false }: CardProps) {
+export const Card = memo(function Card({ children, className = '', glass = false, ariaLabel }: CardProps) {
   const baseClasses = glass ? 'glass-game' : 'bg-black/30'
   return (
-    <div className={`${baseClasses} rounded-lg p-4 ${className}`}>
+    <div aria-label={ariaLabel} className={`${baseClasses} rounded-lg p-4 ${className}`}>
       {children}
     </div>
   )
