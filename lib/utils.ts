@@ -615,3 +615,8 @@ export function medianOfArray(arr: number[]): number {
   const isOdd = sorted.length % 2 !== 0
   return isOdd ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2
 }
+
+/** Clamps a number between min and max inclusive. */
+export function clampNum(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max)
+}
