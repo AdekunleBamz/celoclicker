@@ -71,3 +71,21 @@ export function usePlayerStats(address: Address | undefined) {
 export function formatClickPowerLevel(clickPower: bigint): string {
   return `Lv. ${clickPower.toString()}`
 }
+
+/**
+ * Computes the estimated points earned per second from an auto-clicker.
+ * Returns 0 when the auto-clicker level is zero or the interval is unknown.
+ *
+ * @param autoClickerLevel - Current auto-clicker upgrade level.
+ * @param pointsPerLevel - Points granted per auto-clicker level per tick.
+ * @param intervalMs - Auto-clicker tick interval in milliseconds.
+ */
+export function estimateAutoClickerPps(
+  autoClickerLevel: bigint,
+  pointsPerLevel: bigint,
+  intervalMs: number
+): number {
+  if (autoClickerLevel === 0n || intervalMs <= 0) return 0
+  const pointsPerTick = Number(autoClickerLevel * pointsPerLevel)
+  return (pointsPerTick / intervalMs) * 1000
+}
