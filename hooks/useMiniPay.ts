@@ -34,11 +34,7 @@ export function isMiniPayBrowser() {
  * @returns The injected connector if found, undefined otherwise.
  */
 export function getInjectedConnector(connectors: readonly Connector[]) {
-  return connectors.find((connector) => {
-    const connectorType = connector.type.toLowerCase()
-    const connectorId = connector.id.toLowerCase()
-    return connectorType === 'injected' || connectorId === 'injected'
-  })
+  return connectors.find((connector) => isInjectedConnector(connector))
 }
 
 /**
@@ -134,4 +130,11 @@ export function getWalletEnvironmentLabel(): string {
  */
 export function isMiniPayEnvironment(): boolean {
   return isMiniPayBrowser()
+}
+
+/**
+ * Returns true when a connector represents an injected wallet provider.
+ */
+export function isInjectedConnector(connector: Pick<Connector, 'id' | 'type'>): boolean {
+  return connector.id.toLowerCase() === 'injected' || connector.type.toLowerCase() === 'injected'
 }
