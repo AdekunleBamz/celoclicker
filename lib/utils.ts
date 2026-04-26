@@ -578,3 +578,10 @@ export function minOfArray(arr: number[]): number {
   if (arr.length === 1) return arr[0]
   return arr.reduce((min, v) => v < min ? v : min, arr[0])
 }
+
+/** Returns the average of a numeric array. */
+export function avgOfArray(arr: number[]): number {
+  if (arr.length === 0) return 0
+  if (arr.length === 1) return arr[0]
+  return arr.reduce((a, b) => a + b, 0) / arr.length
+}
