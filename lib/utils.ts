@@ -571,3 +571,65 @@ export function clamp(value: number, min: number, max: number): number {
 export function lerp(start: number, end: number, t: number): number {
   return start + (end - start) * t
 }
+
+/** Returns the minimum value in a numeric array. */
+export function minOfArray(arr: number[]): number {
+  if (arr.length === 0) return 0
+  if (arr.length === 1) return arr[0]
+  return arr.reduce((min, v) => v < min ? v : min, arr[0])
+}
+
+/** Returns the average of a numeric array. */
+export function avgOfArray(arr: number[]): number {
+  if (arr.length === 0) return 0
+  if (arr.length === 1) return arr[0]
+  return arr.reduce((a, b) => a + b, 0) / arr.length
+}
+
+/** Filters out NaN and Infinity from a numeric array. */
+export function filterFinite(arr: number[]): number[] {
+  return arr.filter(v => Number.isFinite(v))
+}
+
+/** Counts elements in an array satisfying a predicate. */
+export function countWhere<T>(arr: T[], predicate: (item: T) => boolean): number {
+  return arr.filter(predicate).length
+}
+
+/** Rounds a number to the given decimal places. */
+export function roundToDecimalPlaces(value: number, places: number): number {
+  const factor = Math.pow(10, places)
+  return Math.round(value * factor) / factor
+}
+
+/** Returns the sum of a numeric array. */
+export function sumArray(arr: number[]): number {
+  return arr.reduce((a, b) => a + b, 0)
+}
+
+/** Returns median value of a numeric array. */
+export function medianOfArray(arr: number[]): number {
+  if (arr.length === 0) return 0
+  const sorted = [...arr].sort((a, b) => a - b)
+  const mid = Math.floor(sorted.length / 2)
+  const isOdd = sorted.length % 2 !== 0
+  return isOdd ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2
+}
+
+/** Clamps a number between min and max inclusive. */
+export function clampNum(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max)
+}
+
+/** Normalizes an array of numbers to the [0, 1] range. */
+export function normalizeArray(arr: number[]): number[] {
+  const min = Math.min(...arr)
+  const max = Math.max(...arr)
+  if (max === min) return arr.map(() => 0)
+  return arr.map(v => (v - min) / (max - min))
+}
+
+/** Returns true if all numbers in array are positive. */
+export function allPositive(arr: number[]): boolean {
+  return arr.every(v => v > 0)
+}
