@@ -70,3 +70,10 @@ export function isValidAddressFormat(address: string): boolean {
 export function addressAccessibilityLabel(address: string): string {
   return "Wallet " + address.slice(0, 6) + "..." + address.slice(-4)
 }
+
+/** Returns a CSS color string for a connection status. */
+export function connectionStatusColor(status: string): string {
+  if (status === "connected") return "#22c55e"
+  if (status === "connecting" || status === "reconnecting") return "#f59e0b"
+  return "#ef4444"
+}
