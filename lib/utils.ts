@@ -244,6 +244,10 @@ export function clicksPerSecond(totalClicks: bigint, elapsedSeconds: number): nu
  * Converts a CELO amount (as string or number) to a display string with 4 decimal places.
  * @param celo - Amount in CELO.
  */
+/**
+ * Formats a CELO amount to a fixed 4-decimal string.
+ *  celo - Amount in CELO as a number or string.
+ */
 export function formatCelo(celo: number | string): string {
   const n = Number(celo)
   if (!Number.isFinite(n)) return '0.0000'
