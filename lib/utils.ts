@@ -456,3 +456,13 @@ export function roundToDecimalPlaces(value: number, places: number): number {
   const factor = Math.pow(10, safePlaces)
   return Math.round(value * factor) / factor
 }
+
+/**
+ * Filters out non-finite values (NaN, Infinity, -Infinity) from an array.
+ *
+ * @param arr - Array of numbers to filter.
+ * @returns New array containing only finite numbers.
+ */
+export function filterFinite(arr: number[]): number[] {
+  return arr.filter(Number.isFinite)
+}
