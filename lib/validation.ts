@@ -79,6 +79,15 @@ export function isValidPoints(points: bigint): boolean {
 }
 
 /**
+ * Returns true when the given chain ID is in the supported list.
+ *
+ * @param chainId - The numeric chain ID to check.
+ */
+export function isValidChainId(chainId: number): boolean {
+  return SUPPORTED_CHAIN_IDS.includes(chainId)
+}
+
+/**
  * Returns true when the given chain ID is one of the officially supported Celo chains.
  *
  * @param chainId - The numeric chain ID to check.
