@@ -70,6 +70,9 @@ export const metadata: Metadata = {
     images: ['/icon.png'],
     creator: '@AdekunleBamz',
   },
+  alternates: {
+    canonical: '/',
+  },
   other: {
     'og:logo': logoUrl,
   },
