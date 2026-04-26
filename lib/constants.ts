@@ -311,3 +311,6 @@ export const UPGRADE_DISPLAY_LABELS = Object.freeze({
 
 /** Base exponent used when calculating the prestige bonus multiplier (2^prestige). */
 export const PRESTIGE_BONUS_BASE = 2
+
+/** How long the visual click feedback animation plays in milliseconds. */
+export const CLICK_FEEDBACK_DURATION_MS = 200
