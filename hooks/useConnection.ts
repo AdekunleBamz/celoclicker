@@ -60,3 +60,8 @@ export function isWalletBusy(status: string): boolean {
 export function normaliseAddress(address: string): string {
   return address.toLowerCase()
 }
+
+/** Returns true if an address matches the 0x + 40 hex char pattern. */
+export function isValidAddressFormat(address: string): boolean {
+  return /^0x[0-9a-fA-F]{40}$/.test(address)
+}
