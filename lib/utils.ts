@@ -543,3 +543,15 @@ export function relativeTime(timestampSec: number): string {
 export function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max)
 }
+
+/**
+ * Linearly interpolates between two numbers.
+ * Returns start when t=0, end when t=1.
+ *
+ * @param start - Starting value.
+ * @param end - Ending value.
+ * @param t - Interpolation factor, typically in [0, 1].
+ */
+export function lerp(start: number, end: number, t: number): number {
+  return start + (end - start) * t
+}
