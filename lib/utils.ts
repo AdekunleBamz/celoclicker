@@ -466,3 +466,16 @@ export function formatBigIntCompact(value: bigint): string {
   if (n >= 1_000) return `${(n / 1_000).toFixed(1).replace(/\.0$/, '')}K`
   return String(n)
 }
+
+/**
+ * Returns a percentage string from a numerator and denominator.
+ * E.g. percentageOf(3, 4) -> "75.0%"
+ *
+ * @param part - The numerator value.
+ * @param total - The denominator value. Returns "0%" when zero.
+ * @param decimals - Number of decimal places (default 1).
+ */
+export function percentageOf(part: number, total: number, decimals = 1): string {
+  if (total === 0) return '0%'
+  return `${((part / total) * 100).toFixed(decimals)}%`
+}
