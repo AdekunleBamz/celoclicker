@@ -36,6 +36,7 @@ describe('UpgradeCard', () => {
     render(<UpgradeCard {...defaultProps} disabled />)
     const button = screen.getByRole('button', { name: /Upgrade Test Upgrade/i })
     expect(button).toBeDisabled()
+    expect(button).toHaveAttribute('aria-disabled', 'true')
   })
 
   it('shows loading state', () => {
