@@ -135,3 +135,6 @@ export interface ComboState {
 
 /** Union type for the four achievement tier labels. */
 export type AchievementTier = 'Bronze' | 'Silver' | 'Gold' | 'Legend'
+
+/** Discriminated string union for upgrade type keys used across the game. */
+export type UpgradeKey = 'CLICK_POWER' | 'AUTO_CLICKER' | 'MULTIPLIER'
