@@ -13,6 +13,12 @@ export function getLeaderboardRankLabel(index: number): string {
   return `#${index + 1}`
 }
 
+/** Returns true when an address belongs to the current player. */
+export function isCurrentLeaderboardPlayer(address: string, playerAddress?: string): boolean {
+  if (!address || !playerAddress) return false
+  return address.toLowerCase() === playerAddress.toLowerCase()
+}
+
 /** Props for the LeaderboardModal component. */
 export interface LeaderboardModalProps {
   /** Whether the modal is visible. */
@@ -98,7 +104,7 @@ export const LeaderboardModal = memo(function LeaderboardModal({
                     const pts = pointsList[idx];
                     if (!addr || isZeroAddress(addr)) return null;
 
-                    const isCurrentPlayer = addr.toLowerCase() === playerAddress?.toLowerCase();
+                    const isCurrentPlayer = isCurrentLeaderboardPlayer(addr, playerAddress);
 
                     return (
                       <div
