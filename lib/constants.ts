@@ -281,3 +281,6 @@ export const FIRST_UPGRADE_COST = 50
 
 /** Number of entries shown per page in the leaderboard view. */
 export const LEADERBOARD_PAGE_SIZE = 25
+
+/** Maximum number of consecutive clicks that count toward the combo multiplier stack. */
+export const COMBO_MAX_STACK = 50
