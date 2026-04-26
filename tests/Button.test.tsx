@@ -1,3 +1,4 @@
+import { vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { Button } from '../components/UI'
 
@@ -23,7 +24,7 @@ describe('Button', () => {
   })
 
   it('handles click events', () => {
-    const onClick = jest.fn()
+    const onClick = vi.fn()
     render(<Button onClick={onClick}>Click Me</Button>)
     fireEvent.click(screen.getByText('Click Me'))
     expect(onClick).toHaveBeenCalledTimes(1)
