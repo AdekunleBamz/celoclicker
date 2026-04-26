@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import {
   getAvailableFeeCurrencies,
+  getFeeCurrencyAvailabilityHint,
   getDefaultFeeCurrencyId,
+  getFeeCurrencyCallout,
   getFeeCurrencies,
   getFeeCurrencyAddress,
   getFeeCurrencyById,
@@ -25,6 +27,11 @@ describe('lib/feeCurrencies getFeeCurrencies', () => {
     })
   })
 
+  it('mentions MiniPay recommendation for USDC on mainnet', () => {
+    const usdcCurrency = getFeeCurrencies(CELO_MAINNET_CHAIN_ID).find((currency) => currency.id === 'USDC')
+    expect(usdcCurrency?.description.toLowerCase()).toContain('minipay')
+  })
+
   it('hides USDC gas payments off mainnet', () => {
     const usdcCurrency = getFeeCurrencies(CELO_TESTNET_CHAIN_ID).find((currency) => currency.id === 'USDC')
 
@@ -33,6 +40,11 @@ describe('lib/feeCurrencies getFeeCurrencies', () => {
       isAvailable: false,
     })
     expect(usdcCurrency?.feeCurrency).toBeUndefined()
+  })
+
+  it('prompts network switch when USDC gas is unavailable', () => {
+    const usdcCurrency = getFeeCurrencies(CELO_TESTNET_CHAIN_ID).find((currency) => currency.id === 'USDC')
+    expect(usdcCurrency?.description.toLowerCase()).toContain('switch')
   })
 
   it('keeps USDC unavailable when chain id is missing', () => {
@@ -50,6 +62,11 @@ describe('lib/feeCurrencies getFeeCurrencies', () => {
     currencies.forEach((currency) => {
       expect(currency.description.length).toBeGreaterThan(0)
     })
+  })
+
+  it('describes CELO as native gas mode', () => {
+    const celoCurrency = getFeeCurrencies(CELO_MAINNET_CHAIN_ID).find((currency) => currency.id === 'CELO')
+    expect(celoCurrency?.description.toLowerCase()).toContain('native celo')
   })
 })
 
@@ -157,6 +174,16 @@ describe('lib/feeCurrencies getFeeCurrencyAddress', () => {
   })
 })
 
+describe('lib/feeCurrencies getFeeCurrencyCallout', () => {
+  it('returns native callout for CELO', () => {
+    expect(getFeeCurrencyCallout('CELO', CELO_TESTNET_CHAIN_ID)).toBe('Native gas mode')
+  })
+
+  it('returns mainnet requirement callout when USDC is unavailable', () => {
+    expect(getFeeCurrencyCallout('USDC', CELO_TESTNET_CHAIN_ID)).toBe('Mainnet required')
+  })
+})
+
 describe('lib/feeCurrencies token addresses', () => {
   it('returns the USDC token address on Celo mainnet', () => {
     expect(getFeeCurrencyById('USDC', CELO_MAINNET_CHAIN_ID)?.tokenAddress).toMatch(/^0x[a-fA-F0-9]{40}$/)
@@ -164,5 +191,15 @@ describe('lib/feeCurrencies token addresses', () => {
 
   it('has no token address for USDC off mainnet', () => {
     expect(getFeeCurrencyById('USDC', CELO_TESTNET_CHAIN_ID)?.tokenAddress).toBeUndefined()
+  })
+})
+
+describe('lib/feeCurrencies getFeeCurrencyAvailabilityHint', () => {
+  it('returns available hint for native CELO', () => {
+    expect(getFeeCurrencyAvailabilityHint('CELO', CELO_TESTNET_CHAIN_ID)).toBe('Available')
+  })
+
+  it('returns network switch hint for unavailable USDC', () => {
+    expect(getFeeCurrencyAvailabilityHint('USDC', CELO_TESTNET_CHAIN_ID)).toBe('Switch to Celo mainnet to enable')
   })
 })

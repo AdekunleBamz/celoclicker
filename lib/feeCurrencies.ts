@@ -47,7 +47,7 @@ export function getFeeCurrencies(chainId?: number): FeeCurrencyConfig[] {
       id: 'CELO',
       label: 'CELO',
       symbol: 'CELO',
-      description: 'Pay gas with native CELO on web or mobile.',
+      description: 'Pay gas in native CELO (fastest default on web and wallet).',
       isAvailable: true,
     },
     {
@@ -55,8 +55,8 @@ export function getFeeCurrencies(chainId?: number): FeeCurrencyConfig[] {
       label: 'USDCm',
       symbol: 'USDCm',
       description: usdcAvailable
-        ? 'Pay gas with the MiniPay-friendly USDC fee adapter on Celo mainnet.'
-        : 'USDC gas mode is only available on Celo mainnet.',
+        ? 'Pay gas in USDCm via Celo fee abstraction (recommended for MiniPay on mainnet).'
+        : 'USDC gas mode unlocks on Celo mainnet. Switch networks to use it.',
       feeCurrency: usdcAvailable ? USDC_MAINNET_ADAPTER_ADDRESS : undefined,
       tokenAddress: usdcAvailable ? USDC_MAINNET_TOKEN_ADDRESS : undefined,
       isAvailable: usdcAvailable,
@@ -168,6 +168,17 @@ export function getFeeCurrencyDescription(id: FeeCurrencyId, chainId?: number): 
 }
 
 /**
+ * Returns a short UI callout string for fee mode cards.
+ *
+ * @param id - The fee currency identifier.
+ * @param chainId - Optional chain ID for availability resolution.
+ */
+export function getFeeCurrencyCallout(id: FeeCurrencyId, chainId?: number): string {
+  if (id === 'CELO') return 'Native gas mode'
+  return isFeeCurrencyAvailable(id, chainId) ? 'MiniPay-friendly on mainnet' : 'Mainnet required'
+}
+
+/**
  * Returns the ERC-20 token address used for balance queries for the given fee currency.
  * Returns undefined when the currency has no associated token address.
  *
@@ -253,4 +264,16 @@ export function getFeeCurrencyByAddress(
 export function sortFeeCurrencies(chainId?: number): FeeCurrencyConfig[] {
   const all = getFeeCurrencies(chainId)
   return [...all.filter((c) => c.isAvailable), ...all.filter((c) => !c.isAvailable)]
+}
+
+/**
+ * Returns a short availability hint for fee mode UI controls.
+ *
+ * @param id - The fee currency identifier.
+ * @param chainId - Optional chain ID for availability resolution.
+ */
+export function getFeeCurrencyAvailabilityHint(id: FeeCurrencyId, chainId?: number): string {
+  if (isFeeCurrencyAvailable(id, chainId)) return 'Available'
+  if (id === 'USDC') return 'Switch to Celo mainnet to enable'
+  return 'Unavailable'
 }
