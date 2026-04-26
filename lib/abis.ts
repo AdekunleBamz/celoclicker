@@ -278,3 +278,12 @@ export function hasABIEvent(abi: typeof celoClickerABI, eventName: string): bool
 export function hasABIFunction(abi: typeof celoClickerABI, functionName: string): boolean {
   return abi.some((item) => item.type === "function" && item.name === functionName)
 }
+
+/**
+ * Extracts the input parameter names from a function definition.
+ */
+export function getABIFunctionInputs(abi: typeof celoClickerABI, functionName: string): string[] {
+  const fn = abi.find((item) => item.type === "function" && item.name === functionName)
+  if (!fn || fn.type !== "function") return []
+  return (fn.inputs || []).map((input: any) => input.name).filter(Boolean)
+}
