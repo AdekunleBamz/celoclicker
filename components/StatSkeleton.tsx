@@ -12,9 +12,11 @@ export const StatSkeleton = memo(function StatSkeleton({
   count = 1,
   className = ''
 }: StatSkeletonProps) {
+  const safeCount = Number.isFinite(count) ? Math.max(0, Math.floor(count)) : 0
+
   return (
     <div className={`space-y-3 w-full ${className}`.trim()}>
-      {Array.from({ length: count }).map((_, i) => (
+      {Array.from({ length: safeCount }).map((_, i) => (
         <div key={i} className="bg-black/30 rounded-lg p-3 w-full" aria-hidden="true">
           <div className="w-16 h-3 bg-gray-700/50 rounded mb-2 animate-pulse" />
           <div className="flex items-center gap-2">
