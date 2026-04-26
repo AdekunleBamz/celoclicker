@@ -25,3 +25,16 @@ export function useConnection(): {
     isDisconnected: !isConnected && !isConnecting,
   }
 }
+
+/**
+ * Returns a short display string for the connection state.
+ * E.g. "Connected", "Connecting…", "Disconnected".
+ *
+ * @param isConnected - Whether the wallet is connected.
+ * @param isConnecting - Whether a connection attempt is in progress.
+ */
+export function connectionStateLabel(isConnected: boolean, isConnecting: boolean): string {
+  if (isConnected) return 'Connected'
+  if (isConnecting) return 'Connecting…'
+  return 'Disconnected'
+}
