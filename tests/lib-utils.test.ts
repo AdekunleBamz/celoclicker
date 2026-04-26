@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatAddress, formatClicks, formatNumber, formatTokenAmount, isValidAddress, isZeroAddress, maxOfArray } from '../lib/utils'
+import { formatAddress, formatClicks, formatNumber, formatTokenAmount, isValidAddress, isZeroAddress, maxOfArray, shortAddress } from '../lib/utils'
 
 describe('lib/utils formatNumber', () => {
   it('abbreviates thousands with a K suffix', () => {
@@ -70,6 +70,16 @@ describe('lib/utils formatAddress', () => {
 
   it('returns an empty string for undefined input', () => {
     expect(formatAddress(undefined as unknown as string)).toBe('')
+  })
+})
+
+describe('lib/utils shortAddress', () => {
+  it('does not truncate values that are 10 characters long', () => {
+    expect(shortAddress('0x12345678')).toBe('0x12345678')
+  })
+
+  it('trims whitespace and truncates long addresses', () => {
+    expect(shortAddress('  0x1234567890abcdef1234567890abcdef12345678  ')).toBe('0x1234...5678')
   })
 })
 
