@@ -55,7 +55,7 @@ export function getFeeCurrencies(chainId?: number): FeeCurrencyConfig[] {
       label: 'USDCm',
       symbol: 'USDCm',
       description: usdcAvailable
-        ? 'Pay gas with the MiniPay-friendly USDC fee adapter on Celo mainnet.'
+        ? 'Pay gas in USDCm via Celo fee abstraction (recommended for MiniPay on mainnet).'
         : 'USDC gas mode is only available on Celo mainnet.',
       feeCurrency: usdcAvailable ? USDC_MAINNET_ADAPTER_ADDRESS : undefined,
       tokenAddress: usdcAvailable ? USDC_MAINNET_TOKEN_ADDRESS : undefined,
