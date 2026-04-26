@@ -278,3 +278,12 @@ export function isValidTokenAmount(amount: string): boolean {
 export function isValidLeaderboardRank(rank: number): boolean {
   return Number.isInteger(rank) && rank >= 1
 }
+
+/**
+ * Returns true when the prestige count is a non-negative integer.
+ *
+ * @param count - The prestige count to check.
+ */
+export function isValidPrestigeCount(count: number): boolean {
+  return Number.isInteger(count) && count >= 0
+}
