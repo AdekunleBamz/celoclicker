@@ -422,6 +422,7 @@ export function isNonEmptyString(value: unknown): value is string {
 /** Returns the minimum value in an array of numbers, or 0 if empty. */
 export function minOfArray(arr: number[]): number {
   if (arr.length === 0) return 0
+  if (arr.length === 1) return arr[0]
   return arr.slice(1).reduce((a, b) => Math.min(a, b), arr[0])
 }
 
