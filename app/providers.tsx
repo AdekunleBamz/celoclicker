@@ -95,9 +95,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
       >
         <div className="text-center flex flex-col items-center">
           <div className="mb-4">
-            <LoadingSpinner size="lg" />
+            <LoadingSpinner size="lg" label="Initializing wallet providers" />
           </div>
-          <p className="text-gray-400 pixel-font text-sm">INITIALIZING...</p>
+          <p className="text-gray-400 pixel-font text-sm">INITIALIZING WALLET LAYER...</p>
         </div>
       </div>
     )
