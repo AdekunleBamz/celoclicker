@@ -155,3 +155,14 @@ export function getFallbackFeeCurrency(chainId?: number): FeeCurrencyConfig {
 export function getFeeCurrencySymbol(id: FeeCurrencyId, chainId?: number): string {
   return getFeeCurrencyById(id, chainId)?.symbol ?? id
 }
+
+/**
+ * Returns the description string for the given fee currency.
+ * Falls back to an empty string when not found.
+ *
+ * @param id - The fee currency identifier.
+ * @param chainId - Optional chain ID for availability resolution.
+ */
+export function getFeeCurrencyDescription(id: FeeCurrencyId, chainId?: number): string {
+  return getFeeCurrencyById(id, chainId)?.description ?? ''
+}
