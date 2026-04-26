@@ -76,7 +76,7 @@ export const UpgradeCard = memo(function UpgradeCard({
           </div>
         </div>
         <div className="text-right">
-          <div className="text-celo-gold font-bold flex items-center justify-end gap-1">
+          <div className="text-celo-gold font-bold tabular-nums flex items-center justify-end gap-1">
             <span aria-hidden="true">⭐</span>
             {cost.toLocaleString()}
           </div>
@@ -109,7 +109,7 @@ export const UpgradeCard = memo(function UpgradeCard({
         )}
       </button>
       {!isLoading && !disabled && !canAfford && (
-        <p title={`${missingPoints.toLocaleString()} points required`} className="text-[10px] text-gray-500 uppercase tracking-wider text-center">
+        <p title={`${missingPoints.toLocaleString()} points required`} className="text-[10px] text-gray-500 tabular-nums uppercase tracking-wider text-center">
           Need {missingPoints.toLocaleString()} more points
         </p>
       )}
