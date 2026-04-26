@@ -47,6 +47,9 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
             <p id="app-error-description" className="text-gray-400 mb-6">
               {this.state.error?.message || 'An unexpected error occurred during execution.'}
             </p>
+            <p className="text-xs text-gray-500 mb-6">
+              Try rebooting first. If this keeps happening, copy the error message and share it with the maintainer.
+            </p>
             <div className="flex flex-col gap-3">
               <button
                 onClick={() => {
