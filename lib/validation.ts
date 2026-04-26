@@ -79,6 +79,45 @@ export function isValidPoints(points: bigint): boolean {
 }
 
 /**
+ * Returns true when the given chain ID is in the supported list.
+ *
+ * @param chainId - The numeric chain ID to check.
+ */
+export function isValidChainId(chainId: number): boolean {
+  return SUPPORTED_CHAIN_IDS.includes(chainId)
+}
+
+/**
+ * Returns true when the value looks like a valid Ethereum transaction hash.
+ * Expects a 0x-prefixed 64-character hex string.
+ *
+ * @param hash - The hash string to validate.
+ */
+export function isValidTxHash(hash: string): boolean {
+  if (typeof hash !== 'string') return false
+  return /^0x[a-fA-F0-9]{64}$/.test(hash.trim())
+}
+
+/**
+ * Returns true when the click count is a positive safe integer.
+ *
+ * @param count - The click count to validate (bigint).
+ */
+export function isValidClickCountBigInt(count: bigint): boolean {
+  return count >= 0n
+}
+
+/**
+ * Returns true when value is a finite, non-negative number suitable for
+ * use as a CPS (clicks-per-second) rate.
+ *
+ * @param cps - The value to validate.
+ */
+export function isValidCps(cps: number): boolean {
+  return Number.isFinite(cps) && cps >= 0
+}
+
+/**
  * Returns true when the given chain ID is one of the officially supported Celo chains.
  *
  * @param chainId - The numeric chain ID to check.
@@ -218,4 +257,61 @@ export function isValidUrl(url: string): boolean {
  */
 export function isValidMultiplier(m: number): boolean {
   return Number.isFinite(m) && m >= 1
+}
+
+/**
+ * Returns true when the given token amount string represents a parseable non-negative value.
+ *
+ * @param amount - The amount string to validate (e.g. "1.5", "0.001").
+ */
+export function isValidTokenAmount(amount: string): boolean {
+  if (typeof amount !== 'string' || !amount.trim()) return false
+  const n = parseFloat(amount.trim())
+  return Number.isFinite(n) && n >= 0
+}
+
+/**
+ * Returns true when the leaderboard rank is a valid positive integer.
+ *
+ * @param rank - The rank number to validate.
+ */
+export function isValidLeaderboardRank(rank: number): boolean {
+  return Number.isInteger(rank) && rank >= 1
+}
+
+/**
+ * Returns true when the prestige count is a non-negative integer.
+ *
+ * @param count - The prestige count to check.
+ */
+export function isValidPrestigeCount(count: number): boolean {
+  return Number.isInteger(count) && count >= 0
+}
+
+/**
+ * Returns true when the given combo count is a non-negative safe integer.
+ *
+ * @param combo - The combo count to validate.
+ */
+export function isValidComboCount(combo: number): boolean {
+  return Number.isInteger(combo) && combo >= 0 && Number.isSafeInteger(combo)
+}
+
+/**
+ * Returns true when the duration is a finite positive number of milliseconds.
+ *
+ * @param ms - Duration in milliseconds.
+ */
+export function isValidDurationMs(ms: number): boolean {
+  return Number.isFinite(ms) && ms > 0
+}
+
+/**
+ * Returns true when the value is a finite number representing a valid CELO amount
+ * (non-negative and within JavaScript's safe number range).
+ *
+ * @param amount - The CELO amount as a number.
+ */
+export function isValidCeloAmount(amount: number): boolean {
+  return Number.isFinite(amount) && amount >= 0 && amount <= Number.MAX_SAFE_INTEGER
 }

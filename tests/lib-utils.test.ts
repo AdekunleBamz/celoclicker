@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatAddress, formatNumber, formatTokenAmount, isValidAddress, isZeroAddress, maxOfArray } from '../lib/utils'
+import { formatAddress, formatClicks, formatNumber, formatTokenAmount, isValidAddress, isZeroAddress, maxOfArray } from '../lib/utils'
 
 describe('lib/utils formatNumber', () => {
   it('abbreviates thousands with a K suffix', () => {
@@ -166,5 +166,11 @@ describe('lib/utils maxOfArray', () => {
 
   it('returns zero for an empty array', () => {
     expect(maxOfArray([])).toBe(0)
+  })
+})
+
+describe('lib/utils formatClicks', () => {
+  it('formats million values with one decimal M suffix', () => {
+    expect(formatClicks(1_500_000)).toBe('1.5M')
   })
 })
