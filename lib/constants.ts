@@ -278,3 +278,45 @@ export const MAX_SAVE_AGE_MS = 7 * 24 * 60 * 60 * 1_000
 
 /** Cost of the very first upgrade purchase. */
 export const FIRST_UPGRADE_COST = 50
+
+/** Number of entries shown per page in the leaderboard view. */
+export const LEADERBOARD_PAGE_SIZE = 25
+
+/** Maximum number of consecutive clicks that count toward the combo multiplier stack. */
+export const COMBO_MAX_STACK = 50
+
+/** Base click threshold required before the player can perform their first prestige. */
+export const PRESTIGE_CLICK_BASE = 1_000_000
+
+/** Multiplier applied to the prestige threshold for each subsequent prestige level. */
+export const PRESTIGE_THRESHOLD_MULTIPLIER = 2
+
+/** Click count thresholds for each achievement tier label. */
+export const ACHIEVEMENT_TIERS = Object.freeze({
+  BRONZE: 0,
+  SILVER: 10_000,
+  GOLD: 100_000,
+  LEGEND: 1_000_000,
+} as const)
+
+/** Point multiplier applied when a bonus click is triggered. */
+export const BONUS_CLICK_MULTIPLIER = 3
+
+/** Human-readable display labels for each upgrade key used in the UI. */
+export const UPGRADE_DISPLAY_LABELS = Object.freeze({
+  CLICK_POWER: 'Click Power',
+  AUTO_CLICKER: 'Auto Clicker',
+  MULTIPLIER: 'Score Multiplier',
+} as const)
+
+/** Base exponent used when calculating the prestige bonus multiplier (2^prestige). */
+export const PRESTIGE_BONUS_BASE = 2
+
+/** How long the visual click feedback animation plays in milliseconds. */
+export const CLICK_FEEDBACK_DURATION_MS = 200
+
+/** Number of auto-clicks batched per contract call to reduce gas costs. */
+export const AUTO_CLICK_BATCH_SIZE = 10
+
+/** How often (in ms) the app checks for and processes pending offline earnings. */
+export const OFFLINE_EARNINGS_CHECK_INTERVAL_MS = 60_000
