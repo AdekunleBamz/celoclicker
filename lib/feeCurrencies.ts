@@ -144,3 +144,14 @@ export function getFeeCurrencyAddress(
 export function getFallbackFeeCurrency(chainId?: number): FeeCurrencyConfig {
   return getFeeCurrencies(chainId)[0]
 }
+
+/**
+ * Returns the symbol for a fee currency id.
+ * Falls back to the id string when the currency is not found.
+ *
+ * @param id - The fee currency identifier.
+ * @param chainId - Optional chain ID for availability resolution.
+ */
+export function getFeeCurrencySymbol(id: FeeCurrencyId, chainId?: number): string {
+  return getFeeCurrencyById(id, chainId)?.symbol ?? id
+}
