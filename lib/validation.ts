@@ -209,7 +209,9 @@ export function isPositiveInt(n: unknown): n is number {
  * Returns true if the number is within the inclusive range [lo, hi].
  */
 export function isInRange(n: number, lo: number, hi: number): boolean {
-  return n >= lo && n <= hi
+  const min = Math.min(lo, hi)
+  const max = Math.max(lo, hi)
+  return n >= min && n <= max
 }
 
 /**
