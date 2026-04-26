@@ -633,3 +633,58 @@ export function normalizeArray(arr: number[]): number[] {
 export function allPositive(arr: number[]): boolean {
   return arr.every(v => v > 0)
 }
+
+/** Merges prestige and combo multipliers for total click value. */
+export function calcCombinedClickValue(base: number, prestige: number, combo: number): number {
+  return base * prestige * combo
+}
+
+/** Calculates auto-clicker income over a time period in ms. */
+export function calcAutoClickerIncome(cps: number, ms: number): number {
+  return cps * (ms / 1000)
+}
+
+/** Returns the next prestige threshold based on current level. */
+export function getNextPrestigeThreshold(level: number, base: number): number {
+  return base * Math.pow(2, level)
+}
+
+/** Returns a display label for an upgrade type. */
+export function getUpgradeLabel(type: string): string {
+  return type.charAt(0).toUpperCase() + type.slice(1).replace(/_/g, " ")
+}
+
+/** Formats a bonus as a signed display string. */
+export function formatBonus(value: number): string {
+  const sign = value >= 0 ? "+" : ""
+  const pct = value + "%"
+  return sign + pct
+}
+
+/** Checks if the player can afford an upgrade. */
+export function canAffordUpgrade(balance: number, cost: number): boolean {
+  return balance >= cost
+}
+
+/** Returns combo timeout scaled by prestige level. */
+export function calcComboTimeout(base: number, prestige: number): number {
+  return Math.max(500, base - prestige * 100)
+}
+
+/** Returns true if a click should be a bonus click. */
+export function isBonusClick(random: () => number, chance: number): boolean {
+  return random() < chance
+}
+
+/** Calculates total earnings from manual and auto income. */
+export function calcTotalEarnings(manual: number, auto: number, ms: number, cps: number): number {
+  return manual + auto + calcAutoClickerIncome(cps, ms)
+}
+
+/** Returns an achievement tier label based on click count milestones. */
+export function getAchievementTier(clicks: number): string {
+  if (clicks >= 1000000) return "legendary"
+  if (clicks >= 100000) return "epic"
+  if (clicks >= 10000) return "rare"
+  return "common"
+}
