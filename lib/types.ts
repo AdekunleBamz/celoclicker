@@ -168,3 +168,15 @@ export type ToastVariant = 'info' | 'success' | 'warning' | 'error'
 
 /** Status of a contract read or write call throughout its lifecycle. */
 export type ContractCallStatus = 'idle' | 'pending' | 'mining' | 'confirmed' | 'reverted'
+
+/**
+ * Decoded player statistics object derived from the on-chain tuple.
+ */
+export interface PlayerStats {
+  points: bigint
+  clickPower: bigint
+  autoClickerLevel: bigint
+  multiplierLevel: bigint
+  totalClicks: bigint
+  gamesPlayed: bigint
+}
