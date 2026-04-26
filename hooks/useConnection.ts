@@ -71,3 +71,14 @@ export function isSameAddress(a: string | undefined, b: string | undefined): boo
   if (!a || !b) return false
   return a.toLowerCase() === b.toLowerCase()
 }
+
+/**
+ * Returns true when an address string has a valid 0x-prefixed hex format.
+ * Does not validate the checksum.
+ *
+ * @param address - The address string to validate.
+ */
+export function isValidAddressFormat(address: string | undefined): boolean {
+  if (!address) return false
+  return /^0x[0-9a-fA-F]{40}$/.test(address)
+}
