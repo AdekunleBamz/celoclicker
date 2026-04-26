@@ -571,3 +571,8 @@ export function clamp(value: number, min: number, max: number): number {
 export function lerp(start: number, end: number, t: number): number {
   return start + (end - start) * t
 }
+
+/** Merges prestige and combo multipliers for total click value. */
+export function calcCombinedClickValue(base: number, prestige: number, combo: number): number {
+  return base * prestige * combo
+}
