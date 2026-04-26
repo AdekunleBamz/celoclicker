@@ -44,7 +44,8 @@ export const EmptyState = memo(function EmptyState({
       {onAction && (
         <button
           onClick={onAction}
-          className="px-6 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-bold transition-all"
+          type="button"
+          className="px-6 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-bold uppercase tracking-wider transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-celo-green/70"
         >
           {actionLabel}
         </button>
