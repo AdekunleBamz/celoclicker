@@ -117,3 +117,14 @@ export function connectionStatusEmoji(isConnected: boolean, isConnecting: boolea
   if (isConnecting) return '🟡'
   return '🔴'
 }
+
+/**
+ * Returns a shortened version of the wallet address for compact UI display.
+ * Returns "Not connected" when address is absent.
+ *
+ * @param address - The wallet address string.
+ */
+export function shortAddress(address: string | undefined): string {
+  if (!address) return 'Not connected'
+  return `${address.slice(0, 6)}…${address.slice(-4)}`
+}
