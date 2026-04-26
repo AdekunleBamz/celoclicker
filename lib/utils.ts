@@ -490,3 +490,13 @@ export function percentageOf(part: number, total: number, decimals = 1): string 
 export function zeroPad(value: number, width = 2): string {
   return String(Math.floor(value)).padStart(width, '0')
 }
+
+/**
+ * Capitalises the first character of a string and lowercases the rest.
+ *
+ * @param str - Input string.
+ */
+export function capitalize(str: string): string {
+  if (!str) return ''
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
+}
