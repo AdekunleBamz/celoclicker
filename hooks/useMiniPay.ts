@@ -116,7 +116,8 @@ export function getEthereumProvider(): MiniPayEthereum | null {
  * @param idOrType - The connector id or type string to search for.
  */
 export function hasConnector(connectors: readonly import('wagmi').Connector[], idOrType: string): boolean {
-  return connectors.some(c => c.id === idOrType || c.type === idOrType)
+  const normalizedTarget = idOrType.trim().toLowerCase()
+  return connectors.some((c) => c.id.toLowerCase() === normalizedTarget || c.type.toLowerCase() === normalizedTarget)
 }
 
 /**
