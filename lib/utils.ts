@@ -435,3 +435,20 @@ export function formatDuration(ms: number): string {
   if (m > 0) return `${m}m ${s}s`
   return `${s}s`
 }
+
+/**
+ * Truncates an Ethereum address for display purposes.
+ * E.g. "0x1234...5678".
+ *
+ * @param address - The full 0x-prefixed address string.
+ * @param prefixLen - Number of characters to show after "0x" prefix (default 4).
+ * @param suffixLen - Number of characters to show at the end (default 4).
+ */
+export function truncateAddress(
+  address: string,
+  prefixLen = 4,
+  suffixLen = 4
+): string {
+  if (!address || address.length < prefixLen + suffixLen + 2) return address
+  return `${address.slice(0, prefixLen + 2)}...${address.slice(-suffixLen)}`
+}
