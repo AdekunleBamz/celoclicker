@@ -168,6 +168,17 @@ export function getFeeCurrencyDescription(id: FeeCurrencyId, chainId?: number): 
 }
 
 /**
+ * Returns a short UI callout string for fee mode cards.
+ *
+ * @param id - The fee currency identifier.
+ * @param chainId - Optional chain ID for availability resolution.
+ */
+export function getFeeCurrencyCallout(id: FeeCurrencyId, chainId?: number): string {
+  if (id === 'CELO') return 'Native gas mode'
+  return isFeeCurrencyAvailable(id, chainId) ? 'MiniPay-friendly on mainnet' : 'Mainnet required'
+}
+
+/**
  * Returns the ERC-20 token address used for balance queries for the given fee currency.
  * Returns undefined when the currency has no associated token address.
  *
