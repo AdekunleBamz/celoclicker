@@ -314,3 +314,10 @@ export function getABIFunctionMutability(abi: typeof celoClickerABI, functionNam
   const fn = abi.find((item) => item.type === "function" && item.name === functionName)
   return fn && fn.type === "function" ? fn.stateMutability : undefined
 }
+
+/**
+ * Counts payable functions (those that accept ETH/CELO transfers).
+ */
+export function countPayableFunctions(abi: typeof celoClickerABI): number {
+  return abi.filter((item) => item.type === "function" && item.stateMutability === "payable").length
+}
