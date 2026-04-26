@@ -283,7 +283,7 @@ export default function Home() {
   useMiniPayAutoConnect(connectors, connect, isConnected, isConnectingWallet)
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-6 sm:py-8 relative overflow-hidden">
       {/* Background particles */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
@@ -295,14 +295,14 @@ export default function Home() {
         <ContractWarning />
         
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="mx-auto mb-5 flex h-24 w-24 items-center justify-center rounded-[28px] border border-white/10 bg-black/20 p-3 shadow-[0_20px_60px_rgba(8,17,24,0.45)]">
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="mx-auto mb-4 sm:mb-5 flex h-20 w-20 sm:h-24 sm:w-24 items-center justify-center rounded-[24px] sm:rounded-[28px] border border-white/10 bg-black/20 p-3 shadow-[0_20px_60px_rgba(8,17,24,0.45)]">
             <Image src="/logo-mark.svg" alt="CeloClicker logo" width={72} height={72} priority className="h-full w-full" />
           </div>
-          <h1 className="text-6xl font-bold mb-2 bg-gradient-to-r from-celo-green via-celo-gold to-cyan-300 bg-clip-text text-transparent animate-pulse-glow pixel-font">
+          <h1 className="text-4xl sm:text-6xl font-bold mb-2 bg-gradient-to-r from-celo-green via-celo-gold to-cyan-300 bg-clip-text text-transparent animate-pulse-glow pixel-font">
             CELOCLICKER
           </h1>
-          <p className="text-gray-400 text-sm">Click • Upgrade • Dominate</p>
+          <p className="text-gray-400 text-xs sm:text-sm">Click • Upgrade • Dominate</p>
           <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-celo-green/30 bg-celo-green/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-celo-green">
             <span aria-hidden="true">{selectedFeeCurrency.id === 'USDC' ? '💵' : '⛽'}</span>
             Fee Mode: {selectedFeeCurrency.label}
@@ -312,7 +312,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* Left Column - Stats */}
           <div role="region" aria-label="Player statistics" className="glass-game rounded-2xl p-6 space-y-4">
             <h2 className="text-2xl font-bold text-purple-400 mb-4 pixel-font">STATS</h2>
