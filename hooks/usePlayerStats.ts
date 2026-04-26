@@ -135,3 +135,24 @@ export function playerRankLabel(gamesPlayed: bigint): string {
   if (n < 100) return 'Elite'
   return 'Legend'
 }
+
+/**
+ * Returns true when a player has reached max level in all upgrades.
+ *
+ * @param clickPower - Current click power level.
+ * @param autoClickerLevel - Current auto-clicker level.
+ * @param multiplierLevel - Current multiplier level.
+ * @param maxLevel - The maximum allowed upgrade level (e.g. 10).
+ */
+export function isFullyUpgraded(
+  clickPower: bigint,
+  autoClickerLevel: bigint,
+  multiplierLevel: bigint,
+  maxLevel: bigint
+): boolean {
+  return (
+    clickPower >= maxLevel &&
+    autoClickerLevel >= maxLevel &&
+    multiplierLevel >= maxLevel
+  )
+}
