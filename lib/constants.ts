@@ -298,3 +298,6 @@ export const ACHIEVEMENT_TIERS = Object.freeze({
   GOLD: 100_000,
   LEGEND: 1_000_000,
 } as const)
+
+/** Point multiplier applied when a bonus click is triggered. */
+export const BONUS_CLICK_MULTIPLIER = 3
