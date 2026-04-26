@@ -514,3 +514,21 @@ export function identifierToTitle(str: string): string {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(' ')
 }
+
+/**
+ * Returns a relative time string from a past Unix timestamp in seconds.
+ * E.g. "2 hours ago", "just now".
+ *
+ * @param timestampSec - Unix timestamp in seconds.
+ */
+export function relativeTime(timestampSec: number): string {
+  const diffSec = Math.floor(Date.now() / 1000) - timestampSec
+  if (diffSec < 10) return 'just now'
+  if (diffSec < 60) return `${diffSec}s ago`
+  const diffMin = Math.floor(diffSec / 60)
+  if (diffMin < 60) return `${diffMin}m ago`
+  const diffHr = Math.floor(diffMin / 60)
+  if (diffHr < 24) return `${diffHr}h ago`
+  const diffDay = Math.floor(diffHr / 24)
+  return `${diffDay}d ago`
+}
