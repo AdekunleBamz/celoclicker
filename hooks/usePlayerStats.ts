@@ -61,3 +61,13 @@ export function usePlayerStats(address: Address | undefined) {
     }
   }, [playerData, refetch, error, isLoading])
 }
+
+/**
+ * Returns the display label for the click power level.
+ * E.g. 1n -> "Lv. 1".
+ *
+ * @param clickPower - Current click power bigint value.
+ */
+export function formatClickPowerLevel(clickPower: bigint): string {
+  return `Lv. ${clickPower.toString()}`
+}
