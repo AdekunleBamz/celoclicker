@@ -184,3 +184,22 @@ export function upgradeSummary(
 ): string {
   return `CP:${clickPower} AC:${autoClickerLevel} MP:${multiplierLevel}`
 }
+
+/**
+ * Estimates how many more clicks are needed to afford the next upgrade.
+ * Returns 0 when the player can already afford it.
+ *
+ * @param currentPoints - Player's current point balance.
+ * @param upgradeCost - Cost of the next upgrade.
+ * @param pointsPerClick - Points earned per manual click.
+ */
+export function clicksToAfford(
+  currentPoints: bigint,
+  upgradeCost: bigint,
+  pointsPerClick: bigint
+): number {
+  if (currentPoints >= upgradeCost) return 0
+  if (pointsPerClick === 0n) return Infinity
+  const deficit = upgradeCost - currentPoints
+  return Math.ceil(Number(deficit) / Number(pointsPerClick))
+}
