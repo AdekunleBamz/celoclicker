@@ -132,3 +132,6 @@ export interface ComboState {
   /** Whether the combo is currently active. */
   isActive: boolean
 }
+
+/** Union type for the four achievement tier labels. */
+export type AchievementTier = 'Bronze' | 'Silver' | 'Gold' | 'Legend'
