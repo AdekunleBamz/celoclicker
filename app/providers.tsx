@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useMemo } from 'react'
+import Image from 'next/image'
 import '@rainbow-me/rainbowkit/styles.css'
 import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { WagmiProvider } from 'wagmi'
@@ -94,6 +95,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         aria-busy="true"
       >
         <div className="text-center flex flex-col items-center">
+          <Image src="/logo-mark.svg" alt="CeloClicker logo" width={44} height={44} className="mb-4" />
           <div className="mb-4">
             <LoadingSpinner size="lg" label="Initializing wallet providers" />
           </div>
