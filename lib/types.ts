@@ -106,3 +106,17 @@ export interface PlayerRank {
  * Describes the connectivity state of the user's wallet.
  */
 export type NetworkStatus = 'connected' | 'disconnected' | 'connecting' | 'wrong-chain'
+
+/**
+ * Tracks statistics for a single play session.
+ */
+export interface GameSessionStats {
+  /** Total manual clicks made in this session. */
+  manualClicks: number
+  /** Total auto-clicker income earned in this session. */
+  autoIncome: number
+  /** Duration of the session in milliseconds. */
+  durationMs: number
+  /** Timestamp when the session started. */
+  startedAt: number
+}
