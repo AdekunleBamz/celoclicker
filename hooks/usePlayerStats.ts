@@ -203,3 +203,19 @@ export function clicksToAfford(
   const deficit = upgradeCost - currentPoints
   return Math.ceil(Number(deficit) / Number(pointsPerClick))
 }
+
+/**
+ * Returns the total upgrade investment (sum of all upgrade levels).
+ * A simple metric for how much a player has invested in upgrades overall.
+ *
+ * @param clickPower - Click power upgrade level.
+ * @param autoClickerLevel - Auto-clicker upgrade level.
+ * @param multiplierLevel - Multiplier upgrade level.
+ */
+export function totalUpgradeInvestment(
+  clickPower: bigint,
+  autoClickerLevel: bigint,
+  multiplierLevel: bigint
+): bigint {
+  return clickPower + autoClickerLevel + multiplierLevel
+}
