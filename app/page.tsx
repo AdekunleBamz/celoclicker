@@ -131,7 +131,6 @@ export default function Home() {
   const { isLoading: isConfirming, isSuccess, error: txError } = useWaitForTransactionReceipt({
     hash,
   })
-  const isTxBusy = isPending || isConfirming
 
   const transactionOverrides = useMemo(
     () => (
@@ -156,7 +155,7 @@ export default function Home() {
       return
     }
 
-    if (isTxBusy) {
+    if (isPending || isConfirming) {
       return // Prevent multiple clicks while transaction is pending
     }
 
@@ -194,7 +193,7 @@ export default function Home() {
     }, GAME_CONFIG.ANIMATION_DURATION.FLOATING_NUMBER)
 
     return () => clearTimeout(timer)
-  }, [isConnected, isContractValid, isTxBusy, clickPower, multiplierLevel, contractAddress, celoClickerABI, transactionOverrides, writeContract])
+  }, [isConnected, isContractValid, isPending, isConfirming, clickPower, multiplierLevel, contractAddress, celoClickerABI, transactionOverrides, writeContract])
 
   const handleUpgrade = useCallback((type: 'clickPower' | 'autoClicker' | 'multiplier') => {
     if (!isConnected) {
@@ -207,7 +206,7 @@ export default function Home() {
       return
     }
 
-    if (isTxBusy) {
+    if (isPending || isConfirming) {
       return
     }
 
@@ -228,7 +227,7 @@ export default function Home() {
       console.error(`Error sending ${type} upgrade transaction:`, error)
       alert('Failed to send transaction. Please try again.')
     }
-  }, [isConnected, isContractValid, isTxBusy, contractAddress, celoClickerABI, transactionOverrides, writeContract])
+  }, [isConnected, isContractValid, isPending, isConfirming, contractAddress, celoClickerABI, transactionOverrides, writeContract])
 
   const handleClaimAuto = useCallback(() => {
     if (!isConnected) {
@@ -241,7 +240,7 @@ export default function Home() {
       return
     }
 
-    if (isTxBusy) {
+    if (isPending || isConfirming) {
       return
     }
 
@@ -258,7 +257,7 @@ export default function Home() {
       console.error('Error sending claim transaction:', error)
       alert('Failed to send transaction. Please try again.')
     }
-  }, [isConnected, isContractValid, isTxBusy, contractAddress, celoClickerABI, transactionOverrides, writeContract])
+  }, [isConnected, isContractValid, isPending, isConfirming, contractAddress, celoClickerABI, transactionOverrides, writeContract])
 
   useEffect(() => {
     if (isSuccess) {
@@ -284,7 +283,7 @@ export default function Home() {
   useMiniPayAutoConnect(connectors, connect, isConnected, isConnectingWallet)
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-6 sm:py-8 relative overflow-hidden">
       {/* Background particles */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
@@ -296,20 +295,24 @@ export default function Home() {
         <ContractWarning />
         
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="mx-auto mb-5 flex h-24 w-24 items-center justify-center rounded-[28px] border border-white/10 bg-black/20 p-3 shadow-[0_20px_60px_rgba(8,17,24,0.45)]">
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="mx-auto mb-4 sm:mb-5 flex h-20 w-20 sm:h-24 sm:w-24 items-center justify-center rounded-[24px] sm:rounded-[28px] border border-white/10 bg-black/20 p-3 shadow-[0_20px_60px_rgba(8,17,24,0.45)]">
             <Image src="/logo-mark.svg" alt="CeloClicker logo" width={72} height={72} priority className="h-full w-full" />
           </div>
-          <h1 className="text-6xl font-bold mb-2 bg-gradient-to-r from-celo-green via-celo-gold to-cyan-300 bg-clip-text text-transparent animate-pulse-glow pixel-font">
+          <h1 className="text-4xl sm:text-6xl font-bold mb-2 bg-gradient-to-r from-celo-green via-celo-gold to-cyan-300 bg-clip-text text-transparent animate-pulse-glow pixel-font">
             CELOCLICKER
           </h1>
-          <p className="text-gray-400 text-sm">Click • Upgrade • Dominate</p>
+          <p className="text-gray-400 text-xs sm:text-sm">Click • Upgrade • Dominate</p>
+          <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-celo-green/30 bg-celo-green/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-celo-green">
+            <span aria-hidden="true">{selectedFeeCurrency.id === 'USDC' ? '💵' : '⛽'}</span>
+            Fee Mode: {selectedFeeCurrency.label}
+          </div>
           <p className="text-gray-500 text-xs mt-3 max-w-xl mx-auto">
             Gameplay still runs on points. The currency switch below only changes how transaction fees are paid: CELO on web by default, USDCm on MiniPay by default.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* Left Column - Stats */}
           <div role="region" aria-label="Player statistics" className="glass-game rounded-2xl p-6 space-y-4">
             <h2 className="text-2xl font-bold text-purple-400 mb-4 pixel-font">STATS</h2>
@@ -376,7 +379,7 @@ export default function Home() {
             {autoClickerLevel > 0n && pendingAuto && Number(pendingAuto) > 0 && (
               <button
                 onClick={handleClaimAuto}
-                disabled={isTxBusy}
+                disabled={isPending || isConfirming}
                 type="button"
                 aria-label={`Claim ${pendingAutoPointsLabel} auto clicker points`}
                 className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-bold hover:scale-105 transition-transform glow-purple disabled:opacity-50 cursor-pointer relative z-10"
@@ -413,7 +416,7 @@ export default function Home() {
                       }}
                       type="button"
                       aria-busy={isConnectingWallet || isConnectingAccount}
-                      className="px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-bold hover:scale-105 transition-transform glow-purple"
+                      className="px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl font-bold hover:scale-105 transition-transform glow-purple focus-ring-game"
                     >
                       {isConnectingWallet || isConnectingAccount ? (
                         <span className="flex items-center gap-2">
@@ -433,9 +436,8 @@ export default function Home() {
                   onClick={handleClick}
                   whileTap={{ scale: 0.9 }}
                   whileHover={{ scale: 1.05 }}
-                  disabled={isTxBusy}
+                  disabled={isPending || isConfirming}
                   type="button"
-                  aria-busy={isTxBusy}
                   aria-label="Click to earn points"
                   className="w-64 h-64 bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 rounded-full flex items-center justify-center text-8xl font-bold glow-purple hover:glow-gold transition-all duration-300 disabled:opacity-50 relative overflow-hidden cursor-pointer z-30"
                 >
@@ -459,7 +461,7 @@ export default function Home() {
                   </AnimatePresence>
                 </motion.button>
 
-                <p className={`mt-6 pixel-font text-xs ${isTxBusy ? 'text-celo-gold' : 'text-gray-400'}`}>
+                <p className={`mt-6 pixel-font text-xs ${isPending || isConfirming ? 'text-celo-gold' : 'text-gray-400'}`}>
                   {isPending
                     ? '⏳ APPROVE IN WALLET...'
                     : isConfirming
@@ -469,7 +471,7 @@ export default function Home() {
                 {(writeError || txError) && (
                   <p className="mt-2 max-w-sm text-center text-red-300 text-xs leading-relaxed break-words" role="alert">
                     Transaction error:{' '}
-                    {writeError?.message?.includes('user rejected') 
+                    {writeError?.message?.includes('user rejected')
                       ? 'Transaction was rejected. Please try again.' 
                       : writeError?.message?.includes('insufficient funds')
                       ? 'Insufficient funds for gas. Please check your balance.'
@@ -514,7 +516,7 @@ export default function Home() {
                         setSelectedFeeCurrencyId(currency.id)
                       }}
                       disabled={!currency.isAvailable}
-                      className={`rounded-lg border px-3 py-3 text-left transition-all disabled:opacity-40 disabled:cursor-not-allowed ${
+                      className={`focus-ring-game rounded-lg border px-3 py-3 text-left transition-all disabled:opacity-40 disabled:cursor-not-allowed ${
                         isSelected
                           ? 'border-celo-green bg-celo-green/20 shadow-[0_0_0_1px_rgba(53,208,127,0.3)]'
                           : 'border-white/10 bg-black/20 hover:border-celo-green/40'
@@ -562,8 +564,8 @@ export default function Home() {
                 points={points}
                 color="text-purple-400"
                 onUpgrade={() => handleUpgrade('clickPower')}
-                disabled={isTxBusy}
-                isLoading={isTxBusy}
+                disabled={isPending || isConfirming}
+                isLoading={isPending || isConfirming}
               />
               <UpgradeCard
                 title="Auto-Clicker"
@@ -572,8 +574,8 @@ export default function Home() {
                 points={points}
                 color="text-indigo-400"
                 onUpgrade={() => handleUpgrade('autoClicker')}
-                disabled={isTxBusy}
-                isLoading={isTxBusy}
+                disabled={isPending || isConfirming}
+                isLoading={isPending || isConfirming}
               />
               <UpgradeCard
                 title="Multiplier"
@@ -582,8 +584,8 @@ export default function Home() {
                 points={points}
                 color="text-pink-400"
                 onUpgrade={() => handleUpgrade('multiplier')}
-                disabled={isTxBusy}
-                isLoading={isTxBusy}
+                disabled={isPending || isConfirming}
+                isLoading={isPending || isConfirming}
               />
             </div>
 
@@ -645,12 +647,14 @@ export default function Home() {
                     const pts = pointsList[idx]
                     
                     if (!addr || isZeroAddress(addr)) return null
+                    const isCurrentPlayer = addr.toLowerCase() === address?.toLowerCase()
+                    const rankLabel = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx + 1}`
 
                     return (
                       <div
                           key={`${addr}-${idx}`}
                         className={`flex justify-between items-center p-4 rounded-lg ${
-                          addr === address ? 'bg-purple-500/30 border-2 border-purple-400' : 'bg-black/20'
+                          isCurrentPlayer ? 'bg-purple-500/30 border-2 border-purple-400' : 'bg-black/20'
                         }`}
                       >
                         <div className="flex items-center gap-4">
@@ -660,11 +664,12 @@ export default function Home() {
                             idx === 2 ? 'text-orange-400' : 
                             'text-gray-500'
                           }`}>
-                            #{idx + 1}
+                            {rankLabel}
                           </div>
                           <div>
-                            <div className="font-mono text-sm text-gray-400">
+                            <div className={`font-mono text-sm ${isCurrentPlayer ? 'text-white font-bold' : 'text-gray-400'}`}>
                               {formatAddress(addr)}
+                              {isCurrentPlayer && <span className="ml-2 rounded-full bg-purple-500 px-1.5 py-0.5 text-[10px] text-white">YOU</span>}
                             </div>
                           </div>
                         </div>

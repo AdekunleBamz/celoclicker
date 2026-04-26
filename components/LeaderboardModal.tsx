@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LoadingSpinner } from './LoadingSpinner';
 import { EmptyState } from './EmptyState';
@@ -32,6 +32,19 @@ export const LeaderboardModal = memo(function LeaderboardModal({
   playerAddress,
   className = '',
 }: LeaderboardModalProps) {
+  useEffect(() => {
+    if (!isOpen) return
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose()
+      }
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [isOpen, onClose])
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -39,7 +52,7 @@ export const LeaderboardModal = memo(function LeaderboardModal({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 bg-black/80 backdrop-blur-[2px] flex items-center justify-center z-50 p-4"
           onClick={onClose}
         >
           <motion.div
@@ -51,7 +64,7 @@ export const LeaderboardModal = memo(function LeaderboardModal({
             role="dialog"
             aria-modal="true"
             aria-labelledby="leaderboard-title"
-            className={`glass-game rounded-2xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto ${className}`.trim()}
+            className={`glass-game rounded-2xl p-6 max-w-2xl w-full max-h-[85vh] sm:max-h-[80vh] overflow-y-auto ${className}`.trim()}
           >
             <h2 id="leaderboard-title" className="text-3xl font-bold text-purple-400 mb-6 pixel-font text-center">
               LEADERBOARD
@@ -116,7 +129,7 @@ export const LeaderboardModal = memo(function LeaderboardModal({
               onClick={onClose}
               type="button"
               autoFocus
-              className="w-full mt-6 py-4 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl font-bold text-lg hover:scale-105 transition-transform shadow-lg shadow-purple-500/20"
+              className="focus-ring-game w-full mt-6 py-4 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl font-bold text-lg hover:scale-105 transition-transform shadow-lg shadow-purple-500/20"
             >
               CLOSE
             </button>

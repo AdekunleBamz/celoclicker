@@ -41,12 +41,20 @@ export const Toast = memo(function Toast({
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-          role="status"
-          aria-live="polite"
+          role={type === 'error' ? 'alert' : 'status'}
+          aria-live={type === 'error' ? 'assertive' : 'polite'}
           className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] px-6 py-3 ${bgColor} text-white rounded-full font-bold shadow-lg backdrop-blur-md border border-white/20 flex items-center gap-2`}
         >
           <span>{icon}</span>
           <span>{message}</span>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Dismiss notification"
+            className="focus-ring-game ml-1 rounded-full bg-black/15 px-2 py-0.5 text-xs leading-none hover:bg-black/30"
+          >
+            ✕
+          </button>
         </motion.div>
       )}
     </AnimatePresence>
