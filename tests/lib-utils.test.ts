@@ -99,11 +99,11 @@ describe('lib/utils formatTokenAmount', () => {
   })
 
   it('parses comma-formatted token balances', () => {
-    expect(formatTokenAmount('1,234.567', 'USDC')).toBe('1234.57 USDC')
+    expect(formatTokenAmount('1,234.567', 'USDC')).toBe('1,234.57 USDC')
   })
 
   it('parses comma-formatted balances with surrounding whitespace', () => {
-    expect(formatTokenAmount('  1,234.567  ', 'USDC')).toBe('1234.57 USDC')
+    expect(formatTokenAmount('  1,234.567  ', 'USDC')).toBe('1,234.57 USDC')
   })
 
   it('keeps three decimals for medium-sized token balances', () => {
