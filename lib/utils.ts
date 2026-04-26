@@ -576,3 +576,8 @@ export function lerp(start: number, end: number, t: number): number {
 export function calcCombinedClickValue(base: number, prestige: number, combo: number): number {
   return base * prestige * combo
 }
+
+/** Calculates auto-clicker income over a time period in ms. */
+export function calcAutoClickerIncome(cps: number, ms: number): number {
+  return cps * (ms / 1000)
+}
