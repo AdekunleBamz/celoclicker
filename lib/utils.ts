@@ -479,3 +479,14 @@ export function percentageOf(part: number, total: number, decimals = 1): string 
   if (total === 0) return '0%'
   return `${((part / total) * 100).toFixed(decimals)}%`
 }
+
+/**
+ * Pads a number string with leading zeroes up to a minimum width.
+ * E.g. zeroPad(5, 3) -> "005".
+ *
+ * @param value - The numeric value to pad.
+ * @param width - Minimum total width (default 2).
+ */
+export function zeroPad(value: number, width = 2): string {
+  return String(Math.floor(value)).padStart(width, '0')
+}
