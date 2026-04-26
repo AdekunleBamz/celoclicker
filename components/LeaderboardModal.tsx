@@ -31,6 +31,11 @@ export function getLeaderboardRowClass(isCurrentPlayer: boolean): string {
     : 'bg-black/20 hover:bg-black/30'
 }
 
+/** Returns the close action label shown for assistive technologies. */
+export function getLeaderboardCloseLabel(isLoading: boolean): string {
+  return isLoading ? 'Close leaderboard while loading' : 'Close leaderboard'
+}
+
 /** Props for the LeaderboardModal component. */
 export interface LeaderboardModalProps {
   /** Whether the modal is visible. */
@@ -155,6 +160,7 @@ export const LeaderboardModal = memo(function LeaderboardModal({
               onClick={onClose}
               type="button"
               autoFocus
+              aria-label={getLeaderboardCloseLabel(isLoading)}
               className="focus-ring-game w-full mt-6 py-4 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl font-bold text-lg hover:scale-105 transition-transform shadow-lg shadow-purple-500/20"
             >
               CLOSE
