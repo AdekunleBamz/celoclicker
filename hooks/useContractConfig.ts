@@ -18,6 +18,13 @@ export function isConfiguredContractAddress(address: string): boolean {
 }
 
 /**
+ * Returns a short UI status label for contract configuration state.
+ */
+export function getContractConfigStatusLabel(isValid: boolean): string {
+  return isValid ? 'Configured' : 'Not configured'
+}
+
+/**
  * Provides the current CeloClicker contract configuration.
  * Resolves the address from environment variables and checks its validity.
  * 
