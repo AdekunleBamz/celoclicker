@@ -103,5 +103,6 @@ export function isReconnecting(status: string): boolean {
 /** Returns a formatted error message for a connection failure. */
 export function formatConnectionError(error: unknown): string {
   if (error instanceof Error) return "Connection failed: " + error.message
+  if (typeof error === "string" && error.trim()) return "Connection failed: " + error.trim()
   return "Connection failed: unknown error"
 }
