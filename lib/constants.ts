@@ -284,3 +284,9 @@ export const LEADERBOARD_PAGE_SIZE = 25
 
 /** Maximum number of consecutive clicks that count toward the combo multiplier stack. */
 export const COMBO_MAX_STACK = 50
+
+/** Base click threshold required before the player can perform their first prestige. */
+export const PRESTIGE_CLICK_BASE = 1_000_000
+
+/** Multiplier applied to the prestige threshold for each subsequent prestige level. */
+export const PRESTIGE_THRESHOLD_MULTIPLIER = 2
