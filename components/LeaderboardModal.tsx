@@ -24,6 +24,13 @@ export function hasLeaderboardEntries(addresses: string[]): boolean {
   return addresses.some((addr) => addr && !isZeroAddress(addr))
 }
 
+/** Returns the row class string for leaderboard entries. */
+export function getLeaderboardRowClass(isCurrentPlayer: boolean): string {
+  return isCurrentPlayer
+    ? 'bg-purple-500/30 border-2 border-purple-400 shadow-[0_0_15px_rgba(168,85,247,0.3)]'
+    : 'bg-black/20 hover:bg-black/30'
+}
+
 /** Props for the LeaderboardModal component. */
 export interface LeaderboardModalProps {
   /** Whether the modal is visible. */
@@ -115,7 +122,7 @@ export const LeaderboardModal = memo(function LeaderboardModal({
                       <div
                         key={`${addr}-${idx}`}
                         className={`flex justify-between items-center p-4 rounded-lg transition-colors ${
-                          isCurrentPlayer ? 'bg-purple-500/30 border-2 border-purple-400 shadow-[0_0_15px_rgba(168,85,247,0.3)]' : 'bg-black/20 hover:bg-black/30'
+                          getLeaderboardRowClass(isCurrentPlayer)
                         }`}
                       >
                         <div className="flex items-center gap-4">
