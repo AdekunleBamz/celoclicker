@@ -109,7 +109,7 @@ export const UpgradeCard = memo(function UpgradeCard({
         )}
       </button>
       {!isLoading && !disabled && !canAfford && (
-        <p className="text-[10px] text-gray-500 uppercase tracking-wider text-center">
+        <p title={`${missingPoints.toLocaleString()} points required`} className="text-[10px] text-gray-500 uppercase tracking-wider text-center">
           Need {missingPoints.toLocaleString()} more points
         </p>
       )}
