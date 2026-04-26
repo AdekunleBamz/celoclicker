@@ -19,6 +19,11 @@ export function isCurrentLeaderboardPlayer(address: string, playerAddress?: stri
   return address.toLowerCase() === playerAddress.toLowerCase()
 }
 
+/** Returns true when there is at least one non-zero leaderboard address. */
+export function hasLeaderboardEntries(addresses: string[]): boolean {
+  return addresses.some((addr) => addr && !isZeroAddress(addr))
+}
+
 /** Props for the LeaderboardModal component. */
 export interface LeaderboardModalProps {
   /** Whether the modal is visible. */
@@ -94,7 +99,7 @@ export const LeaderboardModal = memo(function LeaderboardModal({
               ) : (
                 (() => {
                   const [addresses, pointsList] = leaderboardData;
-                  const hasEntries = addresses.some((addr) => addr && !isZeroAddress(addr));
+                  const hasEntries = hasLeaderboardEntries(addresses);
 
                   if (!hasEntries) {
                     return <EmptyState title="No Players Yet" description="Be the first to join the leaderboard!" icon="🎮" />;
