@@ -34,4 +34,9 @@ describe('StatSkeleton', () => {
     render(<StatSkeleton count={1} />)
     expect(screen.getByRole('status', { name: 'Loading statistics' })).toHaveAttribute('aria-busy', 'true')
   })
+
+  it('can render without pulse animation when disabled', () => {
+    const { container } = render(<StatSkeleton count={1} animated={false} />)
+    expect(container.querySelectorAll('.animate-pulse').length).toBe(0)
+  })
 })
