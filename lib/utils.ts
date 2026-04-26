@@ -377,7 +377,8 @@ export function isValidClickCount(n: number): boolean {
  */
 export function toPercent(value: number, total: number): number {
   if (total === 0) return 0
-  return Math.round((value / total) * 100)
+  const percent = Math.round((value / total) * 100)
+  return Math.max(0, Math.min(100, percent))
 }
 
 /**

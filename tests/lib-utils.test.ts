@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatAddress, formatClicks, formatNumber, formatTokenAmount, isValidAddress, isZeroAddress, maxOfArray, shortAddress } from '../lib/utils'
+import { formatAddress, formatClicks, formatNumber, formatTokenAmount, isValidAddress, isZeroAddress, maxOfArray, shortAddress, toPercent } from '../lib/utils'
 
 describe('lib/utils formatNumber', () => {
   it('abbreviates thousands with a K suffix', () => {
@@ -194,5 +194,15 @@ describe('lib/utils formatClicks', () => {
 
   it('preserves sign for negative compact values', () => {
     expect(formatClicks(-2_500)).toBe('-2.5K')
+  })
+})
+
+describe('lib/utils toPercent', () => {
+  it('clamps values above 100 percent', () => {
+    expect(toPercent(150, 100)).toBe(100)
+  })
+
+  it('clamps negative values to zero percent', () => {
+    expect(toPercent(-20, 100)).toBe(0)
   })
 })
