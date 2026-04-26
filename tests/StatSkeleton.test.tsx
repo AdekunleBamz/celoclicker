@@ -44,4 +44,9 @@ describe('StatSkeleton', () => {
     render(<StatSkeleton count={4} />)
     expect(screen.getAllByTestId('stat-skeleton-card')).toHaveLength(4)
   })
+
+  it('applies skeleton card border styling', () => {
+    render(<StatSkeleton count={1} />)
+    expect(screen.getByTestId('stat-skeleton-card')).toHaveClass('border', 'border-white/10')
+  })
 })
