@@ -287,3 +287,10 @@ export function getABIFunctionInputs(abi: typeof celoClickerABI, functionName: s
   if (!fn || fn.type !== "function") return []
   return (fn.inputs || []).map((input: any) => input.name).filter(Boolean)
 }
+
+/**
+ * Returns the total number of read-only functions in the ABI.
+ */
+export function countReadOnlyFunctions(abi: typeof celoClickerABI): number {
+  return abi.filter((item) => item.type === "function" && (item.stateMutability === "view" || item.stateMutability === "pure")).length
+}
