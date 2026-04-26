@@ -227,3 +227,19 @@ export function getFeeCurrencyDisplayName(id: FeeCurrencyId, chainId?: number): 
 export function countAvailableFeeCurrencies(chainId?: number): number {
   return getAvailableFeeCurrencies(chainId).length
 }
+
+/**
+ * Looks up a fee currency config by its fee abstraction address.
+ * Returns undefined when no currency uses that address.
+ *
+ * @param address - The fee currency (adapter) address.
+ * @param chainId - Optional chain ID for availability resolution.
+ */
+export function getFeeCurrencyByAddress(
+  address: Address,
+  chainId?: number
+): FeeCurrencyConfig | undefined {
+  return getFeeCurrencies(chainId).find(
+    (c) => c.feeCurrency?.toLowerCase() === address.toLowerCase()
+  )
+}
