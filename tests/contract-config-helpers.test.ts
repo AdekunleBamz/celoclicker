@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { isConfiguredContractAddress, resolveContractAddress } from '../hooks/useContractConfig'
+import { getContractWarningMessage } from '../components/ContractWarning'
 
 describe('contract config helpers: resolveContractAddress', () => {
   it('normalizes and lowercases trimmed addresses', () => {
@@ -20,5 +21,11 @@ describe('contract config helpers: isConfiguredContractAddress', () => {
 
   it('returns true for valid non-zero addresses', () => {
     expect(isConfiguredContractAddress('0x1234567890abcdef1234567890abcdef12345678')).toBe(true)
+  })
+})
+
+describe('contract config helpers: getContractWarningMessage', () => {
+  it('includes the provided env key in warning copy', () => {
+    expect(getContractWarningMessage('NEXT_PUBLIC_TEST_CONTRACT')).toContain('NEXT_PUBLIC_TEST_CONTRACT')
   })
 })
