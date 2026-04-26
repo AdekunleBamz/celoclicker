@@ -287,3 +287,12 @@ export function isValidLeaderboardRank(rank: number): boolean {
 export function isValidPrestigeCount(count: number): boolean {
   return Number.isInteger(count) && count >= 0
 }
+
+/**
+ * Returns true when the given combo count is a non-negative safe integer.
+ *
+ * @param combo - The combo count to validate.
+ */
+export function isValidComboCount(combo: number): boolean {
+  return Number.isInteger(combo) && combo >= 0 && Number.isSafeInteger(combo)
+}
