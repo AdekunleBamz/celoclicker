@@ -18,12 +18,12 @@ export const ContractWarning = memo(function ContractWarning() {
   if (isValid || dismissed) return null
 
   return (
-    <div className="bg-yellow-500/20 border-2 border-yellow-500 rounded-lg p-4 mb-4" role="alert">
+    <div className="bg-yellow-500/20 border-2 border-yellow-500 rounded-lg p-4 mb-4" role="alert" aria-live="polite">
       <div className="flex items-start gap-2">
         <span className="text-2xl mt-0.5" aria-hidden="true">⚠️</span>
         <div>
-          <div className="font-bold text-yellow-400">Contract Not Configured</div>
-          <div className="text-sm text-yellow-300">{getContractWarningMessage()}</div>
+          <div id="contract-warning-title" className="font-bold text-yellow-400">Contract Not Configured</div>
+          <div className="text-sm text-yellow-300" aria-describedby="contract-warning-title">{getContractWarningMessage()}</div>
         </div>
         <button
           onClick={() => setDismissed(true)}
