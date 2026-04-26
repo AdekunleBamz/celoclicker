@@ -478,8 +478,8 @@ export default function Home() {
                 )}
 
                 <div className="mt-4 text-center">
-                  <div className="text-2xl font-bold text-celo-green">{clickCount}</div>
-                  <div className="text-xs text-gray-500">Session Clicks</div>
+                  <div className="text-3xl font-extrabold text-celo-green tabular-nums">{formatNumber(clickCount)}</div>
+                  <div className="text-[10px] uppercase tracking-wider text-gray-500">Session Clicks</div>
                 </div>
               </>
             )}
