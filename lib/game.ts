@@ -199,3 +199,15 @@ export function calcCombinedClickValue(
 ): number {
   return base * prestigeMultiplier * comboMultiplier
 }
+
+/**
+ * Calculates the income earned by the auto-clicker over a given period.
+ *
+ * @param cps - Clicks per second from auto-clicker upgrades.
+ * @param elapsedMs - Elapsed time in milliseconds.
+ * @returns Total clicks earned during the period, floored to a whole number.
+ */
+export function calcAutoClickerIncome(cps: number, elapsedMs: number): number {
+  if (cps <= 0 || elapsedMs <= 0) return 0
+  return Math.floor((cps * elapsedMs) / 1000)
+}
