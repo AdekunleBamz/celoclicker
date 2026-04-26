@@ -16,12 +16,14 @@ export interface ErrorBoundaryState {
   error?: Error
   /** Whether the error message was copied to clipboard. */
   copied?: boolean
+  /** Whether copying the message failed. */
+  copyFailed?: boolean
 }
 
 export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
     super(props)
-    this.state = { hasError: false, copied: false }
+    this.state = { hasError: false, copied: false, copyFailed: false }
   }
 
   /**
@@ -67,13 +69,17 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
               {this.state.error && (
                 <button
                   onClick={async () => {
-                    await navigator.clipboard?.writeText(this.state.error!.message)
-                    this.setState({ copied: true })
+                    try {
+                      await navigator.clipboard?.writeText(this.state.error!.message)
+                      this.setState({ copied: true, copyFailed: false })
+                    } catch {
+                      this.setState({ copied: false, copyFailed: true })
+                    }
                   }}
                   type="button"
                   className="px-6 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-bold transition-colors w-full text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-celo-green/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
                 >
-                  {this.state.copied ? 'Copied Error Message' : 'Copy Error Message'}
+                  {this.state.copyFailed ? 'Copy Failed' : this.state.copied ? 'Copied Error Message' : 'Copy Error Message'}
                 </button>
               )}
             </div>
