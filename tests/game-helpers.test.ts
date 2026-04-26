@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatPrestigeCount } from '../lib/game'
+import { formatBonus, formatPrestigeCount } from '../lib/game'
 
 describe('game helpers: formatPrestigeCount', () => {
   it('formats positive counts with grouping', () => {
@@ -8,5 +8,15 @@ describe('game helpers: formatPrestigeCount', () => {
 
   it('clamps invalid negative values to zero', () => {
     expect(formatPrestigeCount(-3)).toBe('Prestige x0')
+  })
+})
+
+describe('game helpers: formatBonus', () => {
+  it('returns +0 for negative values', () => {
+    expect(formatBonus(-5)).toBe('+0')
+  })
+
+  it('formats decimal bonuses compactly', () => {
+    expect(formatBonus(12.5)).toBe('+12.5')
   })
 })
