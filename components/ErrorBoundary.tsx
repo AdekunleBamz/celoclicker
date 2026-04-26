@@ -40,11 +40,11 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     if (this.state.hasError) {
       return (
         <div className="min-h-screen flex items-center justify-center p-4">
-          <div role="alert" className="glass-game rounded-2xl p-8 max-w-md w-full text-center">
-            <h2 className="text-2xl font-bold text-red-400 mb-4 pixel-font">
+          <div role="alert" aria-labelledby="app-error-title" aria-describedby="app-error-description" className="glass-game rounded-2xl p-8 max-w-md w-full text-center">
+            <h2 id="app-error-title" className="text-2xl font-bold text-red-400 mb-4 pixel-font">
               System Failure
             </h2>
-            <p className="text-gray-400 mb-6">
+            <p id="app-error-description" className="text-gray-400 mb-6">
               {this.state.error?.message || 'An unexpected error occurred during execution.'}
             </p>
             <div className="flex flex-col gap-3">
