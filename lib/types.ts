@@ -165,3 +165,6 @@ export interface OfflineEarnings {
 
 /** Visual variant for toast notification messages. */
 export type ToastVariant = 'info' | 'success' | 'warning' | 'error'
+
+/** Status of a contract read or write call throughout its lifecycle. */
+export type ContractCallStatus = 'idle' | 'pending' | 'mining' | 'confirmed' | 'reverted'
