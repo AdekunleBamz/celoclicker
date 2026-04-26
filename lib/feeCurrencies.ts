@@ -166,3 +166,17 @@ export function getFeeCurrencySymbol(id: FeeCurrencyId, chainId?: number): strin
 export function getFeeCurrencyDescription(id: FeeCurrencyId, chainId?: number): string {
   return getFeeCurrencyById(id, chainId)?.description ?? ''
 }
+
+/**
+ * Returns the ERC-20 token address used for balance queries for the given fee currency.
+ * Returns undefined when the currency has no associated token address.
+ *
+ * @param id - The fee currency identifier.
+ * @param chainId - Optional chain ID for availability resolution.
+ */
+export function getFeeCurrencyTokenAddress(
+  id: FeeCurrencyId,
+  chainId?: number
+): Address | undefined {
+  return getFeeCurrencyById(id, chainId)?.tokenAddress
+}
