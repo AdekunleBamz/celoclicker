@@ -287,11 +287,6 @@ export function shortAddress(addr: string): string {
   return `${normalizedAddress.slice(0, 6)}...${normalizedAddress.slice(-4)}`
 }
 
-/** Returns true if address is the EVM zero address. */
-export function isZeroAddress(addr: string): boolean {
-  return addr === '0x0000000000000000000000000000000000000000'
-}
-
 /**
  * Formats a click count with K/M suffixes for compact display.
  * @param n - The click count to format.
