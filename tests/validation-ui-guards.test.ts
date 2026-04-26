@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { CELO_MAINNET_CHAIN_ID } from '../lib/constants'
-import { isHexString, isValidChainId, isValidPlayerAddress, isValidUrl } from '../lib/validation'
+import { isHexString, isInRange, isValidChainId, isValidPlayerAddress, isValidUrl } from '../lib/validation'
 
 describe('validation ui guards: isValidChainId', () => {
   it('accepts supported integer chain IDs', () => {
@@ -39,5 +39,15 @@ describe('validation ui guards: isValidUrl', () => {
 
   it('rejects empty strings', () => {
     expect(isValidUrl('   ')).toBe(false)
+  })
+})
+
+describe('validation ui guards: isInRange', () => {
+  it('works when lower and upper bounds are swapped', () => {
+    expect(isInRange(7, 10, 5)).toBe(true)
+  })
+
+  it('still rejects values outside the normalized range', () => {
+    expect(isInRange(11, 10, 5)).toBe(false)
   })
 })
