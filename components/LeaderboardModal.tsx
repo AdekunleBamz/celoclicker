@@ -20,7 +20,7 @@ export function isCurrentLeaderboardPlayer(address: string, playerAddress?: stri
 }
 
 /** Returns true when there is at least one non-zero leaderboard address. */
-export function hasLeaderboardEntries(addresses: string[]): boolean {
+export function hasLeaderboardEntries(addresses: readonly string[]): boolean {
   return addresses.some((addr) => addr && !isZeroAddress(addr))
 }
 
