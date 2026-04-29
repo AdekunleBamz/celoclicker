@@ -115,7 +115,7 @@ export default function RootLayout({
         <meta name="color-scheme" content="dark" />
         <meta
           name="talentapp:project_verification"
-          content="a0dba87e1bb6548dd476dd39b4b9be850d6227db14fd409a46b92f9830bec8ba765395dc51d1eb6ea22759804b6fc39a3d03f2156ffcc483547ae7197bb94aa5"
+          content="26d56105bc26b3bd8c9e6a7ae9f0fc0de09dd2db5a517386ed1b55aa31e36666d87ef9fc6268600bb122275878e500793ff2bd2574435e9c45fd8933d96253a1"
         />
       </head>
       <body className={`${orbitron.variable} ${pressStart2P.variable} antialiased`} suppressHydrationWarning>
