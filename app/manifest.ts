@@ -49,14 +49,11 @@ export default function manifest(): MetadataRoute.Manifest {
         src: '/screenshot.png',
         sizes: '1280x720',
         type: 'image/png',
-        form_factor: 'wide',
-        label: 'Gameplay and upgrade dashboard',
       },
       {
         src: '/splash.png',
         sizes: '1284x2778',
         type: 'image/png',
-        label: 'Mobile launch splash view',
       },
     ],
   }

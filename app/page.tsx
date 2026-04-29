@@ -53,9 +53,10 @@ export default function Home() {
     () => feeCurrencies.find((currency) => currency.id === 'USDC'),
     [feeCurrencies]
   )
+  const walletAddress = address as `0x${string}` | undefined
 
   const { data: celoBalance } = useBalance({
-    address,
+    address: walletAddress,
     query: {
       enabled: !!address,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.BALANCES,
@@ -64,7 +65,7 @@ export default function Home() {
   })
 
   const { data: usdcBalance } = useBalance({
-    address,
+    address: walletAddress,
     token: usdcFeeCurrency?.tokenAddress,
     query: {
       enabled: !!address && !!usdcFeeCurrency?.tokenAddress,
@@ -77,7 +78,7 @@ export default function Home() {
     address: contractAddress,
     abi: celoClickerABI,
     functionName: 'getPlayer',
-    args: [address as `0x${string}`],
+    args: [walletAddress as `0x${string}`],
     query: {
       enabled: !!address && isContractValid,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PLAYER_STATS,
@@ -93,7 +94,7 @@ export default function Home() {
     address: contractAddress,
     abi: celoClickerABI,
     functionName: 'getUpgradeCosts',
-    args: [address as `0x${string}`],
+    args: [walletAddress as `0x${string}`],
     query: {
       enabled: !!address && isContractValid,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.UPGRADE_COSTS,
@@ -108,7 +109,7 @@ export default function Home() {
     address: contractAddress,
     abi: celoClickerABI,
     functionName: 'getPendingAutoClicker',
-    args: [address as `0x${string}`],
+    args: [walletAddress as `0x${string}`],
     query: {
       enabled: !!address && isContractValid && autoClickerLevel > 0n,
       refetchInterval: GAME_CONFIG.REFETCH_INTERVALS.PENDING_AUTO,

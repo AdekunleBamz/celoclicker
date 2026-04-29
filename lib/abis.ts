@@ -319,7 +319,7 @@ export function getABIFunctionMutability(abi: typeof celoClickerABI, functionNam
  * Counts payable functions (those that accept ETH/CELO transfers).
  */
 export function countPayableFunctions(abi: typeof celoClickerABI): number {
-  return abi.filter((item) => item.type === "function" && item.stateMutability === "payable").length
+  return abi.filter((item) => item.type === "function" && String(item.stateMutability) === "payable").length
 }
 
 /**

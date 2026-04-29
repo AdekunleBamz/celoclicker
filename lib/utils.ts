@@ -523,16 +523,6 @@ export function zeroPad(value: number, width = 2): string {
 }
 
 /**
- * Capitalises the first character of a string and lowercases the rest.
- *
- * @param str - Input string.
- */
-export function capitalize(str: string): string {
-  if (!str) return ''
-  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
-}
-
-/**
  * Converts a snake_case or kebab-case identifier to Title Case.
  * E.g. "auto_clicker" -> "Auto Clicker".
  *
@@ -615,11 +605,6 @@ export function countWhere<T>(arr: T[], predicate: (item: T) => boolean): number
 export function roundToDecimalPlaces(value: number, places: number): number {
   const factor = Math.pow(10, places)
   return Math.round(value * factor) / factor
-}
-
-/** Returns the sum of a numeric array. */
-export function sumArray(arr: number[]): number {
-  return arr.reduce((a, b) => a + b, 0)
 }
 
 /** Returns median value of a numeric array. */

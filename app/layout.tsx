@@ -17,6 +17,17 @@ function resolveAppOrigin() {
 
 const appOrigin = resolveAppOrigin()
 const logoUrl = new URL('/icon.png', appOrigin).toString()
+const orbitron = Orbitron({
+  subsets: ['latin'],
+  variable: '--font-orbitron',
+  display: 'swap',
+})
+const pressStart2P = Press_Start_2P({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-press-start-2p',
+  display: 'swap',
+})
 
 /**
  * Viewport configuration for Next.js 14.

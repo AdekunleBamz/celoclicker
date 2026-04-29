@@ -1,8 +1,16 @@
+import { afterEach, beforeEach, vi } from 'vitest'
 import { render, screen, act } from '@testing-library/react'
 import { Toast } from '../components/Toast'
 import { SUCCESS_TOAST_DURATION_MS } from '@/lib/constants'
 
-jest.useFakeTimers()
+beforeEach(() => {
+  vi.useFakeTimers()
+})
+
+afterEach(() => {
+  vi.useRealTimers()
+  vi.clearAllMocks()
+})
 
 describe('Toast', () => {
   it('renders when visible', () => {
@@ -17,11 +25,11 @@ describe('Toast', () => {
   })
 
   it('calls onClose after duration', () => {
-    const onClose = jest.fn()
+    const onClose = vi.fn()
     render(<Toast message="Wait" isVisible={true} onClose={onClose} />)
     
     act(() => {
-      jest.advanceTimersByTime(SUCCESS_TOAST_DURATION_MS)
+      vi.advanceTimersByTime(SUCCESS_TOAST_DURATION_MS)
     })
     
     expect(onClose).toHaveBeenCalled()
