@@ -8,7 +8,6 @@ import { WagmiProvider } from 'wagmi'
 import { celo, celoAlfajores } from 'wagmi/chains'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { APP_NAME, CELO_MAINNET_CHAIN_ID } from '@/lib/constants'
-import { isMiniPayBrowser } from '@/hooks/useMiniPay'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
 
 let wagmiConfig: ReturnType<typeof getDefaultConfig> | null = null
@@ -57,32 +56,13 @@ function getQueryClient() {
  */
 export function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false)
-  const [isMiniPay, setIsMiniPay] = useState(false)
-  
+
   // Initialize configurations only once
   const config = useMemo(() => getWagmiConfig(), [])
   const queryClient = useMemo(() => getQueryClient(), [])
 
   useEffect(() => {
-    // Hydrate state to ensure client-only components render correctly
     setMounted(true)
-    
-    /**
-     * Poll for MiniPay provider injection.
-     * Some mobile browsers inject the provider after the initial DOM load.
-     */
-    let attempts = 0
-    const timer = setInterval(() => {
-      attempts++
-      if (isMiniPayBrowser()) {
-        clearInterval(timer)
-        setIsMiniPay(true)
-      } else if (attempts >= 20) {
-        clearInterval(timer)
-      }
-    }, 250)
-    
-    return () => clearInterval(timer)
   }, [])
 
   // Show a loading screen until the app is mounted on the client
@@ -108,16 +88,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        {/* 
-          Conditional rendering for RainbowKit:
-          Skip RainbowKit modal inside MiniPay because MiniPay uses an injected wallet 
-          provider that should be connected directly without extra UI layers.
-        */}
-        {isMiniPay ? (
-          children
-        ) : (
-          <RainbowKitProvider>{children}</RainbowKitProvider>
-        )}
+        <RainbowKitProvider>{children}</RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
   )
