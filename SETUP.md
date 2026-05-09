@@ -45,6 +45,13 @@ Next.js only loads environment variables at startup, so changes won't take effec
 After restarting, the warning should disappear and you should be able to interact with the contract.
 Run `npm run test:utils` to confirm local validation and utility helpers are still green.
 
+## Deployment Smoke Check
+
+- Confirm `NEXT_PUBLIC_CELOCLICKER_CONTRACT` points to the intended network deployment.
+- Confirm a normal browser uses CELO gas mode by default.
+- Confirm MiniPay opens with USDCm gas mode available on Celo mainnet.
+- Confirm leaderboard reads complete before sending a write transaction.
+
 ## MiniPay Notes
 
 - Open the app inside MiniPay to use the injected wallet flow automatically.
