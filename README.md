@@ -199,6 +199,11 @@ This app uses **Celo fee abstraction** for contract writes:
 - Setting `feeCurrency` to the official Celo **USDC adapter** uses **USDCm** for gas
 - Gameplay still uses in-app points, so the token switch only affects transaction fees
 
+## Operational Notes
+
+- [Release checklist](docs/release-checklist.md)
+- [MiniPay fee mode notes](docs/minipay-fee-mode.md)
+
 ## Technical Details
 
 ### On-Chain Data
