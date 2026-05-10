@@ -5,3 +5,4 @@
 - Confirm upgrade costs with `getUpgradeCosts` before testing purchase actions.
 - Use `resetPlayer` only in controlled test wallets.
 - Record one successful click transaction hash in release notes.
+- Record one leaderboard read result when validating production RPC behavior.
