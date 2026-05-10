@@ -6,6 +6,7 @@
 - Click enough times to buy a Click Power upgrade.
 - Confirm upgrade costs refresh after purchase.
 - Confirm leaderboard refresh still works without a write transaction.
+- Confirm auto-clicker claim text stays clear before the interval has elapsed.
 
 ## Wallets
 
