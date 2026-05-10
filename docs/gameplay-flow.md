@@ -5,3 +5,5 @@
 3. Player spends points on upgrades.
 4. Auto-clicker points become claimable after the interval.
 5. Leaderboard reads reflect the updated player stats.
+
+Upgrade purchases should update the displayed cost before the next purchase attempt.
