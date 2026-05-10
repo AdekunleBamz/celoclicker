@@ -48,6 +48,7 @@ Run `npm run test:utils` to confirm local validation and utility helpers are sti
 ## Deployment Smoke Check
 
 - Confirm `NEXT_PUBLIC_CELOCLICKER_CONTRACT` points to the intended network deployment.
+- Confirm `NEXT_PUBLIC_APP_URL` matches the deployed domain before Farcaster review.
 - Confirm a normal browser uses CELO gas mode by default.
 - Confirm MiniPay opens with USDCm gas mode available on Celo mainnet.
 - Confirm leaderboard reads complete before sending a write transaction.
