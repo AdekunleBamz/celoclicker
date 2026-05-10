@@ -87,3 +87,4 @@ Run `npm run test:utils` to confirm local validation and utility helpers are sti
 - **USDCm mode is disabled?**
   - The current implementation enables USDCm gas mode on Celo mainnet
   - If you're on a non-mainnet network, the app falls back to CELO-only fee payments
+  - Confirm the wallet has enough USDCm for gas before retrying
