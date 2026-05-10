@@ -202,6 +202,7 @@ This app uses **Celo fee abstraction** for contract writes:
 ## Operational Notes
 
 - [Environment reference](docs/environment.md)
+- [Gameplay flow](docs/gameplay-flow.md)
 - [QA notes](docs/qa-notes.md)
 - [Release checklist](docs/release-checklist.md)
 - [Security notes](docs/security-notes.md)
