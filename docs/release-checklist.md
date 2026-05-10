@@ -4,6 +4,7 @@ Use this checklist before promoting a Vercel deployment.
 
 ## Local Checks
 
+- Run `npm run lint`.
 - Run `npm run check:fast`.
 - Run `npm run build`.
 - Confirm `.env.example` still lists every required public variable.
