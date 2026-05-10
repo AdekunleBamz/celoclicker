@@ -9,3 +9,7 @@ CeloClicker reads public runtime settings from `NEXT_PUBLIC_*` variables.
 | `NEXT_PUBLIC_APP_URL` | Production or local app URL used by metadata routes. |
 | `NEXT_PUBLIC_CHAIN_ID` | Celo chain id. Use `42220` for mainnet or `44787` for Alfajores. |
 | `NEXT_PUBLIC_APP_VERSION` | Optional build/version label shown by helper code. |
+
+## Vercel Notes
+
+Update public variables in Vercel before promoting a deployment. Browser bundles read these values at build time.
