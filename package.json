@@ -9,6 +9,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "vitest run",
+    "test:utils": "vitest run tests/validation.test.ts tests/lib-utils.test.ts tests/game-helpers.test.ts tests/minipay.test.ts",
+    "check:fast": "npm run lint && npm run test:utils",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
