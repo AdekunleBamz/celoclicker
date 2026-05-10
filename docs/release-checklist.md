@@ -8,6 +8,7 @@ Use this checklist before promoting a Vercel deployment.
 - Run `npm run check:fast`.
 - Run `npm run build`.
 - Confirm `.env.example` still lists every required public variable.
+- Confirm package verification scripts match the commands documented in the README.
 
 ## Runtime Checks
 
