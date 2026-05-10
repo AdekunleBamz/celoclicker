@@ -52,6 +52,7 @@ Run `npm run test:utils` to confirm local validation and utility helpers are sti
 - Confirm a normal browser uses CELO gas mode by default.
 - Confirm MiniPay opens with USDCm gas mode available on Celo mainnet.
 - Confirm leaderboard reads complete before sending a write transaction.
+- Confirm the deployed contract explorer link opens on the selected Celo network.
 
 ## MiniPay Notes
 
