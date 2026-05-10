@@ -8,6 +8,8 @@ CeloClicker supports Celo fee abstraction for contract writes.
 - Normal web sessions default to CELO gas mode.
 - Users can switch modes from the UI when both modes are available.
 
+USDCm mode should only be offered when the configured chain is Celo mainnet.
+
 ## Review Checks
 
 - Confirm USDCm mode is disabled outside supported Celo mainnet contexts.
