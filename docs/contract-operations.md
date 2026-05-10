@@ -6,3 +6,4 @@
 - Use `resetPlayer` only in controlled test wallets.
 - Record one successful click transaction hash in release notes.
 - Record one leaderboard read result when validating production RPC behavior.
+- Compare player stats before and after an upgrade transaction during smoke testing.
