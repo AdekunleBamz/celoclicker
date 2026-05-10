@@ -203,6 +203,7 @@ This app uses **Celo fee abstraction** for contract writes:
 
 - [Contract operations](docs/contract-operations.md)
 - [Environment reference](docs/environment.md)
+- [Farcaster review notes](docs/farcaster-review.md)
 - [Gameplay flow](docs/gameplay-flow.md)
 - [QA notes](docs/qa-notes.md)
 - [Release checklist](docs/release-checklist.md)
