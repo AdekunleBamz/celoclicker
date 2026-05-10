@@ -201,6 +201,7 @@ This app uses **Celo fee abstraction** for contract writes:
 
 ## Operational Notes
 
+- [Environment reference](docs/environment.md)
 - [Release checklist](docs/release-checklist.md)
 - [MiniPay fee mode notes](docs/minipay-fee-mode.md)
 
