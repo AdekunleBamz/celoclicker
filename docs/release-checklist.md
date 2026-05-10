@@ -15,3 +15,4 @@ Use this checklist before promoting a Vercel deployment.
 - Load the app inside MiniPay and confirm the injected wallet path is preferred.
 - Confirm the active fee mode is visible before sending a gameplay transaction.
 - Complete one read-only leaderboard refresh on the target production domain.
+- Complete one click transaction with a low-risk test wallet before public sharing.
