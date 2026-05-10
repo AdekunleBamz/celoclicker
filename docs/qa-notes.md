@@ -12,3 +12,4 @@
 - Test a normal browser wallet flow.
 - Test MiniPay injected wallet flow.
 - Confirm fee mode selection remains visible before writes.
+- Confirm disconnecting and reconnecting refreshes player stats.
