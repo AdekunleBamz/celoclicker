@@ -14,3 +14,4 @@ CeloClicker supports Celo fee abstraction for contract writes.
 - Confirm MiniPay sessions default to the injected wallet before opening a generic wallet modal.
 - Confirm a failed USDCm balance check falls back to a readable user message.
 - Confirm the selected fee mode only affects gas payment, not clicker points or upgrade costs.
+- Confirm the selected fee mode remains visible while a transaction is pending.
