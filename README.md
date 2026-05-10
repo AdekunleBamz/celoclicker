@@ -167,6 +167,8 @@ CeloClicker works best as a lightweight on-chain game with clear player intent:
 
 For Proof of Ship or other ecosystem programs, focus on real retention, repeat play, and mobile UX rather than raw transaction volume.
 
+Use release smoke tests to verify actual playability, not just transaction submission.
+
 ## Strategy Guide
 
 ### Early Game (0-100 points)
