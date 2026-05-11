@@ -3,3 +3,4 @@
 - Compare upgrade costs in the card, confirmation copy, and resulting balance.
 - Confirm unavailable upgrades remain disabled until affordable.
 - Record any cost that formats differently across views.
+- Compare costs before and after a successful upgrade purchase.
