@@ -6,3 +6,4 @@
 - Treat reset-player actions as testing-only behavior.
 - Confirm fee currency changes only affect gas payment.
 - Use low-value test wallets for production smoke clicks.
+- Confirm contract and fee currency settings before each production release.
