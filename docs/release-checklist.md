@@ -17,3 +17,4 @@ Use this checklist before promoting a Vercel deployment.
 - Confirm the active fee mode is visible before sending a gameplay transaction.
 - Complete one read-only leaderboard refresh on the target production domain.
 - Complete one click transaction with a low-risk test wallet before public sharing.
+- Attach one click or upgrade hash and preview URL to release notes.
