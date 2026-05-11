@@ -14,3 +14,4 @@
 - Test MiniPay injected wallet flow.
 - Confirm fee mode selection remains visible before writes.
 - Confirm disconnecting and reconnecting refreshes player stats.
+- Save the wallet type and contract address used for each smoke test.
