@@ -1,0 +1,5 @@
+# Click Rate Check
+
+- Review click behavior with slow, normal, and rapid tapping.
+- Confirm the visible score updates consistently after each accepted click.
+- Record any lag that makes the score feel stale.
