@@ -261,3 +261,5 @@ MIT License - see [LICENSE](LICENSE). Built for Celo Ecosystem.
 **Built with ❤️ for Celo Proof of Ship**
 
 *Click your way to the top! 🌟*
+
+Keep release evidence tied to the transaction hash so support can match screenshots, wallet prompts, and player stats quickly.
