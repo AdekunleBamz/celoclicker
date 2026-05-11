@@ -1,0 +1,5 @@
+# Mobile Gameplay Check
+
+- Review tapping, upgrades, leaderboard, and wallet prompts on mobile width.
+- Confirm primary game controls remain reachable above browser controls.
+- Check that long labels do not cover score values.
