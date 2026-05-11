@@ -15,3 +15,5 @@ CeloClicker reads public runtime settings from `NEXT_PUBLIC_*` variables.
 Update public variables in Vercel before promoting a deployment. Browser bundles read these values at build time.
 
 After changing public variables, trigger a fresh Vercel build before testing the URL.
+
+Record the Vercel environment and reviewer whenever contract or fee variables change.
