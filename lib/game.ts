@@ -2,7 +2,7 @@ export const GAME_VERSION = '1.0.0'
 
 /**
  * Computes the prestige bonus multiplier from prestige count.
- *  count - Number of times prestiged.
+ * @param count - Number of times prestiged.
  */
 export function calcPrestigeBonus(count: number): number {
   if (count < 0) return 1
@@ -11,8 +11,8 @@ export function calcPrestigeBonus(count: number): number {
 
 /**
  * Determines whether a click combo is still active.
- *  lastClick - Timestamp of the last click.
- *  timeout - Combo timeout in milliseconds.
+ * @param lastClick - Timestamp of the last click.
+ * @param timeout - Combo timeout in milliseconds.
  */
 export function isComboActive(lastClick: number, timeout: number): boolean {
   if (lastClick <= 0) return false
@@ -21,18 +21,17 @@ export function isComboActive(lastClick: number, timeout: number): boolean {
 
 /**
  * Returns the effective combo multiplier capped at a maximum.
- *  combo - Current combo count.
- *  max - Maximum allowed multiplier.
+ * @param combo - Current combo count.
+ * @param max - Maximum allowed multiplier.
  */
 export function getComboMultiplier(combo: number, max: number): number {
   return Math.max(1, Math.min(combo, max))
 }
 
-/** Compute total clicks-per-second from a base rate and multiplier. */
 /**
  * Computes total clicks-per-second from a base rate and multiplier.
- *  base - Base clicks per second.
- *  multiplier - Multiplier to apply.
+ * @param base - Base clicks per second.
+ * @param multiplier - Multiplier to apply.
  */
 export function calcTotalCps(base: number, multiplier: number): number {
   return base * multiplier
