@@ -1,5 +1,11 @@
 # QA Notes
 
+## Pre-Smoke-Test
+
+- Run `npm run typecheck` before smoke testing a new build.
+- Run `npm run check:fast` to verify lint and unit tests pass locally.
+- Confirm `NEXT_PUBLIC_CELOCLICKER_CONTRACT` is set before opening the app.
+
 ## Gameplay
 
 - Connect a wallet on the configured Celo network.
