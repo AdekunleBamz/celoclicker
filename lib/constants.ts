@@ -144,6 +144,11 @@ export const MAX_AUTO_CLICKER_LEVEL = 10n
 export const MAX_MULTIPLIER_LEVEL = 5n
 
 /**
+ * Number of block confirmations required before a transaction is considered final.
+ */
+export const TX_CONFIRMATIONS = 1
+
+/**
  * Frozen enum of in-game transaction types.
  */
 export const GAME_TX_TYPE = Object.freeze({
