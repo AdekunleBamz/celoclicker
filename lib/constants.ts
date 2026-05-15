@@ -149,6 +149,16 @@ export const MAX_MULTIPLIER_LEVEL = 5n
 export const TX_CONFIRMATIONS = 1
 
 /**
+ * Delay in milliseconds between RPC retry attempts.
+ */
+export const RPC_RETRY_DELAY_MS = 2_000
+
+/**
+ * Maximum number of RPC retry attempts before reporting a failure.
+ */
+export const MAX_RPC_RETRIES = 3
+
+/**
  * Frozen enum of in-game transaction types.
  */
 export const GAME_TX_TYPE = Object.freeze({
