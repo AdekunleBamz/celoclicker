@@ -4,3 +4,4 @@
 - Confirm disabled actions still communicate their state.
 - Record missing labels before release handoff.
 - Confirm icon-only actions have names in keyboard or screen reader review.
+- Confirm status messages announce wallet-backed state changes clearly.
