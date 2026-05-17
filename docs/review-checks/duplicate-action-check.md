@@ -4,3 +4,4 @@
 - Confirm only one wallet request is created.
 - Treat duplicate prompts as release blockers.
 - Capture the action button state after the first wallet request.
+- Confirm success copy is not shown before a transaction hash exists.
