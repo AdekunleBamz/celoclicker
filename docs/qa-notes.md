@@ -17,6 +17,7 @@
 ## Wallets
 
 - Test a normal browser wallet flow.
+- Refresh once after connecting and confirm the wallet label remains understandable.
 - Test MiniPay injected wallet flow.
 - Confirm fee mode selection remains visible before writes.
 - Confirm disconnecting and reconnecting refreshes player stats.
