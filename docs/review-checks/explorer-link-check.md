@@ -4,3 +4,4 @@
 - Confirm links point to the same network used by the wallet.
 - Note any empty hash or address page before release.
 - Store the explorer URL beside the reviewed transaction hash.
+- Open explorer links in a fresh tab to catch session-only redirects.
