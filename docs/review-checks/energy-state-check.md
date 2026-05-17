@@ -4,3 +4,4 @@
 - Confirm disabled states explain why clicks are unavailable.
 - Note any state that allows actions while energy is empty.
 - Capture the energy value before testing disabled click states.
+- Confirm energy labels remain readable after refresh.
