@@ -4,3 +4,4 @@
 - Confirm the empty state gives a clear next action.
 - Review the state on mobile width before release.
 - Save a screenshot if the empty leaderboard copy changes.
+- Confirm the empty leaderboard does not show stale player stats.
