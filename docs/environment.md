@@ -17,3 +17,5 @@ Update public variables in Vercel before promoting a deployment. Browser bundles
 After changing public variables, trigger a fresh Vercel build before testing the URL.
 
 Record the Vercel environment and reviewer whenever contract or fee variables change.
+
+Compare preview and production values before sharing gameplay review links.
