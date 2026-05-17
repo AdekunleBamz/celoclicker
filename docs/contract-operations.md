@@ -8,3 +8,4 @@
 - Record one leaderboard read result when validating production RPC behavior.
 - Compare player stats before and after an upgrade transaction during smoke testing.
 - Record the player wallet, action, and transaction hash in the operation note.
+- Attach the public explorer link to each operation note.
