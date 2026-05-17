@@ -4,3 +4,4 @@
 - Compare the token symbol in the app with the wallet confirmation.
 - Note fallback currency behavior in QA notes.
 - Capture the selected fee currency before approving a transaction.
+- Confirm fee currency selection does not change point or upgrade values.
