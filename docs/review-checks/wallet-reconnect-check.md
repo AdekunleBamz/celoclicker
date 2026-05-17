@@ -4,3 +4,4 @@
 - Confirm player stats restore without changing the visible account.
 - Record repeated connect prompts in QA notes.
 - Capture whether player stats survive reconnect.
+- Check reconnect behavior in MiniPay and browser wallet sessions.
