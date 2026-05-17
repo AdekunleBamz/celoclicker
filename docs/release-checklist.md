@@ -9,6 +9,7 @@ Use this checklist before promoting a Vercel deployment.
 - Run `npm run typecheck`.
 - Run `npm run build`.
 - Confirm `.env.example` still lists every required public variable.
+- Confirm the production build used the same contract address intended for release.
 - Confirm package verification scripts match the commands documented in the README.
 
 ## Runtime Checks
