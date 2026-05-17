@@ -9,3 +9,5 @@
 Upgrade purchases should update the displayed cost before the next purchase attempt.
 
 Keep the selected upgrade, cost, and resulting stats together in release evidence.
+
+Record whether the gameplay check stayed read-only or included a wallet-backed action.
