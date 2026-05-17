@@ -4,3 +4,4 @@
 - Open the address in the explorer before release handoff.
 - Record the address used for the final smoke test.
 - Include the chain id beside the reviewed contract address.
+- Compare the UI contract warning state with the configured address.
