@@ -112,6 +112,9 @@ npm run test:utils
 # Run fast local verification (lint + focused tests)
 npm run check:fast
 
+# Run production build verification
+npm run build
+
 # Start production server
 npm run start
 ```
