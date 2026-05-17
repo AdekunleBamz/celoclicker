@@ -7,3 +7,4 @@
 - Confirm support links remain reachable outside the mini app shell.
 - Confirm production metadata uses the same domain as `NEXT_PUBLIC_APP_URL`.
 - Capture the Farcaster client and preview URL used for shell review.
+- Record the app version or build identifier shown during Farcaster review.
