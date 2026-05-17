@@ -4,3 +4,4 @@
 - Confirm unavailable upgrades remain disabled until affordable.
 - Record any cost that formats differently across views.
 - Compare costs before and after a successful upgrade purchase.
+- Confirm costs remain readable for high-level upgrade states.
