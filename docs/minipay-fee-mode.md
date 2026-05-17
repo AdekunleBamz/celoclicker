@@ -18,3 +18,4 @@ USDCm mode should only be offered when the configured chain is Celo mainnet.
 - Confirm the selected fee mode only affects gas payment, not clicker points or upgrade costs.
 - Confirm the selected fee mode remains visible while a transaction is pending.
 - Capture the fee mode shown before opening the wallet prompt.
+- Repeat fee mode review after changing supported chain or adapter values.
