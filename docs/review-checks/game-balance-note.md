@@ -4,3 +4,4 @@
 - Include score range, upgrade level, and session length.
 - Keep balance notes separate from release blockers.
 - Compare displayed points with the latest contract read.
+- Include the fee mode used during the balance review.
