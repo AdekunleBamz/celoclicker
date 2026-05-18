@@ -7,6 +7,14 @@
     "node": ">=18"
   },
   "bugs": {"url": "https://github.com/AdekunleBamz/celoclicker/issues"},
+  "homepage": "https://github.com/AdekunleBamz/celoclicker#readme",
+  "keywords": [
+    "celoclicker",
+    "celo",
+    "minipay",
+    "game",
+    "leaderboard"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
